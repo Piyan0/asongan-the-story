@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmsmkdgip62y3"]
+
+[ext_resource type="Script" uid="uid://c0op5vg5gopoi" path="res://scripts/inventory/on_hold_item/on_hold_items.gd" id="1_gdq6r"]
+[ext_resource type="PackedScene" uid="uid://bbgpcdu8sgw7h" path="res://scenes/ui/inventory/on_hold_items/item.tscn" id="2_hu3hw"]
+[ext_resource type="Script" uid="uid://dygfvg0r8xaua" path="res://scripts/inventory/on_hold_item/manager.gd" id="5_7kh48"]
+
+[node name="OnHoldItems" type="Control"]
+layout_mode = 3
+anchor_right = 0.126563
+anchor_bottom = 0.0694444
+offset_left = 97.0
+offset_top = 115.0
+offset_right = 97.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gdq6r")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 25.0
+alignment = 1
+
+[node name="item" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item2" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item3" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item4" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item5" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item6" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item7" parent="HBoxContainer" instance=ExtResource("2_hu3hw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_7kh48")

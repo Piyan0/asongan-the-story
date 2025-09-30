@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc47iab81xsau"]
+
+[ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
+[ext_resource type="Texture2D" uid="uid://vptf5foi6gpm" path="res://assets/sprites/cars/normal_car/1.png" id="2_6shbv"]
+[ext_resource type="Texture2D" uid="uid://cv7yiwkbejj8h" path="res://assets/sprites/cars/normal_car/2.png" id="3_378j4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eu8vt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6shbv")
+}],
+"loop": false,
+"name": &"move",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6shbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_378j4")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6shbv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6shbv"]
+size = Vector2(132, 48)
+
+[node name="NormalCar" type="Node2D"]
+script = ExtResource("1_aiglg")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -50)
+sprite_frames = SubResource("SpriteFrames_eu8vt")
+animation = &"stop"
+
+[node name="Control" type="ColorRect" parent="."]
+visible = false
+offset_left = -73.0
+offset_top = -107.0
+offset_right = 80.0
+offset_bottom = 1.0
+color = Color(1, 1, 1, 0.203922)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -121.0
+offset_right = 24.0
+offset_bottom = -98.0
+text = "fdf"
+metadata/_edit_use_anchors_ = true
+
+[node name="car" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="car"]
+position = Vector2(60, -37)
+shape = SubResource("CircleShape2D_6shbv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5, -25)
+shape = SubResource("RectangleShape2D_6shbv")

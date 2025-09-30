@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://lukntc1w20oe"]
+
+[ext_resource type="Script" uid="uid://bfyojmiva1xc2" path="res://scripts/train/train_stopping.gd" id="1_2ltev"]
+[ext_resource type="Texture2D" uid="uid://vvclcd231d2d" path="res://assets/sprites/train/stopping_off.png" id="2_2pllg"]
+[ext_resource type="Texture2D" uid="uid://otk4k3bryxsq" path="res://assets/sprites/train/stopping_on.png" id="3_iiq2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfafu"]
+size = Vector2(78, 157)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_282vt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2pllg")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iiq2y")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="train_stopping" type="Node2D"]
+script = ExtResource("1_2ltev")
+
+[node name="stop_area" type="Area2D" parent="."]
+position = Vector2(0, -124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_area"]
+position = Vector2(-26, 0)
+shape = SubResource("RectangleShape2D_cfafu")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -104)
+sprite_frames = SubResource("SpriteFrames_282vt")
+animation = &"off"
+autoplay = "off"

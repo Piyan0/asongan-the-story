@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://bg1dy0qdj3pif"]
+
+[ext_resource type="Texture2D" uid="uid://cirrbjwb6bopp" path="res://assets/sprites/cooking/tofu_stand/tofu.png" id="1_hwoxp"]
+[ext_resource type="Script" uid="uid://bm0dtlixgiv3w" path="res://scripts/cooking/ingredient.gd" id="2_6wbjr"]
+[ext_resource type="Texture2D" uid="uid://bytw3ulfwwm1p" path="res://assets/sprites/cooking/tofu_stand/circle.png" id="3_83gay"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="4_8fcam"]
+[ext_resource type="Texture2D" uid="uid://cg6bwmuk01hgu" path="res://assets/sprites/cooking/tofu_stand/pointer_down.png" id="5_8fcam"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xps64"]
+font = ExtResource("4_8fcam")
+font_color = Color(0.160784, 0.137255, 0.14902, 1)
+
+[sub_resource type="Animation" id="Animation_xps64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8fcam"]
+resource_name = "blip"
+length = 0.48
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a164m"]
+_data = {
+&"RESET": SubResource("Animation_xps64"),
+&"blip": SubResource("Animation_8fcam")
+}
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = 335.0
+offset_top = 138.0
+offset_right = 396.0
+offset_bottom = 188.0
+texture = ExtResource("1_hwoxp")
+script = ExtResource("2_6wbjr")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -10.0
+offset_bottom = 5.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_83gay")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 16.0
+offset_bottom = 14.0
+text = "2"
+label_settings = SubResource("LabelSettings_xps64")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pointer" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.5
+offset_top = -8.0
+offset_right = 4.5
+offset_bottom = -2.0
+grow_horizontal = 2
+texture = ExtResource("5_8fcam")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointer"]
+libraries = {
+&"": SubResource("AnimationLibrary_a164m")
+}
+autoplay = "blip"
+speed_scale = 2.539

@@ -1,0 +1,291 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4h6t67vdweal"]
+
+[ext_resource type="Texture2D" uid="uid://c3lvibbhik11r" path="res://assets/sprites/cooking/background.png" id="1_iduhj"]
+[ext_resource type="Script" uid="uid://c5o062sucu70d" path="res://scripts/cooking/tofu_stand/tofu_stand.gd" id="1_sqs2g"]
+[ext_resource type="PackedScene" uid="uid://bg1dy0qdj3pif" path="res://scenes/cooking/ingredient.tscn" id="3_bqfwf"]
+[ext_resource type="Texture2D" uid="uid://b8c3vtsncg7ho" path="res://assets/sprites/cooking/tofu_stand/rice_rolls.png" id="3_r85b3"]
+[ext_resource type="Texture2D" uid="uid://dp1fgsrgx7umc" path="res://assets/sprites/cooking/tofu_stand/chilly.png" id="4_bqfwf"]
+[ext_resource type="Texture2D" uid="uid://ch681sc0sfs86" path="res://assets/sprites/cooking/tofu_stand/plastic_bg.png" id="6_ndbs7"]
+[ext_resource type="Texture2D" uid="uid://dgg82q4153pxf" path="res://assets/sprites/cooking/tofu_stand/rice_rolls_preview.png" id="7_qk4mc"]
+[ext_resource type="Texture2D" uid="uid://drxt3dpgjdfor" path="res://assets/sprites/cooking/tofu_stand/tofu_preview.png" id="8_akwb2"]
+[ext_resource type="Texture2D" uid="uid://diy4y1xbg86oa" path="res://assets/sprites/cooking/tofu_stand/plastic_line.png" id="9_yg0of"]
+[ext_resource type="Texture2D" uid="uid://ddi4rd6hvk4ta" path="res://assets/sprites/cooking/tofu_stand/platic_top.png" id="10_8ayv2"]
+[ext_resource type="Script" uid="uid://bicaense4k3ko" path="res://scripts/cooking/tofu_stand/tofu_stand_manager.gd" id="11_qk4mc"]
+[ext_resource type="Texture2D" uid="uid://bo0w33qohd542" path="res://assets/sprites/cooking/mouse_custom.png" id="12_akwb2"]
+[ext_resource type="PackedScene" uid="uid://doo13f5dqeox0" path="res://scenes/cooking/food_finished.tscn" id="13_yg0of"]
+
+[sub_resource type="Animation" id="Animation_yg0of"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_akwb2"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.633333, 0.866667),
+"transitions": PackedFloat32Array(0.366022, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.835, 1.13), Vector2(1.16, 0.920001), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ayv2"]
+_data = {
+&"RESET": SubResource("Animation_yg0of"),
+&"new_animation": SubResource("Animation_akwb2")
+}
+
+[sub_resource type="Animation" id="Animation_si0af"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_085kx"]
+resource_name = "new_animation"
+length = 1.4095
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.6, 1.06667),
+"transitions": PackedFloat32Array(0.378929, 1, 0.307786, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.024, 1.049), Vector2(1.085, 0.83), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jopvl"]
+_data = {
+&"RESET": SubResource("Animation_si0af"),
+&"new_animation": SubResource("Animation_085kx")
+}
+
+[node name="TofuStand" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sqs2g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_iduhj")
+
+[node name="tofu" parent="." instance=ExtResource("3_bqfwf")]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 135.0
+offset_right = 387.0
+offset_bottom = 185.0
+id = "tofu"
+
+[node name="rice_rolls" parent="." instance=ExtResource("3_bqfwf")]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 135.0
+offset_right = 436.0
+offset_bottom = 238.0
+texture = ExtResource("3_r85b3")
+id = "rice_rolls"
+
+[node name="chilly" parent="." instance=ExtResource("3_bqfwf")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 197.0
+offset_right = 363.0
+offset_bottom = 240.0
+texture = ExtResource("4_bqfwf")
+id = "chilly"
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(93, 136)
+anchors_preset = 0
+offset_left = 202.0
+offset_top = 112.0
+offset_right = 295.0
+offset_bottom = 248.0
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0.180392)
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 136.0
+texture = ExtResource("6_ndbs7")
+
+[node name="tofu" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 75.0
+offset_right = 45.0
+offset_bottom = 115.0
+
+[node name="TextureRect7" type="TextureRect" parent="Control/tofu"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = -73.0
+offset_right = 83.0
+offset_bottom = 56.0
+pivot_offset = Vector2(19.5, 129)
+texture = ExtResource("7_qk4mc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect7"]
+libraries = {
+&"": SubResource("AnimationLibrary_8ayv2")
+}
+speed_scale = 2.5
+
+[node name="TextureRect" type="TextureRect" parent="Control/tofu"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 42.0
+offset_bottom = 54.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect2" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_top = -32.0
+offset_right = 42.0
+offset_bottom = 23.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect2"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect3" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_top = -63.0
+offset_right = 42.0
+offset_bottom = -8.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect3"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect4" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_left = 41.0
+offset_top = -1.0
+offset_right = 83.0
+offset_bottom = 54.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect4"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect5" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_left = 41.0
+offset_top = -32.0
+offset_right = 83.0
+offset_bottom = 23.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect5"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect6" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_left = 41.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = -8.0
+pivot_offset = Vector2(21, 55)
+texture = ExtResource("8_akwb2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/tofu/TextureRect6"]
+libraries = {
+&"": SubResource("AnimationLibrary_jopvl")
+}
+speed_scale = 2.582
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 136.0
+texture = ExtResource("9_yg0of")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 163.0
+offset_top = 62.0
+offset_right = 256.0
+offset_bottom = 198.0
+texture = ExtResource("10_8ayv2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+
+[node name="mouse" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 182.0
+offset_right = 452.0
+offset_bottom = 195.0
+mouse_filter = 2
+texture = ExtResource("12_akwb2")
+
+[node name="TofuStandManager" type="Node" parent="."]
+script = ExtResource("11_qk4mc")
+metadata/_custom_type_script = "uid://bicaense4k3ko"
+
+[node name="FoodFinished" parent="." instance=ExtResource("13_yg0of")]
+layout_mode = 1
