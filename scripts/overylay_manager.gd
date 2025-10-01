@@ -4,6 +4,7 @@ signal overlay_hidden(overlay)
 
 var current_overlay
 var overlay
+var is_can_open: bool= true
 
 func _enter_tree() -> void:
   set_process_input(false)
@@ -12,13 +13,13 @@ func _input(event: InputEvent) -> void:
     
   if not dependency_ready():
     return
-    
+  
   if (
     event.is_action_pressed('c') 
     and OnHoldItemsManager.instance.child_instance.is_all_slots_idle() 
     and can_show(OnHoldItemsManager)
     and OnHoldItemsManager.instance.is_shown == false
-    ):
+    ) and is_can_open:
     current_overlay= OnHoldItemsManager
     overlay_showned.emit(OnHoldItemsManager)
     OnHoldItemsManager.instance.toggle()
@@ -39,6 +40,7 @@ func close_current_overlay():
       current_overlay= null
       overlay_hidden.emit(InventoryManager)
       InventoryManager.instance.toggle()
+      print(1)
       
     OnHoldItemsManager:
       if not OnHoldItemsManager.instance.child_instance.is_all_slots_idle():

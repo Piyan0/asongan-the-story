@@ -177,8 +177,9 @@ func reset_item_status():
   item_correct_callback= func(): pass
 func set_item_id_correct(id: String):
   item_id_correct= id
+  
 func _input(event: InputEvent) -> void:
-
+  if not list_selection: return
   if event.is_action_pressed('z'):
     var item_selected: InventoryItem= list_selection.last_selected_child
     if not item_selected: return

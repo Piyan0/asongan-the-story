@@ -16,6 +16,9 @@ func _ready() -> void:
   if player== null:
     player= self 
 
+func play_anim(anim: String) -> void:
+  #return
+  sprite.play(anim)
 
 func play_bubble(id: String) -> void:
   bubble.play(id)
@@ -32,4 +35,3 @@ func display_coin(value: int):
   coin_animation.play('pop')
   await get_tree().create_timer(duration).timeout
   coin_label.hide()
- 

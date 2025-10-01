@@ -13,6 +13,7 @@ static var instance: PlayerMovement
 func _ready() -> void:
   if not instance:
     instance= self
+        
   topdown_movement = TopdownMovement.new()
   topdown_movement.body= player
   topdown_movement.move_speed= 4500
@@ -27,19 +28,20 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
   match new_direction:
     
     Vector2.ZERO:
-      match previous_direction:
-        Vector2.LEFT, Vector2(-1, -1):
-          sprite.play('idle_left')
-        Vector2.RIGHT, Vector2(1, -1):
-          sprite.play('idle_right')
-        Vector2.DOWN, Vector2(1, 1),Vector2(-1, 1):
-          sprite.play('idle_down')
-        Vector2.UP:
-          match last_x_axis:
-            1.0:
-              sprite.play('idle_right')
-            -1.0:
-              sprite.play('idle_left')      
+      sprite.play(current_idle_animation)
+      #match previous_direction:
+        #Vector2.LEFT, Vector2(-1, -1):
+          #sprite.play('idle_left')
+        #Vector2.RIGHT, Vector2(1, -1):
+          #sprite.play('idle_right')
+        #Vector2.DOWN, Vector2(1, 1),Vector2(-1, 1):
+          #sprite.play('idle_down')
+        #Vector2.UP:
+          #match last_x_axis:
+            #1.0:
+              #sprite.play('idle_right')
+            #-1.0:
+              #sprite.play('idle_left')      
     
     Vector2.LEFT, Vector2(-1, -1) ,Vector2(-1, 1):
       if last_x_axis == 1.0:
@@ -73,6 +75,7 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
           sprite.play('walk_left')
         _:
           current_idle_animation= 'idle_left'
+          #printt('no dirr', current_idle_animation)
           sprite.play('walk_left')
           
   set_last_axis(new_direction.x)
@@ -83,5 +86,6 @@ func set_last_axis(axis: float):
     
 func _process(delta: float) -> void:
   topdown_movement._process(delta)
+  #print(topdown_movement.stop)
 
   

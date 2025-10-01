@@ -80,10 +80,12 @@ func on_player_bubble_finished():
   pass
 
 func on_EventManager_event_started():
+  OverlayManager.is_can_open= false
   PlayerMovement.instance.stop(true)
   ControlHint.instance.set_hint('z', 'None')
 
 func on_EventManager_event_finished():
+  OverlayManager.is_can_open= true
   PlayerMovement.instance.stop(false)
   ControlHint.instance.set_hint('z', 'prev')
   

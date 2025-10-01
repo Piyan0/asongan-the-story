@@ -23,7 +23,7 @@ var queue_autostart : Array[Autostart]
 static var core_instance : Array[Event]
 static var instance: EventManager
 static var wire_queue: Array[Callable]
-
+#var is_can_run_event: bool= true
 func _ready() -> void:
   container= VBoxContainer.new()
   container.add_theme_constant_override('separation',0)
@@ -53,9 +53,11 @@ static func add_instance(event: Event):
     
   event.interact_started.connect(func():
     instance.event_started.emit()
+    EventManager.instance.set_can_run(false)
     )
   event.interact_finished.connect(func():
     instance.event_finished.emit()
+    EventManager.instance.set_can_run(true)
     )
   
   event.player_entered_area.connect(func():

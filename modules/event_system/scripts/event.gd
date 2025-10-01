@@ -104,6 +104,7 @@ func get_event(id: String) -> Event.EventPart:
   return core.get_event(id)
   
 func _input(event: InputEvent) -> void:
+
   #print(1)
   if trigger_by_enter: return
   #print(2)
@@ -111,6 +112,9 @@ func _input(event: InputEvent) -> void:
   #print(3)
   if not can_interact: return
   #print(4)
+  if EventManager.instance:
+    if not EventManager.instance.get_can_run(): return
+  
   if (event.is_action_pressed("ui_accept")
      or event.is_action_pressed('z')
      and core.is_can_run_event

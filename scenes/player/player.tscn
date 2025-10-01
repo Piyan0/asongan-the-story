@@ -281,7 +281,6 @@ texture = ExtResource("2_myrg7")
 position = Vector2(0, -33)
 sprite_frames = SubResource("SpriteFrames_og1vs")
 animation = &"idle_down"
-autoplay = "idle_down"
 
 [node name="OnHoldItems" parent="." instance=ExtResource("16_myrg7")]
 visible = false

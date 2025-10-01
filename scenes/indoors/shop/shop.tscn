@@ -30,6 +30,7 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("8_2rpvr")
 scene = "uid://no5h2wbb2cwa"
+spawn_position = Vector2(193, 153)
 metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
 
 [node name="Shop" type="Node2D"]

@@ -128,9 +128,11 @@ func set_use_mode(_is_will_throw_item: bool):
   
   
 func _input(event: InputEvent) -> void:
+  if not list_selection: return
   if child_instance:
     if not child_instance.is_all_slots_idle(): return
-    
+  
+  
   if event.is_action_pressed('z') and list_selection.is_started_selecting:
     if list_selection.last_selected_child.is_has_item:
       if is_will_throw_item:

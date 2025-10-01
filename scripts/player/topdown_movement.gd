@@ -5,7 +5,6 @@ signal direction_changed(direction, last_direction)
 
 var direction: Vector2
 var last_direction: Vector2
-var direction_before_stopped: Vector2
 var body: CharacterBody2D
 var move_speed: int= 2000
 var stop: bool= false
@@ -21,8 +20,8 @@ func _process(delta):
   body.velocity= direction* move_speed* delta
   body.move_and_slide()
   
-  if direction!=Vector2.ZERO:
-    direction_before_stopped= direction
+  #if direction!=Vector2.ZERO:
+    #direction_before_stopped= direction
     
   if is_direction_changed():
     #print(1)
