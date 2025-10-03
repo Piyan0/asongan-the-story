@@ -24,6 +24,7 @@ static var core_instance : Array[Event]
 static var instance: EventManager
 static var wire_queue: Array[Callable]
 #var is_can_run_event: bool= true
+
 func _ready() -> void:
   container= VBoxContainer.new()
   container.add_theme_constant_override('separation',0)
@@ -38,36 +39,10 @@ func _ready() -> void:
 
 func set_can_run(can_run: bool):
   is_can_run_event= can_run
+  
 func get_can_run():
   return is_can_run_event
-  
-static func add_instance(event: Event):
-  if instance== null:
-    wire_queue.push_back(add_instance.bind(event))
-    return
-    
-  
-  instance.toggle_event_process.connect(func(can_run: bool):
-    event.is_can_run_event= can_run
-    )
-    
-  event.interact_started.connect(func():
-    instance.event_started.emit()
-    EventManager.instance.set_can_run(false)
-    )
-  event.interact_finished.connect(func():
-    instance.event_finished.emit()
-    EventManager.instance.set_can_run(true)
-    )
-  
-  event.player_entered_area.connect(func():
-    instance.player_entered_area.emit()
-    )
-  
-  event.player_exited_area.connect(func():
-    instance.player_exited_area.emit()
-    )
-    
+
 func get_instance_by_id(id: String) -> EventArea:
   for i : EventArea in get_tree().get_nodes_in_group('EventArea'):
     if i.event_id== id:
@@ -104,9 +79,11 @@ func execute_autostart() -> void:
     var event_area: EventArea= get_instance_by_id(i.event_area_id)
     if event_area != null:
       event_started.emit()
+      Mediator.air(Mediator.EVENT_STARTED)
       await event_area.get_event(i.event_key_id).callback.call()
       autostart_called.push_back(i)
       event_finished.emit()
+      Mediator.air(Mediator.EVENT_FINISHED)
   
   for i in autostart_called:
     queue_autostart.erase(i)

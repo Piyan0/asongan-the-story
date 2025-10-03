@@ -1,29 +1,40 @@
 extends Node
 
+enum {
+  PLAYER_BUBBLE_PLAYED= 0,
+  PLAYER_BUBBLE_FINISHED,
+  EVENT_STARTED,
+  EVENT_FINISHED,
+  EVENT_PLAYER_ENTERED,
+  EVENT_PLAYER_EXITED,
+  EQUIPPED_ITEM_USED,
+  EQUIPPED_ITEM_THROWN,
+  OVERLAY_HIDDEN,
+  OVERLAY_SHOWNED,
+  GAME_STARTED,
+  GAME_PAUSED,
+  GAME_RESUMED,
 
-func _ready() -> void:
-  wire.call_deferred()
-  
-func wire():
-  
-  if Player.player:
-    Player.player.bubble_played.connect(on_player_bubble_played)
-    Player.player.bubble_finished.connect(on_player_bubble_played)
-  if EventManager.instance:
-    EventManager.instance.event_started.connect(on_EventManager_event_started)
-    EventManager.instance.event_finished.connect(on_EventManager_event_finished)
-    EventManager.instance.player_entered_area.connect(on_EventManager_player_entered_area)
-    EventManager.instance.player_exited_area.connect(on_EventManager_player_exited_area)
-  
-  if OnHoldItemsManager.instance:
-    OnHoldItemsManager.instance.item_used.connect(on_OnHoldItemsManager_item_used)
-    OnHoldItemsManager.instance.item_thrown.connect(on_OnHoldItemsManager_item_thrown)
-  
-  
-  OverlayManager.overlay_hidden.connect(on_OverlayManager_overlay_hidden)
-  OverlayManager.overlay_showned.connect(on_OverlayManager_overlay_showned)
+}
 
-
+var event_mapped: Dictionary[int, Callable]= {
+  PLAYER_BUBBLE_PLAYED: on_player_bubble_played,
+  PLAYER_BUBBLE_FINISHED: on_player_bubble_finished,
+  EVENT_STARTED: on_EventManager_event_started,
+  EVENT_FINISHED: on_EventManager_event_finished,
+  EVENT_PLAYER_ENTERED: on_EventManager_player_entered_area,
+  EVENT_PLAYER_EXITED: on_EventManager_player_exited_area,
+  EQUIPPED_ITEM_USED: on_OnHoldItemsManager_item_used,
+  EQUIPPED_ITEM_THROWN: on_OnHoldItemsManager_item_thrown,
+  OVERLAY_HIDDEN: on_OverlayManager_overlay_hidden,
+  OVERLAY_SHOWNED: on_OverlayManager_overlay_showned,
+  GAME_STARTED: on_game_started,
+  GAME_PAUSED: on_game_paused,
+  GAME_RESUMED: on_game_resumed,
+}
+  
+func air(id: int, args: Array= []):
+  event_mapped[id].callv(args)
   
 func on_OnHoldItemsManager_item_used(item: InventoryManager.Item):
   var is_item_correct: bool= InventoryManager.instance.is_used_item_correct(item.item_id)
@@ -52,7 +63,6 @@ func on_OnHoldItemsManager_item_thrown(item: InventoryManager.Item):
   EventManager.instance.event_started.emit()
   await ThrowItem.instance.throw(load(item.icon))
   EventManager.instance.event_finished.emit()
-  
     
 func on_OverlayManager_overlay_showned(overlay):
   EventManager.instance.toggle_event_process.emit(false)
@@ -65,7 +75,6 @@ func on_OverlayManager_overlay_showned(overlay):
     InventoryManager:
       ControlHint.instance.set_hint('z', 'Equip/unequip')
       
-  
 func on_OverlayManager_overlay_hidden(overlay):
   EventManager.instance.toggle_event_process.emit(true)
   ControlHint.instance.set_hint('z', 'prev')
@@ -97,3 +106,19 @@ func on_EventManager_player_exited_area():
   ControlHint.instance.set_hint('z', 'None')
   ControlHint.instance.save_hint('z')
   pass
+
+func on_game_started():
+  OverlayManager.is_can_open= true
+  CarManager.instance.ready()
+  await Transition.instance.play_transition(false)
+  get_tree().change_scene_to_file("res://scenes/environment/main_road.tscn")
+  OverlayManager.toggle_control_hint(true)
+  Transition.instance.play_transition(true)
+  
+func on_game_paused():
+  PlayerMovement.instance.stop(true)
+  print('game paused')
+
+func on_game_resumed():
+  print('game resumed')
+  PlayerMovement.instance.stop(false)

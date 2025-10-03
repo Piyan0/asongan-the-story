@@ -73,32 +73,29 @@ var rows: Array[Row]
 var cars_on_road: Array[CarScene]
 
 
-
 func _ready() -> void:
-  
-  
   if not instance:
     #print(1)
     instance= self
-    var row_1= Row.new()
-    row_1.max_car_at_row= 2
-    row_1.y_pos= 263
-    row_1.x_pos= -50
-    
-    var row_2= Row.new()
-    row_2.max_car_at_row= 3
-    row_2.y_pos= 354
-    row_2.x_pos= -50
-    
-    row_1.car_arrived.connect(on_car_arrived)
-    row_2.car_arrived.connect(on_car_arrived)
-    
-    rows.push_back(row_1)
-    rows.push_back(row_2)
-    cache_cars()
+  
+func ready() -> void:
+  var row_1= Row.new()
+  row_1.max_car_at_row= 2
+  row_1.y_pos= 263
+  row_1.x_pos= -50
+  
+  var row_2= Row.new()
+  row_2.max_car_at_row= 3
+  row_2.y_pos= 354
+  row_2.x_pos= -50
+  
+  row_1.car_arrived.connect(on_car_arrived)
+  row_2.car_arrived.connect(on_car_arrived)
+  
+  rows.push_back(row_1)
+  rows.push_back(row_2)
+  cache_cars()
    
-  else:
-    queue_free()
 
 func is_all_car_arrived() -> bool:
   for i in rows:

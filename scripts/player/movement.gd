@@ -20,11 +20,12 @@ func _ready() -> void:
   topdown_movement.direction_changed.connect(on_direction_changed)
 
 func stop(is_stop: bool):
-  topdown_movement.stop= is_stop
-  sprite.play(current_idle_animation)
+  topdown_movement.toggle_stop(is_stop)
+  if is_stop:
+    sprite.play(current_idle_animation)
   
 func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
-  #printt(new_direction, previous_direction)
+  print(9)
   match new_direction:
     
     Vector2.ZERO:
@@ -45,19 +46,19 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
     
     Vector2.LEFT, Vector2(-1, -1) ,Vector2(-1, 1):
       if last_x_axis == 1.0:
-        topdown_movement.stop= true
+        topdown_movement.is_stopped= true
         sprite.play("idle_down")
         await sprite.animation_finished
-        topdown_movement.stop= false
+        topdown_movement.is_stopped= false
       sprite.play('walk_left')
       current_idle_animation= 'idle_left'
   
     Vector2.RIGHT, Vector2(1, -1) , Vector2(1, 1):
       if last_x_axis == -1.0:
-        topdown_movement.stop= true
+        topdown_movement.is_stopped= true
         sprite.play("idle_down")
         await sprite.animation_finished
-        topdown_movement.stop= false
+        topdown_movement.is_stopped= false
       sprite.play('walk_right')
       current_idle_animation= 'idle_right'
 
@@ -86,6 +87,6 @@ func set_last_axis(axis: float):
     
 func _process(delta: float) -> void:
   topdown_movement._process(delta)
-  #print(topdown_movement.stop)
+  #print(topdown_movement.is_stopped)
 
   

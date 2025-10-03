@@ -21,12 +21,14 @@ func play_anim(anim: String) -> void:
   sprite.play(anim)
 
 func play_bubble(id: String) -> void:
+  Mediator.air(Mediator.PLAYER_BUBBLE_PLAYED)
   bubble.play(id)
   set_process_input(false)
   bubble_played.emit()
   await bubble.animation_finished
   set_process_input(true)
   bubble_finished.emit()  
+  Mediator.air(Mediator.PLAYER_BUBBLE_FINISHED)
 
 func display_coin(value: int):
   var duration: float= 0.5

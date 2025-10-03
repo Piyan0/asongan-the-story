@@ -1,0 +1,15 @@
+KEYS,INA,EN
+LANGUAGE,Bahasa,Language
+AUDIO,Suara,Audio
+FULLSCREEN,Layar penuh,Fullscreen
+VSYNC,Vsync,Vsync
+OFF,Mati,Off
+ON,Nyala,On
+BACK,Kembali,Back
+INDO,Indonesia,Indonesia
+ENGLISH,English,English
+OPTION,PENGATURAN,OPTIONS
+OPTIONS,Pengaturan,Options
+PlAY,Main,Play
+CREDITS,Pembuat,Credits
+QUIT,Keluar,Quit

@@ -35,8 +35,6 @@ var events: Array[EventPart]
 @export var event_id : String
 @export var current_event_key : String = 'None'
   
-func _init() -> void:
-  EventManager.add_instance(self)
 #TESTED = NO
 func get_event(id: String) -> EventPart:
   for i in events:
@@ -56,6 +54,9 @@ func add_event(event: EventPart) -> void:
 #TESTED = NO
 var is_can_run_event: bool= true
 func _interact(is_broadcast: bool= true) -> void:
+  Mediator.air(Mediator.EVENT_STARTED)
+  EventManager.instance.event_started.emit()
+  EventManager.instance.set_can_run(false)
   if not is_can_run_event:
     #print('noo')
     return
@@ -71,6 +72,10 @@ func _interact(is_broadcast: bool= true) -> void:
   if is_broadcast:
     interact_started.emit()
   await get_event(id.call()).callback.call()
+  EventManager.instance.event_finished.emit()
+  Mediator.air(Mediator.EVENT_FINISHED)
+  EventManager.instance.set_can_run(true)
+  
   if is_broadcast:
     interact_finished.emit.call_deferred()
 

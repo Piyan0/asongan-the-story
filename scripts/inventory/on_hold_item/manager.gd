@@ -135,10 +135,11 @@ func _input(event: InputEvent) -> void:
   
   if event.is_action_pressed('z') and list_selection.is_started_selecting:
     if list_selection.last_selected_child.is_has_item:
+      var item: InventoryManager.Item= list_selection.last_selected_child.get_meta('data')
       if is_will_throw_item:
-        on_item_thrown(list_selection.last_selected_child.get_meta('data'))
+        Mediator.air(Mediator.EQUIPPED_ITEM_THROWN, [item])
       else:
-        on_item_used(list_selection.last_selected_child.get_meta('data'))
+        Mediator.air(Mediator.EQUIPPED_ITEM_USED, [item])
   #if event.is_action_pressed('ui_accept'):
     #close_inventory()
   #if event.is_action_pressed("ui_down"):

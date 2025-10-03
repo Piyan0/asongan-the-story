@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://df4n26hlh5twh"]
+
+[ext_resource type="Texture2D" uid="uid://dstb3560twlsf" path="res://assets/sprites/ui/main_menu/menu_bg.png" id="1_16ned"]
+[ext_resource type="Script" uid="uid://dse7o5cdtkpom" path="res://scripts/ui/main_menu/options/options.gd" id="1_boy22"]
+[ext_resource type="PackedScene" uid="uid://bamugheffwdvd" path="res://scenes/ui/main_menu/options/option_item.tscn" id="2_mpx34"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="4_16ned"]
+[ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="4_je832"]
+[ext_resource type="Texture2D" uid="uid://c70cqvwtjt1gt" path="res://assets/color_pallate/fading-16-1x.png" id="6_86i5b"]
+[ext_resource type="PackedScene" uid="uid://b2hbeuy6ofwwb" path="res://scenes/ui/main_menu/menu_item.tscn" id="7_86i5b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cixid"]
+font = ExtResource("4_16ned")
+font_color = Color(0.666667, 0.635294, 0.364706, 1)
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_boy22")
+metadata/_edit_horizontal_guides_ = [87.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_16ned")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -105.0
+offset_right = 20.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPIONS"
+label_settings = SubResource("LabelSettings_cixid")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_right = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_je832")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Fading-16-1x" type="Sprite2D" parent="."]
+position = Vector2(128, 10)
+scale = Vector2(13.625, 28)
+texture = ExtResource("6_86i5b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -64.0
+offset_right = 119.5
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="language_options_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Language"
+
+[node name="fullscreen_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Fullscreen"
+
+[node name="vsync_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Vsync"
+
+[node name="audio_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Audio"
+
+[node name="move_keys_options_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Move keys"
+
+[node name="action_keys_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 14)
+layout_mode = 2
+tittle = "Action Keys"
+
+[node name="back" parent="." instance=ExtResource("7_86i5b")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -95.0
+offset_bottom = -80.0
+grow_vertical = 0

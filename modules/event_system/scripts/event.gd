@@ -63,6 +63,7 @@ func setup_area() -> void:
     core.player_entered_area.emit()
     can_interact= true
     set_process_input(true)
+    Mediator.air(Mediator.EVENT_PLAYER_ENTERED)
     )
     
   area_2d.area_exited.connect(func(area):
@@ -70,6 +71,7 @@ func setup_area() -> void:
     core.player_exited_area.emit()
     can_interact= false
     set_process_input(false)
+    Mediator.air(Mediator.EVENT_PLAYER_EXITED)
     )
     
 static var label_visible : bool= false

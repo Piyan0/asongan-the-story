@@ -6,6 +6,7 @@ static var instance: Transition
 func _ready() -> void:
   if not instance:
     instance= self
+    
 @onready var sprite_2d: ColorRect = $Sprite2D
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
 
