@@ -1,7 +1,6 @@
 extends Control
 
 @export var show_bg: bool= false
-var pika: Pika
 var list: VerticalListItem
 var language_options: OptionsSelection
 var move_keys_options: OptionsSelection
@@ -52,9 +51,6 @@ func _ready() -> void:
   label_ui[LabelUI.TITTLE_FULSCREEN]= %fullscreen_ui.get_tittle_label()
   label_ui[LabelUI.TITTLE_AUDIO]= %audio_ui.get_tittle_label()
   label_ui[LabelUI.BACK]= %back.get_label()
-  
-  initiate_translation()
-  #pika.set_lang(Pika.LANGUAGE_INA)
 
   %language_options_ui.set_meta('id', OptionsID.LANGUAGE)
   %fullscreen_ui.set_meta('id', OptionsID.FULLSCREEN)
@@ -92,8 +88,7 @@ func _ready() -> void:
   multiple_options.add_selection(OptionsID.FULLSCREEN, fullscreen_options)
   multiple_options.add_selection(OptionsID.VSYNC, vsync_options)
   multiple_options.add_selection(OptionsID.AUDIO, audio_options)
-  
-  pika.translate_by_content()
+
   
 func get_items() -> Array[OptionItem]:
   return [
@@ -110,16 +105,14 @@ func set_language_options():
   var option_1= OptionsSelection.Options.new()
   option_1.tittle= 'Indonesia'
   option_1.callback= func(game_options: GameOptions):
-    game_options.change_language(GameOptions.Language.ID)
-    pika.set_lang(Pika.LANGUAGE_INA)
-    pika.translate_by_content()
+    game_options.change_language('id-ID')
+    TranslationServer.set_locale('id-ID')
   
   var option_2= OptionsSelection.Options.new()
   option_2.tittle= 'English'
   option_2.callback= func(game_options: GameOptions):
-    game_options.change_language(GameOptions.Language.EN)
-    pika.set_lang(Pika.LANGUAGE_EN)
-    pika.translate_by_content()
+    game_options.change_language('en-US')
+    TranslationServer.set_locale('en-US')
     
   
   language_options.add_options(option_2)
@@ -143,12 +136,12 @@ func set_fullscreen_options():
   fullscreen_options.initial_index(saved_setting_index[OptionsID.FULLSCREEN])
   
   var option_1= OptionsSelection.Options.new()
-  option_1.tittle= 'On'
+  option_1.tittle= 'ON'
   option_1.callback= func(game_options: GameOptions):
     game_options.toggle_fullscreen(true)
     
   var option_2= OptionsSelection.Options.new()
-  option_2.tittle= 'Off'
+  option_2.tittle= 'OFF'
   option_2.callback= func(game_options: GameOptions):
     game_options.toggle_fullscreen(false)
   
@@ -243,12 +236,12 @@ func set_vsync_options():
   vsync_options.initial_index(saved_setting_index[OptionsID.VSYNC])
   
   var option_1= OptionsSelection.Options.new()
-  option_1.tittle= 'On'
+  option_1.tittle= 'ON'
   option_1.callback= func(game_options: GameOptions):
     game_options.toggle_vsync(true)
     
   var option_2= OptionsSelection.Options.new()
-  option_2.tittle= 'Off'
+  option_2.tittle= 'OFF'
   option_2.callback= func(game_options: GameOptions):
     game_options.toggle_vsync(false)
   
@@ -283,19 +276,6 @@ func save_setting():
   saved_setting_index[OptionsID.FULLSCREEN]= fullscreen_options.current_index
   saved_setting_index[OptionsID.VSYNC]= vsync_options.current_index
   saved_setting_index[OptionsID.AUDIO]= audio_options.current_index
-
-func initiate_translation():
-  
-  pika= Pika.new()
-  pika.load_csv("res://scripts/options/options.txt")
-  for i in label_ui:
-    pika.reactives.push_back(
-      label_ui[i]
-    )
-  pika.reactives.push_back($Label)
-  #for i in pika.reactives:
-    #print(i)
-#
 
 func get_selection() -> VerticalListItem:
   return list

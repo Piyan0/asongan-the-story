@@ -63,7 +63,7 @@ offset_right = 20.0
 offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OPTIONS"
+text = "OPTION"
 label_settings = SubResource("LabelSettings_cixid")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -110,13 +110,13 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(239, 14)
 layout_mode = 2
-tittle = "Language"
+tittle = "LANGUAGE"
 
 [node name="fullscreen_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(239, 14)
 layout_mode = 2
-tittle = "Fullscreen"
+tittle = "FULLSCREEN"
 
 [node name="vsync_ui" parent="VBoxContainer" instance=ExtResource("2_mpx34")]
 unique_name_in_owner = true
@@ -128,7 +128,7 @@ tittle = "Vsync"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(239, 14)
 layout_mode = 2
-tittle = "Audio"
+tittle = "AUDIO"
 
 [node name="back" parent="." instance=ExtResource("7_86i5b")]
 unique_name_in_owner = true
@@ -142,4 +142,4 @@ offset_right = 39.0
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Back"
+text = "BACK"

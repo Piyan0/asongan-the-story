@@ -108,12 +108,14 @@ func on_EventManager_player_exited_area():
   pass
 
 func on_game_started():
+  #air(EVENT_STARTED)
   OverlayManager.is_can_open= true
   CarManager.instance.ready()
   await Transition.instance.play_transition(false)
   get_tree().change_scene_to_file("res://scenes/environment/main_road.tscn")
   OverlayManager.toggle_control_hint(true)
-  Transition.instance.play_transition(true)
+  await Transition.instance.play_transition(true)
+  #air(EVENT_STARTED)
   
 func on_game_paused():
   PlayerMovement.instance.stop(true)

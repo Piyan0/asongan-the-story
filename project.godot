@@ -62,6 +62,10 @@ move_down={
 "events": []
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/translations/ui_text/UI_text.en_US.translation", "res://assets/translations/ui_text/UI_text.id_ID.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

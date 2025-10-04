@@ -3,16 +3,12 @@ class_name GameOptions
 
 #SAVE
 static var settings: Dictionary[String, Variant]= {
-  'change_language': Language.ID,
+  'change_language': 'en-US',
   'toggle_fullscreen': false,
   'toggle_vsync': true,
   'change_audio': 1
 }
 
-enum Language{
-  ID,
-  EN
-}
 
 enum MoveKeys {
   WASD,
@@ -29,7 +25,7 @@ func apply_settings():
     self[i].call(settings[i])
     
   
-func change_language(id: Language):
+func change_language(id: String):
   print('language changed to ', id)
   settings.change_language= id
 

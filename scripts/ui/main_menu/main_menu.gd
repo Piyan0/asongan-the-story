@@ -3,7 +3,6 @@ class_name MainMenu
 
 signal game_started()
 
-var pika: Pika
 var list_main_menu: VerticalListItem
 var list_credits: VerticalListItem
 var list_manager: MultipleVerticalList
@@ -23,7 +22,7 @@ enum Menu{
 static var instance: MainMenu
 const BUTTON_CALLBACK= '_1'
 func _ready() -> void:
-  
+  print(tr('BACK'))
   if not instance:
     instance= self
   
@@ -40,7 +39,7 @@ func _ready() -> void:
     match id:
       Menu.MAIN_MENU:
         pass
-        pika.translate_by_content()
+
       Menu.OPTIONS:
         $options.set_process_input(true)
     )
@@ -57,12 +56,7 @@ func _ready() -> void:
   list_manager.add_list(Menu.OPTIONS, $options.get_selection())
   list_manager.initial_active(Menu.MAIN_MENU)
   
-  await get_tree().process_frame
-  initiate_translation()
-  pika.translate_by_content()
-  
-  for i in get_items():
-    print(i.get_meta(BUTTON_CALLBACK))
+
 
 func initiate_list_credits():
   
@@ -133,7 +127,3 @@ func get_items() -> Array[Label]:
   return [
     %button_play, %button_options, %button_credits, %button_quit
   ]
-func initiate_translation():
-  pika= Pika.new()
-  pika.reactives= get_items()
-  pika.load_csv("res://scripts/options/options.txt")
