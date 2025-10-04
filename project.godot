@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jauakan"
-run/main_scene="uid://bgogxpa7yl6lh"
+run/main_scene="uid://d4mumw1esp65v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ Mediator="*res://scripts/autoload/mediator.gd"
 OverlayManager="*res://scenes/autoload/overlay_manager.tscn"
 Managers="*res://scenes/autoload/managers.tscn"
 Game="*res://scripts/autoload/game.gd"
+DB="*res://scripts/autoload/game_db/db.gd"
 
 [display]
 

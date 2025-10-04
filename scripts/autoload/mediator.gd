@@ -14,6 +14,8 @@ enum {
   GAME_STARTED,
   GAME_PAUSED,
   GAME_RESUMED,
+  
+  INFO_CURRENT_COIN,
 
 }
 
@@ -31,10 +33,15 @@ var event_mapped: Dictionary[int, Callable]= {
   GAME_STARTED: on_game_started,
   GAME_PAUSED: on_game_paused,
   GAME_RESUMED: on_game_resumed,
+  
+  INFO_CURRENT_COIN: current_coin,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
+
+func current_coin() -> int:
+  return 400
   
 func on_OnHoldItemsManager_item_used(item: InventoryManager.Item):
   var is_item_correct: bool= InventoryManager.instance.is_used_item_correct(item.item_id)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4mumw1esp65v"]
+
+[ext_resource type="Script" uid="uid://dj5jdvg3xst7p" path="res://scripts/ui/shop/shop_ui.gd" id="1_m7afx"]
+[ext_resource type="PackedScene" uid="uid://bsa2kqu38g03y" path="res://scenes/ui/shop/shop_item.tscn" id="2_6ln8t"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="3_h6h54"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_14h7y"]
+font = ExtResource("3_h6h54")
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m7afx")
+
+[node name="shop_item" parent="." instance=ExtResource("2_6ln8t")]
+offset_left = 431.0
+offset_top = 64.0
+offset_right = 471.0
+offset_bottom = 104.0
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 22.0
+offset_right = 101.0
+offset_bottom = 62.0
+
+[node name="coin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 24.0
+text = "item"
+label_settings = SubResource("LabelSettings_14h7y")

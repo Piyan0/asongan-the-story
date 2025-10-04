@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsa2kqu38g03y"]
+
+[ext_resource type="Script" uid="uid://bh3bhch8na3uo" path="res://scripts/ui/shop/shop_item.gd" id="1_rt06l"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="2_300eg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7eiw7"]
+font = ExtResource("2_300eg")
+
+[node name="shop_item" type="Control"]
+custom_minimum_size = Vector2(40, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 32.0
+script = ExtResource("1_rt06l")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "item"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="stock" type="Label" parent="."]
+layout_mode = 0
+offset_left = 173.0
+offset_right = 213.0
+offset_bottom = 23.0
+text = "item"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="cost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 11.0
+offset_right = 41.0
+offset_bottom = 34.0
+text = "item"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="owned" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_right = 263.0
+offset_bottom = 23.0
+text = "item"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -1.0
+offset_right = -3.0
+offset_bottom = 1.0
+grow_vertical = 2
