@@ -7,8 +7,10 @@ func _1(d, g):
   
 func _2(d, g):
   #print(1)
-  OnHoldItemsManager.instance.set_use_mode(true)
+  pass
+  #OnHoldItemsManager.instance.set_use_mode(true)
   
 func _2_after(d, g):
   #print(2)
-  OnHoldItemsManager.instance.set_use_mode(false)
+  pass
+  #OnHoldItemsManager.instance.set_use_mode(false)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jauakan"
-run/main_scene="uid://d4mumw1esp65v"
+run/main_scene="uid://bgogxpa7yl6lh"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -2,7 +2,7 @@ extends Node
 class_name Saveable
 
 static var class_map: Dictionary = {
-  'InventoryManager': InventoryManager,
+  #'InventoryManager': InventoryManager,
   'ControlHint': ControlHint,
   'EventManager': EventManager,
   'Cooking': Cooking,
@@ -20,7 +20,7 @@ static var SAVE_ABLE_PLAIN : Array=[
 #This must be an array of class, 'items' is referring to Array of Item.
 #[2] is a base class of instance
 static var SAVE_ABLE_ARRAY_OF_CLASS: Array= [
-   ['InventoryManager', 'instance.items', InventoryManager.Item],
+   #['InventoryManager', 'instance.items', InventoryManager.Item],
    ['EventManager', 'instance.queue_autostart', EventManager.Autostart],
    ['Cooking', 'ingredients_owned', CookingIngredient]
 ]
