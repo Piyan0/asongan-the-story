@@ -2,7 +2,7 @@ extends Control
 @onready var container: VBoxContainer = $container
 
 class Result:
-  var item_boughted: Array[Shop.ShopItem]
+  var items_boughted: Array[Shop.ShopItem]
   var coin_used: int
   
 var shop: Shop
@@ -17,9 +17,9 @@ var current_coin: int
 var result: Result
 
 func _ready() -> void:
-
   shop_item_ui= load("res://scenes/ui/shop/shop_item.tscn") 
   display_items()
+
   
 func initiate_shop():
   shop= Shop.new()
@@ -83,7 +83,7 @@ func on_try_to_buy(item: Shop.ShopItem):
 func on_item_buyed(item: Shop.ShopItem):
   
   result.coin_used+= item.stock
-  result.item_boughted.push_back(item)
+  result.items_boughted.push_back(item)
   
   print('{item_name} stock is currently at {stock}'.format({
     item_name= item.item_name,
@@ -116,8 +116,30 @@ func fill(_shop: Shop):
 func is_need_fill() -> bool:
   return true
 
-func get_result() -> Result:
+func get_result(is_print: bool) -> Result:
+  if is_print:
+    var dict: Dictionary
+    dict.items_boughted= []
+    dict.coin_used= result.coin_used
+    for i in result.items_boughted:
+      dict.items_boughted.push_back(i.item_name)
+    
+    print(JSON.stringify(dict, '  '))
+      
   return result
 
 func get_coin() -> int:
   return 990
+
+func close():
+  if list:
+    list.free()
+  for i in get_items_ui():
+    i.free()
+    
+#func _input(event: InputEvent) -> void:
+  #if event.is_action_pressed("c"):
+    #close()
+    #await get_tree().create_timer(1).timeout
+    #display_items()
+  #get_result(true)
