@@ -7,7 +7,6 @@ class_name PlayerMovement
 var current_idle_animation: String
 var topdown_movement: TopdownMovement
 var last_x_axis: float
-
 static var instance: PlayerMovement
 
 func _ready() -> void:

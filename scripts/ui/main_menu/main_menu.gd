@@ -22,7 +22,7 @@ enum Menu{
 static var instance: MainMenu
 const BUTTON_CALLBACK= '_1'
 func _ready() -> void:
-  print(tr('BACK'))
+  #print(tr('BACK'))
   if not instance:
     instance= self
   

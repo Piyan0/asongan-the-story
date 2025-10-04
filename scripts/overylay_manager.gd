@@ -7,6 +7,9 @@ var overlay
 var is_can_open: bool= false
 var is_game_paused: bool= false
 
+func _ready():
+  pass
+  #print(tr('OPEN_SLOT'))
 func toggle_visibility(is_on: bool):
   if is_on:
     for i in get_children():

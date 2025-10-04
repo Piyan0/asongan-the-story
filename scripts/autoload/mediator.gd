@@ -66,20 +66,20 @@ func on_OnHoldItemsManager_item_thrown(item: InventoryManager.Item):
     
 func on_OverlayManager_overlay_showned(overlay):
   EventManager.instance.toggle_event_process.emit(false)
-  ControlHint.instance.set_hint('x', 'Close')
-  ControlHint.instance.set_hint('c', 'None')
+  ControlHint.instance.set_hint('x', 'CLOSE')
+  ControlHint.instance.set_hint('c', 'NONE')
   PlayerMovement.instance.stop(true)
   match overlay:
     OnHoldItemsManager:
-      ControlHint.instance.set_hint('z', 'Use')
+      ControlHint.instance.set_hint('z', 'USE')
     InventoryManager:
-      ControlHint.instance.set_hint('z', 'Equip/unequip')
+      ControlHint.instance.set_hint('z', 'TOGGLE_EQUIP')
       
 func on_OverlayManager_overlay_hidden(overlay):
   EventManager.instance.toggle_event_process.emit(true)
   ControlHint.instance.set_hint('z', 'prev')
-  ControlHint.instance.set_hint('x', 'None')
-  ControlHint.instance.set_hint('c', 'Open Slot')
+  ControlHint.instance.set_hint('x', 'NONE')
+  ControlHint.instance.set_hint('c', 'OPEN_SLOT')
   PlayerMovement.instance.stop(false)
   
 func on_player_bubble_played():

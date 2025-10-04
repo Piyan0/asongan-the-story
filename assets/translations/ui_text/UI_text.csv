@@ -15,4 +15,11 @@ CREDITS,Pembuat,Credits
 QUIT,Keluar,Quit
 OFF,Mati,Off
 ON,Hidup,On
+NONE,Kosong,None
+INTERACT,Interaksi,Interact
+OPEN_SLOT,Buka slot,Open slot
+CLOSE,Tutup,Close
+USE,Gunakan,Use
+TOGGLE_EQUIP,Pakai/lepas,Equip/unequip
+
 

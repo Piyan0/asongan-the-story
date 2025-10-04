@@ -7,16 +7,16 @@ static var instance: ControlHint
 
 #SAVE
 var data: Dictionary= {
-  'z': 'None',
-  'x': 'None',
-  'c': 'Open slot'
+  'z': 'NONE',
+  'x': 'NONE',
+  'c': 'OPEN_SLOT'
 }
 
 #SAVE
 var prev_data: Dictionary= {
-  'z': 'None',
-  'x': 'None',
-  'c': 'Open slot'
+  'z': 'NONE',
+  'x': 'NONE',
+  'c': 'OPEN_SLOT'
 }
 
 func _ready() -> void:
@@ -24,12 +24,17 @@ func _ready() -> void:
     instance= self
     
   _update()
+
+func _notification(what: int) -> void:
+  if what== NOTIFICATION_TRANSLATION_CHANGED:
+    _update.call_deferred()
+    
 func _update():
   for i in container.get_children():
     i.free()
   
   for i in data:
-    var text= '[%s] %s' % [i, data[i]]
+    var text= '[%s] %s' % [i, tr(data[i])]
     var _label= label.duplicate()
     _label.show()
     _label.text= text
@@ -43,8 +48,8 @@ func set_hint(id: String, action: String):
   if action== 'prev':
     data[id]= prev_data[id]
   _update()
-
-func _input(event: InputEvent) -> void:
-  if event.is_action_pressed("ui_accept"):
-    set_hint('z', 'Select item')
-  
+#
+#func _input(event: InputEvent) -> void:
+  #if event.is_action_pressed("ui_accept"):
+    #set_hint('z', 'Select item')
+  #
