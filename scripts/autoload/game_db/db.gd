@@ -2,8 +2,8 @@ extends Node
 class_name ItemDB
 
 enum Item{
-  PACK_TOFU= 0,
-  TOFU_EXTRA,
+  PACK_OF_TOFU= 0,
+  TOFU_WITH_RICE_ROLL,
   COFFE,
 }
 

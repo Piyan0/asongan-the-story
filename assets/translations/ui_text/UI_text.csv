@@ -21,5 +21,13 @@ OPEN_SLOT,Buka slot,Open slot
 CLOSE,Tutup,Close
 USE,Gunakan,Use
 TOGGLE_EQUIP,Pakai/lepas,Equip/unequip
-
-
+TOFU,Tahu,Tofu
+RICE_ROLL,Lontong,Rice Roll
+COFFE_POWDER,Bubuk Kopi,Coffe Powder
+CHILLY,Cabe,Chilly
+COFFE_STAND,Stand Kopi,Coffe Stand
+ITEM_SLOT_3,Tingkatkan slot item ke 3,Upgrade item slot to 3
+ITEM_SLOT_5,Tingkatkan slot item ke 5,Upgrade item slot to 5
+PACK_OF_TOFU,Sebungkus Tahu,Pack of tofu
+TOFU_EXTRA,Tahu lontong,Tofu with rice roll
+COFFE,Kopi,Coffe
