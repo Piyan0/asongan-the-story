@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://cl83frkj1wjfj"]
 
 [ext_resource type="Texture2D" uid="uid://fpoupovx420c" path="res://assets/sprites/ui/rect_2.png" id="1_8ndef"]
-[ext_resource type="Script" uid="uid://cjxiwb4pj7yqn" path="res://scripts/inventory/inventory.gd" id="1_wi1cf"]
+[ext_resource type="Script" uid="uid://cjxiwb4pj7yqn" path="res://scripts/ui/inventory/inventory.gd" id="1_wi1cf"]
 [ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="2_wi1cf"]
 [ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="3_otfgc"]
 [ext_resource type="PackedScene" uid="uid://beuq6lqveptsn" path="res://scenes/ui/inventory/item.tscn" id="4_wi1cf"]
-[ext_resource type="Script" uid="uid://da6gm3s4s26gl" path="res://scripts/inventory/inventory_manager.gd" id="6_wi1cf"]
-[ext_resource type="Script" uid="uid://20q6fpetccgg" path="res://scripts/inventory/item_data.gd" id="7_2kt44"]
-[ext_resource type="Resource" uid="uid://dcgl8dsk0qexd" path="res://scripts/inventory/item_db/coffe.tres" id="8_0wuwi"]
-[ext_resource type="Resource" uid="uid://ckocix38sp4v6" path="res://scripts/inventory/item_db/tofu.tres" id="9_qari1"]
-[ext_resource type="Resource" uid="uid://gsuj7s8lrvm3" path="res://scripts/inventory/item_db/tofu_extra.tres" id="10_4oq6l"]
+[ext_resource type="Script" uid="uid://da6gm3s4s26gl" path="res://scripts/ui/inventory/inventory_manager.gd" id="6_wi1cf"]
+[ext_resource type="Script" uid="uid://20q6fpetccgg" path="res://scripts/ui/inventory/item_data.gd" id="7_2kt44"]
+[ext_resource type="Resource" uid="uid://dcgl8dsk0qexd" path="res://scripts/ui/inventory/item_db/coffe.tres" id="8_0wuwi"]
+[ext_resource type="Resource" uid="uid://ckocix38sp4v6" path="res://scripts/ui/inventory/item_db/tofu.tres" id="9_qari1"]
+[ext_resource type="Resource" uid="uid://gsuj7s8lrvm3" path="res://scripts/ui/inventory/item_db/tofu_extra.tres" id="10_4oq6l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2kt44"]
 font = ExtResource("3_otfgc")

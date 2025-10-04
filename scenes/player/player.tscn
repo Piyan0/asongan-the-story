@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://blph15ycfokrn" path="res://assets/sprites/player/walk_right_2.png" id="12_6cv16"]
 [ext_resource type="Texture2D" uid="uid://b3kbqjf3w5db5" path="res://assets/sprites/player/walk_right_3.png" id="13_j4nxn"]
 [ext_resource type="Texture2D" uid="uid://b7weaauefv54u" path="res://assets/sprites/player/walk_right_4.png" id="14_28m0y"]
-[ext_resource type="PackedScene" uid="uid://dmsmkdgip62y3" path="res://scenes/ui/inventory/on_hold_items/on_hold_items.tscn" id="16_myrg7"]
+[ext_resource type="PackedScene" uid="uid://dmsmkdgip62y3" path="res://scenes/ui/on_hold_items/on_hold_items.tscn" id="16_myrg7"]
 [ext_resource type="Texture2D" uid="uid://cchv0q618voai" path="res://assets/sprites/ui/no_interact/1.png" id="17_8ydkj"]
 [ext_resource type="Texture2D" uid="uid://bf5tjgwueafwr" path="res://assets/sprites/ui/no_interact/2.png" id="18_3j4b4"]
 [ext_resource type="Texture2D" uid="uid://hlg3jrfvmgc0" path="res://assets/sprites/ui/no_interact/3.png" id="19_yj68g"]

@@ -40,7 +40,7 @@ var shop_items= {
   Ingredient.COFFE_POWDER: {
     'stock': 20,
     'item_name': 'COFFE_POWDER',
-    'cost': 99,
+    'cost': 9000,
     'owned':10,
     'is_available': true
   } ,

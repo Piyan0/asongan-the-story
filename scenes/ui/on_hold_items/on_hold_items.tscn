@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmsmkdgip62y3"]
 
-[ext_resource type="Script" uid="uid://c0op5vg5gopoi" path="res://scripts/inventory/on_hold_item/on_hold_items.gd" id="1_gdq6r"]
-[ext_resource type="PackedScene" uid="uid://bbgpcdu8sgw7h" path="res://scenes/ui/inventory/on_hold_items/item.tscn" id="2_hu3hw"]
-[ext_resource type="Script" uid="uid://dygfvg0r8xaua" path="res://scripts/inventory/on_hold_item/manager.gd" id="5_7kh48"]
+[ext_resource type="Script" uid="uid://c0op5vg5gopoi" path="res://scripts/ui/on_hold_item/on_hold_items.gd" id="1_gdq6r"]
+[ext_resource type="PackedScene" uid="uid://bbgpcdu8sgw7h" path="res://scenes/ui/on_hold_items/item.tscn" id="2_hu3hw"]
+[ext_resource type="Script" uid="uid://dygfvg0r8xaua" path="res://scripts/ui/on_hold_item/manager.gd" id="5_7kh48"]
 
 [node name="OnHoldItems" type="Control"]
 layout_mode = 3

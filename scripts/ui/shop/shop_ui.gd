@@ -45,9 +45,9 @@ func display_items() -> void:
     _shop_item_ui.set_meta(META_ITEM, i)
     container.add_child(_shop_item_ui)
     _shop_item_ui.set_text(i.item_name)
-    _shop_item_ui.set_owned(i.owned)
-    _shop_item_ui.set_stock(i.stock)
-    _shop_item_ui.set_cost(i.cost)
+    _shop_item_ui.set_owned(str(i.owned))
+    _shop_item_ui.set_stock(str(i.stock))
+    _shop_item_ui.set_cost(NumberDotted.parse(i.cost))
   
   initiate_selection()
 
@@ -89,8 +89,8 @@ func on_item_buyed(item: Shop.ShopItem):
     item_name= item.item_name,
     stock= item.stock
   }))
-  selected_item_ui.set_stock(item.stock)
-  selected_item_ui.set_owned(item.owned)
+  selected_item_ui.set_stock(str(item.stock))
+  selected_item_ui.set_owned(str(item.owned))
   current_coin-= item.cost
   set_coin(current_coin)
   
@@ -100,7 +100,7 @@ func on_no_stock():
 @onready var coin: Label = $coin
 
 func set_coin(_coin: int):
-  coin.text= str(_coin)
+  coin.text= NumberDotted.parse(_coin)
   
 func fill(_shop: Shop):
   for i in DB.shop_items:
@@ -129,7 +129,7 @@ func get_result(is_print: bool) -> Result:
   return result
 
 func get_coin() -> int:
-  return 990
+  return 99000
 
 func close():
   if list:
