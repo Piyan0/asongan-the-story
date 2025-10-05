@@ -2,7 +2,6 @@ extends CanvasLayer
 class_name ControlHint
 
 
-@onready var label: Label = $Label
 @onready var container: HBoxContainer = $container
 static var instance: ControlHint
 

@@ -494,6 +494,4 @@ layout_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8npxv")
-frame = 42
-frame_progress = 1.0
 centered = false

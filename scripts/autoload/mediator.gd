@@ -98,7 +98,7 @@ func on_player_bubble_finished():
 func on_EventManager_event_started():
   OverlayManager.is_can_open= false
   PlayerMovement.instance.stop(true)
-  ControlHint.instance.set_hint('z', 'None')
+  ControlHint.instance.set_hint('z', 'NONE')
 
 func on_EventManager_event_finished():
   OverlayManager.is_can_open= true
@@ -110,7 +110,7 @@ func on_EventManager_player_entered_area():
   ControlHint.instance.save_hint('z')
 
 func on_EventManager_player_exited_area():
-  ControlHint.instance.set_hint('z', 'None')
+  ControlHint.instance.set_hint('z', 'NONE')
   ControlHint.instance.save_hint('z')
   pass
 
