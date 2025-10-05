@@ -1,8 +1,9 @@
 extends CanvasLayer
 class_name ControlHint
 
+
 @onready var label: Label = $Label
-@onready var container: VBoxContainer = $container
+@onready var container: HBoxContainer = $container
 static var instance: ControlHint
 
 #SAVE
@@ -24,22 +25,29 @@ func _ready() -> void:
     instance= self
     
   _update()
+  Input.joy_connection_changed.connect(func(device, connected: bool):
+    toggle_controller_mode(connected)
+    )
 
-func _notification(what: int) -> void:
-  if what== NOTIFICATION_TRANSLATION_CHANGED:
-    _update.call_deferred()
-    
-func _update():
-  for i in container.get_children():
-    i.free()
   
-  for i in data:
-    var text= '[%s] %s' % [i, tr(data[i])]
-    var _label= label.duplicate()
-    _label.show()
-    _label.text= text
-    container.add_child(_label)
+func _update():
+  $container/z/Label.text= data['z']
+  $container/x/Label.text= data['x']
+  $container/c/Label.text= data['c']
 
+func toggle_controller_mode(is_using_controller: bool):
+  if is_using_controller:
+    $container/z/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_a.png')
+    $container/x/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_b.png')
+    $container/c/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_x.png')
+    return
+    
+  $container/z/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_z.png')
+  $container/x/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_x.png')
+  $container/c/TextureRect.texture= load('res://assets/sprites/ui/buttons/button_c.png')
+  
+  
+  
 func save_hint(id: String):
   prev_data[id]= data[id]
   
@@ -48,8 +56,3 @@ func set_hint(id: String, action: String):
   if action== 'prev':
     data[id]= prev_data[id]
   _update()
-#
-#func _input(event: InputEvent) -> void:
-  #if event.is_action_pressed("ui_accept"):
-    #set_hint('z', 'Select item')
-  #
