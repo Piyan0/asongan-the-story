@@ -21,8 +21,12 @@ enum Menu{
 
 static var instance: MainMenu
 const BUTTON_CALLBACK= '_1'
+
+
 func _ready() -> void:
-  #print(tr('BACK'))
+  $AnimatedSprite2D.play("default")
+  await $AnimatedSprite2D.animation_finished
+
   if not instance:
     instance= self
   

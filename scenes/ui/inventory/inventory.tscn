@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqk1j3esso53w"]
+
+[ext_resource type="Script" uid="uid://cu20kfndvw4ur" path="res://scripts/ui/inventory/inventory.gd" id="1_3bwaq"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3bwaq")
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 89.0
+offset_right = 222.0
+offset_bottom = 143.0

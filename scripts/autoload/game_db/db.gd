@@ -1,8 +1,15 @@
 extends Node
-class_name ItemDB
 
-enum Item{
-  PACK_OF_TOFU= 0,
+enum ItemType{
+  FOOD,
+  INGREDIENT,
+  STORY,
+  UPGRADE,
+}
+
+
+enum Food{
+  PACK_OF_TOFU= 50,
   TOFU_WITH_RICE_ROLL,
   COFFE,
 }
@@ -21,55 +28,65 @@ enum Upgrade{
   ITEM_SLOT_5,
 }
 
-#SAVE
-var shop_items= {
-  Ingredient.TOFU: {
-    'stock': 0,
-    'item_name': 'TOFU',
-    'cost': 99,
-    'owned':0,
-    'is_available': true
-  },
-  Ingredient.RICE_ROLL: {
-    'stock': 0,
-    'item_name': 'RICE_ROLL',
-    'cost': 99,
-    'owned':0,
-    'is_available': true
-  } ,
-  Ingredient.COFFE_POWDER: {
-    'stock': 20,
-    'item_name': 'COFFE_POWDER',
-    'cost': 9000,
-    'owned':10,
-    'is_available': true
-  } ,
-  Ingredient.CHILLY: {
-    'stock': 5,
-    'item_name': 'CHILLY',
-    'cost': 990,
-    'owned':0,
-    'is_available': true
-  } ,
-  Upgrade.COFFE_STAND:{
-    'stock': 0,
-    'item_name': 'COFFE_STAND',
-    'cost': 99,
-    'owned':0,
-    'is_available': true
-  } ,
-  Upgrade.ITEM_SLOT_3:{
-    'stock': 0,
-    'item_name': 'ITEM_SLOT_3',
-    'cost': 99,
-    'owned':0,
-    'is_available': true
-  } ,
-  Upgrade.ITEM_SLOT_5:{
-    'stock': 0,
-    'item_name': 'ITEM_SLOT_5',
-    'cost': 99,
-    'owned':0,
-    'is_available': true
-  } ,
+var shop_item_template: Dictionary= {
+  'id': Food.COFFE,
+  'cost': 99,
+  'is_available': true,
+  'owned': 0,
+  'stock': 99,
 }
+var items= {
+  Food.PACK_OF_TOFU: {
+    'item_type': ItemType.FOOD,
+    'icon': "res://assets/sprites/items/tofu.png",
+    'item_name': 'PACK_OF_TOFU',
+    'id': Food.PACK_OF_TOFU,
+    'worth': 99,
+    'cost': 99,
+  },
+  Food.COFFE: {
+    'item_type': ItemType.FOOD,
+    'icon': "res://assets/sprites/items/coffe.png",
+    'item_name': 'COFFE',
+    'id': Food.COFFE,
+    'worth': 99,
+    'cost': 99,
+  },
+}
+
+#SAVE
+var shop_items= [
+  get_item_shop({
+    'id': Food.COFFE,
+  }),
+  get_item_shop({
+    'id': Food.PACK_OF_TOFU,
+  }),
+]
+
+
+#SAVE
+var inventory_items= [
+  get_item(Food.PACK_OF_TOFU, {}),
+  get_item(Food.COFFE, {}),
+]
+
+func get_item(id: int, params= {}):
+  var item= items[id].duplicate()
+  for i in params:
+    item[i]= params[i]
+  return item.duplicate()
+  
+func get_item_shop(params= {}):
+  var item= shop_item_template.duplicate()
+  for i in params:
+    item[i]= params[i]
+  return item.duplicate()
+
+func erase_inventory_item(id: int):
+  var target
+  for i in inventory_items:
+    if i.id== id:
+      target= i
+  inventory_items.erase(target)
+  

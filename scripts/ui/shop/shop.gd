@@ -1,36 +1,31 @@
 extends Node
 class_name Shop
 
-var _is_coin_enough: Callable= func(cost: int)-> bool: return true
-var _item_buyed: Callable= func(item: ShopItem) -> void: pass
-var _coin_not_enough: Callable= func() -> void: pass
-var _no_stock: Callable= func() -> void: pass
+var _is_coin_enough: Callable= func(_cost: int)-> bool: return true
+var _on_item_buyed: Callable= func(_item: ShopItem) -> void: pass
+var _on_coin_not_enough: Callable= func() -> void: pass
+var _on_no_stock: Callable= func() -> void: pass
+
 class ShopItem:
-  var stock: int
   var id: int
-  var item_name: String
   var cost: int
-  var owned: int
   var is_available: bool
-  
-  func properties() -> Array[String]:
-    return [
-    'stock', 'id', 'item_name', 'cost',
-    'owned', 'is_available'
-    ]
+  var owned: int
+  var stock: int
+  var item: Inventory.Item
  
 var items: Array[ShopItem]
 
 func buy_item(item: ShopItem) -> void:
   if not is_stock_available(item):
-    _no_stock.call()
+    _on_no_stock.call()
     return
   if _is_coin_enough.call(item.cost):
     erase_item(item)
     add_owned(item)
-    _item_buyed.call(item)
+    _on_item_buyed.call(item)
   else:
-    _coin_not_enough.call()
+    _on_coin_not_enough.call()
 
 func erase_item(item: ShopItem):
   var current_stock= item.stock

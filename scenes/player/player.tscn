@@ -264,10 +264,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ioxgp"]
 radius = 6.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "items_slot", "bubble", "coin_label", "coin_animation")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "bubble", "coin_label", "coin_animation")]
 script = ExtResource("1_fcs02")
 sprite = NodePath("sprite")
-items_slot = NodePath("")
 bubble = NodePath("bubble")
 coin_label = NodePath("Control/Label")
 coin_animation = NodePath("Control/AnimationPlayer")

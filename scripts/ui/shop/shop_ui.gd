@@ -23,10 +23,10 @@ func _ready() -> void:
   
 func initiate_shop():
   shop= Shop.new()
-  shop._no_stock= on_no_stock
-  shop._item_buyed= on_item_buyed
+  shop._on_no_stock= event_no_stock
+  shop._on_item_buyed= event_item_buyed
   shop._is_coin_enough= is_coin_enough
-  shop._coin_not_enough= on_coin_not_enough
+  shop._on_coin_not_enough= event_coin_not_enough
   
   fill(shop)
   
@@ -74,13 +74,13 @@ func initiate_selection():
 func is_coin_enough(cost: int):
   return current_coin>= cost
  
-func on_coin_not_enough():
+func event_coin_not_enough():
   print('Coin is not enough.') 
   
 func on_try_to_buy(item: Shop.ShopItem):
   shop.buy_item(item)
 
-func on_item_buyed(item: Shop.ShopItem):
+func event_item_buyed(item: Shop.ShopItem):
   
   result.coin_used+= item.stock
   result.items_boughted.push_back(item)
@@ -94,7 +94,7 @@ func on_item_buyed(item: Shop.ShopItem):
   current_coin-= item.cost
   set_coin(current_coin)
   
-func on_no_stock():
+func event_no_stock():
   print('No stock...')
   
 @onready var coin: Label = $coin

@@ -31,3 +31,7 @@ ITEM_SLOT_5,Tingkatkan slot item ke 5,Upgrade item slot to 5
 PACK_OF_TOFU,Sebungkus Tahu,Pack of tofu
 TOFU_EXTRA,Tahu lontong,Tofu with rice roll
 COFFE,Kopi,Coffe
+USE,Gunakan,Use
+DROP,Buang,Drop
+GIVE,Berikan,Give
+NOTHING,Abaikan,Nothing
