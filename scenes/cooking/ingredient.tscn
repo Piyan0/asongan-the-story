@@ -49,6 +49,7 @@ _data = {
 }
 
 [node name="TextureRect" type="TextureRect"]
+visible = false
 offset_left = 335.0
 offset_top = 138.0
 offset_right = 396.0

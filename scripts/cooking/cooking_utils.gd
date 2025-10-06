@@ -1,6 +1,11 @@
 extends Node
 class_name CookingUtils
 
+var in_plate: Array[CookingIngredient]
+
+func _init(_in_plate: Array[CookingIngredient]) -> void:
+  in_plate= _in_plate
+  
 func is_ingredients_same(ingredients_1: Array[CookingIngredient], ingredients_2: Array[CookingIngredient]) -> bool:
   if ingredients_1.is_empty() or ingredients_2.is_empty():
     return false
@@ -28,19 +33,19 @@ func is_ingredients_same(ingredients_1: Array[CookingIngredient], ingredients_2:
 
   return true
 
-func is_plate_contains_at_least(id: String, at_least: int, plate: Array[CookingIngredient]) -> bool:
+func is_plate_contains_less_than_or_same(id: DB.Ingredient, n: int, plate: Array[CookingIngredient]= in_plate) -> bool:
   var ingredient_count: int= 0
   for i in plate:
     if i._id()== id:
       ingredient_count+= 1
   
-  if ingredient_count<= at_least:
+  if ingredient_count<= n:
     #print(ingredient_count)
     return true
   else:
     return false
 
-func is_plate_contains_more_than(id: String, at_least: int, plate: Array[CookingIngredient]) -> bool:
+func is_plate_contains_more_than(id: DB.Ingredient, at_least: int, plate: Array[CookingIngredient]= in_plate) -> bool:
   var ingredient_count: int= 0
   for i in plate:
     if i._id()== id:
@@ -51,7 +56,7 @@ func is_plate_contains_more_than(id: String, at_least: int, plate: Array[Cooking
   else:
     return false
 
-func is_all_same(id: String, plate: Array[CookingIngredient]) -> bool:
+func is_only_contain_one_type(id: DB.Ingredient, plate: Array[CookingIngredient]= in_plate) -> bool:
   if plate.is_empty():
     return false
   for i in plate:

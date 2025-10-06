@@ -1,8 +1,8 @@
 extends CookingFood
-class_name FoodTofu
+class_name FoodPackOfTofu
 
-func _id() -> String:
-  return 'tofu'
+func _id() -> int:
+  return DB.Food.PACK_OF_TOFU
 
 func _recipe() -> Array[CookingIngredient]:
   return [
@@ -12,4 +12,7 @@ func _recipe() -> Array[CookingIngredient]:
     IngredientTofu.new(),
     IngredientTofu.new(),
     IngredientTofu.new(),
+    IngredientChilly.new(),
+    IngredientChilly.new(),
+    IngredientChilly.new(),
   ]

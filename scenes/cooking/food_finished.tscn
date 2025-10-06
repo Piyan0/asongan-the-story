@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://doo13f5dqeox0"]
+[gd_scene load_steps=21 format=3 uid="uid://doo13f5dqeox0"]
 
 [ext_resource type="Texture2D" uid="uid://ctkdaosbo76sj" path="res://assets/sprites/cooking/shine_circle.png" id="1_2jbxa"]
 [ext_resource type="Script" uid="uid://bkkbymqeab6de" path="res://scripts/cooking/food_finished.gd" id="1_11ttf"]
 [ext_resource type="Texture2D" uid="uid://dlxip52kki3b6" path="res://assets/sprites/items/coffe.png" id="2_shg17"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="4_ewhs2"]
 
 [sub_resource type="Animation" id="Animation_11ttf"]
 length = 0.001
@@ -115,6 +116,9 @@ _data = {
 &"new_animation": SubResource("Animation_ewhs2")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_ewhs2"]
+font = ExtResource("4_ewhs2")
+
 [sub_resource type="Animation" id="Animation_eom6n"]
 length = 0.001
 tracks/0/type = "value"
@@ -127,7 +131,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4ckq7"]
@@ -218,6 +222,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(320, 180)
 script = ExtResource("1_11ttf")
 
@@ -291,11 +296,27 @@ libraries = {
 autoplay = "new_animation"
 speed_scale = 0.56
 
+[node name="food_name" type="Label" parent="Coffe"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -18.0623
+offset_right = 8.0
+offset_bottom = 4.93765
+grow_horizontal = 2
+grow_vertical = 0
+text = "Coffe"
+label_settings = SubResource("LabelSettings_ewhs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_n1b12")
 }
-autoplay = "new_animation"
 
 [node name="enidng_rect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)

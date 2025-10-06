@@ -11,8 +11,11 @@ func _ready() -> void:
 func on_button_down() -> void:
   if not is_idle: return
   print('food_taken')
-  
-func set_icon(_icon: Texture2D) -> void:
+
+@onready var food_name: Label = $Coffe/food_name
+func play(_icon: Texture2D, _food_name: String) -> void:
+  food_name.text= _food_name
+  is_idle= false
   icon.texture= _icon
   await get_tree().process_frame
   animation_player.play("new_animation")

@@ -51,6 +51,30 @@ var items= {
     'worth': 99,
     'cost': 9999,
   },
+  Ingredient.TOFU: {
+    'item_type': ItemType.INGREDIENT,
+    'icon': "res://assets/sprites/items/coffe.png",
+    'item_name': 'COFFE',
+    'id': Ingredient.TOFU,
+    'worth': 99,
+    'cost': 9999,
+  },
+  Ingredient.RICE_ROLL: {
+    'item_type': ItemType.INGREDIENT,
+    'icon': "res://assets/sprites/items/coffe.png",
+    'item_name': 'COFFE',
+    'id': Ingredient.RICE_ROLL,
+    'worth': 99,
+    'cost': 9999,
+  },
+  Ingredient.CHILLY: {
+    'item_type': ItemType.INGREDIENT,
+    'icon': "res://assets/sprites/items/coffe.png",
+    'item_name': 'COFFE',
+    'id': Ingredient.CHILLY,
+    'worth': 99,
+    'cost': 9999,
+  },
 }
 
 #SAVE
@@ -69,6 +93,17 @@ var shop_items= [
 var inventory_items= [
   get_item(Food.PACK_OF_TOFU, {}),
   get_item(Food.COFFE, {}),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.TOFU),
+  get_item(Ingredient.RICE_ROLL),
+  get_item(Ingredient.CHILLY),
+  get_item(Ingredient.CHILLY),
+  get_item(Ingredient.CHILLY),
+  get_item(Ingredient.CHILLY),
 ]
 
 func get_item(id: int, params= {}):
@@ -105,4 +140,12 @@ func get_inventory_item(id: int) -> Dictionary:
       return i
   
   return {}
+
+func get_item_count(id: int) -> int:
+  var count: int= 0
+  #print(id)
+  for i in inventory_items:
+    if i.id== id:
+      count+= 1
   
+  return count
