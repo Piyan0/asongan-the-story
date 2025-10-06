@@ -1,60 +1,204 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsa2kqu38g03y"]
+[gd_scene load_steps=11 format=3 uid="uid://bsa2kqu38g03y"]
 
 [ext_resource type="Script" uid="uid://bh3bhch8na3uo" path="res://scripts/ui/shop/shop_item.gd" id="1_rt06l"]
 [ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="2_300eg"]
+[ext_resource type="Texture2D" uid="uid://chevhnhpo88uc" path="res://assets/sprites/ui/rect_1.png" id="3_4oyaw"]
+[ext_resource type="Texture2D" uid="uid://c70cqvwtjt1gt" path="res://assets/color_pallate/fading-16-1x.png" id="3_7eiw7"]
+[ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="4_teaaw"]
+[ext_resource type="Texture2D" uid="uid://b2eyapa33meh8" path="res://assets/sprites/ui/pointer_left.png" id="6_q0wbf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7eiw7"]
 font = ExtResource("2_300eg")
 
+[sub_resource type="Animation" id="Animation_4oyaw"]
+resource_name = "blip"
+length = 0.166675
+loop_mode = 2
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_teaaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q0wbf"]
+_data = {
+&"RESET": SubResource("Animation_teaaw"),
+&"blip": SubResource("Animation_4oyaw")
+}
+
 [node name="shop_item" type="Control"]
-custom_minimum_size = Vector2(40, 32)
+custom_minimum_size = Vector2(241, 32)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_right = 241.0
 offset_bottom = 32.0
 script = ExtResource("1_rt06l")
+metadata/_edit_horizontal_guides_ = [28.0]
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "item"
-label_settings = SubResource("LabelSettings_7eiw7")
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.662745, 0.611765, 0.552941, 1)
 
-[node name="stock" type="Label" parent="."]
-layout_mode = 0
-offset_left = 173.0
-offset_right = 213.0
-offset_bottom = 23.0
-text = "item"
-label_settings = SubResource("LabelSettings_7eiw7")
+[node name="info_container" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = -164.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="cost" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 11.0
-offset_right = 41.0
-offset_bottom = 34.0
-text = "item"
-label_settings = SubResource("LabelSettings_7eiw7")
-
-[node name="owned" type="Label" parent="."]
-layout_mode = 0
-offset_left = 223.0
-offset_right = 263.0
-offset_bottom = 23.0
-text = "item"
-label_settings = SubResource("LabelSettings_7eiw7")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(2, 2)
+[node name="name" type="Label" parent="info_container"]
+unique_name_in_owner = true
+modulate = Color(0.160784, 0.137255, 0.14902, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -1.0
-offset_right = -3.0
-offset_bottom = 1.0
+offset_left = 32.0
+offset_top = -15.0
+offset_right = 56.0
+offset_bottom = -2.0
 grow_vertical = 2
+text = "item"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="info_container"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 25.0
+offset_bottom = 12.5
+grow_vertical = 2
+texture = ExtResource("3_4oyaw")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="cost" type="Label" parent="info_container"]
+unique_name_in_owner = true
+self_modulate = Color(0.54902, 0.486275, 0.47451, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 38.0
+offset_top = -1.0
+offset_right = 92.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "RP.99.999"
+label_settings = SubResource("LabelSettings_7eiw7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="info_container/cost"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_right = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_teaaw")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="status" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.160784, 0.137255, 0.14902, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -17.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "stock x3 owned x2"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="status2" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.54902, 0.486275, 0.47451, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -7.0
+offset_right = 120.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "----------------------------------------"
+label_settings = SubResource("LabelSettings_7eiw7")
+
+[node name="Fading-16-1x" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(13.625, 28)
+texture = ExtResource("3_7eiw7")
+
+[node name="pointer" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -3.5
+offset_right = 11.0
+offset_bottom = 3.5
+grow_vertical = 2
+texture = ExtResource("6_q0wbf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointer"]
+libraries = {
+&"": SubResource("AnimationLibrary_q0wbf")
+}
+autoplay = "blip"

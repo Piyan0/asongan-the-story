@@ -19,6 +19,8 @@ var item_correct_id: int= DB.Food.PACK_OF_TOFU
 #SAVE
 var item_state: ItemState= ItemState.CAN_DROP
 
+#SAVE
+var current_coin: int= 200
 func set_var(id: Variable, value):
   game_vars[id]= value
 

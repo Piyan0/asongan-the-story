@@ -42,7 +42,7 @@ var items= {
     'item_name': 'PACK_OF_TOFU',
     'id': Food.PACK_OF_TOFU,
     'worth': 99,
-    'cost': 99,
+    'cost': 99999,
   },
   Food.COFFE: {
     'item_type': ItemType.FOOD,
@@ -50,7 +50,7 @@ var items= {
     'item_name': 'COFFE',
     'id': Food.COFFE,
     'worth': 99,
-    'cost': 99,
+    'cost': 9999,
   },
 }
 
@@ -61,6 +61,7 @@ var shop_items= [
   }),
   get_item_shop({
     'id': Food.PACK_OF_TOFU,
+    'stock': 0,
   }),
 ]
 
@@ -76,7 +77,8 @@ func get_item(id: int, params= {}):
   for i in params:
     item[i]= params[i]
   return item.duplicate()
-  
+
+
 func get_item_shop(params= {}):
   var item= shop_item_template.duplicate()
   for i in params:
@@ -89,4 +91,11 @@ func erase_inventory_item(id: int):
     if i.id== id:
       target= i
   inventory_items.erase(target)
-  
+
+func set_item_shop(id: int, params= {}):
+  var item: Dictionary
+  for i in shop_items:
+    if i.id== id:
+      item= i
+  for i in params:
+    item[i]= params[i]

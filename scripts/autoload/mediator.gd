@@ -15,6 +15,11 @@ enum {
   GAME_PAUSED,
   GAME_RESUMED,
   
+  INVENTORY_ITEM_USED,
+  INVENTORY_ITEM_DROPPED,
+  
+  SHOP_ITEM_BUYED,
+  
   INFO_CURRENT_COIN,
 
 }
@@ -33,6 +38,10 @@ var event_mapped: Dictionary[int, Callable]= {
   GAME_STARTED: on_game_started,
   GAME_PAUSED: on_game_paused,
   GAME_RESUMED: on_game_resumed,
+  
+  INVENTORY_ITEM_USED: on_shop_item_buyed,
+  INVENTORY_ITEM_DROPPED: on_inventory_item_used,
+  SHOP_ITEM_BUYED: on_inventory_item_dropped,
   
   INFO_CURRENT_COIN: current_coin,
 }
@@ -131,3 +140,12 @@ func on_game_paused():
 func on_game_resumed():
   print('game resumed')
   PlayerMovement.instance.stop(false)
+
+func on_shop_item_buyed(item: Shop.ShopItem) -> void:
+  pass
+
+func on_inventory_item_used(item: Inventory.Item) -> void:
+  pass
+
+func on_inventory_item_dropped(item: Inventory.Item) -> void:
+  pass
