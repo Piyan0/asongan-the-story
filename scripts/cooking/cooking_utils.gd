@@ -39,11 +39,10 @@ func is_plate_contains_less_than_or_same(id: DB.Ingredient, n: int, plate: Array
     if i._id()== id:
       ingredient_count+= 1
   
-  if ingredient_count<= n:
-    #print(ingredient_count)
-    return true
-  else:
+  if ingredient_count== n:
     return false
+  else:
+    return true
 
 func is_plate_contains_more_than(id: DB.Ingredient, at_least: int, plate: Array[CookingIngredient]= in_plate) -> bool:
   var ingredient_count: int= 0
@@ -56,6 +55,15 @@ func is_plate_contains_more_than(id: DB.Ingredient, at_least: int, plate: Array[
   else:
     return false
 
+func ingredients_count(id: DB.Ingredient):
+  var ingredient_count: int= 0
+  for i in in_plate:
+    if i._id()== id:
+      ingredient_count+= 1
+  
+  return ingredient_count
+  
+  
 func is_only_contain_one_type(id: DB.Ingredient, plate: Array[CookingIngredient]= in_plate) -> bool:
   if plate.is_empty():
     return false
