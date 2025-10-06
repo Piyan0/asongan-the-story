@@ -3,11 +3,13 @@ extends Control
 var item_ui: PackedScene
 var inventory: Inventory
 var list: GridListItem
-@onready var container: FlowContainer = $FlowContainer
+
+@onready var container: FlowContainer = %container
 
 
 var selected: Control
 var META_ITEM= 'q'
+var current_slot: int
 func _ready() -> void:
   item_ui= load("res://scenes/ui/inventory/item_ui.tscn")
   TranslationServer.set_locale('id-ID')
@@ -25,6 +27,7 @@ func display_inventory():
     _item_ui.set_texture(i.icon)
   
   initiate_selection()
+  set_slot(inventory.get_current_inventory_size())
 
 
 func fill(_inventory: Inventory):
@@ -129,8 +132,20 @@ func erase_current_item():
   list.items= get_items()
   list.last_selected_child= null
   list.is_started_selecting= false
+  current_slot-= 1
+  set_slot(current_slot)
   #print(list.items)
   
+@onready var slot: Label = %slot
+func set_slot(_slot: int) -> void:
+  current_slot= _slot
+  slot.text= ' Slot {current_slot}/{max_slot}'.format({
+    'current_slot': str(_slot),
+    'max_slot':  str(get_max_slot()),
+  })
+
+func get_max_slot() -> int:
+  return GameState.INVENTORY_MAX
 func close():
   if list:
     list.free()

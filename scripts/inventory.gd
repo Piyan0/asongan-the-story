@@ -20,3 +20,6 @@ static func item_from_data(data) -> Item:
   item.worth= data.worth
   
   return item
+
+func get_current_inventory_size() -> int:
+  return items.size()

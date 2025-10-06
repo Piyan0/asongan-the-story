@@ -1,15 +1,115 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqk1j3esso53w"]
+[gd_scene load_steps=7 format=3 uid="uid://bqk1j3esso53w"]
 
 [ext_resource type="Script" uid="uid://cu20kfndvw4ur" path="res://scripts/ui/inventory/inventory.gd" id="1_3bwaq"]
+[ext_resource type="Texture2D" uid="uid://fpoupovx420c" path="res://assets/sprites/ui/rect_2.png" id="2_lobmi"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="3_8ndef"]
+[ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="4_wi1cf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_otfgc"]
+font = ExtResource("3_8ndef")
+font_color = Color(0.666667, 0.635294, 0.364706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1xhy"]
+font = ExtResource("3_8ndef")
+font_color = Color(0.662745, 0.611765, 0.552941, 1)
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3bwaq")
 
-[node name="FlowContainer" type="FlowContainer" parent="."]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 89.0
-offset_right = 222.0
-offset_bottom = 143.0
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 30.0
+offset_right = 201.0
+offset_bottom = 125.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 5.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lobmi")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 4
+
+[node name="Label3" type="Label" parent="Control2"]
+layout_mode = 1
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 58.0
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_otfgc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control2/Label3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_right = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wi1cf")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="slot" type="Label" parent="Control2"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 5.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Slot: 0/16"
+label_settings = SubResource("LabelSettings_g1xhy")
+vertical_alignment = 1
+
+[node name="coin" type="NinePatchRect" parent="Control2/slot"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wi1cf")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="container" type="FlowContainer" parent="Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2

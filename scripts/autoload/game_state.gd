@@ -21,6 +21,8 @@ var item_state: ItemState= ItemState.CAN_DROP
 
 #SAVE
 var current_coin: int= 200
+
+const INVENTORY_MAX := 16
 func set_var(id: Variable, value):
   game_vars[id]= value
 
