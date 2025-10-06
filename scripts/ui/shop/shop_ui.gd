@@ -42,7 +42,7 @@ func display_items() -> void:
   set_coin(current_coin)
   
   for i in items:
-    print(i.item.item_name)
+    #print(i.item.item_name)
     var _shop_item_ui: ShopItemUI= shop_item_ui.instantiate()
     _shop_item_ui.set_meta(META_ITEM, i)
     #print(_shop_item_ui.get_meta(META_ITEM).item_name)

@@ -37,7 +37,7 @@ static func parse(num: int, dot='.') -> String:
 
 static func get_number_type(num: int) -> int:
   var str_num= str(num)
-  print(str_num.length())
+  #print(str_num.length())
   if str_num.length() < 4:
     return -1
   
