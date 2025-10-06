@@ -126,7 +126,8 @@ func toggle_move(is_move: bool):
     
 func get_random_car():
   if available_cars.is_empty():
-    print(1)
+    #print(1)
+    pass
   var car: CarScene
   car= available_cars.pick_random()
   available_cars.erase(car)

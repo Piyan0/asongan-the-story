@@ -24,7 +24,7 @@ func stop(is_stop: bool):
     sprite.play(current_idle_animation)
   
 func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
-  print(9)
+  #print(9)
   match new_direction:
     
     Vector2.ZERO:

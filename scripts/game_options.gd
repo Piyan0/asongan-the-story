@@ -32,7 +32,7 @@ func change_language(id: String):
 func toggle_fullscreen(is_fullscreen: bool):
   settings.toggle_fullscreen= is_fullscreen
   if is_fullscreen:
-    DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_FULLSCREEN)
+    DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
     return
     
   DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_WINDOWED)

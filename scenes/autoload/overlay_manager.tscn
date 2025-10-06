@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://beqbcnsqnqqkx"]
+[gd_scene load_steps=7 format=3 uid="uid://beqbcnsqnqqkx"]
 
 [ext_resource type="Script" uid="uid://bgmmnl6h4tpy1" path="res://scripts/overylay_manager.gd" id="1_40fm2"]
 [ext_resource type="PackedScene" uid="uid://dy6ayjms65mfd" path="res://scenes/ui/control_hint.tscn" id="3_y7rud"]
+[ext_resource type="Texture2D" uid="uid://c3fhkwitt7xkx" path="res://assets/sprites/shadow_overlay.png" id="4_dwaoo"]
 [ext_resource type="PackedScene" uid="uid://blxql6gyphgol" path="res://scenes/ui/transition/transition.tscn" id="4_xs6jo"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="5_y7rud"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xs6jo"]
+font = ExtResource("5_y7rud")
 
 [node name="OverlayManager" type="CanvasLayer"]
 script = ExtResource("1_40fm2")
@@ -11,3 +16,46 @@ script = ExtResource("1_40fm2")
 visible = false
 
 [node name="transition" parent="." instance=ExtResource("4_xs6jo")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+modulate = Color(0.835294, 0.827451, 0.819608, 1)
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_top = 12.0
+offset_right = -45.0
+offset_bottom = 27.0
+grow_horizontal = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dwaoo")
+patch_margin_left = 54
+patch_margin_right = 58
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -6.5
+offset_right = 30.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "RP. 99.999"
+label_settings = SubResource("LabelSettings_xs6jo")
+horizontal_alignment = 1
+vertical_alignment = 1
