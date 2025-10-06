@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://b4h6t67vdweal"]
 
-[ext_resource type="Texture2D" uid="uid://c3lvibbhik11r" path="res://assets/sprites/cooking/background.png" id="1_iduhj"]
 [ext_resource type="Script" uid="uid://c5o062sucu70d" path="res://scripts/cooking/tofu_stand/tofu_stand.gd" id="1_sqs2g"]
+[ext_resource type="Texture2D" uid="uid://bjenthgy3qsr1" path="res://assets/sprites/cooking/background_2.png" id="2_akwb2"]
 [ext_resource type="PackedScene" uid="uid://bg1dy0qdj3pif" path="res://scenes/cooking/ingredient.tscn" id="3_bqfwf"]
 [ext_resource type="Texture2D" uid="uid://b8c3vtsncg7ho" path="res://assets/sprites/cooking/tofu_stand/rice_rolls.png" id="3_r85b3"]
 [ext_resource type="Texture2D" uid="uid://dp1fgsrgx7umc" path="res://assets/sprites/cooking/tofu_stand/chilly.png" id="4_bqfwf"]
@@ -99,25 +99,25 @@ script = ExtResource("1_sqs2g")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_iduhj")
+texture = ExtResource("2_akwb2")
 
 [node name="tofu" parent="." instance=ExtResource("3_bqfwf")]
 unique_name_in_owner = true
 visible = true
 layout_mode = 0
 offset_left = 326.0
-offset_top = 135.0
+offset_top = 121.0
 offset_right = 387.0
-offset_bottom = 185.0
+offset_bottom = 171.0
 
 [node name="rice_roll" parent="." instance=ExtResource("3_bqfwf")]
 unique_name_in_owner = true
 visible = true
 layout_mode = 0
 offset_left = 403.0
-offset_top = 135.0
+offset_top = 121.0
 offset_right = 436.0
-offset_bottom = 238.0
+offset_bottom = 224.0
 texture = ExtResource("3_r85b3")
 
 [node name="chilly" parent="." instance=ExtResource("3_bqfwf")]
@@ -125,18 +125,18 @@ unique_name_in_owner = true
 visible = true
 layout_mode = 0
 offset_left = 336.0
-offset_top = 197.0
+offset_top = 183.0
 offset_right = 363.0
-offset_bottom = 240.0
+offset_bottom = 226.0
 texture = ExtResource("4_bqfwf")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(93, 136)
 anchors_preset = 0
 offset_left = 202.0
-offset_top = 112.0
+offset_top = 98.0
 offset_right = 295.0
-offset_bottom = 248.0
+offset_bottom = 234.0
 
 [node name="TextureRect3" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0.180392)

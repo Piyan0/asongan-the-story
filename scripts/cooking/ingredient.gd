@@ -37,4 +37,6 @@ func set_count(count: int):
 func decrement_count():
   last_count-= 1
   set_count(last_count)
-  
+
+func get_current_count() -> int:
+  return last_count

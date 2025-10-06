@@ -8,6 +8,7 @@ class_name TofuStand
 var cooking: Cooking
 var ingredient_ui: Dictionary
 var current_tofu: int= 0
+var ingredient_used_count: Dictionary
 
 func _ready() -> void:
   TranslationServer.set_locale('id-ID')
@@ -17,9 +18,17 @@ func _ready() -> void:
     DB.Ingredient.CHILLY: %chilly,
   }
   
+  
+  
   prepare()
 
 func prepare():
+  ingredient_used_count= {
+    DB.Ingredient.TOFU: 0,
+    DB.Ingredient.RICE_ROLL: 0,
+    DB.Ingredient.CHILLY: 0,
+  }
+  
   cooking= Cooking.new()
   cooking.possible_food= [
     FoodPackOfTofu.new(),
@@ -27,6 +36,7 @@ func prepare():
   ]
   cooking._food_finished= on_food_finished
   cooking._ingredient_placed= on_ingredient_placed
+  cooking._resetted= on_resetted
   fill(cooking)
 
 func on_food_finished(id: DB.Food) -> void:
@@ -42,6 +52,7 @@ func on_food_finished(id: DB.Food) -> void:
 func on_ingredient_placed(id: DB.Ingredient) -> void:
   #print(1)
   ingredient_ui[id].decrement_count()
+  ingredient_used_count[id]+= 1
   match id:
     DB.Ingredient.TOFU:
       add_tofu()
@@ -49,7 +60,16 @@ func on_ingredient_placed(id: DB.Ingredient) -> void:
       add_rice_roll()
     DB.Ingredient.CHILLY:
       pass
-    
+
+func on_resetted():
+  ingredient_ui[DB.Ingredient.TOFU].set_count(ingredient_ui[DB.Ingredient.TOFU].get_current_count()+ ingredient_used_count[DB.Ingredient.TOFU])
+  ingredient_ui[DB.Ingredient.CHILLY].set_count(ingredient_ui[DB.Ingredient.CHILLY].get_current_count()+ ingredient_used_count[DB.Ingredient.CHILLY])
+  ingredient_ui[DB.Ingredient.RICE_ROLL].set_count(ingredient_ui[DB.Ingredient.RICE_ROLL].get_current_count()+ ingredient_used_count[DB.Ingredient.RICE_ROLL])
+  
+  for i in ingredient_used_count:
+    ingredient_used_count[i]= 0
+   
+  hide_all()
   
 func fill(_cooking: Cooking):
   var tofu_count= DB.get_item_count(DB.Ingredient.TOFU)
@@ -69,7 +89,6 @@ func fill(_cooking: Cooking):
     _cooking.ingredients_available.push_back(IngredientChilly.new())
   for i in rice_roll_count:
     _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
-
   
 func add_tofu():
   var i = tofus[current_tofu]
@@ -82,6 +101,11 @@ func add_rice_roll():
   rice_roll.show()
   rice_roll.get_child(0).play('new_animation')
 
+func hide_all():
+  for i in tofus:
+    i.hide()
+  current_tofu= 0
+  rice_roll.hide()
 func ingredient_clicked(id: DB.Ingredient):
   match id:
     DB.Ingredient.TOFU:
@@ -94,5 +118,14 @@ func ingredient_clicked(id: DB.Ingredient):
 
 @onready var mouse: TextureRect = $mouse
 
+#add an info used items.
+func close():
+  pass
+  
 func _physics_process(delta: float) -> void:
   mouse.position= get_global_mouse_position()
+
+func _input(event: InputEvent) -> void:
+  if event.is_action_pressed("c"):
+    #print(1)
+    cooking.reset()

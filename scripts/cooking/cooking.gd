@@ -6,6 +6,7 @@ signal food_finished(food: CookingFood)
 var _ingredient_placed= func(ingredient: CookingIngredient): pass
 var _no_ingredient= func(): pass
 var _food_finished= func(food: DB.Food): pass
+var _resetted= func(): pass
 var possible_food: Array[CookingFood]
 var current_in_plate: Array[CookingIngredient]
 var is_food_finished: bool= false
@@ -57,3 +58,12 @@ func has_ingredient(id: int) -> bool:
   return false
 func get_available_ingredients() -> Array[CookingIngredient]:
   return ingredients_available
+
+func reset():
+  if current_in_plate.is_empty() or is_food_finished:
+    return
+  for i in current_in_plate:
+    ingredients_available.push_back(i)
+  
+  _resetted.call()
+  current_in_plate= []
