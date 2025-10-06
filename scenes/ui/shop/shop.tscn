@@ -56,6 +56,7 @@ text = "SHOP"
 label_settings = SubResource("LabelSettings_robsg")
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control/Label3"]
 show_behind_parent = true

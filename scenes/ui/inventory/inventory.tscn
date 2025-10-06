@@ -52,6 +52,7 @@ text = "INVENTORY"
 label_settings = SubResource("LabelSettings_otfgc")
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control2/Label3"]
 show_behind_parent = true

@@ -12,7 +12,7 @@ var META_ITEM= 'q'
 var current_slot: int
 func _ready() -> void:
   item_ui= load("res://scenes/ui/inventory/item_ui.tscn")
-  TranslationServer.set_locale('id-ID')
+  #TranslationServer.set_locale('id-ID')
   display_inventory()
   #initiate_selection()
   
