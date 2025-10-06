@@ -22,6 +22,7 @@ static func parse(num: int, dot='.') -> String:
   var array_num= str_num.split('')
   var type: int= get_number_type(num)
   if type== -1:
+    #print(1)
     return result
     
   var inserted= 0
@@ -36,6 +37,7 @@ static func parse(num: int, dot='.') -> String:
 
 static func get_number_type(num: int) -> int:
   var str_num= str(num)
+  print(str_num.length())
   if str_num.length() < 4:
     return -1
   

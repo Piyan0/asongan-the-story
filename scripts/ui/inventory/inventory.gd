@@ -78,7 +78,7 @@ func event_item_used_wrong(item: Inventory.Item):
 func event_item_dropped(item: Inventory.Item):
   erase_current_item()
   DB.erase_inventory_item(item.id)
-  #print(DB.inventory_items)
+
   
 
 func event_item_gave(item: Inventory.Item):

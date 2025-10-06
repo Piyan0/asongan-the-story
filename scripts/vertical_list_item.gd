@@ -39,9 +39,12 @@ func set_index_active(add_by: int) -> void:
     #overflowed_min.call(items)
     #return
   
-  last_selected_child= items[index_active]
   #print(last_selected_child, items)
-  selected_changed.call(last_selected_child, items)
+  if last_selected_child == items[index_active]:
+    pass
+  else:
+    last_selected_child= items[index_active]
+    selected_changed.call(last_selected_child, items)
   if is_overflowed_max:
     overflowed_max.call(items)
   elif is_overflowed_min:
