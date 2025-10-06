@@ -30,7 +30,6 @@ enum Upgrade{
 
 var shop_item_template: Dictionary= {
   'id': Food.COFFE,
-  'cost': 99,
   'is_available': true,
   'owned': 0,
   'stock': 99,
@@ -99,3 +98,11 @@ func set_item_shop(id: int, params= {}):
       item= i
   for i in params:
     item[i]= params[i]
+
+func get_inventory_item(id: int) -> Dictionary:
+  for i in inventory_items:
+    if i.id == id:
+      return i
+  
+  return {}
+  

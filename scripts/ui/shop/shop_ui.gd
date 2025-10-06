@@ -131,7 +131,6 @@ func fill(_shop: Shop):
   for i in DB.shop_items:
     var item= Shop.ShopItem.new()
     item.id= i.id
-    item.cost= i.cost
     item.is_available= i.is_available
     item.owned= i.owned
     item.stock= i.stock

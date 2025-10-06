@@ -8,7 +8,6 @@ var _on_no_stock: Callable= func() -> void: pass
 
 class ShopItem:
   var id: int
-  var cost: int
   var is_available: bool
   var owned: int
   var stock: int
@@ -20,7 +19,7 @@ func buy_item(item: ShopItem) -> void:
   if not is_stock_available(item):
     _on_no_stock.call()
     return
-  if _is_coin_enough.call(item.cost):
+  if _is_coin_enough.call(item.item.cost):
     erase_item(item)
     add_owned(item)
     _on_item_buyed.call(item)
