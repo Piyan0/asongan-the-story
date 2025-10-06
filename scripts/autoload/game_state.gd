@@ -6,13 +6,13 @@ enum ItemState{
   CAN_GIVE
 }
 
-enum Variable{
+enum GameVar{
   IS_DONE_SOMETHING,
 }
 
 #SAVE
 var game_vars ={
-  Variable.IS_DONE_SOMETHING: true,
+  GameVar.IS_DONE_SOMETHING: true,
 }
 var item_correct_id: int= DB.Food.PACK_OF_TOFU
 
@@ -23,8 +23,8 @@ var item_state: ItemState= ItemState.CAN_DROP
 var current_coin: int= 200
 
 const INVENTORY_MAX := 16
-func set_var(id: Variable, value):
+func set_var(id: GameVar, value):
   game_vars[id]= value
 
-func get_var(id: Variable):
+func get_var(id: GameVar):
   return game_vars[id]
