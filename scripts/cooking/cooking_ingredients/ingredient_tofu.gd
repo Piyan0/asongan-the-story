@@ -6,5 +6,8 @@ func _id() -> int:
   
 func _is_can_place(in_plate: Array[CookingIngredient]) -> bool:
   var utils: CookingUtils= CookingUtils.new(in_plate)
-
-  return utils.ingredients_count(DB.Ingredient.RICE_ROLL) < 1
+  var tofu_count= utils.ingredients_count(DB.Ingredient.TOFU)
+  if tofu_count<=2:
+    return true
+  else:
+    return utils.ingredients_count(DB.Ingredient.RICE_ROLL) < 1
