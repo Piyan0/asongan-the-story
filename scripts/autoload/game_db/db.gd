@@ -61,7 +61,7 @@ var shop_items= [
   }),
   get_item_shop({
     'id': Food.PACK_OF_TOFU,
-    'stock': 0,
+    'stock': 10,
   }),
 ]
 
