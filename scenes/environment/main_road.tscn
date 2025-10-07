@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
 [ext_resource type="PackedScene" uid="uid://bll0y00ufegmy" path="res://modules/event_system/scenes/event.tscn" id="5_cfafu"]
-[ext_resource type="Script" uid="uid://t1o4qf4sa8ml" path="res://modules/event_system/scripts/unique_data/common_door.gd" id="6_i6ch8"]
+[ext_resource type="Script" uid="uid://t1o4qf4sa8ml" path="res://scripts/events_unique_data/common_door.gd" id="6_i6ch8"]
 [ext_resource type="PackedScene" uid="uid://lukntc1w20oe" path="res://scenes/train/train_stopping.tscn" id="6_px678"]
-[ext_resource type="Script" uid="uid://cp7qpwnb3tkvb" path="res://modules/event_system/scripts/events/common_door.gd" id="6_tdjtn"]
+[ext_resource type="Script" uid="uid://cp7qpwnb3tkvb" path="res://scripts/events/common_door.gd" id="6_tdjtn"]
 [ext_resource type="PackedScene" uid="uid://cll0ryt0j8voh" path="res://scenes/train/train.tscn" id="7_px678"]
 [ext_resource type="Script" uid="uid://2abs2qd1nkwo" path="res://scripts/main_road_manager.gd" id="8_cf2ie"]
-[ext_resource type="Script" uid="uid://cpr7qvl4ki2dv" path="res://modules/event_system/scripts/events/main_road/main_road 2.gd" id="10_jhre1"]
+[ext_resource type="Script" uid="uid://b5sc3v6hcfim6" path="res://scripts/events/main_road/002.gd" id="10_jhre1"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
@@ -28,12 +28,6 @@ centered = false
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
 position = Vector2(44.3333, 179.182)
 
-[node name="event" parent="." instance=ExtResource("5_cfafu")]
-position = Vector2(194, 149)
-event_unique_data = SubResource("Resource_lv3wr")
-event_id = "main_road 1"
-events = ExtResource("6_tdjtn")
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1438, 234)
 
@@ -49,7 +43,15 @@ position = Vector2(1105, 176)
 script = ExtResource("8_cf2ie")
 metadata/_custom_type_script = "uid://2abs2qd1nkwo"
 
-[node name="event2" parent="." instance=ExtResource("5_cfafu")]
-position = Vector2(433, 139)
-event_id = "main_road 2"
+[node name="events" type="Node" parent="."]
+
+[node name="event" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(194, 149)
+event_unique_data = SubResource("Resource_lv3wr")
+events = ExtResource("6_tdjtn")
+
+[node name="event2" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(428, 134)
+event_unique_data = SubResource("Resource_lv3wr")
+event_id = 1
 events = ExtResource("10_jhre1")

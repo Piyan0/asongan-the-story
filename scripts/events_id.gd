@@ -1,0 +1,17 @@
+extends Node
+class_name EventsID
+
+
+enum ID{
+  MAIN_ROAD_001=0,
+  MAIN_ROAD_002,
+  MAIN_ROAD_003,
+  MAIN_ROAD_004,
+  MAIN_ROAD_005,
+
+  SHOP_001=50,
+  SHOP_002,
+  SHOP_003,
+  SHOP_004,
+  SHOP_005,
+}

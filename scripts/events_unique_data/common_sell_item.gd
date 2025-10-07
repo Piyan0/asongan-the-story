@@ -1,4 +1,4 @@
 extends EventUniqueData
-class_name CommonUseItemArea
+class_name CommonSellItem
 
 @export var expected_item : String

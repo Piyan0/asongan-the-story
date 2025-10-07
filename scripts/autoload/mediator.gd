@@ -65,8 +65,8 @@ func on_main_menu_loaded() -> void:
         Saveable.get_data('settings_index')
       )
     OptionsSelectionMenu.saved_setting_index= settings_index
-    print( OptionsSelectionMenu.saved_setting_index )
-    print(settings_index)
+    #print( OptionsSelectionMenu.saved_setting_index )
+    #print(settings_index)
  
 func on_settings_changed(settings: Dictionary):
   Saveable.set_data('settings', settings)

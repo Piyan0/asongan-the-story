@@ -22,7 +22,7 @@ enum ActionKeys{
 
 func apply_settings(_settings):
   for i in _settings:
-    print(i)
+    #print(i)
     self[i].call(_settings[i])
     
   

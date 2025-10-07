@@ -4,31 +4,29 @@ class_name EventArea
 @onready var area_2d: Area2D = $Area2D
 @export var event_unique_data: EventUniqueData
   
-@export var event_id : String
-@export var current_event_key : String
+@export var event_id : EventsID.ID
 @export var events : Script
 @export var trigger_by_enter : bool= false
+
 @export_group('Node Refs')
 @export var label : Label
 @export_group('')
+
 var core : Event = Event.new()
 var events_instance : Node = null
 
 static var instances_for_debug : Array[EventArea]
 
 func _ready() -> void:
-  add_to_group('EventArea')
-  if Engine.is_editor_hint():
-    instances_for_debug.push_back(self)
-    
+
   core.event_id= event_id
-  core.current_event_key= current_event_key
   if events_instance== null:
     events_instance= events.new()
   
   
   #setup for event part / event member.
   for i in events.get_script_method_list():
+    #print(i.name)
     var event : Event.EventPart = Event.EventPart.new()
     event.id= i.name
     event.callback= events_instance[i.name].bindv([event_unique_data, GameEvent.new()])
@@ -95,7 +93,7 @@ func toggle_label() -> void:
   
   for i : EventArea in instances_for_debug:
     #print(i)
-    i.label.text= i.event_id
+    i.label.text= str(i.event_id)
     if label_visible:
       i.label.show()
     else:
@@ -117,7 +115,7 @@ func _input(event: InputEvent) -> void:
   if EventManager.instance:
     if not EventManager.instance.get_can_run(): return
   
-  if (event.is_action_pressed("ui_accept")
+  if (event.is_action_pressed('ui_accept')
      or event.is_action_pressed('z')
      and core.is_can_run_event
     ):

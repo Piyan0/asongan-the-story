@@ -9,14 +9,13 @@ signal player_exited_area()
 
 signal toggle_event_process(is_can_run: bool)
 class Autostart:
-  var event_area_id : String
+  var event_area_id : int
   var event_key_id : String
   
   static func properties() -> Array[String]:
     return ['event_area_id', 'event_key_id']
   
 var is_can_run_event: bool= true
-var debug_list : Array[EventDebugLabel]
 var container : VBoxContainer
 #SAVE
 var queue_autostart : Array[Autostart]
@@ -43,35 +42,13 @@ func set_can_run(can_run: bool):
 func get_can_run():
   return is_can_run_event
 
-func get_instance_by_id(id: String) -> EventArea:
+func get_instance_by_id(id: int) -> EventArea:
+  print(id)
   for i : EventArea in get_tree().get_nodes_in_group('EventArea'):
     if i.event_id== id:
       return i
   
   return null
-  
-func get_event_label(id: String) -> EventDebugLabel:
-  for i in debug_list:
-    
-    if i.name== id:
-      return i
-    
-  return null
-  
-func add_debug(text: String, callback: Callable= func(): pass) -> void:
-  var event_label : EventDebugLabel = EventDebugLabel.new().get_self()
-  debug_list.push_back(event_label)
-  event_label.set_text('? ' +text)
-  event_label.set_call(callback)
-  
-  event_label.label_clicked.connect(delete_debug_label)
-  container.add_child(event_label)
-  
-func delete_debug_label(id: String) -> void:
-  var event_debug : EventDebugLabel = get_event_label(id)
-  if event_debug:
-    debug_list.erase(event_debug)
-    event_debug.queue_free()
 
 func execute_autostart() -> void:
   var autostart_called : Array[Autostart]
@@ -88,7 +65,7 @@ func execute_autostart() -> void:
   for i in autostart_called:
     queue_autostart.erase(i)
   
-func add_autostart(event_area_id: String,event_key_id: String):
+func add_autostart(event_area_id: int,event_key_id: String):
   var auto : Autostart = Autostart.new()
   auto.event_area_id= event_area_id
   auto.event_key_id= event_key_id

@@ -5,6 +5,7 @@ signal closed()
 @onready var label: Label = $Label
 
 var is_showing_alert: bool= false
+
 func alert(t: String, is_auto_hide= true):
   if is_showing_alert:
     return

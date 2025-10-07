@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bll0y00ufegmy"]
 
 [ext_resource type="Script" uid="uid://bnethmhtqp5en" path="res://modules/event_system/scripts/event.gd" id="1_paxfm"]
-[ext_resource type="Script" uid="uid://bl6d8fcmn3ci5" path="res://modules/event_system/scripts/events/test.gd" id="2_t8jde"]
+[ext_resource type="Script" uid="uid://bl6d8fcmn3ci5" path="res://modules/event_system/assets/test.gd" id="2_t8jde"]
 [ext_resource type="FontFile" uid="uid://dhambl7168n37" path="res://modules/event_system/assets/fonts/Kenney Mini.ttf" id="3_ylg2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gbsx"]
@@ -15,8 +15,6 @@ outline_color = Color(0.0242265, 0.424032, 0.999998, 1)
 
 [node name="event" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_paxfm")
-event_id = "area id"
-current_event_key = "_1"
 events = ExtResource("2_t8jde")
 label = NodePath("Label")
 

@@ -11,6 +11,13 @@ enum GameVar{
 }
 
 #SAVE
+var events_id : Dictionary = {
+  EventsID.ID.MAIN_ROAD_001: '_1',
+  EventsID.ID.MAIN_ROAD_002: '_1',
+  EventsID.ID.SHOP_001: '_1',
+}
+
+#SAVE
 var game_vars ={
   GameVar.IS_DONE_SOMETHING: true,
 }
