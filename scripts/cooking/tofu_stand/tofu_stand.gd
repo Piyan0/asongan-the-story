@@ -122,7 +122,7 @@ func ingredient_clicked(id: DB.Ingredient):
 func close():
   pass
   
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
   mouse.position= get_global_mouse_position()
 
 func _input(event: InputEvent) -> void:
