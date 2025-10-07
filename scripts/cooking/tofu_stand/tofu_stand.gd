@@ -45,11 +45,15 @@ func prepare():
   cooking._ingredient_placed= on_ingredient_placed
   cooking._resetted= on_resetted
   cooking._unable_to_place= on_unable_to_place
+  cooking._no_ingredient= on_no_ingredient
   #cooking._is_can_place= GameState.is_inventory_slot_available
   
   food_finished._food_taken= on_food_taken
   fill(cooking)
 
+func on_no_ingredient():
+  OverlayManager.show_alert('NO_INGREDIENT')
+  
 func on_food_taken():
   OverlayManager.get_alert().close()
   food_finished.close()
