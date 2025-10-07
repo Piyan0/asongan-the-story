@@ -146,6 +146,7 @@ func set_slot(_slot: int) -> void:
 
 func get_max_slot() -> int:
   return GameState.INVENTORY_MAX
+  
 func close():
   if list:
     list.free()

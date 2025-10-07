@@ -36,3 +36,8 @@ func play_transition(is_closing: bool):
 
 func toggle_control_hint(is_on: bool):
   $CanvasLayer.visible= is_on
+@onready var alert: Control = $Alert
+
+func show_alert(t: String):
+  alert.alert(t)
+  

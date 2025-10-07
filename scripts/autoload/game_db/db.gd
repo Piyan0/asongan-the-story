@@ -43,6 +43,14 @@ var items= {
     'worth': 99,
     'cost': 99999,
   },
+  Food.TOFU_WITH_RICE_ROLL: {
+    'item_type': ItemType.FOOD,
+    'icon': "res://assets/sprites/items/tofu.png",
+    'item_name': 'TOFU_WITH_RICE_ROLL',
+    'id': Food.TOFU_WITH_RICE_ROLL,
+    'worth': 99,
+    'cost': 99999,
+  },
   Food.COFFE: {
     'item_type': ItemType.FOOD,
     'icon': "res://assets/sprites/items/coffe.png",
@@ -91,8 +99,8 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
-  get_item(Food.PACK_OF_TOFU, {}),
-  get_item(Food.COFFE, {}),
+  #get_item(Food.PACK_OF_TOFU, {}),
+  #get_item(Food.COFFE, {}),
   get_item(Ingredient.TOFU),
   get_item(Ingredient.TOFU),
   get_item(Ingredient.TOFU),
@@ -107,6 +115,7 @@ var inventory_items= [
 ]
 
 func get_item(id: int, params= {}):
+  #print(id)
   var item= items[id].duplicate()
   for i in params:
     item[i]= params[i]
@@ -124,7 +133,8 @@ func erase_inventory_item(id: int):
   for i in inventory_items:
     if i.id== id:
       target= i
-  inventory_items.erase(target)
+  if target:
+    inventory_items.erase(target)
 
 func set_item_shop(id: int, params= {}):
   var item: Dictionary
@@ -149,3 +159,8 @@ func get_item_count(id: int) -> int:
       count+= 1
   
   return count
+
+func add_item_to_inventory(id: int):
+  inventory_items.push_back(
+    get_item(id)
+  )

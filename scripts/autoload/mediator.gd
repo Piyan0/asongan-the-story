@@ -20,7 +20,7 @@ enum {
   
   SHOP_ITEM_BUYED,
   
-  INFO_CURRENT_COIN,
+  CURRENT_COIN,
 
 }
 
@@ -43,7 +43,7 @@ var event_mapped: Dictionary[int, Callable]= {
   INVENTORY_ITEM_DROPPED: on_inventory_item_used,
   SHOP_ITEM_BUYED: on_inventory_item_dropped,
   
-  INFO_CURRENT_COIN: current_coin,
+  CURRENT_COIN: current_coin,
 }
   
 func air(id: int, args: Array= []):

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvv5tnh6rkcti"]
+
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="1_bnefi"]
+[ext_resource type="Script" uid="uid://clgefhgjehbbh" path="res://scripts/alert/alert.gd" id="1_gkgll"]
+[ext_resource type="Texture2D" uid="uid://c70cqvwtjt1gt" path="res://assets/color_pallate/fading-16-1x.png" id="2_gkgll"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wwbmm"]
+font = ExtResource("1_bnefi")
+
+[node name="Alert" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gkgll")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color(0.866667, 0.811765, 0.6, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -109.0
+offset_right = 39.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ALERT_MESSAGE"
+label_settings = SubResource("LabelSettings_wwbmm")
+
+[node name="Fading-16-1x" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(385, -19)
+scale = Vector2(13.625, 28)
+texture = ExtResource("2_gkgll")

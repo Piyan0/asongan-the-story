@@ -23,8 +23,17 @@ var item_state: ItemState= ItemState.CAN_DROP
 var current_coin: int= 200
 
 const INVENTORY_MAX := 16
+
 func set_var(id: GameVar, value):
   game_vars[id]= value
 
 func get_var(id: GameVar):
   return game_vars[id]
+
+func current_used_inventory_slot() -> int:
+  return DB.inventory_items.size()
+  
+func is_inventory_slot_available() -> bool:
+  #return false
+  return current_used_inventory_slot() < INVENTORY_MAX
+  

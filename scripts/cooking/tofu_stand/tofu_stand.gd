@@ -5,6 +5,8 @@ class_name TofuStand
   $Control/tofu/TextureRect, $Control/tofu/TextureRect2, $Control/tofu/TextureRect3, $Control/tofu/TextureRect4, $Control/tofu/TextureRect5, $Control/tofu/TextureRect6
 ]
 @onready var rice_roll: TextureRect = $Control/tofu/rice_roll
+@onready var food_finished: Control = $FoodFinished
+
 var cooking: Cooking
 var ingredient_ui: Dictionary
 var current_tofu: int= 0
@@ -37,16 +39,31 @@ func prepare():
   cooking._food_finished= on_food_finished
   cooking._ingredient_placed= on_ingredient_placed
   cooking._resetted= on_resetted
+  cooking._unable_to_place= on_unable_to_place
+  cooking._is_can_place= GameState.is_inventory_slot_available
   fill(cooking)
+
 
 func on_food_finished(id: DB.Food) -> void:
   await get_tree().create_timer(0.2).timeout
+  DB.add_item_to_inventory(id)
+  
   match id:
     DB.Food.PACK_OF_TOFU:
-      $FoodFinished.play(load("res://assets/sprites/items/tofu.png"), 'PACK_OF_TOFU')
+      food_finished.play(load("res://assets/sprites/items/tofu.png"), 'PACK_OF_TOFU')
+      
     DB.Food.TOFU_WITH_RICE_ROLL:
-      $FoodFinished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_EXTRA')
-
+      food_finished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_EXTRA')
+     
+  for i in ingredient_used_count[DB.Ingredient.TOFU]:
+    DB.erase_inventory_item(DB.Ingredient.TOFU)
+  for i in ingredient_used_count[DB.Ingredient.RICE_ROLL]:
+    DB.erase_inventory_item(DB.Ingredient.RICE_ROLL)
+  for i in ingredient_used_count[DB.Ingredient.CHILLY]:
+    DB.erase_inventory_item(DB.Ingredient.CHILLY)
+  
+  #print(DB.inventory_items)
+  #print( DB.get_item_count(DB.Ingredient.TOFU) )
       
   
 func on_ingredient_placed(id: DB.Ingredient) -> void:
@@ -90,6 +107,7 @@ func fill(_cooking: Cooking):
   for i in rice_roll_count:
     _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
   
+
 func add_tofu():
   var i = tofus[current_tofu]
   i.show()
@@ -121,6 +139,9 @@ func ingredient_clicked(id: DB.Ingredient):
 #add an info used items.
 func close():
   pass
+
+func on_unable_to_place() -> void:
+  OverlayManager.show_alert('Inventory maxed.')
   
 func _process(delta: float) -> void:
   mouse.position= get_global_mouse_position()

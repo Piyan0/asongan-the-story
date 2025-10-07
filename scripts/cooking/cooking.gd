@@ -7,6 +7,8 @@ var _ingredient_placed= func(ingredient: CookingIngredient): pass
 var _no_ingredient= func(): pass
 var _food_finished= func(food: DB.Food): pass
 var _resetted= func(): pass
+var _unable_to_place = func(): pass
+var _is_can_place= func() -> bool: return true
 var possible_food: Array[CookingFood]
 var current_in_plate: Array[CookingIngredient]
 var is_food_finished: bool= false
@@ -15,6 +17,10 @@ var ingredients_available: Array[CookingIngredient]
 
 
 func place_ingredient(ingredient: CookingIngredient) -> bool:
+  if not _is_can_place.call():
+    _unable_to_place.call()
+    
+    return false
   if is_food_finished: return false
   if not has_ingredient(ingredient._id()): 
     _no_ingredient.call()

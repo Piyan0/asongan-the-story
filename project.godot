@@ -30,9 +30,7 @@ GameState="*res://scripts/autoload/game_state.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="uid://bq0kb42yokjyd"
 
 [input]
 
