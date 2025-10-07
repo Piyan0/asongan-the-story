@@ -62,6 +62,7 @@ _data = {
 }
 
 [node name="transition" type="CanvasLayer"]
+layer = 50
 script = ExtResource("1_8xffr")
 
 [node name="Sprite2D" type="ColorRect" parent="."]

@@ -1,16 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://beqbcnsqnqqkx"]
+[gd_scene load_steps=6 format=3 uid="uid://beqbcnsqnqqkx"]
 
 [ext_resource type="Script" uid="uid://bgmmnl6h4tpy1" path="res://scripts/overylay_manager.gd" id="1_40fm2"]
 [ext_resource type="PackedScene" uid="uid://dy6ayjms65mfd" path="res://scenes/ui/control_hint.tscn" id="3_y7rud"]
-[ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="4_0njdk"]
 [ext_resource type="PackedScene" uid="uid://blxql6gyphgol" path="res://scenes/ui/transition/transition.tscn" id="4_xs6jo"]
-[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="5_y7rud"]
-[ext_resource type="Texture2D" uid="uid://d1odhybn852gg" path="res://scripts/ui/hud/icon_money.png" id="6_mcx3o"]
+[ext_resource type="PackedScene" uid="uid://j1ufl0cv82ea" path="res://scenes/hud/hud.tscn" id="4_y7rud"]
 [ext_resource type="Texture2D" uid="uid://c70cqvwtjt1gt" path="res://assets/color_pallate/fading-16-1x.png" id="6_xs6jo"]
-[ext_resource type="Texture2D" uid="uid://gp04yu78ovb6" path="res://scripts/ui/hud/icon_train.png" id="7_vnq6d"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8b46f"]
-font = ExtResource("5_y7rud")
 
 [node name="OverlayManager" type="CanvasLayer"]
 script = ExtResource("1_40fm2")
@@ -20,119 +14,10 @@ visible = false
 
 [node name="transition" parent="." instance=ExtResource("4_xs6jo")]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_top = 12.0
-offset_right = -13.0
-offset_bottom = 28.0
-grow_horizontal = 0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer2/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_0njdk")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="Label" type="Label" parent="CanvasLayer2/Control"]
-modulate = Color(0.356863, 0.490196, 0.45098, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -7.0
-offset_right = 30.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "RP 99.999"
-label_settings = SubResource("LabelSettings_8b46f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -9.0
-offset_right = 4.0
-offset_bottom = 9.0
-grow_vertical = 2
-texture = ExtResource("6_mcx3o")
-
-[node name="Control2" type="Control" parent="CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_top = 33.0
-offset_right = -13.0
-offset_bottom = 49.0
-grow_horizontal = 0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer2/Control2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_0njdk")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="Label" type="Label" parent="CanvasLayer2/Control2"]
-modulate = Color(0.517647, 0.427451, 0.34902, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.5
-offset_top = -7.0
-offset_right = 29.5
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "99:99"
-label_settings = SubResource("LabelSettings_8b46f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control2"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -9.0
-offset_right = 4.0
-offset_bottom = 9.0
-grow_vertical = 2
-texture = ExtResource("7_vnq6d")
+[node name="hud" parent="." instance=ExtResource("4_y7rud")]
 
 [node name="Fading-16-1x" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(598, -32)
 scale = Vector2(13.625, 28)
 texture = ExtResource("6_xs6jo")
