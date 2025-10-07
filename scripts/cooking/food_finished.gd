@@ -3,14 +3,14 @@ extends Control
 @onready var icon: Sprite2D = $Coffe
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var button: Button = $Button
-
+var _food_taken= func(): pass
 var is_idle: bool= false
 func _ready() -> void:
   button.button_down.connect(on_button_down)
   
 func on_button_down() -> void:
   if not is_idle: return
-  print('food_taken')
+  _food_taken.call()
 
 @onready var food_name: Label = $Coffe/food_name
 func play(_icon: Texture2D, _food_name: String) -> void:
@@ -25,6 +25,10 @@ func play(_icon: Texture2D, _food_name: String) -> void:
 @onready var ending_anim: AnimationPlayer = $enidng_rect/ending_anim
 
 func close():
+  
+  animation_player.play_backwards("new_animation")
+  await animation_player.animation_finished
+  return
   ending_anim.play("new_animation")
   await ending_anim.animation_finished
   

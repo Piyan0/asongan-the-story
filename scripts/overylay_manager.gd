@@ -38,6 +38,8 @@ func toggle_control_hint(is_on: bool):
   $CanvasLayer.visible= is_on
 @onready var alert: Control = $Alert
 
-func show_alert(t: String):
-  alert.alert(t)
+func show_alert(t: String, is_auto_hide: bool= true):
+  alert.alert(t, is_auto_hide)
   
+func get_alert():
+  return alert

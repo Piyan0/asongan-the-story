@@ -10,7 +10,5 @@ func _recipe() -> Array[CookingIngredient]:
     IngredientTofu.new(),
     IngredientTofu.new(),
     IngredientChilly.new(),
-    IngredientChilly.new(),
-    IngredientChilly.new(),
     IngredientRiceRoll.new(),
   ]

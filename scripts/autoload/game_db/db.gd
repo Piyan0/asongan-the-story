@@ -107,11 +107,9 @@ var inventory_items= [
   get_item(Ingredient.TOFU),
   get_item(Ingredient.TOFU),
   get_item(Ingredient.TOFU),
+  get_item(Ingredient.CHILLY),
+  get_item(Ingredient.CHILLY),
   get_item(Ingredient.RICE_ROLL),
-  get_item(Ingredient.CHILLY),
-  get_item(Ingredient.CHILLY),
-  get_item(Ingredient.CHILLY),
-  get_item(Ingredient.CHILLY),
 ]
 
 func get_item(id: int, params= {}):

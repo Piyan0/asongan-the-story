@@ -10,13 +10,18 @@ var _resetted= func(): pass
 var _unable_to_place = func(): pass
 var _is_can_place= func() -> bool: return true
 var possible_food: Array[CookingFood]
+var possible_ingredients: Array[CookingIngredient]
 var current_in_plate: Array[CookingIngredient]
 var is_food_finished: bool= false
-
+var ingredients_used_count: Dictionary[int, int]
 var ingredients_available: Array[CookingIngredient]
 
 
 func place_ingredient(ingredient: CookingIngredient) -> bool:
+  if not ingredients_used_count:
+    for i in possible_ingredients:
+      ingredients_used_count[i._id()]= 0
+
   if not _is_can_place.call():
     _unable_to_place.call()
     
@@ -30,12 +35,19 @@ func place_ingredient(ingredient: CookingIngredient) -> bool:
   
   _ingredient_placed.call(ingredient._id())
   current_in_plate.push_back(ingredient)
+
+  ingredients_used_count[ingredient._id()]+= 1
+  #print(ingredients_used_count)
   erase_ingredient(ingredient._id())
   for i in possible_food:
     if i.is_done(current_in_plate):
-      event_food_finished(i._id())
+      await event_food_finished(i._id())
+      start_over()
   return true
 
+func start_over() -> void:
+  is_food_finished= false
+  current_in_plate= []
 func get_ingredient(id: int) -> CookingIngredient:
   for i in ingredients_available:
     if i._id()== id:
@@ -44,7 +56,7 @@ func get_ingredient(id: int) -> CookingIngredient:
   return null
 func event_food_finished(food_id: DB.Food) -> void:
   is_food_finished= true
-  _food_finished.call(food_id)
+  await _food_finished.call(food_id)
 
 func erase_ingredient(id: int):
   var to_delete
@@ -73,3 +85,8 @@ func reset():
   
   _resetted.call()
   current_in_plate= []
+  for i in ingredients_used_count:
+    ingredients_used_count[i]= 0
+
+func in_plate_count() -> int:
+  return current_in_plate.size()

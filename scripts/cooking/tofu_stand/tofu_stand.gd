@@ -10,10 +10,10 @@ class_name TofuStand
 var cooking: Cooking
 var ingredient_ui: Dictionary
 var current_tofu: int= 0
-var ingredient_used_count: Dictionary
+#var cooking.ingredients_used_count: Dictionary
 
 func _ready() -> void:
-  #TranslationServer.set_locale('id-ID')
+  TranslationServer.set_locale('id-ID')
   ingredient_ui= {
     DB.Ingredient.TOFU: %tofu,
     DB.Ingredient.RICE_ROLL: %rice_roll,
@@ -25,41 +25,59 @@ func _ready() -> void:
   prepare()
 
 func prepare():
-  ingredient_used_count= {
-    DB.Ingredient.TOFU: 0,
-    DB.Ingredient.RICE_ROLL: 0,
-    DB.Ingredient.CHILLY: 0,
-  }
+  #cooking.ingredients_used_count= {
+    #DB.Ingredient.TOFU: 0,
+    #DB.Ingredient.RICE_ROLL: 0,
+    #DB.Ingredient.CHILLY: 0,
+  #}
   
   cooking= Cooking.new()
   cooking.possible_food= [
     FoodPackOfTofu.new(),
     FoodTofuWithRiceRoll.new(),
   ]
+  cooking.possible_ingredients= [
+    IngredientTofu.new(),
+    IngredientChilly.new(),
+    IngredientRiceRoll.new()
+  ]
   cooking._food_finished= on_food_finished
   cooking._ingredient_placed= on_ingredient_placed
   cooking._resetted= on_resetted
   cooking._unable_to_place= on_unable_to_place
-  cooking._is_can_place= GameState.is_inventory_slot_available
+  #cooking._is_can_place= GameState.is_inventory_slot_available
+  
+  food_finished._food_taken= on_food_taken
   fill(cooking)
 
+func on_food_taken():
+  OverlayManager.get_alert().close()
+  food_finished.close()
+  hide_all()
+  #cooking.is_food_finished= false
 
 func on_food_finished(id: DB.Food) -> void:
+  cooking.ingredients_used_count= {
+    DB.Ingredient.TOFU: 0,
+    DB.Ingredient.RICE_ROLL: 0,
+    DB.Ingredient.CHILLY: 0,
+  }
   await get_tree().create_timer(0.2).timeout
   DB.add_item_to_inventory(id)
-  
+  #cooking.ingredients_used_count
   match id:
     DB.Food.PACK_OF_TOFU:
-      food_finished.play(load("res://assets/sprites/items/tofu.png"), 'PACK_OF_TOFU')
+      await food_finished.play(load("res://assets/sprites/items/tofu.png"), 'PACK_OF_TOFU')
       
     DB.Food.TOFU_WITH_RICE_ROLL:
-      food_finished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_EXTRA')
+      await food_finished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_EXTRA')
      
-  for i in ingredient_used_count[DB.Ingredient.TOFU]:
+  OverlayManager.show_alert('CLICK_TO_CONTINUE', false)
+  for i in cooking.ingredients_used_count[DB.Ingredient.TOFU]:
     DB.erase_inventory_item(DB.Ingredient.TOFU)
-  for i in ingredient_used_count[DB.Ingredient.RICE_ROLL]:
+  for i in cooking.ingredients_used_count[DB.Ingredient.RICE_ROLL]:
     DB.erase_inventory_item(DB.Ingredient.RICE_ROLL)
-  for i in ingredient_used_count[DB.Ingredient.CHILLY]:
+  for i in cooking.ingredients_used_count[DB.Ingredient.CHILLY]:
     DB.erase_inventory_item(DB.Ingredient.CHILLY)
   
   #print(DB.inventory_items)
@@ -69,7 +87,7 @@ func on_food_finished(id: DB.Food) -> void:
 func on_ingredient_placed(id: DB.Ingredient) -> void:
   #print(1)
   ingredient_ui[id].decrement_count()
-  ingredient_used_count[id]+= 1
+  #cooking.ingredients_used_count[id]+= 1
   match id:
     DB.Ingredient.TOFU:
       add_tofu()
@@ -79,12 +97,12 @@ func on_ingredient_placed(id: DB.Ingredient) -> void:
       pass
 
 func on_resetted():
-  ingredient_ui[DB.Ingredient.TOFU].set_count(ingredient_ui[DB.Ingredient.TOFU].get_current_count()+ ingredient_used_count[DB.Ingredient.TOFU])
-  ingredient_ui[DB.Ingredient.CHILLY].set_count(ingredient_ui[DB.Ingredient.CHILLY].get_current_count()+ ingredient_used_count[DB.Ingredient.CHILLY])
-  ingredient_ui[DB.Ingredient.RICE_ROLL].set_count(ingredient_ui[DB.Ingredient.RICE_ROLL].get_current_count()+ ingredient_used_count[DB.Ingredient.RICE_ROLL])
+  ingredient_ui[DB.Ingredient.TOFU].set_count(ingredient_ui[DB.Ingredient.TOFU].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.TOFU])
+  ingredient_ui[DB.Ingredient.CHILLY].set_count(ingredient_ui[DB.Ingredient.CHILLY].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.CHILLY])
+  ingredient_ui[DB.Ingredient.RICE_ROLL].set_count(ingredient_ui[DB.Ingredient.RICE_ROLL].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.RICE_ROLL])
   
-  for i in ingredient_used_count:
-    ingredient_used_count[i]= 0
+  for i in cooking.ingredients_used_count:
+    cooking.ingredients_used_count[i]= 0
    
   hide_all()
   
