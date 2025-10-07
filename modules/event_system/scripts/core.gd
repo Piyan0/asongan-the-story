@@ -11,11 +11,6 @@ static var __init__ = preload('../__init__.gd'):
   get:
     return __init__.resource_path.replace('__init__.gd', '')
 
-#DEV
-var VARIABLE_SAVE_PATH : String = __init__+'assets/save_data/event_variables.json'
-#DEV
-var KEYS_SAVE_PATH : String = __init__+'assets/save_data/event_keys.json'
-
 var last_event_run_id: String
 class EventPart:
   var id: String
@@ -105,30 +100,5 @@ static func increment_var(id: String) -> void:
   
   var new_value : int = event_variables[id] + 1
   set_var(id, new_value)
-
-#endregion
-#TESTED = NO
-
-#region Serialization
-func save_variable_data() -> void:
-  var file = FileAccess.open(VARIABLE_SAVE_PATH, FileAccess.WRITE)
-  file.store_string(JSON.stringify(event_variables))
-
-#TESTED = NO
-func load_variable_data() -> void:
-  var file = FileAccess.open(VARIABLE_SAVE_PATH, FileAccess.READ)
-  var data = file.get_as_text()
-  event_variables = JSON.parse_string(data)
-
-#TESTED = NO
-func save_event_keys() -> void:
-  var file = FileAccess.open(KEYS_SAVE_PATH, FileAccess.WRITE)
-  file.store_string(JSON.stringify(events_id))
-
-#TESTED = NO
-func load_event_keys() -> void:
-  var file = FileAccess.open(KEYS_SAVE_PATH, FileAccess.READ)
-  var data = file.get_as_text()
-  events_id = JSON.parse_string(data)
 
 #endregion
