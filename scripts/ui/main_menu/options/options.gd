@@ -1,4 +1,5 @@
 extends Control
+class_name OptionsSelectionMenu
 
 @export var show_bg: bool= false
 var list: VerticalListItem
@@ -37,7 +38,7 @@ var label_ui={
 var is_list_overflowed: bool= false
 
 #SAVE
-var saved_setting_index: Dictionary[int, int]= {
+static var saved_setting_index= {
   OptionsID.LANGUAGE: 0,
   OptionsID.FULLSCREEN:0,
   OptionsID.VSYNC:0,
@@ -100,19 +101,18 @@ func get_items() -> Array[OptionItem]:
 
 func set_language_options():
   language_options= OptionsSelection.new()
-  language_options.initial_index(saved_setting_index[OptionsID.LANGUAGE])
   
   var option_1= OptionsSelection.Options.new()
   option_1.tittle= 'Indonesia'
   option_1.callback= func(game_options: GameOptions):
     game_options.change_language('id-ID')
-    TranslationServer.set_locale('id-ID')
+    #TranslationServer.set_locale('id-ID')
   
   var option_2= OptionsSelection.Options.new()
   option_2.tittle= 'English'
   option_2.callback= func(game_options: GameOptions):
     game_options.change_language('en-US')
-    TranslationServer.set_locale('en-US')
+    #TranslationServer.set_locale('en-US')
     
   
   language_options.add_options(option_2)
@@ -121,6 +121,8 @@ func set_language_options():
   language_options.option_changed.connect(func(option: OptionsSelection.Options, direction: String):
     language_options_ui.set_text(option.tittle, direction)
     option.callback.call(GameOptions.new())
+    saved_setting_index[OptionsID.LANGUAGE]= language_options.current_index
+    Mediator.air(Mediator.SETTINGS_CHANGED, [GameOptions.settings])
     )
   language_options.option_ready.connect(func(option: OptionsSelection.Options):
     language_options_ui.set_text(option.tittle, '')
@@ -133,7 +135,6 @@ func set_language_options():
 
 func set_fullscreen_options():
   fullscreen_options= OptionsSelection.new()
-  fullscreen_options.initial_index(saved_setting_index[OptionsID.FULLSCREEN])
   
   var option_1= OptionsSelection.Options.new()
   option_1.tittle= 'ON'
@@ -151,6 +152,9 @@ func set_fullscreen_options():
   fullscreen_options.option_changed.connect(func(option: OptionsSelection.Options, direction: String):
     fullscreen_ui.set_text(option.tittle, direction)
     option.callback.call(GameOptions.new())
+    saved_setting_index[OptionsID.FULLSCREEN]= fullscreen_options.current_index
+    Mediator.air(Mediator.SETTINGS_CHANGED, [GameOptions.settings])
+    
     )
   fullscreen_options.option_ready.connect(func(option: OptionsSelection.Options):
     fullscreen_ui.set_text(option.tittle, '')
@@ -163,7 +167,6 @@ func set_fullscreen_options():
 
 func set_audio_options():
   audio_options= OptionsSelection.new()
-  audio_options.initial_index(saved_setting_index[OptionsID.AUDIO])
   
   var option_1= OptionsSelection.Options.new()
   option_1.tittle= '0.1'
@@ -220,6 +223,8 @@ func set_audio_options():
   audio_options.option_changed.connect(func(option: OptionsSelection.Options, direction: String):
     audio_ui.set_text(option.tittle, direction)
     option.callback.call(GameOptions.new())
+    saved_setting_index[OptionsID.AUDIO]= audio_options.current_index
+    Mediator.air(Mediator.SETTINGS_CHANGED, [GameOptions.settings])
     )
   audio_options.option_ready.connect(func(option: OptionsSelection.Options):
     audio_ui.set_text(option.tittle, '')
@@ -233,7 +238,6 @@ func set_audio_options():
 
 func set_vsync_options():
   vsync_options= OptionsSelection.new()
-  vsync_options.initial_index(saved_setting_index[OptionsID.VSYNC])
   
   var option_1= OptionsSelection.Options.new()
   option_1.tittle= 'ON'
@@ -251,14 +255,26 @@ func set_vsync_options():
   vsync_options.option_changed.connect(func(option: OptionsSelection.Options, direction: String):
     vsync_ui.set_text(option.tittle, direction)
     option.callback.call(GameOptions.new())
+    saved_setting_index[OptionsID.VSYNC]= vsync_options.current_index
+    Mediator.air(Mediator.SETTINGS_CHANGED, [GameOptions.settings])
     
     )
   vsync_options.option_ready.connect(func(option: OptionsSelection.Options):
     vsync_ui.set_text(option.tittle, '')
     )
     
-  vsync_options.initial_option()
   self.add_child.call_deferred(vsync_options)
+
+func set_initial_options():
+  vsync_options.initial_index(int(saved_setting_index[OptionsID.VSYNC]))
+  language_options.initial_index(int(saved_setting_index[OptionsID.LANGUAGE]))
+  fullscreen_options.initial_index(int(saved_setting_index[OptionsID.FULLSCREEN]))
+  audio_options.initial_index(int(saved_setting_index[OptionsID.AUDIO]))
+  
+  vsync_options.initial_option()
+  language_options.initial_option()
+  fullscreen_options.initial_option()
+  audio_options.initial_option()
 
 func continue_selection():
   list.is_active= true

@@ -1,6 +1,8 @@
 extends Node
 class_name Saveable
 
+#DEV
+const SAVE_PATH := 'res://save.json'
 static var class_map: Dictionary = {
   #'InventoryManager': InventoryManager,
   'ControlHint': ControlHint,
@@ -16,7 +18,6 @@ static var SAVE_ABLE_PLAIN : Array=[
   ['ControlHint', 'instance.prev_data'],
   
 ]
-
 #This must be an array of class, 'items' is referring to Array of Item.
 #[2] is a base class of instance
 static var SAVE_ABLE_ARRAY_OF_CLASS: Array= [
@@ -118,3 +119,35 @@ static func get_base_class_from_string(id: String) -> GDScript:
 static func print_json(dict: Variant) -> void:
   var string= JSON.stringify(dict, '  ')
   print(string)
+
+static var data_to_save: Dictionary
+static func set_data(id: String, value) -> void:
+  data_to_save[id] = value
+
+static func get_data(id: String) -> Variant:
+  return data_to_save[id]
+
+static func has_key(id: String) -> bool:
+  return id in data_to_save
+  
+static func save_to_file(path= SAVE_PATH) -> void:
+  var file= FileAccess.open(path, FileAccess.WRITE)
+  file.store_string(
+    JSON.stringify(data_to_save)
+  )
+  file.close()
+
+static func load_from_file(path= SAVE_PATH) -> void:
+  if not FileAccess.file_exists(path):
+    return
+  var file= FileAccess.open(path, FileAccess.READ)
+  var data= JSON.parse_string( file.get_as_text() )
+  data_to_save= data
+  
+static func string_keys_to_int(dict: Dictionary) -> Dictionary:
+  var data: Dictionary
+  for i in dict:
+    var key= int(i)
+    data[key]= dict[i]
+  
+  return data

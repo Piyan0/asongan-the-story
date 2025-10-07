@@ -3,6 +3,7 @@ class_name MainMenu
 
 signal game_started()
 
+@export var is_play_splash_screen: bool= true
 var list_main_menu: VerticalListItem
 var list_credits: VerticalListItem
 var list_manager: MultipleVerticalList
@@ -22,10 +23,16 @@ enum Menu{
 static var instance: MainMenu
 const BUTTON_CALLBACK= '_1'
 
+@onready var splash_screen: AnimatedSprite2D = $splash_screen
 
 func _ready() -> void:
-  $AnimatedSprite2D.play("default")
-  await $AnimatedSprite2D.animation_finished
+  Mediator.air(Mediator.MAIN_MENU_LOADED)
+  
+  #TranslationServer.set_locale('id-ID')
+  if is_play_splash_screen:
+    splash_screen.show()
+    splash_screen.play("default")
+    await splash_screen.animation_finished
 
   if not instance:
     instance= self
@@ -60,7 +67,6 @@ func _ready() -> void:
   list_manager.add_list(Menu.OPTIONS, $options.get_selection())
   list_manager.initial_active(Menu.MAIN_MENU)
   
-
 
 func initiate_list_credits():
   
@@ -104,6 +110,7 @@ func set_menu_list_callback() -> void:
   
   %button_options.set_meta(BUTTON_CALLBACK, func():
     await stack.change_overlay(Menu.OPTIONS)
+    $options.set_initial_options()
     list_manager.change_focus(Menu.OPTIONS)
     )
     

@@ -14,6 +14,8 @@ enum {
   GAME_STARTED,
   GAME_PAUSED,
   GAME_RESUMED,
+  SETTINGS_CHANGED,
+  MAIN_MENU_LOADED,
   
   INVENTORY_ITEM_USED,
   INVENTORY_ITEM_DROPPED,
@@ -38,17 +40,39 @@ var event_mapped: Dictionary[int, Callable]= {
   GAME_STARTED: on_game_started,
   GAME_PAUSED: on_game_paused,
   GAME_RESUMED: on_game_resumed,
+  MAIN_MENU_LOADED: on_main_menu_loaded,
   
   INVENTORY_ITEM_USED: on_shop_item_buyed,
   INVENTORY_ITEM_DROPPED: on_inventory_item_used,
   SHOP_ITEM_BUYED: on_inventory_item_dropped,
   
   CURRENT_COIN: current_coin,
+  SETTINGS_CHANGED: on_settings_changed,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+func on_main_menu_loaded() -> void:
+  Saveable.load_from_file()
+  if Saveable.has_key('settings'):
+    GameOptions.new().apply_settings(
+      Saveable.get_data('settings')
+    )
+  
+  if Saveable.has_key('settings_index'):
+    var settings_index: Dictionary= Saveable.string_keys_to_int(
+        Saveable.get_data('settings_index')
+      )
+    OptionsSelectionMenu.saved_setting_index= settings_index
+    print( OptionsSelectionMenu.saved_setting_index )
+    print(settings_index)
+ 
+func on_settings_changed(settings: Dictionary):
+  Saveable.set_data('settings', settings)
+  Saveable.set_data('settings_index', OptionsSelectionMenu.saved_setting_index)
+  Saveable.save_to_file()
+  
 func current_coin() -> int:
   return 400
   

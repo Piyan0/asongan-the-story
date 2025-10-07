@@ -257,6 +257,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tk7lu")
+is_play_splash_screen = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -492,6 +493,7 @@ texture = ExtResource("11_2pxis")
 visible = false
 layout_mode = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="splash_screen" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_8npxv")
 centered = false
