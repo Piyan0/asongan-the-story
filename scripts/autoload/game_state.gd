@@ -14,7 +14,16 @@ enum GameVar{
 var events_id : Dictionary = {
   EventsID.ID.MAIN_ROAD_001: '_1',
   EventsID.ID.MAIN_ROAD_002: '_1',
+  EventsID.ID.MAIN_ROAD_003: '_1',
+  EventsID.ID.MAIN_ROAD_004: '_1',
+  EventsID.ID.MAIN_ROAD_005: '_1',
+  
   EventsID.ID.SHOP_001: '_1',
+  EventsID.ID.SHOP_002: '_1',
+  EventsID.ID.SHOP_003: '_1',
+  EventsID.ID.SHOP_004: '_1',
+  EventsID.ID.SHOP_005: '_1',
+  
 }
 
 #SAVE

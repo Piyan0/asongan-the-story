@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=14 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cll0ryt0j8voh" path="res://scenes/train/train.tscn" id="7_px678"]
 [ext_resource type="Script" uid="uid://2abs2qd1nkwo" path="res://scripts/main_road_manager.gd" id="8_cf2ie"]
 [ext_resource type="Script" uid="uid://b5sc3v6hcfim6" path="res://scripts/events/main_road/002.gd" id="10_jhre1"]
+[ext_resource type="Script" uid="uid://b1auhnen8wg21" path="res://scripts/events/main_road/003.gd" id="11_i6ch8"]
+[ext_resource type="Script" uid="uid://dy8f8wyh2fji5" path="res://scripts/events/main_road/004.gd" id="12_lv3wr"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
@@ -52,6 +54,15 @@ events = ExtResource("6_tdjtn")
 
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(428, 134)
-event_unique_data = SubResource("Resource_lv3wr")
 event_id = 1
 events = ExtResource("10_jhre1")
+
+[node name="event3" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(32, 86)
+event_id = 2
+events = ExtResource("11_i6ch8")
+
+[node name="event4" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(294, 111)
+event_id = 3
+events = ExtResource("12_lv3wr")
