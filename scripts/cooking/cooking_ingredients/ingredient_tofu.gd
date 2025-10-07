@@ -10,4 +10,6 @@ func _is_can_place(in_plate: Array[CookingIngredient]) -> bool:
   if tofu_count<=2:
     return true
   else:
-    return utils.ingredients_count(DB.Ingredient.RICE_ROLL) < 1
+    return [
+      utils.ingredients_count(DB.Ingredient.RICE_ROLL) < 1,
+      utils.ingredients_count(DB.Ingredient.TOFU) < 6].all(func(n):return n)
