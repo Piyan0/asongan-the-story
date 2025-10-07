@@ -5,9 +5,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
 shader = ExtResource("1_at7e4")
-shader_parameter/AspectRatio = 1.82
-shader_parameter/Diamonds = 28.58
-shader_parameter/pixel_size = 0.815
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Diamonds = 30.0
+shader_parameter/pixel_size = 0.08
 shader_parameter/finalcolor = Color(0.160784, 0.137255, 0.14902, 1)
 shader_parameter/finalalpha = 0.0
 shader_parameter/height = -1.0
