@@ -50,8 +50,8 @@ func display_items() -> void:
   
   initiate_selection()
   await get_tree().process_frame
-  $container.custom_minimum_size= Vector2.ZERO
-  print($container.size)
+  #HACK the x is reset it size when hided, doing this will...make it work.
+  $container.size.x= $container.size.x
   $Control.size= $container.size
 
 func is_idle():
