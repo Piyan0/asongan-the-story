@@ -30,8 +30,9 @@ var events_id : Dictionary = {
 var can_enter_other_area:bool= true
 #SAVE
 var game_vars ={
-  GameVar.IS_DONE_SOMETHING: true,
+  GameVar.IS_DONE_SOMETHING: false,
 }
+
 var item_correct_id: int= DB.Food.PACK_OF_TOFU
 
 #SAVE
@@ -40,7 +41,7 @@ var item_state: ItemState= ItemState.CAN_DROP
 #SAVE
 var current_coin: int= 200
 
-const INVENTORY_MAX := 2
+const INVENTORY_MAX := 16
 
 func set_var(id: GameVar, value):
   game_vars[id]= value
@@ -48,10 +49,13 @@ func set_var(id: GameVar, value):
 func get_var(id: GameVar):
   return game_vars[id]
 
-func current_used_inventory_slot() -> int:
+func increment_var(id: GameVar):
+  game_vars[id]+= 1
+
+func get_current_used_inventory_slot() -> int:
   return DB.inventory_items.size()
   
 func is_inventory_slot_available(exlude: int= 0) -> bool:
   #return false
-  return current_used_inventory_slot()- exlude < INVENTORY_MAX
+  return get_current_used_inventory_slot()- exlude < INVENTORY_MAX
   

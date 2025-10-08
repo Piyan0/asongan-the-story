@@ -17,7 +17,7 @@ class Autostart:
   
 var is_can_run_event: bool= true
 var container : VBoxContainer
-#SAVE
+#SAVE, it should be save able if the game support saving.
 static var queue_autostart : Array[Autostart]
 static var core_instance : Array[Event]
 static var instance: EventManager
