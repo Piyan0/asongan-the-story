@@ -61,11 +61,7 @@ func on_food_taken():
   #cooking.is_food_finished= false
 
 func on_food_finished(id: DB.Food) -> void:
-  cooking.ingredients_used_count= {
-    DB.Ingredient.TOFU: 0,
-    DB.Ingredient.RICE_ROLL: 0,
-    DB.Ingredient.CHILLY: 0,
-  }
+
   await get_tree().create_timer(0.2).timeout
   DB.add_item_to_inventory(id)
   #cooking.ingredients_used_count

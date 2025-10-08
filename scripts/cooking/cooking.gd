@@ -43,6 +43,8 @@ func place_ingredient(ingredient: CookingIngredient) -> bool:
     if i.is_done(current_in_plate):
       await event_food_finished(i._id())
       start_over()
+      for j in ingredients_used_count:
+        ingredients_used_count[j]= 0
   return true
 
 func start_over() -> void:
