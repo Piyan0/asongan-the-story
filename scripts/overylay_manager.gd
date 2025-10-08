@@ -69,6 +69,7 @@ func show_overlay(id: Overlay) -> void:
   overlay.show_method.call()
   current_overlay= id
   Mediator.air(Mediator.OVERLAY_SHOWNED, [id])
+  await overlay_hidden
   
 func stop_overlay(id: Overlay):
   overlay_hidden.emit()
