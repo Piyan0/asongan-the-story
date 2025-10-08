@@ -13,7 +13,7 @@ var current_tofu: int= 0
 #var cooking.ingredients_used_count: Dictionary
 
 func _ready() -> void:
-  TranslationServer.set_locale('id-ID')
+  #TranslationServer.set_locale('id-ID')
   ingredient_ui= {
     DB.Ingredient.TOFU: %tofu,
     DB.Ingredient.RICE_ROLL: %rice_roll,

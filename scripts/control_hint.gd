@@ -9,7 +9,7 @@ static var instance: ControlHint
 var data: Dictionary= {
   'z': 'NONE',
   'x': 'NONE',
-  'c': 'OPEN_SLOT'
+  'c': 'PAUSE'
 }
 
 #SAVE
