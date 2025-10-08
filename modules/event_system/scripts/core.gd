@@ -42,6 +42,8 @@ func add_event(event: EventPart) -> void:
 #TESTED = NO
 var is_can_run_event: bool= true
 func _interact(is_broadcast: bool= true) -> void:
+  if not EventManager.instance.get_can_run():
+    return
   Mediator.air(Mediator.EVENT_STARTED)
   EventManager.instance.event_started.emit()
   EventManager.instance.set_can_run(false)
