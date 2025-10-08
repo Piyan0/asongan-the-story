@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://b5sc3v6hcfim6" path="res://scripts/events/main_road/002.gd" id="10_jhre1"]
 [ext_resource type="Script" uid="uid://b1auhnen8wg21" path="res://scripts/events/main_road/003.gd" id="11_i6ch8"]
 [ext_resource type="Script" uid="uid://dy8f8wyh2fji5" path="res://scripts/events/main_road/004.gd" id="12_lv3wr"]
-[ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/005.gd" id="13_oifoc"]
+[ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/auto.gd" id="13_oifoc"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
@@ -48,11 +48,11 @@ metadata/_custom_type_script = "uid://2abs2qd1nkwo"
 
 [node name="events" type="Node" parent="."]
 
-[node name="event5" parent="events" instance=ExtResource("5_cfafu")]
+[node name="event0" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(-12, -2)
 events = ExtResource("13_oifoc")
 
-[node name="event" parent="events" instance=ExtResource("5_cfafu")]
+[node name="event1" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(194, 149)
 event_unique_data = SubResource("Resource_lv3wr")
 event_id = 1

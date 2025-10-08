@@ -331,13 +331,13 @@ polygon = PackedVector2Array(378, 170, 378, 171, 380, 171, 380, 170)
 position = Vector2(-205, -163)
 polygon = PackedVector2Array(377, 166, 377, 170, 378, 170, 378, 166)
 
-[node name="event" parent="." instance=ExtResource("6_t7xej")]
+[node name="event0" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 269)
 event_unique_data = SubResource("Resource_t7xej")
 event_id = 51
 events = ExtResource("9_vthxs")
 
-[node name="event2" parent="." instance=ExtResource("6_t7xej")]
+[node name="event1" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 204)
 event_id = 52
 events = ExtResource("9_t7xej")
