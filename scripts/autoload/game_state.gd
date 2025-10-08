@@ -58,4 +58,6 @@ func get_current_used_inventory_slot() -> int:
 func is_inventory_slot_available(exlude: int= 0) -> bool:
   #return false
   return get_current_used_inventory_slot()- exlude < INVENTORY_MAX
-  
+
+func minus_coin(by: int):
+  current_coin-= by

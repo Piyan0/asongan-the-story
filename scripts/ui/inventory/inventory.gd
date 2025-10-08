@@ -13,7 +13,7 @@ var current_slot: int
 func _ready() -> void:
   item_ui= load("res://scenes/ui/inventory/item_ui.tscn")
   #TranslationServer.set_locale('id-ID')
-  display_inventory()
+  #display_inventory()
   #initiate_selection()
   
 func display_inventory():
@@ -152,5 +152,6 @@ func close():
     list.free()
   for i in get_items():
     i.free()
+    
 func get_data():
   return DB.inventory_items

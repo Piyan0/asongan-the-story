@@ -12,15 +12,10 @@ const META_ITEM= 'q'
 var current_coin: int
 
 func _ready() -> void:
-  $container.sort_children.connect(func():
-    $Control.size= $container.size
-    )
   shop_item_ui= load("res://scenes/ui/shop/shop_item.tscn") 
-  display_items()
-  #shop= Shop.new()
-  #fill(shop)
-  #for i in shop.items:
-    #print(i.item.item_name)
+  if get_tree().current_scene== self:
+    display_items()
+
 
   
 func initiate_shop():
@@ -54,6 +49,10 @@ func display_items() -> void:
     _shop_item_ui.set_cost(NumberDotted.parse(i.item.cost))
   
   initiate_selection()
+  await get_tree().process_frame
+  $container.custom_minimum_size= Vector2.ZERO
+  print($container.size)
+  $Control.size= $container.size
 
 func is_idle():
   for i in get_items_ui():
@@ -103,6 +102,8 @@ func event_item_buyed(item: Shop.ShopItem):
     'owned': item.owned
   })
   
+  DB.add_item_to_inventory(item.item.id)
+  
   #print(DB.shop_items)
   
   print('{item_name} stock is currently at {stock}'.format({
@@ -112,8 +113,9 @@ func event_item_buyed(item: Shop.ShopItem):
   
   selected_item_ui.set_status(str(item.stock), str(item.owned))
   #selected_item_ui.set_owned(str(item.owned))
-  current_coin-= item.cost
+  current_coin-= item.item.cost
   set_coin(current_coin)
+  GameState.minus_coin(item.item.cost)
   
 func event_no_stock():
   print('No stock...')

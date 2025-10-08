@@ -41,7 +41,7 @@ var items= {
     'item_name': 'PACK_OF_TOFU',
     'id': Food.PACK_OF_TOFU,
     'worth': 99,
-    'cost': 99999,
+    'cost': 1,
   },
   Food.TOFU_WITH_RICE_ROLL: {
     'item_type': ItemType.FOOD,
@@ -57,7 +57,7 @@ var items= {
     'item_name': 'COFFE',
     'id': Food.COFFE,
     'worth': 99,
-    'cost': 9999,
+    'cost': 1,
   },
   Ingredient.TOFU: {
     'item_type': ItemType.INGREDIENT,
@@ -99,20 +99,6 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
-  #get_item(Food.PACK_OF_TOFU, {}),
-  #get_item(Food.COFFE, {}),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.TOFU),
-  get_item(Ingredient.CHILLY),
-  get_item(Ingredient.CHILLY),
-  get_item(Ingredient.RICE_ROLL),
 ]
 
 func get_item(id: int, params= {}):
