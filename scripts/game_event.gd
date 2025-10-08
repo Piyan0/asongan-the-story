@@ -1,17 +1,12 @@
 extends Node
 class_name GameEvent
 
-#func set_item_status(item_id_correct: String, callback: Callable):
-  #InventoryManager.instance.set_callable(callback)
-  #InventoryManager.instance.set_item_id_correct(item_id_correct)
-
-#func reset_item_status():
-  #InventoryManager.instance.reset_item_status()
-
 func add_coin(value: int):
   Player.player.display_coin(value)
 
 func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
+  Mediator.air(Mediator.TRAIN_TIMER_TOGGLE, [false])
+  
   var player_last_idle_animation= PlayerMovement.instance.current_idle_animation
   var player_last_x_axis= PlayerMovement.instance.last_x_axis
   await Transition.instance.play_transition(false)
@@ -23,4 +18,5 @@ func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
   PlayerMovement.instance.stop(true)
   Player.player.position= pos
   await Transition.instance.play_transition(true)
+  Mediator.air(Mediator.TRAIN_TIMER_TOGGLE, [true])
   

@@ -43,3 +43,6 @@ func show_alert(t: String, is_auto_hide: bool= true):
   
 func get_alert():
   return alert
+
+func get_hud():
+  return $hud

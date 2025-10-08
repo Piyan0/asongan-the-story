@@ -17,6 +17,10 @@ enum {
   SETTINGS_CHANGED,
   MAIN_MENU_LOADED,
   
+  TRAIN_TIMER_START,
+  TRAIN_TIMER_TOGGLE,
+  TRAIN_TIMER_FINISHED,
+  
   INVENTORY_ITEM_USED,
   INVENTORY_ITEM_DROPPED,
   
@@ -48,11 +52,44 @@ var event_mapped: Dictionary[int, Callable]= {
   
   CURRENT_COIN: current_coin,
   SETTINGS_CHANGED: on_settings_changed,
+  
+  TRAIN_TIMER_FINISHED: on_train_timer_finished,
+  TRAIN_TIMER_START: set_train_arrival,
+  TRAIN_TIMER_TOGGLE: on_train_timer_toggle,
+  
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+  
+func on_train_timer_finished():
+  if get_tree().current_scene.name!= 'MainRoad':
+    print('finished outside road.')
+  else:
+    print('call train!')
+
+func on_train_timer_toggle(is_on: bool):
+  if train_timer:
+    train_timer.paused= not is_on
+    
+var train_timer: Timer
+
+func set_train_arrival(seconds: int):
+  train_timer= Timer.new()
+  add_child(train_timer)
+  var time_left= seconds
+  for i in seconds:
+    var minute:int= time_left/ 60
+    var second= time_left % 60
+    OverlayManager.get_hud().set_train_arrival(minute, second)
+    train_timer.start(1)
+    await train_timer.timeout
+    time_left-= 1
+  OverlayManager.get_hud().set_train_arrival(0, 0)
+  train_timer.queue_free()
+  on_train_timer_finished()
+  
 func on_main_menu_loaded() -> void:
   Saveable.load_from_file()
   if Saveable.has_key('settings'):
