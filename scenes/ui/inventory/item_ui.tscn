@@ -20,6 +20,7 @@ anchors_preset = 0
 offset_right = 25.0
 offset_bottom = 25.0
 script = ExtResource("1_7b87y")
+show_name = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 visible = false
@@ -36,15 +37,13 @@ patch_margin_right = 1
 patch_margin_bottom = 1
 
 [node name="Label" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -6.5
-offset_right = 29.0
-offset_bottom = 6.5
+offset_top = -26.5
+offset_right = 24.0
+offset_bottom = -13.5
 grow_vertical = 2
 text = "item"
 label_settings = SubResource("LabelSettings_qosd4")

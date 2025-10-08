@@ -13,7 +13,8 @@ var current_slot: int
 func _ready() -> void:
   item_ui= load("res://scenes/ui/inventory/item_ui.tscn")
   #TranslationServer.set_locale('id-ID')
-  #display_inventory()
+  if get_tree().current_scene== self:
+    display_inventory()
   #initiate_selection()
   
 func display_inventory():
@@ -24,6 +25,7 @@ func display_inventory():
     var _item_ui= item_ui.instantiate()
     _item_ui.set_meta(META_ITEM, i)
     container.add_child(_item_ui)
+    _item_ui.set_text(i.item_name)
     _item_ui.set_texture(i.icon)
   
   initiate_selection()

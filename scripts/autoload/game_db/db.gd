@@ -104,6 +104,7 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
+  get_item(Food.COFFE)
 ]
 
 func get_item(id: int, params= {}):

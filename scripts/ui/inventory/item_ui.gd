@@ -1,5 +1,6 @@
 extends Control
 var list: VerticalListItem
+@export var show_name: bool= false
 @onready var label: Label = $Label
 @onready var nine_patch_rect: NinePatchRect = $NinePatchRect
 @onready var texture_rect: TextureRect = $TextureRect
@@ -41,6 +42,7 @@ func set_action_text(t):
   action.text= t
   
 func set_text(t: String):
+  if not show_name: return
   label.text= t
 
 func set_texture(t: Texture2D):
