@@ -24,7 +24,9 @@ func initiate_shop():
   shop._on_item_buyed= event_item_buyed
   shop._is_coin_enough= is_coin_enough
   shop._on_coin_not_enough= event_coin_not_enough
-  
+  shop._is_inventory_full= func():
+    return not GameState.is_inventory_slot_available()
+  shop._inventory_full= on_inventory_full
   fill(shop)
   
   
@@ -61,6 +63,9 @@ func is_idle():
       return false
       
   return true
+
+func on_inventory_full():
+  Mediator.air(Mediator.INVENTORY_FULL)
   
 func get_items_ui():
   return container.get_children()

@@ -30,6 +30,8 @@ enum {
   
   SCENE_CHANGED,
   PLAYER_CANT_ENTER_OTHER_AREA,
+  
+  INVENTORY_FULL,
 
 }
 
@@ -62,11 +64,15 @@ var event_mapped: Dictionary[int, Callable]= {
   
   SCENE_CHANGED: on_scene_changed,
   PLAYER_CANT_ENTER_OTHER_AREA: on_player_cant_enter_other_area,
+  INVENTORY_FULL: on_inventory_full,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+func on_inventory_full():
+  OverlayManager.show_alert('INVENTORY_MAXED')
+  
 func on_player_cant_enter_other_area():
   OverlayManager.show_alert('CANT_ENTER')
   
@@ -174,7 +180,8 @@ func on_OverlayManager_overlay_hidden(overlay):
   ControlHint.instance.set_hint('x', 'NONE')
   ControlHint.instance.set_hint('c', 'OPEN_SLOT')
   PlayerMovement.instance.stop(false)
-  
+
+
 func on_player_bubble_played():
   pass
     
