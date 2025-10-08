@@ -162,7 +162,7 @@ func on_settings_changed(settings: Dictionary):
 func on_OverlayManager_overlay_showned(overlay):
   EventManager.instance.toggle_event_process.emit(false)
   ControlHint.instance.set_hint('x', 'CLOSE')
-  ControlHint.instance.set_hint('c', 'NONE')
+  ControlHint.instance.set_hint('z', 'CONFIRM')
   PlayerMovement.instance.stop(true)
   #match overlay:
     #OnHoldItemsManager:
@@ -174,7 +174,6 @@ func on_OverlayManager_overlay_hidden(overlay):
   EventManager.instance.toggle_event_process.emit(true)
   ControlHint.instance.set_hint('z', 'prev')
   ControlHint.instance.set_hint('x', 'NONE')
-  ControlHint.instance.set_hint('c', 'OPEN_SLOT')
   PlayerMovement.instance.stop(false)
 
 

@@ -12,6 +12,7 @@ font = ExtResource("2_bysc0")
 font_color = Color(0.835294, 0.827451, 0.819608, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+layer = 50
 script = ExtResource("1_77vmi")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
