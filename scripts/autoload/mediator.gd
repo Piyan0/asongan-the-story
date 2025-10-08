@@ -68,7 +68,7 @@ func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
 func on_player_cant_enter_other_area():
-  print('cant enter.')
+  OverlayManager.show_alert('CANT_ENTER')
   
 func on_scene_changed():
   print('scene is changed.')

@@ -2,4 +2,5 @@ extends Node2D
 
  
 func _ready() -> void:
-  Mediator.air(Mediator.TRAIN_TIMER_START, [4])
+  #TranslationServer.set_locale('id')
+  Mediator.air(Mediator.TRAIN_TIMER_START, [2])
