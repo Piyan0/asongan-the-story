@@ -119,3 +119,5 @@ func _input(event: InputEvent) -> void:
     core._interact()
     await core.interact_finished
     can_interact= true
+func get_core():
+  return core

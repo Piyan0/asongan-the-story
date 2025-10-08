@@ -65,9 +65,10 @@ func _interact(is_broadcast: bool= true) -> void:
     interact_finished.emit.call_deferred()
 
 func call_event(id: String, is_broadcast: bool= true):
+  Mediator.air(Mediator.EVENT_STARTED)
   if is_broadcast:
     interact_started.emit()
   await get_event(id).callback.call()
-  
+  Mediator.air(Mediator.EVENT_FINISHED)
   if is_broadcast:
     interact_finished.emit.call_deferred()

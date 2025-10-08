@@ -72,3 +72,10 @@ func add_autostart(event_area_id: int,event_key_id: String):
   auto.event_key_id= event_key_id
   queue_autostart.push_back(auto)
     
+func call_event_from_instance(id: EventsID.ID, key: String):
+  var instance= get_instance_by_id(id)
+  if instance:
+    await instance.get_core().call_event(key)
+    
+    
+    

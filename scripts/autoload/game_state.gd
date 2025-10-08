@@ -27,6 +27,8 @@ var events_id : Dictionary = {
 }
 
 #SAVE
+var can_enter_other_area:bool= true
+#SAVE
 var game_vars ={
   GameVar.IS_DONE_SOMETHING: true,
 }

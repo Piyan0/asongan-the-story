@@ -29,6 +29,7 @@ enum {
   CURRENT_COIN,
   
   SCENE_CHANGED,
+  PLAYER_CANT_ENTER_OTHER_AREA,
 
 }
 
@@ -60,11 +61,15 @@ var event_mapped: Dictionary[int, Callable]= {
   TRAIN_TIMER_TOGGLE: on_train_timer_toggle,
   
   SCENE_CHANGED: on_scene_changed,
+  PLAYER_CANT_ENTER_OTHER_AREA: on_player_cant_enter_other_area,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+func on_player_cant_enter_other_area():
+  print('cant enter.')
+  
 func on_scene_changed():
   print('scene is changed.')
   Managers.get_event_manager().execute_autostart.call_deferred()
@@ -77,7 +82,8 @@ func on_train_timer_finished():
     add_autostart(EventsID.ID.MAIN_ROAD_005, '_1')
     print('finished outside road.')
   else:
-    print('call train!')
+    print('finished on road.')
+    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_005, '_1')
 
 func on_train_timer_toggle(is_on: bool):
   if train_timer:
