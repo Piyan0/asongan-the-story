@@ -160,7 +160,7 @@ func ingredient_clicked(id: DB.Ingredient):
 
 #add an info used items.
 func close():
-  pass
+  cooking.reset()
 
 func on_unable_to_place() -> void:
   OverlayManager.show_alert('INVENTORY_MAXED')
