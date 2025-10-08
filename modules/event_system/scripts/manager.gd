@@ -18,7 +18,7 @@ class Autostart:
 var is_can_run_event: bool= true
 var container : VBoxContainer
 #SAVE
-var queue_autostart : Array[Autostart]
+static var queue_autostart : Array[Autostart]
 static var core_instance : Array[Event]
 static var instance: EventManager
 static var wire_queue: Array[Callable]
@@ -43,7 +43,7 @@ func get_can_run():
   return is_can_run_event
 
 func get_instance_by_id(id: int) -> EventArea:
-  print(id)
+  #print(id)
   for i : EventArea in get_tree().get_nodes_in_group('EventArea'):
     if i.event_id== id:
       return i
@@ -54,6 +54,7 @@ func execute_autostart() -> void:
   var autostart_called : Array[Autostart]
   for i in queue_autostart:
     var event_area: EventArea= get_instance_by_id(i.event_area_id)
+    #print(event_area)
     if event_area != null:
       event_started.emit()
       Mediator.air(Mediator.EVENT_STARTED)

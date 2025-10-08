@@ -27,6 +27,8 @@ enum {
   SHOP_ITEM_BUYED,
   
   CURRENT_COIN,
+  
+  SCENE_CHANGED,
 
 }
 
@@ -57,14 +59,22 @@ var event_mapped: Dictionary[int, Callable]= {
   TRAIN_TIMER_START: set_train_arrival,
   TRAIN_TIMER_TOGGLE: on_train_timer_toggle,
   
+  SCENE_CHANGED: on_scene_changed,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+func on_scene_changed():
+  print('scene is changed.')
+  Managers.get_event_manager().execute_autostart.call_deferred()
+ 
+func add_autostart(id: int, key_id: String):
+   Managers.get_event_manager().add_autostart(id, key_id)
   
 func on_train_timer_finished():
   if get_tree().current_scene.name!= 'MainRoad':
+    add_autostart(EventsID.ID.MAIN_ROAD_005, '_1')
     print('finished outside road.')
   else:
     print('call train!')

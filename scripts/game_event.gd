@@ -19,4 +19,4 @@ func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
   Player.player.position= pos
   await Transition.instance.play_transition(true)
   Mediator.air(Mediator.TRAIN_TIMER_TOGGLE, [true])
-  
+  Mediator.air(Mediator.SCENE_CHANGED)

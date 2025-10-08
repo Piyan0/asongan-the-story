@@ -18,7 +18,7 @@ var events_instance : Node = null
 static var instances_for_debug : Array[EventArea]
 
 func _ready() -> void:
-
+  add_to_group('EventArea')
   core.event_id= event_id
   if events_instance== null:
     events_instance= events.new()
@@ -34,15 +34,11 @@ func _ready() -> void:
   
   setup_area()
   set_process_input(false)
-  call_autostart()
 
 
 var can_interact : bool = false
 static var allow_interact : bool = true
 
-func call_autostart() -> void:
-  EventManager.instance.execute_autostart()
-  
 func setup_area() -> void:
   if trigger_by_enter:
     area_2d.area_entered.connect(func(area):
