@@ -15,6 +15,10 @@ var is_can_open: bool= false
 var is_game_paused: bool= false
 
 func _ready():
+  
+  get_hud().set_money(GameState.current_coin)
+  get_hud().set_train_arrival(99, 99)
+  
   overlays= {
     Overlay.INVENTORY: {
       target= $Inventory,

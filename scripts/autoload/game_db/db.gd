@@ -88,10 +88,11 @@ var items= {
 #SAVE
 var shop_items= [
   get_item_shop({
-    'id': Food.COFFE,
+    'id': Ingredient.RICE_ROLL,
+    'stock': 10,
   }),
   get_item_shop({
-    'id': Food.PACK_OF_TOFU,
+    'id': Ingredient.TOFU,
     'stock': 10,
   }),
 ]
@@ -123,7 +124,7 @@ func erase_inventory_item(id: int):
   if target:
     inventory_items.erase(target)
   
-  print(inventory_items)
+  #print(inventory_items)
 
 func set_item_shop(id: int, params= {}):
   var item: Dictionary
