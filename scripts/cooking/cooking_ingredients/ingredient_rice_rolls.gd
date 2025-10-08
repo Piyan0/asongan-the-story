@@ -7,4 +7,7 @@ func _id() -> int:
 func _is_can_place(in_plate: Array[CookingIngredient]) -> bool:
   var utils: CookingUtils= CookingUtils.new(in_plate)
   
-  return utils.ingredients_count(DB.Ingredient.TOFU) <= 3
+  return [
+    utils.ingredients_count(DB.Ingredient.TOFU) <= 3,
+    utils.ingredients_count(DB.Ingredient.RICE_ROLL) == 0,
+    ].all(func(n): return n)
