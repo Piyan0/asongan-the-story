@@ -21,8 +21,8 @@ func _ready() -> void:
   }
   
   
-  
-  prepare()
+  if get_tree().current_scene== self:
+    prepare()
 
 func prepare():
   #cooking.ingredients_used_count= {

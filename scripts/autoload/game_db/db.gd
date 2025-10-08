@@ -61,15 +61,15 @@ var items= {
   },
   Ingredient.TOFU: {
     'item_type': ItemType.INGREDIENT,
-    'icon': "res://assets/sprites/items/coffe.png",
+    'icon': "res://assets/sprites/items/tofu.png",
     'item_name': 'TOFU',
     'id': Ingredient.TOFU,
     'worth': 99,
-    'cost': 9999,
+    'cost': 1,
   },
   Ingredient.RICE_ROLL: {
     'item_type': ItemType.INGREDIENT,
-    'icon': "res://assets/sprites/items/coffe.png",
+    'icon': "res://assets/sprites/items/tofu_extra.png",
     'item_name': 'RICE_ROLL',
     'id': Ingredient.RICE_ROLL,
     'worth': 99,
@@ -81,7 +81,7 @@ var items= {
     'item_name': 'CHILLY',
     'id': Ingredient.CHILLY,
     'worth': 99,
-    'cost': 9999,
+    'cost': 1,
   },
 }
 
@@ -93,6 +93,10 @@ var shop_items= [
   }),
   get_item_shop({
     'id': Ingredient.TOFU,
+    'stock': 10,
+  }),
+  get_item_shop({
+    'id': Ingredient.CHILLY,
     'stock': 10,
   }),
 ]

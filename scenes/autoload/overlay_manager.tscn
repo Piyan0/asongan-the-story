@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beqbcnsqnqqkx"]
+[gd_scene load_steps=10 format=3 uid="uid://beqbcnsqnqqkx"]
 
 [ext_resource type="Script" uid="uid://bgmmnl6h4tpy1" path="res://scripts/overylay_manager.gd" id="1_40fm2"]
 [ext_resource type="PackedScene" uid="uid://dy6ayjms65mfd" path="res://scenes/ui/control_hint.tscn" id="3_y7rud"]
@@ -8,16 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://dvv5tnh6rkcti" path="res://scenes/alert/alert.tscn" id="6_y7rud"]
 [ext_resource type="PackedScene" uid="uid://bqk1j3esso53w" path="res://scenes/ui/inventory/inventory.tscn" id="7_xs6jo"]
 [ext_resource type="PackedScene" uid="uid://d4mumw1esp65v" path="res://scenes/ui/shop/shop.tscn" id="8_0njdk"]
+[ext_resource type="PackedScene" uid="uid://b4h6t67vdweal" path="res://scenes/cooking/tofu_stand/tofu_stand.tscn" id="9_mcx3o"]
 
 [node name="OverlayManager" type="CanvasLayer"]
 script = ExtResource("1_40fm2")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_y7rud")]
-visible = false
 
 [node name="transition" parent="." instance=ExtResource("4_xs6jo")]
 
 [node name="hud" parent="." instance=ExtResource("4_y7rud")]
+layer = 100
 
 [node name="Fading-16-1x" type="Sprite2D" parent="."]
 visible = false
@@ -25,8 +26,10 @@ position = Vector2(598, -32)
 scale = Vector2(13.625, 28)
 texture = ExtResource("6_xs6jo")
 
-[node name="Alert" parent="." instance=ExtResource("6_y7rud")]
-
 [node name="Inventory" parent="." instance=ExtResource("7_xs6jo")]
 
 [node name="Shop" parent="." instance=ExtResource("8_0njdk")]
+
+[node name="TofuStand" parent="." instance=ExtResource("9_mcx3o")]
+
+[node name="Alert" parent="." instance=ExtResource("6_y7rud")]
