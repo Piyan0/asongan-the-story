@@ -44,7 +44,8 @@ func display_items() -> void:
     #print(1)
     container.add_child(_shop_item_ui)
     _shop_item_ui.set_item_name(i.item.item_name)
-    _shop_item_ui.set_status(str(i.stock), str(i.owned))
+    var owned= DB.get_item_count(i.item.id)
+    _shop_item_ui.set_status(str(i.stock), str(owned))
     #print(i.item.cost)
     _shop_item_ui.set_cost(NumberDotted.parse(i.item.cost))
   
@@ -103,14 +104,16 @@ func event_item_buyed(item: Shop.ShopItem):
   })
   
   DB.add_item_to_inventory(item.item.id)
-  
+  item.owned= DB.get_item_count(
+    item.item.id
+  )
   #print(DB.shop_items)
   
   print('{item_name} stock is currently at {stock}'.format({
     item_name= item.item.item_name,
     stock= item.stock
   }))
-  
+  #item.owned= DB.get_item_count()
   selected_item_ui.set_status(str(item.stock), str(item.owned))
   #selected_item_ui.set_owned(str(item.owned))
   current_coin-= item.item.cost

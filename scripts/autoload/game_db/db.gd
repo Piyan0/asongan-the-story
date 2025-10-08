@@ -122,6 +122,8 @@ func erase_inventory_item(id: int):
       target= i
   if target:
     inventory_items.erase(target)
+  
+  print(inventory_items)
 
 func set_item_shop(id: int, params= {}):
   var item: Dictionary
