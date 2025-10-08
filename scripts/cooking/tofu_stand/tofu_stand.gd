@@ -74,7 +74,7 @@ func on_food_finished(id: DB.Food) -> void:
       await food_finished.play(load("res://assets/sprites/items/tofu.png"), 'PACK_OF_TOFU')
       
     DB.Food.TOFU_WITH_RICE_ROLL:
-      await food_finished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_EXTRA')
+      await food_finished.play(load("res://assets/sprites/items/tofu_extra.png"), 'TOFU_WITH_RICE_ROLL')
      
   OverlayManager.show_alert('CLICK_TO_CONTINUE', false)
   for i in cooking.ingredients_used_count[DB.Ingredient.TOFU]:
