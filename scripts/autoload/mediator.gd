@@ -55,7 +55,6 @@ var event_mapped: Dictionary[int, Callable]= {
   INVENTORY_ITEM_DROPPED: on_inventory_item_used,
   SHOP_ITEM_BUYED: on_inventory_item_dropped,
   
-  CURRENT_COIN: current_coin,
   SETTINGS_CHANGED: on_settings_changed,
   
   TRAIN_TIMER_FINISHED: on_train_timer_finished,
@@ -131,9 +130,6 @@ func on_settings_changed(settings: Dictionary):
   Saveable.set_data('settings', settings)
   Saveable.set_data('settings_index', OptionsSelectionMenu.saved_setting_index)
   Saveable.save_to_file()
-  
-func current_coin() -> int:
-  return 400
   
 #func on_OnHoldItemsManager_item_used(item: InventoryManager.Item):
   #var is_item_correct: bool= InventoryManager.instance.is_used_item_correct(item.item_id)
