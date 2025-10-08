@@ -12,15 +12,17 @@ class_name EventsID
 #and note that I add =50 at SHOP_001, so when I add new entry in MAIN_ROAD_, the starting of SHOP_ won't change.
 #just make sure that the event in each room/scene won't exceed 50, if it is, consider changing to bigger gap, i.e 100.
 enum ID{
-  MAIN_ROAD_001=0,
+  MAIN_ROAD_AUTO=0,
+  MAIN_ROAD_001,
   MAIN_ROAD_002,
   MAIN_ROAD_003,
   MAIN_ROAD_004,
   MAIN_ROAD_005,
   MAIN_ROAD_006,
   MAIN_ROAD_007,
-
-  SHOP_001=50,
+  
+  SHOP_AUTO=50,
+  SHOP_001,
   SHOP_002,
   SHOP_003,
   SHOP_004,

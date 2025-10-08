@@ -48,27 +48,27 @@ metadata/_custom_type_script = "uid://2abs2qd1nkwo"
 
 [node name="events" type="Node" parent="."]
 
+[node name="event5" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(-12, -2)
+events = ExtResource("13_oifoc")
+
 [node name="event" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(194, 149)
 event_unique_data = SubResource("Resource_lv3wr")
+event_id = 1
 events = ExtResource("6_tdjtn")
 
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(428, 134)
-event_id = 1
+event_id = 2
 events = ExtResource("10_jhre1")
 
 [node name="event3" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(32, 86)
-event_id = 2
+event_id = 3
 events = ExtResource("11_i6ch8")
 
 [node name="event4" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(294, 111)
-event_id = 3
-events = ExtResource("12_lv3wr")
-
-[node name="event5" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(-12, -2)
 event_id = 4
-events = ExtResource("13_oifoc")
+events = ExtResource("12_lv3wr")

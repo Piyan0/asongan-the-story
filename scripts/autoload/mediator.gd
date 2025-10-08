@@ -79,11 +79,11 @@ func add_autostart(id: int, key_id: String):
   
 func on_train_timer_finished():
   if get_tree().current_scene.name!= 'MainRoad':
-    add_autostart(EventsID.ID.MAIN_ROAD_005, '_1')
+    add_autostart(EventsID.ID.MAIN_ROAD_AUTO, '_1')
     print('finished outside road.')
   else:
     print('finished on road.')
-    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_005, '_1')
+    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_1')
 
 func on_train_timer_toggle(is_on: bool):
   if train_timer:
