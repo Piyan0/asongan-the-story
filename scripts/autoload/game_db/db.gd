@@ -62,7 +62,7 @@ var items= {
   Ingredient.TOFU: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/coffe.png",
-    'item_name': 'COFFE',
+    'item_name': 'TOFU',
     'id': Ingredient.TOFU,
     'worth': 99,
     'cost': 9999,
@@ -70,15 +70,15 @@ var items= {
   Ingredient.RICE_ROLL: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/coffe.png",
-    'item_name': 'COFFE',
+    'item_name': 'RICE_ROLL',
     'id': Ingredient.RICE_ROLL,
     'worth': 99,
-    'cost': 9999,
+    'cost': 1,
   },
   Ingredient.CHILLY: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/coffe.png",
-    'item_name': 'COFFE',
+    'item_name': 'CHILLY',
     'id': Ingredient.CHILLY,
     'worth': 99,
     'cost': 9999,

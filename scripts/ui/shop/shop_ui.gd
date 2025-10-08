@@ -124,6 +124,9 @@ func event_item_buyed(item: Shop.ShopItem):
   current_coin-= item.item.cost
   set_coin(current_coin)
   GameState.minus_coin(item.item.cost)
+  OverlayManager.get_hud().set_money(
+    GameState.current_coin
+  )
   
 func event_no_stock():
   print('No stock...')
