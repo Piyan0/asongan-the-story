@@ -44,3 +44,5 @@ CANT_ENTER,Tidak bisa masuk.,Can't Enter.
 PAUSE,Jeda,Pause
 CONFIRM,Konfirmasi,Confirm
 NO_SPOON,Tidak ada sendok.,You don't own a spoon.
+SPOON,Sendok,Spoon
+WATER,Air,Water

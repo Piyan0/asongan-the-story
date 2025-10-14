@@ -45,6 +45,7 @@ func display_items() -> void:
     #print(_shop_item_ui.get_meta(META_ITEM).item_name)
     #print(1)
     container.add_child(_shop_item_ui)
+    _shop_item_ui.set_icon(i.item.icon)
     _shop_item_ui.set_item_name(i.item.item_name)
     var owned= DB.get_item_count(i.item.id)
     _shop_item_ui.set_status(str(i.stock), str(owned))

@@ -3,6 +3,7 @@ class_name ShopItemUI
 
 var is_idle: bool= true
 var is_state_active: bool= false
+@onready var icon: TextureRect = $info_container/NinePatchRect/icon
 @onready var info_container: Control = %info_container
 @onready var status: Label = %status
 @onready var _name: Label = %name
@@ -48,3 +49,7 @@ func toggle_active(is_on: bool):
     is_state_active= true
   else:
     is_state_active= false
+
+
+func set_icon(_icon: Texture2D) -> void:
+  icon.texture= _icon

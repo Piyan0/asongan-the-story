@@ -27,6 +27,7 @@ enum Upgrade{
   COFFE_STAND= 200,
   ITEM_SLOT_3,
   ITEM_SLOT_5,
+  COFFE_STAND_SPOON,
 }
 
 var shop_item_template: Dictionary= {
@@ -70,7 +71,7 @@ var items= {
   },
   Ingredient.RICE_ROLL: {
     'item_type': ItemType.INGREDIENT,
-    'icon': "res://assets/sprites/items/tofu_extra.png",
+    'icon': "res://assets/sprites/items/rice_roll.png",
     'item_name': 'RICE_ROLL',
     'id': Ingredient.RICE_ROLL,
     'worth': 99,
@@ -78,12 +79,40 @@ var items= {
   },
   Ingredient.CHILLY: {
     'item_type': ItemType.INGREDIENT,
-    'icon': "res://assets/sprites/items/coffe.png",
+    'icon': "res://assets/sprites/items/chilly.png",
     'item_name': 'CHILLY',
     'id': Ingredient.CHILLY,
     'worth': 99,
     'cost': 1,
   },
+  
+  Ingredient.COFFE_POWDER: {
+    'item_type': ItemType.INGREDIENT,
+    'icon': "res://assets/sprites/items/coffe_powder.png",
+    'item_name': 'COFFE_POWDER',
+    'id': Ingredient.COFFE_POWDER,
+    'worth': 99,
+    'cost': 1,
+  },
+  
+  Ingredient.WATER: {
+    'item_type': ItemType.INGREDIENT,
+    'icon': "res://assets/sprites/items/water.png",
+    'item_name': 'WATER',
+    'id': Ingredient.WATER,
+    'worth': 99,
+    'cost': 1,
+  },
+  
+  Upgrade.COFFE_STAND_SPOON: {
+    'item_type': ItemType.UPGRADE,
+    'icon': "res://assets/sprites/items/upgrade.png",
+    'item_name': 'SPOON',
+    'id': Upgrade.COFFE_STAND_SPOON,
+    'worth': 99,
+    'cost': 1,
+  },
+  
 }
 
 #SAVE
@@ -98,6 +127,18 @@ var shop_items= [
   }),
   get_item_shop({
     'id': Ingredient.CHILLY,
+    'stock': 10,
+  }),
+  get_item_shop({
+    'id': Ingredient.COFFE_POWDER,
+    'stock': 10,
+  }),
+  get_item_shop({
+    'id': Ingredient.WATER,
+    'stock': 10,
+  }),
+  get_item_shop({
+    'id': Upgrade.COFFE_STAND_SPOON,
     'stock': 10,
   }),
 ]
