@@ -20,6 +20,7 @@ enum Ingredient{
   COFFE_POWDER,
   WATER,
   CHILLY,
+  SPOON,
 }
 
 enum Upgrade{

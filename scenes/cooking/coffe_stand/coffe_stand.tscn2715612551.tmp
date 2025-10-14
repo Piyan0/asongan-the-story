@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmnynxptrxgw0"]
+[gd_scene load_steps=11 format=3 uid="uid://bmnynxptrxgw0"]
 
 [ext_resource type="Script" uid="uid://bf8sqhdsmimxx" path="res://scripts/cooking/coffe_stand/coffe_stand.gd" id="1_knpts"]
 [ext_resource type="Texture2D" uid="uid://bjenthgy3qsr1" path="res://assets/sprites/cooking/background_2.png" id="1_qp4qh"]
 [ext_resource type="Texture2D" uid="uid://3es8m30l5twe" path="res://assets/sprites/cooking/coffe_stand/cup_idle.png" id="2_0dbvb"]
 [ext_resource type="PackedScene" uid="uid://bg1dy0qdj3pif" path="res://scenes/cooking/ingredient.tscn" id="3_knpts"]
 [ext_resource type="Texture2D" uid="uid://bvgj67sdss4u1" path="res://assets/sprites/cooking/coffe_stand/coffe_powder.png" id="3_mjf04"]
-[ext_resource type="Texture2D" uid="uid://cylfsxddvvoqu" path="res://assets/sprites/cooking/coffe_stand/cup_with_coffe.png" id="4_dlof1"]
 [ext_resource type="Texture2D" uid="uid://bywwqk56p5t4y" path="res://assets/sprites/cooking/coffe_stand/spoon.png" id="4_knpts"]
 [ext_resource type="Texture2D" uid="uid://c221rg3gwhemu" path="res://assets/sprites/cooking/coffe_stand/water.png" id="5_5k01k"]
 [ext_resource type="PackedScene" uid="uid://doo13f5dqeox0" path="res://scenes/cooking/food_finished.tscn" id="8_jx4p8"]
@@ -28,23 +27,12 @@ offset_bottom = 40.0
 texture = ExtResource("1_qp4qh")
 
 [node name="cup" type="TextureRect" parent="."]
-unique_name_in_owner = true
 layout_mode = 0
 offset_left = 192.0
 offset_top = 87.0
 offset_right = 280.0
 offset_bottom = 218.0
 texture = ExtResource("2_0dbvb")
-
-[node name="coffe_state" type="TextureRect" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 192.0
-offset_top = 87.0
-offset_right = 280.0
-offset_bottom = 218.0
-texture = ExtResource("4_dlof1")
 
 [node name="coffe_powder" parent="." instance=ExtResource("3_knpts")]
 unique_name_in_owner = true
@@ -76,28 +64,17 @@ texture = ExtResource("5_5k01k")
 [node name="FoodFinished" parent="." instance=ExtResource("8_jx4p8")]
 layout_mode = 1
 
-[node name="prevent_input" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
+[node name="mouse" type="TextureRect" parent="."]
+offset_left = 444.0
+offset_top = 182.0
+offset_right = 452.0
+offset_bottom = 195.0
+mouse_filter = 2
+texture = ExtResource("9_5rvcd")
 
 [node name="coffe_stand_slider" parent="." instance=ExtResource("10_5rvcd")]
-unique_name_in_owner = true
+visible = false
 offset_left = 201.0
 offset_top = -94.0
 offset_right = 201.0
 offset_bottom = -94.0
-
-[node name="mouse" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 444.0
-offset_top = 182.0
-offset_right = 453.0
-offset_bottom = 195.0
-mouse_filter = 2
-texture = ExtResource("9_5rvcd")

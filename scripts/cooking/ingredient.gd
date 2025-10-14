@@ -4,13 +4,15 @@ class_name Ingredient
 var pop= TouchPop.new()
 @onready var button: Button = $Button
 @onready var pointer: TextureRect = $pointer
-var _clicked = func(id: int): pass
+@export var show_value: bool= true
+var _clicked = func(): pass
 
 var is_idle: bool= true
 
 func _ready() -> void:
   pointer.hide()
-  
+  if not show_value:
+    $TextureRect.hide()
   pop.target= self
   button.button_down.connect(func():
     if not is_idle: return

@@ -16,16 +16,18 @@ var is_food_finished: bool= false
 var ingredients_used_count: Dictionary[int, int]
 var ingredients_available: Array[CookingIngredient]
 
-
-func place_ingredient(ingredient: CookingIngredient) -> bool:
+func set_up():
   if not ingredients_used_count:
     for i in possible_ingredients:
       ingredients_used_count[i._id()]= 0
+  
+
+func place_ingredient(ingredient: CookingIngredient) -> bool:
 
   if not _is_can_place.call():
     _unable_to_place.call()
-    
     return false
+    
   if is_food_finished: return false
   if not has_ingredient(ingredient._id()): 
     _no_ingredient.call()
@@ -37,7 +39,7 @@ func place_ingredient(ingredient: CookingIngredient) -> bool:
   current_in_plate.push_back(ingredient)
 
   ingredients_used_count[ingredient._id()]+= 1
-  #print(ingredients_used_count)
+  #print_debug(ingredients_used_count)
   erase_ingredient(ingredient._id())
   for i in possible_food:
     if i.is_done(current_in_plate):
@@ -50,6 +52,7 @@ func place_ingredient(ingredient: CookingIngredient) -> bool:
 func start_over() -> void:
   is_food_finished= false
   current_in_plate= []
+  
 func get_ingredient(id: int) -> CookingIngredient:
   for i in ingredients_available:
     if i._id()== id:
@@ -62,12 +65,20 @@ func event_food_finished(food_id: DB.Food) -> void:
 
 func erase_ingredient(id: int):
   var to_delete
+
   for i in ingredients_available:
     if i._id()== id:
       to_delete= i
       break
   ingredients_available.erase(to_delete)
     
+func is_ingredient_placed(id: int) -> bool:
+  if current_in_plate.is_empty(): return false
+  for i in current_in_plate:
+    if i._id()== id:
+      return true
+  
+  return false
 
 func has_ingredient(id: int) -> bool:
   if ingredients_available.is_empty(): return false
@@ -79,13 +90,13 @@ func has_ingredient(id: int) -> bool:
 func get_available_ingredients() -> Array[CookingIngredient]:
   return ingredients_available
 
-func reset():
-  if current_in_plate.is_empty() or is_food_finished:
+func reset(force= false):
+  if not force and current_in_plate.is_empty() or is_food_finished:
     return
   for i in current_in_plate:
     ingredients_available.push_back(i)
   
-  _resetted.call()
+  await _resetted.call()
   current_in_plate= []
   for i in ingredients_used_count:
     ingredients_used_count[i]= 0

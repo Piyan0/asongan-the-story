@@ -25,12 +25,6 @@ func _ready() -> void:
     prepare()
 
 func prepare():
-  #cooking.ingredients_used_count= {
-    #DB.Ingredient.TOFU: 0,
-    #DB.Ingredient.RICE_ROLL: 0,
-    #DB.Ingredient.CHILLY: 0,
-  #}
-  
   cooking= Cooking.new()
   cooking.possible_food= [
     FoodPackOfTofu.new(),
@@ -41,6 +35,7 @@ func prepare():
     IngredientChilly.new(),
     IngredientRiceRoll.new()
   ]
+  cooking.set_up()
   cooking._food_finished= on_food_finished
   cooking._ingredient_placed= on_ingredient_placed
   cooking._resetted= on_resetted
@@ -104,7 +99,9 @@ func on_resetted():
   for i in cooking.ingredients_used_count:
     cooking.ingredients_used_count[i]= 0
    
+  
   hide_all()
+  
 
 
 func is_main():
@@ -195,8 +192,8 @@ func on_unable_to_place() -> void:
   
 func _process(delta: float) -> void:
   mouse.position= get_global_mouse_position()
+  #print(cooking)
 
 func _input(event: InputEvent) -> void:
-  if event.is_action_pressed("c"):
-    #print(1)
+  if event.is_action_pressed("c") and self.visible:
     cooking.reset()

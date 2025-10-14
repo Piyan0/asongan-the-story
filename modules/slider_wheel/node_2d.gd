@@ -1,9 +1,14 @@
 extends Control
+
+signal slide_finished()
+
 @onready var actual: TextureRect = $actual
 @onready var follow: TextureRect = $follow
 @onready var start_source: TextureRect = $start
 @onready var origin_source: Control = $origin
 
+var is_idle= true
+var is_succed: bool= false
 var _looped= func(_loop: int): pass
 var total_loop := 0
 var start_pos= Vector2(218, 235)
@@ -16,6 +21,7 @@ var actual_length_orbit= Vector2(66, 66)
 var offset= Vector2(10, 10)
 var pop
 var loop_nodes: Dictionary
+var loop_max := 2
 const pop_class= preload("./touch_pop.gd")
 
 func _ready() -> void:
@@ -58,27 +64,32 @@ func reset_progress():
   
   
 func play(anim: String, is_backwards: bool= false):
-  
+  is_idle= false
   if is_backwards:
     $AnimationPlayer.play_backwards(anim)
   else:
     $AnimationPlayer.play(anim)
   await $AnimationPlayer.animation_finished
-
+  is_idle= true
 
 func on_looped(loop):
-  
+  #print(4)
   show_progress(loop)
-  if loop >=2:
+  if loop >= loop_max:
+    set_succed(true)
+    slide_finished.emit()
     close()
     await get_tree().create_timer(1).timeout
     await reset_progress()
-  
+    
+
+func set_succed(cond: bool):
+  is_succed= cond
   
 func start():
-  
+  show()
   set_process_input(true)
-  set_process_input(true)
+  set_process(true)
   last_vect= start_pos
   follow.position= start_pos
   actual.position= start_pos
@@ -95,6 +106,7 @@ func start():
     if not is_dragging:
       is_mouse_inside_dragging_area= false
     )
+  await play('show')
 
 func delete_connections(_signal: Signal) -> void:
   
@@ -110,6 +122,8 @@ func is_main():
   
   
 func close():
+  reset_progress()
+  total_loop= 0
   delete_connections(
     $actual/TextureRect2.mouse_entered
   ) 
@@ -119,9 +133,10 @@ func close():
   pop.pop()
   is_dragging= false
   set_process_input(false)
-  
+  set_process(false)
   if not is_main():
-    play('show', true)
+    await play('show', true)
+    hide()
   
   
 func _input(event: InputEvent) -> void:
@@ -157,7 +172,7 @@ func _process(delta: float) -> void:
     follow.position,
     actual.position,
     origin,
-    #0.1,
+    #1,
     2.5* delta, # 0.02 in 60fps.
   )
   var delta_rotation= get_angle_clockwise(

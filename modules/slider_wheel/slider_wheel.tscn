@@ -24,6 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_q6r6c"]
 resource_name = "show"
+length = 0.416675
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
