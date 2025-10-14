@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4h6t67vdweal"]
+[gd_scene load_steps=20 format=3 uid="uid://b4h6t67vdweal"]
 
 [ext_resource type="Script" uid="uid://c5o062sucu70d" path="res://scripts/cooking/tofu_stand/tofu_stand.gd" id="1_sqs2g"]
 [ext_resource type="Texture2D" uid="uid://bjenthgy3qsr1" path="res://assets/sprites/cooking/background_2.png" id="2_akwb2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ch681sc0sfs86" path="res://assets/sprites/cooking/tofu_stand/plastic_bg.png" id="6_ndbs7"]
 [ext_resource type="Texture2D" uid="uid://dgg82q4153pxf" path="res://assets/sprites/cooking/tofu_stand/rice_rolls_preview.png" id="7_qk4mc"]
 [ext_resource type="Texture2D" uid="uid://drxt3dpgjdfor" path="res://assets/sprites/cooking/tofu_stand/tofu_preview.png" id="8_akwb2"]
+[ext_resource type="Texture2D" uid="uid://cya2o8hl4pxvq" path="res://assets/sprites/cooking/tofu_stand/chilly_preview.png" id="9_8ayv2"]
 [ext_resource type="Texture2D" uid="uid://diy4y1xbg86oa" path="res://assets/sprites/cooking/tofu_stand/plastic_line.png" id="9_yg0of"]
 [ext_resource type="Texture2D" uid="uid://ddi4rd6hvk4ta" path="res://assets/sprites/cooking/tofu_stand/platic_top.png" id="10_8ayv2"]
 [ext_resource type="Texture2D" uid="uid://bo0w33qohd542" path="res://assets/sprites/cooking/mouse_custom.png" id="12_akwb2"]
@@ -136,6 +137,7 @@ offset_right = 295.0
 offset_bottom = 234.0
 
 [node name="TextureRect3" type="TextureRect" parent="Control"]
+visible = false
 modulate = Color(1, 1, 1, 0.180392)
 layout_mode = 0
 offset_right = 93.0
@@ -257,6 +259,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_jopvl")
 }
 speed_scale = 2.582
+
+[node name="chilly" type="TextureRect" parent="Control/tofu"]
+visible = false
+layout_mode = 0
+offset_left = 19.0
+offset_top = 29.0
+offset_right = 67.0
+offset_bottom = 59.0
+pivot_offset = Vector2(24, 30)
+texture = ExtResource("9_8ayv2")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Control/tofu/chilly"]
+libraries = {
+&"": SubResource("AnimationLibrary_8ayv2")
+}
+speed_scale = 2.5
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0

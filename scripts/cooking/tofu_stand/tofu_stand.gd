@@ -6,6 +6,7 @@ class_name TofuStand
 ]
 @onready var rice_roll: TextureRect = $Control/tofu/rice_roll
 @onready var food_finished: Control = $FoodFinished
+@onready var chilly: TextureRect = $Control/tofu/chilly
 
 var cooking: Cooking
 var ingredient_ui: Dictionary
@@ -94,7 +95,7 @@ func on_ingredient_placed(id: DB.Ingredient) -> void:
     DB.Ingredient.RICE_ROLL:
       add_rice_roll()
     DB.Ingredient.CHILLY:
-      pass
+      add_chilly()
 
 func on_resetted():
   ingredient_ui[DB.Ingredient.TOFU].set_count(ingredient_ui[DB.Ingredient.TOFU].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.TOFU])
@@ -169,11 +170,18 @@ func add_rice_roll():
   rice_roll.show()
   rice_roll.get_child(0).play('new_animation')
 
+
+func add_chilly():
+  chilly.show()
+  chilly.get_child(0).play('new_animation')
+
+
 func hide_all():
   for i in tofus:
     i.hide()
   current_tofu= 0
   rice_roll.hide()
+  chilly.hide()
   
   
 func ingredient_clicked(id: DB.Ingredient):
