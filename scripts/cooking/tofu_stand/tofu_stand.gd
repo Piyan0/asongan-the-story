@@ -105,8 +105,38 @@ func on_resetted():
     cooking.ingredients_used_count[i]= 0
    
   hide_all()
+
+
+func is_main():
+  return get_tree().current_scene== self
+  
   
 func fill(_cooking: Cooking):
+  if is_main():
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    _cooking.ingredients_available.push_back(IngredientTofu.new())
+    
+    _cooking.ingredients_available.push_back(IngredientChilly.new())
+    _cooking.ingredients_available.push_back(IngredientChilly.new())
+    _cooking.ingredients_available.push_back(IngredientChilly.new())
+    
+    _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
+    _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
+    _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
+    
+    ingredient_ui[DB.Ingredient.TOFU].set_count(6)
+    ingredient_ui[DB.Ingredient.CHILLY].set_count(3)
+    ingredient_ui[DB.Ingredient.RICE_ROLL].set_count(3)
+    
+    for i in ingredient_ui:
+      ingredient_ui[i]._clicked= ingredient_clicked.bind(i)
+    
+    return
+    
   var tofu_count= DB.get_item_count(DB.Ingredient.TOFU)
   var chilly_count= DB.get_item_count(DB.Ingredient.CHILLY)
   var rice_roll_count= DB.get_item_count(DB.Ingredient.RICE_ROLL)
@@ -142,6 +172,8 @@ func hide_all():
     i.hide()
   current_tofu= 0
   rice_roll.hide()
+  
+  
 func ingredient_clicked(id: DB.Ingredient):
   match id:
     DB.Ingredient.TOFU:

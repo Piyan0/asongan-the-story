@@ -103,7 +103,6 @@ texture = ExtResource("2_akwb2")
 
 [node name="tofu" parent="." instance=ExtResource("3_bqfwf")]
 unique_name_in_owner = true
-visible = true
 layout_mode = 0
 offset_left = 326.0
 offset_top = 121.0
@@ -112,7 +111,6 @@ offset_bottom = 171.0
 
 [node name="rice_roll" parent="." instance=ExtResource("3_bqfwf")]
 unique_name_in_owner = true
-visible = true
 layout_mode = 0
 offset_left = 403.0
 offset_top = 121.0
@@ -122,7 +120,6 @@ texture = ExtResource("3_r85b3")
 
 [node name="chilly" parent="." instance=ExtResource("3_bqfwf")]
 unique_name_in_owner = true
-visible = true
 layout_mode = 0
 offset_left = 336.0
 offset_top = 183.0
