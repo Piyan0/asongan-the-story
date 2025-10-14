@@ -31,7 +31,9 @@ func _ready() -> void:
   #TranslationServer.set_locale('id-ID')
   if is_play_splash_screen:
     splash_screen.show()
-    splash_screen.play("default")
+    splash_screen.play("godot_splash")
+    await splash_screen.animation_finished
+    splash_screen.play("studio")
     await splash_screen.animation_finished
 
   if not instance:
