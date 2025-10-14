@@ -1,5 +1,9 @@
 extends Node
 
+enum Visible{
+  MAIN_ROAD_001,
+  MAIN_ROAD_002,
+}
 enum ItemState{
   CAN_USE,
   CAN_DROP,
@@ -10,6 +14,11 @@ enum GameVar{
   IS_DONE_SOMETHING,
 }
 
+#SAVE
+var visible_state= {
+  Visible.MAIN_ROAD_001: true,
+  Visible.MAIN_ROAD_002: false,
+}
 #SAVE
 var events_id : Dictionary = {
   EventsID.ID.MAIN_ROAD_001: '_1',
@@ -63,3 +72,6 @@ func is_inventory_slot_available(exlude: int= 0) -> bool:
 
 func minus_coin(by: int):
   current_coin-= by
+
+func set_visible(id: Visible, is_on: bool):
+  visible_state[id]= is_on
