@@ -63,7 +63,7 @@ var items= {
   },
   Ingredient.TOFU: {
     'item_type': ItemType.INGREDIENT,
-    'icon': "res://assets/sprites/items/tofu.png",
+    'icon': "res://assets/sprites/items/single_tofu.png",
     'item_name': 'TOFU',
     'id': Ingredient.TOFU,
     'worth': 99,
