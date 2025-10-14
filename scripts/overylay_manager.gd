@@ -7,6 +7,7 @@ enum Overlay {
   INVENTORY,
   SHOP,
   TOFU_STAND,
+  COFFE_STAND,
   
 }
 var current_overlay: Overlay= Overlay.IDLE
@@ -37,6 +38,11 @@ func _ready():
       target= $TofuStand,
       show_method= $TofuStand.prepare,
       close_method= $TofuStand.close,    
+    },
+    Overlay.COFFE_STAND: {
+      target= $CoffeStand,
+      show_method= $CoffeStand.prepare,
+      close_method= $CoffeStand.close ,
     },
   }
   

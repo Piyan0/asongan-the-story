@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://beqbcnsqnqqkx"]
+[gd_scene load_steps=11 format=3 uid="uid://beqbcnsqnqqkx"]
 
 [ext_resource type="Script" uid="uid://bgmmnl6h4tpy1" path="res://scripts/overylay_manager.gd" id="1_40fm2"]
 [ext_resource type="PackedScene" uid="uid://dy6ayjms65mfd" path="res://scenes/ui/control_hint.tscn" id="3_y7rud"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqk1j3esso53w" path="res://scenes/ui/inventory/inventory.tscn" id="7_xs6jo"]
 [ext_resource type="PackedScene" uid="uid://d4mumw1esp65v" path="res://scenes/ui/shop/shop.tscn" id="8_0njdk"]
 [ext_resource type="PackedScene" uid="uid://b4h6t67vdweal" path="res://scenes/cooking/tofu_stand/tofu_stand.tscn" id="9_mcx3o"]
+[ext_resource type="PackedScene" uid="uid://bmnynxptrxgw0" path="res://scenes/cooking/coffe_stand/coffe_stand.tscn" id="10_vnq6d"]
 
 [node name="OverlayManager" type="CanvasLayer"]
 script = ExtResource("1_40fm2")
@@ -33,3 +34,5 @@ texture = ExtResource("6_xs6jo")
 [node name="TofuStand" parent="." instance=ExtResource("9_mcx3o")]
 
 [node name="Alert" parent="." instance=ExtResource("6_y7rud")]
+
+[node name="CoffeStand" parent="." instance=ExtResource("10_vnq6d")]

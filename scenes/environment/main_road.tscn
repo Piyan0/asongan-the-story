@@ -75,6 +75,6 @@ event_id = 4
 events = ExtResource("12_lv3wr")
 
 [node name="event5" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(368, 113)
+position = Vector2(366, 106)
 event_id = 5
 events = ExtResource("14_8upmm")

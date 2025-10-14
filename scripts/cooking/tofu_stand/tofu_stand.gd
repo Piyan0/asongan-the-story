@@ -21,10 +21,15 @@ func _ready() -> void:
   }
   
   
-  if get_tree().current_scene== self:
+  if is_main():
     prepare()
+  else:
+    set_process(false)
+    set_process_input(false)
 
 func prepare():
+  set_process(true)
+  set_process_input(true)
   cooking= Cooking.new()
   cooking.possible_food= [
     FoodPackOfTofu.new(),
@@ -185,8 +190,10 @@ func ingredient_clicked(id: DB.Ingredient):
 
 #add an info used items.
 func close():
+  set_process(false)
+  set_process_input(false)
   cooking.reset()
-
+  
 func on_unable_to_place() -> void:
   OverlayManager.show_alert('INVENTORY_MAXED')
   

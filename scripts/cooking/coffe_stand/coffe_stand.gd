@@ -30,11 +30,15 @@ func _ready() -> void:
     DB.Ingredient.COFFE_POWDER: %coffe_powder,
   }
   
-  if get_tree().current_scene== self:
+  if is_main():
     prepare()
+  else:
+    set_process(false)
+    set_process_input(false)
 
 func prepare():
-  
+  set_process_input(true)
+  set_process(true)
   if has_spoon():
     ingredient_ui[DB.Ingredient.SPOON].set_count(1)
   else:
@@ -203,6 +207,8 @@ func ingredient_clicked(id: DB.Ingredient):
 
 #add an info used items.
 func close():
+  set_process(false)
+  set_process_input(false)
   cooking.reset()
   change_cup_state(CupState.IDLE)
 
