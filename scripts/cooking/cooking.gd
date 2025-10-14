@@ -22,14 +22,14 @@ func set_up():
       ingredients_used_count[i._id()]= 0
   
 
-func place_ingredient(ingredient: CookingIngredient) -> bool:
+func place_ingredient(ingredient: CookingIngredient, take_from_available: bool= true) -> bool:
 
   if not _is_can_place.call():
     _unable_to_place.call()
     return false
     
   if is_food_finished: return false
-  if not has_ingredient(ingredient._id()): 
+  if not has_ingredient(ingredient._id()) and take_from_available: 
     _no_ingredient.call()
     #print('nooo')
     return false

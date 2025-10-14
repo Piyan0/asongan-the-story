@@ -143,14 +143,10 @@ func is_main():
 func fill(_cooking: Cooking):
   if is_main():
     _cooking.ingredients_available.push_back(IngredientCoffePowder.new())
-    _cooking.ingredients_available.push_back(IngredientCoffePowder.new())
-    _cooking.ingredients_available.push_back(IngredientSpoon.new())
-    _cooking.ingredients_available.push_back(IngredientSpoon.new())
-    _cooking.ingredients_available.push_back(IngredientWater.new())
     _cooking.ingredients_available.push_back(IngredientWater.new())
     
-    ingredient_ui[DB.Ingredient.WATER].set_count(2)
-    ingredient_ui[DB.Ingredient.COFFE_POWDER].set_count(2)
+    ingredient_ui[DB.Ingredient.WATER].set_count(1)
+    ingredient_ui[DB.Ingredient.COFFE_POWDER].set_count(1)
     
     for i in ingredient_ui:
       ingredient_ui[i]._clicked= ingredient_clicked.bind(i)
@@ -194,7 +190,8 @@ func ingredient_clicked(id: DB.Ingredient):
       if not coffe_stand_slider.is_succed:
         return
       change_cup_state(CupState.STIRRED)
-      cooking.place_ingredient(IngredientSpoon.new())
+      
+      cooking.place_ingredient(IngredientSpoon.new(), false)
       #print_debug(1)
       prevent_input.hide()
       
