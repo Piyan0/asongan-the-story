@@ -162,24 +162,20 @@ func fill(_cooking: Cooking):
     
     return
     
-  var tofu_count= DB.get_item_count(DB.Ingredient.TOFU)
-  var chilly_count= DB.get_item_count(DB.Ingredient.CHILLY)
-  var rice_roll_count= DB.get_item_count(DB.Ingredient.RICE_ROLL)
+  var water_count= DB.get_item_count(DB.Ingredient.WATER)
+  var coffe_powder_count= DB.get_item_count(DB.Ingredient.COFFE_POWDER)
+
   
-  ingredient_ui[DB.Ingredient.TOFU].set_count(tofu_count)
-  ingredient_ui[DB.Ingredient.CHILLY].set_count(chilly_count)
-  ingredient_ui[DB.Ingredient.RICE_ROLL].set_count(rice_roll_count)
+  ingredient_ui[DB.Ingredient.WATER].set_count(water_count)
+  ingredient_ui[DB.Ingredient.COFFE_POWDER].set_count(coffe_powder_count)
   
   for i in ingredient_ui:
     ingredient_ui[i]._clicked= ingredient_clicked.bind(i)
     
-  for i in tofu_count:
-    _cooking.ingredients_available.push_back(IngredientTofu.new())
-  for i in chilly_count:
-    _cooking.ingredients_available.push_back(IngredientChilly.new())
-  for i in rice_roll_count:
-    _cooking.ingredients_available.push_back(IngredientRiceRoll.new())
-  
+  for i in water_count:
+    _cooking.ingredients_available.push_back(IngredientWater.new())
+  for i in coffe_powder_count:
+    _cooking.ingredients_available.push_back(IngredientCoffePowder.new())
 
 func change_cup_state(state: CupState):
   cup.texture= load(cup_images_path[state])
