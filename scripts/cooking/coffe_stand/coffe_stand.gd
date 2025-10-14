@@ -124,13 +124,9 @@ func on_resetted():
     await coffe_stand_slider.close()
     prevent_input.hide()
     coffe_stand_slider.hide()
-    coffe_state.hide()
-
-  #printt(
-    #ingredient_ui[DB.Ingredient.COFFE_POWDER].get_current_count(),
-    #cooking.ingredients_used_count[DB.Ingredient.COFFE_POWDER],
-  #)
-  
+    
+  coffe_state.modulate= Color('ffffff00')
+  coffe_state.hide()
   ingredient_ui[DB.Ingredient.COFFE_POWDER].set_count(ingredient_ui[DB.Ingredient.COFFE_POWDER].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.COFFE_POWDER])
   ingredient_ui[DB.Ingredient.WATER].set_count(ingredient_ui[DB.Ingredient.WATER].get_current_count()+ cooking.ingredients_used_count[DB.Ingredient.WATER])
   

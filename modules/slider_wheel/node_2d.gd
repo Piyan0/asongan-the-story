@@ -122,6 +122,7 @@ func is_main():
   
   
 func close():
+  is_threshold_passed= false
   reset_progress()
   total_loop= 0
   delete_connections(
