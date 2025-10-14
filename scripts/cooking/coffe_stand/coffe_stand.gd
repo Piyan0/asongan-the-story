@@ -85,15 +85,10 @@ func on_food_finished(id: DB.Food) -> void:
   if is_main():
     return
     
-  for i in cooking.ingredients_used_count[DB.Ingredient.TOFU]:
-    DB.erase_inventory_item(DB.Ingredient.TOFU)
-  for i in cooking.ingredients_used_count[DB.Ingredient.RICE_ROLL]:
-    DB.erase_inventory_item(DB.Ingredient.RICE_ROLL)
-  for i in cooking.ingredients_used_count[DB.Ingredient.CHILLY]:
-    DB.erase_inventory_item(DB.Ingredient.CHILLY)
-  
-  #print(DB.inventory_items)
-  #print( DB.get_item_count(DB.Ingredient.TOFU) )
+  for i in cooking.ingredients_used_count[DB.Ingredient.WATER]:
+    DB.erase_inventory_item(DB.Ingredient.WATER)
+  for i in cooking.ingredients_used_count[DB.Ingredient.COFFE_POWDER]:
+    DB.erase_inventory_item(DB.Ingredient.COFFE_POWDER)
 
 
 func has_spoon() -> bool:
