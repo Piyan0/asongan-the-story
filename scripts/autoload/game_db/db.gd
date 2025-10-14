@@ -197,6 +197,17 @@ func get_item_count(id: int) -> int:
   return count
 
 func add_item_to_inventory(id: int):
+  var item= get_item(id)
+  if item.item_type== ItemType.UPGRADE:
+    return
   inventory_items.push_back(
-    get_item(id)
+    item
   )
+
+
+func upgrade_callback(id: Upgrade):
+  match id:
+    Upgrade.COFFE_STAND_SPOON:
+      GameState.has_spoon= true
+      print('you bougth spoon.')
+  

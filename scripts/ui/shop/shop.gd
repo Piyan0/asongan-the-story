@@ -27,6 +27,10 @@ func buy_item(item: ShopItem) -> void:
     erase_item(item)
     add_owned(item)
     _on_item_buyed.call(item)
+    if item.item.item_type== DB.ItemType.UPGRADE:
+      DB.upgrade_callback(
+        item.item.id
+      )
   else:
     _on_coin_not_enough.call()
 

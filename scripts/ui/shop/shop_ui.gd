@@ -115,10 +115,10 @@ func event_item_buyed(item: Shop.ShopItem):
   )
   #print(DB.shop_items)
   
-  print('{item_name} stock is currently at {stock}'.format({
-    item_name= item.item.item_name,
-    stock= item.stock
-  }))
+  #print('{item_name} stock is currently at {stock}'.format({
+    #item_name= item.item.item_name,
+    #stock= item.stock
+  #}))
   #item.owned= DB.get_item_count()
   selected_item_ui.set_status(str(item.stock), str(item.owned))
   #selected_item_ui.set_owned(str(item.owned))
