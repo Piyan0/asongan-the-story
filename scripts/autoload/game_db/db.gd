@@ -47,7 +47,7 @@ var items= {
   },
   Food.TOFU_WITH_RICE_ROLL: {
     'item_type': ItemType.FOOD,
-    'icon': "res://assets/sprites/items/tofu.png",
+    'icon': "res://assets/sprites/items/tofu_extra.png",
     'item_name': 'TOFU_WITH_RICE_ROLL',
     'id': Food.TOFU_WITH_RICE_ROLL,
     'worth': 99,
