@@ -31,6 +31,7 @@ func place_ingredient(ingredient: CookingIngredient) -> bool:
   if is_food_finished: return false
   if not has_ingredient(ingredient._id()): 
     _no_ingredient.call()
+    #print('nooo')
     return false
   if not ingredient._is_can_place(current_in_plate):
     return false

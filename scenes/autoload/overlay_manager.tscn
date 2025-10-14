@@ -33,6 +33,6 @@ texture = ExtResource("6_xs6jo")
 
 [node name="TofuStand" parent="." instance=ExtResource("9_mcx3o")]
 
-[node name="Alert" parent="." instance=ExtResource("6_y7rud")]
-
 [node name="CoffeStand" parent="." instance=ExtResource("10_vnq6d")]
+
+[node name="Alert" parent="." instance=ExtResource("6_y7rud")]

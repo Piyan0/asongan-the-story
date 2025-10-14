@@ -67,7 +67,7 @@ func prepare():
 
 func on_no_ingredient():
   OverlayManager.show_alert('NO_INGREDIENT')
-
+  
   
 func on_food_taken():
   OverlayManager.get_alert().close()
