@@ -52,15 +52,15 @@ func _ready() -> void:
 
 
 func show_progress(_loop: int):
-  loop_nodes[_loop].pop.pop()
   loop_nodes[_loop].node.modulate= Color('5b7d73')
+  await loop_nodes[_loop].pop.pop()
+
 
 func reset_progress():
   loop_nodes[2].node.modulate= Color('8c7c79')
-  loop_nodes[2].pop.pop()
-  await get_tree().create_timer(0.1).timeout
+  await loop_nodes[2].pop.pop()
   loop_nodes[1].node.modulate= Color('8c7c79')
-  loop_nodes[1].pop.pop()
+  await loop_nodes[1].pop.pop()
   
   
 func play(anim: String, is_backwards: bool= false):
@@ -74,13 +74,13 @@ func play(anim: String, is_backwards: bool= false):
 
 func on_looped(loop):
   #print(4)
-  show_progress(loop)
+  await show_progress(loop)
   if loop >= loop_max:
     set_succed(true)
-    slide_finished.emit()
-    close()
-    await get_tree().create_timer(1).timeout
+    #await get_tree().create_timer(1).timeout
     await reset_progress()
+    await close()
+    slide_finished.emit()
     
 
 func set_succed(cond: bool):
