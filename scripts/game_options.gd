@@ -46,8 +46,10 @@ func toggle_vsync(enable_vsync: bool):
   settings.toggle_vsync= enable_vsync
   if enable_vsync:
     DisplayServer.window_set_vsync_mode.call_deferred(DisplayServer.VSYNC_ENABLED)
+    #print(DisplayServer.window_get_vsync_mode())
     return
   
+  #print(DisplayServer.window_get_vsync_mode())
   DisplayServer.window_set_vsync_mode.call_deferred(DisplayServer.VSYNC_DISABLED)
   #setting_changed()
 

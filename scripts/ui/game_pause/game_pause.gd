@@ -71,3 +71,4 @@ func close():
 
   options.hide()
   options.get_selection().is_active= false
+  $Options.get_multiple_options().pause_focus()

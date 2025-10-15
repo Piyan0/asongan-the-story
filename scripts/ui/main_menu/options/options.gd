@@ -269,6 +269,7 @@ func set_vsync_options():
   self.add_child.call_deferred(vsync_options)
 
 func set_initial_options():
+  multiple_options.resume_focus()
   if not GameState.saved_setting_index.is_empty():
     saved_setting_index= GameState.saved_setting_index
   vsync_options.initial_index(int(saved_setting_index[OptionsID.VSYNC]))
@@ -291,8 +292,12 @@ func continue_selection():
 func back():
   save_setting()
   back_callback.call()
+  multiple_options.pause_focus()
   list.is_active= false
   
+
+func get_multiple_options() -> MultipleOptionsSelection:
+  return multiple_options
   
 func save_setting():
   saved_setting_index[OptionsID.LANGUAGE]= language_options.current_index
