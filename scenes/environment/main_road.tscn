@@ -81,4 +81,18 @@ event_id = 5
 events = ExtResource("14_8upmm")
 
 [node name="NormalCar" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(123.091, 241.141)
+position = Vector2(48, 241.141)
+
+[node name="NormalCar2" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(34, 240)
+car_id = 1
+
+[node name="NormalCar3" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(34, 240)
+car_id = 2
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(464, 210)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(330, 209)

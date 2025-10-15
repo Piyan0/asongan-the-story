@@ -51,7 +51,7 @@ class Row:
       
       arrived_signal.connect(on_car_arrived.bind(car))
         
-      car._car_instance().move_car(Vector2(CarManager.instance.vanishing_x_point, y_pos) , true)
+      #car._car_instance().move_car(0, Vector2(CarManager.instance.vanishing_x_point, y_pos) , true)
       
       
 

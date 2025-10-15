@@ -1,6 +1,8 @@
 extends Node2D
 class_name CarScene
 
+@export var car_id: Car.CarID
+
 func _car_instance() -> Car:
   return null
   

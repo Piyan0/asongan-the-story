@@ -15,7 +15,10 @@ func _ready() -> void:
   ]
   car= Car.new()
   car.parent_node= self
-  car.moved.connect(func():
+  car.moved.connect(func(_position: Vector2):
+    
+    Car.car_back_point[car_id]= _position- Vector2(_width(), 0)
+    print(self.position+ _position)
     sprite.stop()
     sprite.play("move")
     )
