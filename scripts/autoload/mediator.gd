@@ -124,7 +124,7 @@ func on_main_menu_loaded() -> void:
         Saveable.get_data('settings_index')
       )
     GameState.saved_setting_index= settings_index
-    #print( OptionsSelectionMenu.saved_setting_index )
+    OptionsSelectionMenu.saved_setting_index=  settings_index
     #print(settings_index)
  
 func on_settings_changed(settings: Dictionary):

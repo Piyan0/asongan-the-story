@@ -270,8 +270,6 @@ func set_vsync_options():
 
 func set_initial_options():
   multiple_options.resume_focus()
-  if not GameState.saved_setting_index.is_empty():
-    saved_setting_index= GameState.saved_setting_index
   vsync_options.initial_index(int(saved_setting_index[OptionsID.VSYNC]))
   language_options.initial_index(int(saved_setting_index[OptionsID.LANGUAGE]))
   fullscreen_options.initial_index(int(saved_setting_index[OptionsID.FULLSCREEN]))
