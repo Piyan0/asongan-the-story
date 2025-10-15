@@ -275,3 +275,6 @@ position = Vector2(-42.1755, -51.398)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(46.1755, 24.199)
 shape = SubResource("RectangleShape2D_lt7va")
+
+[node name="back_point" type="Marker2D" parent="."]
+position = Vector2(-86, -24)

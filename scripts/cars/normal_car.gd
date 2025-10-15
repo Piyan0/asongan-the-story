@@ -43,7 +43,7 @@ func show_hint(id: int):
 
 func hide_hint(id: int):
   hints[id].hide()
-   
+  
   
 func set_label(t):
   $Label.text= t
@@ -53,3 +53,6 @@ func _car_instance() -> Car:
   
 func _width() -> float:
   return $Control.size.x
+  
+func _car_back_point() -> Vector2:
+  return $back_point.position+ self.position
