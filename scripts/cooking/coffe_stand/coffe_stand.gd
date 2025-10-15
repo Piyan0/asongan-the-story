@@ -20,8 +20,8 @@ var cup_images_path= {
 
 var cooking: Cooking
 var ingredient_ui: Dictionary
-#var cooking.ingredients_used_count: Dictionary
-
+var is_idle= true
+var can_close= true
 func _ready() -> void:
   #TranslationServer.set_locale('id-ID')
   ingredient_ui= {
@@ -71,11 +71,17 @@ func on_no_ingredient():
   
 func on_food_taken():
   OverlayManager.get_alert().close()
-  food_finished.close()
+  await food_finished.close()
   change_cup_state(CupState.IDLE)
+  can_close= true
+
+
+func get_can_close() -> bool:
+  return can_close
   
 
 func on_food_finished(id: DB.Food) -> void:
+  is_idle= false
   coffe_state.hide()
   await get_tree().create_timer(0.2).timeout
   DB.add_item_to_inventory(id)
@@ -84,7 +90,8 @@ func on_food_finished(id: DB.Food) -> void:
     DB.Food.COFFE:
       await food_finished.play(load("res://assets/sprites/items/coffe.png"), 'COFFE')
      
-  OverlayManager.show_alert('CLICK_TO_CONTINUE', false)
+  await OverlayManager.show_alert('CLICK_TO_CONTINUE', false)
+  is_idle= true
   
   if is_main():
     return
@@ -187,6 +194,7 @@ func ingredient_clicked(id: DB.Ingredient):
       prevent_input.show()
       coffe_stand_slider.start()
       await coffe_stand_slider.slide_finished
+      can_close= false
       if not coffe_stand_slider.is_succed:
         return
       change_cup_state(CupState.STIRRED)
@@ -209,6 +217,7 @@ func on_unable_to_place() -> void:
   OverlayManager.show_alert('INVENTORY_MAXED')
   
 func _process(delta: float) -> void:
+  #print(can_close)
   mouse.position= get_global_mouse_position()
 
 func _input(event: InputEvent) -> void:
@@ -221,6 +230,7 @@ func _input(event: InputEvent) -> void:
 
 @onready var coffe_state: TextureRect = %coffe_state
 
+  
 func on_slider_looped(count: int):
   coffe_state.show()
   coffe_state.modulate= Color('ffffff00')

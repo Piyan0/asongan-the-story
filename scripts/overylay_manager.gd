@@ -1,6 +1,7 @@
 extends CanvasLayer
 signal overlay_showned(overlay)
 signal overlay_hidden(overlay)
+signal lmb_clicked()
 
 enum Overlay {
   IDLE,
@@ -26,23 +27,27 @@ func _ready():
       target= $Inventory,
       show_method= $Inventory.display_inventory,
       close_method= $Inventory.close,
+      can_close= func(): return true
     },
     
     Overlay.SHOP: {
       target= $Shop,
       show_method= $Shop.display_items,
-      close_method= $Shop.close,    
+      close_method= $Shop.close,  
+      can_close= func(): return true  
     },
     
     Overlay.TOFU_STAND: {
       target= $TofuStand,
       show_method= $TofuStand.prepare,
-      close_method= $TofuStand.close,    
+      close_method= $TofuStand.close, 
+      can_close= $TofuStand.get_can_close,   
     },
     Overlay.COFFE_STAND: {
       target= $CoffeStand,
       show_method= $CoffeStand.prepare,
-      close_method= $CoffeStand.close ,
+      close_method= $CoffeStand.close,
+      can_close= $CoffeStand.get_can_close,
     },
   }
   
@@ -80,6 +85,8 @@ func show_overlay(id: Overlay) -> void:
 func stop_overlay(id: Overlay):
   overlay_hidden.emit()
   var overlay= overlays[id]
+  if not overlay.can_close.call():
+    return
   overlay.target.hide()
   overlay.close_method.call()
   current_overlay= id
@@ -99,6 +106,8 @@ func toggle_control_hint(is_on: bool):
 @onready var alert: Control = $Alert
 func show_alert(t: String, is_auto_hide: bool= true):
   alert.alert(t, is_auto_hide)
+  if not is_auto_hide:
+    await lmb_clicked
   
 func get_alert():
   return alert
@@ -109,3 +118,5 @@ func get_hud():
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('x'):
     stop_current_overlay()
+  if event.is_action_pressed("left_click"):
+    lmb_clicked.emit()

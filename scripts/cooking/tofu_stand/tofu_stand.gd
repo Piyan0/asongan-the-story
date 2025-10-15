@@ -11,7 +11,7 @@ class_name TofuStand
 var cooking: Cooking
 var ingredient_ui: Dictionary
 var current_tofu: int= 0
-#var cooking.ingredients_used_count: Dictionary
+var can_close: bool= true
 
 func _ready() -> void:
   #TranslationServer.set_locale('id-ID')
@@ -59,10 +59,16 @@ func on_food_taken():
   OverlayManager.get_alert().close()
   food_finished.close()
   hide_all()
+  can_close= true
   #cooking.is_food_finished= false
 
-func on_food_finished(id: DB.Food) -> void:
 
+func get_can_close() -> bool:
+  return can_close
+  
+  
+func on_food_finished(id: DB.Food) -> void:
+  can_close= false
   await get_tree().create_timer(0.2).timeout
   DB.add_item_to_inventory(id)
   #cooking.ingredients_used_count

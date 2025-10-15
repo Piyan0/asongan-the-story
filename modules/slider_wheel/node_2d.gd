@@ -21,7 +21,7 @@ var actual_length_orbit= Vector2(66, 66)
 var offset= Vector2(10, 10)
 var pop
 var loop_nodes: Dictionary
-var loop_max := 2
+var loop_max := 1
 const pop_class= preload("./touch_pop.gd")
 
 func _ready() -> void:
@@ -57,10 +57,12 @@ func show_progress(_loop: int):
 
 
 func reset_progress():
+  is_idle= false
   loop_nodes[2].node.modulate= Color('8c7c79')
   await loop_nodes[2].pop.pop()
   loop_nodes[1].node.modulate= Color('8c7c79')
   await loop_nodes[1].pop.pop()
+  is_idle= true
   
   
 func play(anim: String, is_backwards: bool= false):
@@ -74,13 +76,13 @@ func play(anim: String, is_backwards: bool= false):
 
 func on_looped(loop):
   #print(4)
-  await show_progress(loop)
   if loop >= loop_max:
     set_succed(true)
+    slide_finished.emit()
     #await get_tree().create_timer(1).timeout
+    await show_progress(loop)
     await reset_progress()
     await close()
-    slide_finished.emit()
     
 
 func set_succed(cond: bool):
