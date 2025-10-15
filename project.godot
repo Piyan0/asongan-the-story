@@ -25,6 +25,7 @@ OverlayManager="*res://scenes/autoload/overlay_manager.tscn"
 Managers="*res://scenes/autoload/managers.tscn"
 DB="*res://scripts/autoload/game_db/db.gd"
 GameState="*res://scripts/autoload/game_state.gd"
+Sound="*res://scenes/autoload/AudioManager.tscn"
 
 [display]
 
