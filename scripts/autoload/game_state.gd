@@ -23,6 +23,7 @@ var visible_state= {
 }
 #SAVE
 var events_id : Dictionary = {
+  EventsID.ID.NONE: '_1',
   EventsID.ID.MAIN_ROAD_001: '_1',
   EventsID.ID.MAIN_ROAD_002: '_1',
   EventsID.ID.MAIN_ROAD_003: '_1',
@@ -37,6 +38,7 @@ var events_id : Dictionary = {
   
 }
 
+var is_last_item_correct= false
 #SAVE
 var has_spoon= false
 #SAVE
@@ -46,7 +48,7 @@ var game_vars ={
   GameVar.IS_DONE_SOMETHING: false,
 }
 
-var item_correct_id: int= DB.Food.PACK_OF_TOFU
+var item_correct_id: int= -1
 
 #SAVE
 var item_state: ItemState= ItemState.CAN_DROP
@@ -56,6 +58,14 @@ var current_coin: int= 200
 
 const INVENTORY_MAX := 16
 
+
+func get_item_status() -> bool:
+  var _temp= is_last_item_correct
+  #print_debug(_temp)
+  is_last_item_correct= false
+  return _temp
+  
+  
 func set_var(id: GameVar, value):
   game_vars[id]= value
 

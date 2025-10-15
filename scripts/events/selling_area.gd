@@ -1,10 +1,19 @@
 extends Node
 func _1(data, g: GameEvent):
-  g.set_item_status(data.expected_item, func():
-    await g.add_coin(3000)
-    )
-
-  
-func _1_after(data, g: GameEvent):
-  g.reset_item_status()
-  
+  if not Car.current_car.is_buying[data.id]:
+    return
+  GameState.item_correct_id= data.expected_item
+  GameState.item_state= GameState.ItemState.CAN_USE
+  await OverlayManager.show_overlay(
+    OverlayManager.Overlay.INVENTORY
+  )
+  if GameState.get_item_status():
+    var car= Car.current_car
+    car.hide_hint(data.id)
+    car.set_is_buying(data.id, false)
+    var item= DB.get_item(data.expected_item)
+    g.add_coin(item.worth)
+  else:
+    print('wrong.')
+  GameState.item_state= GameState.ItemState.CAN_DROP
+  GameState.item_correct_id= -1

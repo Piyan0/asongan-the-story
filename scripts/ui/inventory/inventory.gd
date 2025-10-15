@@ -75,17 +75,21 @@ func event_item_used(item: Inventory.Item):
     event_item_used_wrong(item)
 
 func event_item_used_correct(item: Inventory.Item):
+  GameState.is_last_item_correct= true
   event_item_dropped(item)
+  Mediator.air(Mediator.ITEM_USED_CORRECT)
 
 func event_item_used_wrong(item: Inventory.Item):
+  Mediator.air(Mediator.ITEM_USED_WRONG)
+  
   print('item used wrong.')
+  
   
 func event_item_dropped(item: Inventory.Item):
   erase_current_item()
   DB.erase_inventory_item(item.id)
 
   
-
 func event_item_gave(item: Inventory.Item):
   #print(item.id==GameState.item_correct_id)
   var is_item_used_correct= func() -> bool:

@@ -8,6 +8,7 @@ var is_moving: bool= false
 var tween: Tween
 const base_speed: float= 90
 
+static var current_car: CarScene
 
 
   

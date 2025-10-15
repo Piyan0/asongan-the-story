@@ -3,6 +3,8 @@ class_name GameEvent
 
 func add_coin(value: int):
   Player.player.display_coin(value)
+  GameState.current_coin+= value
+  OverlayManager.get_hud().set_money(GameState.current_coin)
 
 func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
   if not GameState.can_enter_other_area:

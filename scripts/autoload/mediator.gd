@@ -32,6 +32,9 @@ enum {
   PLAYER_CANT_ENTER_OTHER_AREA,
   
   INVENTORY_FULL,
+  
+  ITEM_USED_CORRECT,
+  ITEM_USED_WRONG,
 
 }
 
@@ -64,10 +67,24 @@ var event_mapped: Dictionary[int, Callable]= {
   SCENE_CHANGED: on_scene_changed,
   PLAYER_CANT_ENTER_OTHER_AREA: on_player_cant_enter_other_area,
   INVENTORY_FULL: on_inventory_full,
+  ITEM_USED_CORRECT: on_item_used_correct,
+  ITEM_USED_WRONG: on_item_used_wrong,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
+
+func on_item_used_correct():
+  OverlayManager.stop_current_overlay()
+  #OverlayManager.overlay_hidden.emit()
+  
+    
+func on_item_used_wrong():
+  OverlayManager.stop_current_overlay()
+  air(EVENT_STARTED)
+  await Player.player.play_bubble('no_interact')
+  air(EVENT_FINISHED)
+  pass
 
 func on_inventory_full():
   OverlayManager.show_alert('INVENTORY_MAXED')
@@ -185,12 +202,14 @@ func on_player_bubble_finished():
   pass
 
 func on_EventManager_event_started():
-  OverlayManager.is_can_open= false
+  EventManager.instance.set_can_run(false)
+  #OverlayManager.is_can_open= false
   PlayerMovement.instance.stop(true)
   ControlHint.instance.set_hint('z', 'NONE')
 
 func on_EventManager_event_finished():
-  OverlayManager.is_can_open= true
+  EventManager.instance.set_can_run(true)
+  #OverlayManager.is_can_open= true
   PlayerMovement.instance.stop(false)
   ControlHint.instance.set_hint('z', 'prev')
   

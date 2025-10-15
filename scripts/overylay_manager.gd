@@ -15,7 +15,7 @@ enum Overlay {
 var current_overlay: Overlay= Overlay.IDLE
 var overlays
 
-var is_can_open: bool= false
+var is_can_open: bool= true
 var is_game_paused: bool= false
 
 func _ready():
@@ -81,7 +81,7 @@ func can_show(_overlay: Overlay):
   return false
 
 func show_overlay(id: Overlay) -> void:
-
+  if not is_can_open: return
   var overlay= overlays[id]
   overlay_showned.emit()
   overlay.target.show()
@@ -129,6 +129,7 @@ func get_hud():
   return $hud
 
 func _input(event: InputEvent) -> void:
+ 
   if event.is_action_pressed('x'):
     stop_current_overlay()
     
