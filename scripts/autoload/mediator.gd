@@ -122,7 +122,7 @@ func on_main_menu_loaded() -> void:
     var settings_index: Dictionary= Saveable.string_keys_to_int(
         Saveable.get_data('settings_index')
       )
-    OptionsSelectionMenu.saved_setting_index= settings_index
+    GameState.saved_setting_index= settings_index
     #print( OptionsSelectionMenu.saved_setting_index )
     #print(settings_index)
  
