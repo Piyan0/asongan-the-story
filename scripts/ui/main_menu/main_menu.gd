@@ -113,6 +113,7 @@ func set_menu_list_callback() -> void:
   %button_options.set_meta(BUTTON_CALLBACK, func():
     await stack.change_overlay(Menu.OPTIONS)
     $options.set_initial_options()
+    await get_tree().process_frame
     list_manager.change_focus(Menu.OPTIONS)
     )
     

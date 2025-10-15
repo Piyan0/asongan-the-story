@@ -11,7 +11,7 @@ var audio_options: OptionsSelection
 var actions_key_options: OptionsSelection
 
 var back_callback: Callable= func():
-  pass
+  print('back.')
 
 var multiple_options: MultipleOptionsSelection
 
@@ -60,24 +60,26 @@ func _ready() -> void:
   
   list= VerticalListItem.new(self)
   list.items= get_items()
-  list.index_max= 3
+  list.items.push_back(%back)
+  #print(list.items)
+  list.index_max= 4
   
+  list.selected= func(s):
+    if s== %back:
+      back()
+      
   list.selected_changed= func(n, a):
-    for i: OptionItem in a:
+    #print(n)
+    for i in a:
+      #print(i)
       i.toggle_indicator(false)
     n.toggle_indicator(true)
     
-    if n.get_meta('id'):
+    if n.has_meta('id'):
       multiple_options.change_focus(n.get_meta('id'))
-  
-  list.overflowed_max= func(items: Array):
-    %back.toggle_indicator(true)
-    is_list_overflowed= true
-    multiple_options.pause_focus()
-    for i: OptionItem in items:
-      list.is_active= false
-      i.toggle_indicator(false)
-    
+    else:
+      multiple_options.pause_focus()
+          
   set_language_options()
   set_fullscreen_options()
   set_vsync_options()
@@ -89,12 +91,13 @@ func _ready() -> void:
   multiple_options.add_selection(OptionsID.FULLSCREEN, fullscreen_options)
   multiple_options.add_selection(OptionsID.VSYNC, vsync_options)
   multiple_options.add_selection(OptionsID.AUDIO, audio_options)
-
   
-func get_items() -> Array[OptionItem]:
+  if get_tree().current_scene== self:
+    list.is_active= true
+  
+func get_items() -> Array:
   return [
-%language_options_ui, %fullscreen_ui, %vsync_ui, %audio_ui
-
+%language_options_ui, %fullscreen_ui, %vsync_ui, %audio_ui,
 ]
 
 @onready var language_options_ui: OptionItem = %language_options_ui
@@ -282,11 +285,13 @@ func continue_selection():
   %back.toggle_indicator(false)
   multiple_options.resume_focus()
 
+
 func back():
   save_setting()
   back_callback.call()
-  set_process_input(false)
-
+  list.is_active= false
+  
+  
 func save_setting():
   saved_setting_index[OptionsID.LANGUAGE]= language_options.current_index
   saved_setting_index[OptionsID.FULLSCREEN]= fullscreen_options.current_index
@@ -296,13 +301,5 @@ func save_setting():
 func get_selection() -> VerticalListItem:
   return list
 
-func _input(event: InputEvent) -> void:
-  if event.is_action_pressed('ui_up') and is_list_overflowed:
-    continue_selection()
-    is_list_overflowed= false
-    
-  if event.is_action_pressed('ui_accept') or event.is_action_pressed('z'):
-    #if not list.is_active: return
-    if not is_list_overflowed: return
-    back()
+
   

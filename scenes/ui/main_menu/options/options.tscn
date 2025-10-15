@@ -21,6 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_boy22")
+show_bg = true
 metadata/_edit_horizontal_guides_ = [87.0]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

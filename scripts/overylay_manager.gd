@@ -9,6 +9,7 @@ enum Overlay {
   SHOP,
   TOFU_STAND,
   COFFE_STAND,
+  PAUSE,
   
 }
 var current_overlay: Overlay= Overlay.IDLE
@@ -49,6 +50,12 @@ func _ready():
       close_method= $CoffeStand.close,
       can_close= $CoffeStand.get_can_close,
     },
+    Overlay.PAUSE: {
+      target= $GamePause,
+      show_method= $GamePause.initiate,
+      close_method= $GamePause.close,
+      can_close= func(): return true
+    },
   }
   
   hide_overlays()
@@ -74,6 +81,7 @@ func can_show(_overlay: Overlay):
   return false
 
 func show_overlay(id: Overlay) -> void:
+
   var overlay= overlays[id]
   overlay_showned.emit()
   overlay.target.show()
@@ -88,7 +96,7 @@ func stop_overlay(id: Overlay):
     return
   overlay.target.hide()
   overlay.close_method.call()
-  current_overlay= id
+  current_overlay= Overlay.IDLE
   Mediator.air(Mediator.OVERLAY_HIDDEN, [id])
   overlay_hidden.emit()
 
@@ -118,5 +126,10 @@ func get_hud():
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('x'):
     stop_current_overlay()
+    
   if event.is_action_pressed("left_click"):
     lmb_clicked.emit()
+  
+  if event.is_action_pressed("c") and current_overlay== Overlay.IDLE:
+    print_debug(1)
+    Mediator.air(Mediator.GAME_PAUSED)

@@ -14,6 +14,7 @@ enum GameVar{
   IS_DONE_SOMETHING,
 }
 
+var is_game_paused= false
 #SAVE
 var visible_state= {
   Visible.MAIN_ROAD_001: true,

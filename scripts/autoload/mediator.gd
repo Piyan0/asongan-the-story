@@ -213,10 +213,17 @@ func on_game_started():
   #air(EVENT_STARTED)
   
 func on_game_paused():
-  PlayerMovement.instance.stop(true)
+  air(EVENT_STARTED)
+  OverlayManager.show_overlay(
+    OverlayManager.Overlay.PAUSE
+  )
+  GameState.is_game_paused= true
   print('game paused')
 
 func on_game_resumed():
+  air(EVENT_FINISHED)
+  OverlayManager.stop_current_overlay()
+  GameState.is_game_paused= false
   print('game resumed')
   PlayerMovement.instance.stop(false)
 

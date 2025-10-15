@@ -12,7 +12,7 @@ var _can_select: Callable= func():
   return true
   
 var index_active : int = -1
-var items : Array[Variant]
+var items : Array
 var last_selected_child: Node
 var index_max: int
 var is_started_selecting: bool= false 
@@ -55,6 +55,12 @@ func get_selected() -> Node:
 
 func toggle_input(is_on: bool):
   is_active= is_on
+ 
+ 
+func reset():
+  index_active=0
+  last_selected_child= items[0]
+  
   
 func _input(event: InputEvent) -> void:
   if not _can_select.call() or not is_active:
