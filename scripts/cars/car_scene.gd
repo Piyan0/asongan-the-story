@@ -16,6 +16,9 @@ enum SellTemplate{
 static var car_delay_cache: ={
   
 }
+
+static var moving_cars: Dictionary[int, CarScene]
+
 @export var car_id: Car.CarID
 
 static func get_template(id: SellTemplate) -> Array[SellData]:
@@ -58,7 +61,15 @@ static func get_template(id: SellTemplate) -> Array[SellData]:
     
   return []
   
+
+static func set_moving_car(id: int, car: CarScene):
+  moving_cars[id]= car
+   
   
+static func reset_moving_cars() -> void:
+  moving_cars= {}
+ 
+ 
 static func get_cached_delay(id: Car.CarID):
   return car_delay_cache[id]
 

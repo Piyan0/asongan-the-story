@@ -70,6 +70,7 @@ func hide_hint(id: int):
   
   
 func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  CarScene.set_moving_car(car_id, self)
   CarScene.car_delay_cache[car_id]= delay
   is_buying[0]= false
   is_buying[1]= false
