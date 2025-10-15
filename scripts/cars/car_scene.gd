@@ -12,6 +12,10 @@ enum SellTemplate{
   TOFU_WITH_RICE_ROLL_ONLY,
   COFFE_ONLY,
 }
+
+static var car_delay_cache: ={
+  
+}
 @export var car_id: Car.CarID
 
 static func get_template(id: SellTemplate) -> Array[SellData]:
@@ -54,6 +58,11 @@ static func get_template(id: SellTemplate) -> Array[SellData]:
     
   return []
   
+  
+static func get_cached_delay(id: Car.CarID):
+  return car_delay_cache[id]
+
+
 func _car_instance() -> Car:
   return null
   
