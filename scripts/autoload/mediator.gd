@@ -112,6 +112,7 @@ func set_train_arrival(seconds: int):
   on_train_timer_finished()
   
 func on_main_menu_loaded() -> void:
+  OverlayManager.set_process_input(false)
   Saveable.load_from_file()
   if Saveable.has_key('settings'):
     GameOptions.new().apply_settings(
@@ -204,6 +205,7 @@ func on_EventManager_player_exited_area():
 
 func on_game_started():
   #air(EVENT_STARTED)
+  OverlayManager.set_process_input(true)
   OverlayManager.is_can_open= true
   CarManager.instance.ready()
   await Transition.instance.play_transition(false)

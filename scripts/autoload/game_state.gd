@@ -15,7 +15,6 @@ enum GameVar{
 }
 
 var saved_setting_index= {}
-
 var is_game_paused= false
 #SAVE
 var visible_state= {

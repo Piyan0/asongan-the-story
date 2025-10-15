@@ -19,7 +19,7 @@ var is_can_open: bool= false
 var is_game_paused: bool= false
 
 func _ready():
-  
+ 
   get_hud().set_money(GameState.current_coin)
   get_hud().set_train_arrival(99, 99)
   
@@ -119,6 +119,11 @@ func show_alert(t: String, is_auto_hide: bool= true):
   
 func get_alert():
   return alert
+
+
+func is_main():
+  
+  return get_tree().current_scene== self
 
 func get_hud():
   return $hud
