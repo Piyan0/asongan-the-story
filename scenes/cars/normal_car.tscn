@@ -79,13 +79,13 @@ _data = {
 [sub_resource type="Resource" id="Resource_5rfnj"]
 script = ExtResource("8_lt7va")
 expected_item = 50
-id = 1
+id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
 [sub_resource type="Resource" id="Resource_lt7va"]
 script = ExtResource("8_lt7va")
 expected_item = 52
-id = 0
+id = 1
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lt7va"]

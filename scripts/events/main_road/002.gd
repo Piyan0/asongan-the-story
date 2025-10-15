@@ -1,7 +1,7 @@
 extends Node
 
 #events start with _+number, the d, g is injected in EventArea.
-func _1(d: EventUniqueData, g: GameEvent):
+func _1(d: Callable, g: GameEvent):
   print('open inventory.')
   await OverlayManager.show_overlay(OverlayManager.Overlay.INVENTORY)
 

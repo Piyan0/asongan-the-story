@@ -1,21 +1,31 @@
 extends Node2D
 
 var arr
-var x= 1
+
 func _ready() -> void:
-  var y= test.bind(get_)
-  x= 2
-  y.call()
-  arr= [
-      $NormalCar._car_instance().move_car.bind(0, func(): return Vector2($Marker2D2.position.x,263) ),
-      $NormalCar2._car_instance().move_car.bind(2, Car.get_back_point.bind(Car.CarID.CAR_001)),
-      $NormalCar3._car_instance().move_car.bind(7, Car.get_back_point.bind(Car.CarID.CAR_002))
+  
+  var sell_data_test= CarScene.SellData.new()
+  sell_data_test.id= DB.Food.TOFU_WITH_RICE_ROLL
+  sell_data_test.sell_id=0
+  
+  var sell_data_test_2= CarScene.SellData.new()
+  sell_data_test_2.id= DB.Food.PACK_OF_TOFU
+  sell_data_test_2.sell_id=1
+  
+  var sell_data_test_3= CarScene.SellData.new()
+  sell_data_test_3.id= DB.Food.COFFE
+  sell_data_test_3.sell_id=1
+  
+  var test: Array[CarScene.SellData]= [
+    sell_data_test,
+    sell_data_test_2
   ]
+  var test_2: Array[CarScene.SellData]= [sell_data_test, sell_data_test_3]
+
+  arr= [
+      $NormalCar.move_and_buy.bind(2*0, func(): return Vector2($Marker2D2.position.x,263), CarScene.get_template(CarScene.SellTemplate.TOFU_AND_COFFE) ),
+      $NormalCar2.move_and_buy.bind(2*1, Car.get_back_point.bind(Car.CarID.CAR_001), CarScene.get_template(CarScene.SellTemplate.TOFU_ONLY)),
+      ]
+  
   for i in arr:
     i.call()
-
-func test(x):
-  print(x.call())
-
-func get_():
-  return x

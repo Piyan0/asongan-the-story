@@ -1,8 +1,59 @@
 extends Node2D
 class_name CarScene
 
+class SellData:
+  var id: DB.Food
+  var sell_id: int
+
+enum SellTemplate{
+  TOFU_ONLY,
+  TOFU_AND_EXTRA,
+  TOFU_AND_COFFE,
+  TOFU_WITH_RICE_ROLL_ONLY,
+  COFFE_ONLY,
+}
 @export var car_id: Car.CarID
 
+static func get_template(id: SellTemplate) -> Array[SellData]:
+  match id:
+    SellTemplate.TOFU_ONLY:
+      var sell_001 := SellData.new()
+      sell_001.sell_id= 0
+      sell_001.id= DB.Food.PACK_OF_TOFU
+      return [sell_001]
+      
+    SellTemplate.TOFU_AND_EXTRA:
+      var sell_001 := SellData.new()
+      sell_001.sell_id= 0
+      sell_001.id= DB.Food.PACK_OF_TOFU
+      var sell_002 := SellData.new()
+      sell_002.sell_id= 1
+      sell_002.id= DB.Food.TOFU_WITH_RICE_ROLL
+      return [sell_001, sell_002]
+      
+    SellTemplate.TOFU_AND_COFFE:
+      var sell_001 := SellData.new()
+      sell_001.sell_id= 0
+      sell_001.id= DB.Food.PACK_OF_TOFU
+      var sell_002 := SellData.new()
+      sell_002.sell_id= 1
+      sell_002.id= DB.Food.COFFE
+      return [sell_001, sell_002]
+      
+    SellTemplate.TOFU_WITH_RICE_ROLL_ONLY:
+      var sell_002 := SellData.new()
+      sell_002.sell_id= 0
+      sell_002.id= DB.Food.TOFU_WITH_RICE_ROLL
+      return [sell_002]
+      
+    SellTemplate.COFFE_ONLY:
+      var sell_002 := SellData.new()
+      sell_002.sell_id= 0
+      sell_002.id= DB.Food.COFFE
+      return [sell_002]
+    
+  return []
+  
 func _car_instance() -> Car:
   return null
   

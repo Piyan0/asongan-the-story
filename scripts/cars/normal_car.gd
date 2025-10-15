@@ -1,17 +1,23 @@
 extends CarScene
 
+
+
 var car: Car
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var area_2d: Area2D = $Area2D
 
 var hints:= []
+var sell_areas= []
 var is_buying= {
-  0: true,
-  1: true,
+  0: false,
+  1: false,
 }
 func _ready() -> void:
+  sell_areas= [
+    $event, $event2
+  ]
   hints= [
-    $but_hint, $but_hint2
+    $but_hint2, $but_hint
   ]
   car= Car.new()
   car.parent_node= self
@@ -35,18 +41,46 @@ func _ready() -> void:
     if area.name != 'player': return
     Car.current_car= null
     )
+  
+  if not is_main():
+    hide_hint(0)
+    hide_hint(1)
 
 
+func is_main():
+  return get_tree().current_scene== self
+
+
+func match_icon(id: int, item_id: DB.Food):
+  hints[id].get_child(0).get_child(1).texture= (
+    load(DB.get_item(item_id).icon)
+  )
+  
+  
 func set_is_buying(id: int, cond: bool):
   is_buying[id]= cond
   
 func show_hint(id: int):
+  match_icon(id, sell_areas[id].event_unique_data.expected_item)    
   hints[id].show()
  
 
 func hide_hint(id: int):
   hints[id].hide()
   
+  
+func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  is_buying[0]= false
+  is_buying[1]= false
+  await _car_instance().move_car(delay, _position_return)
+  is_buying[sell_data[0].sell_id]= true
+  sell_areas[0].event_unique_data.expected_item= sell_data[0].id
+  show_hint(0)
+  if sell_data.size()-1 >0:
+    sell_areas[1].event_unique_data.expected_item= sell_data[1].id
+    is_buying[sell_data[1].sell_id]= true
+    show_hint(1)
+    
   
 func set_label(t):
   $Label.text= t
