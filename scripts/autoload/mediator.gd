@@ -194,7 +194,7 @@ func on_EventManager_event_finished():
   ControlHint.instance.set_hint('z', 'prev')
   
 func on_EventManager_player_entered_area():
-  ControlHint.instance.set_hint('z', 'Interact')
+  ControlHint.instance.set_hint('z', 'INTERACT')
   ControlHint.instance.save_hint('z')
 
 func on_EventManager_player_exited_area():
