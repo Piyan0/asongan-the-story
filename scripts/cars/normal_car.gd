@@ -75,6 +75,8 @@ func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[Sel
   is_buying[0]= false
   is_buying[1]= false
   await _car_instance().move_car(delay, _position_return)
+  if sell_data.is_empty():
+    return
   is_buying[sell_data[0].sell_id]= true
   sell_areas[0].event_unique_data.expected_item= sell_data[0].id
   show_hint(0)

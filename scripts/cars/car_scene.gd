@@ -18,6 +18,7 @@ static var car_delay_cache: ={
 }
 
 static var moving_cars: Dictionary[int, CarScene]
+static var vanish_point: float= 1400
 
 @export var car_id: Car.CarID
 
@@ -69,7 +70,18 @@ static func set_moving_car(id: int, car: CarScene):
 static func reset_moving_cars() -> void:
   moving_cars= {}
  
+
+static func move_to_vanish_point():
+  for i in moving_cars:
+    var car: CarScene= moving_cars[i]
+    car.hide_hint(0)
+    car.hide_hint(1)
+    car.is_buying[0]= false
+    car.is_buying[1]= false
+    var empty_buy: Array[SellData]= []
+    car.move_and_buy(get_cached_delay(car.car_id), func(): return Vector2(vanish_point, car.position.y), empty_buy)
  
+
 static func get_cached_delay(id: Car.CarID):
   return car_delay_cache[id]
 
