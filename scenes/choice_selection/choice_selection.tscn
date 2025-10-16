@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://bijtwv1v6oxya"]
+
+[ext_resource type="Script" uid="uid://0a3p0m1xlsfm" path="res://scripts/choice_selection/choice_selection.gd" id="1_qtqse"]
+[ext_resource type="Texture2D" uid="uid://b35iobngdxlkg" path="res://assets/sprites/bubble.png" id="2_lb26v"]
+[ext_resource type="Texture2D" uid="uid://bd33qi7tvpog" path="res://assets/sprites/bubble_tail.png" id="3_ol3vw"]
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="4_61rsq"]
+
+[sub_resource type="Animation" id="Animation_5rfnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_lt7va"]
+resource_name = "idle"
+length = 0.500008
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5, 4), Vector2(5, 3), Vector2(5, 4), Vector2(5, 5), Vector2(5, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ma5oh"]
+_data = {
+&"RESET": SubResource("Animation_5rfnj"),
+&"idle": SubResource("Animation_lt7va")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_gnnle"]
+font = ExtResource("4_61rsq")
+
+[node name="ChoiceSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 214.0
+offset_top = 118.0
+offset_right = -284.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtqse")
+
+[node name="buy_hint" type="NinePatchRect" parent="."]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 75.0
+offset_bottom = 41.0
+texture = ExtResource("2_lb26v")
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="buy_hint"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1.5
+offset_top = -1.0
+offset_right = 1.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_ol3vw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="buy_hint"]
+libraries = {
+&"": SubResource("AnimationLibrary_ma5oh")
+}
+
+[node name="Label" type="Label" parent="buy_hint"]
+modulate = Color(0.54902, 0.486275, 0.47451, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 3.0
+offset_bottom = 16.0
+grow_horizontal = 2
+text = "Option_1"
+label_settings = SubResource("LabelSettings_gnnle")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="buy_hint"]
+modulate = Color(0.54902, 0.486275, 0.47451, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Option_1"
+label_settings = SubResource("LabelSettings_gnnle")
+horizontal_alignment = 1

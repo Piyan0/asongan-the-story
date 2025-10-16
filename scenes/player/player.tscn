@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dphex2iywxwcu"]
+[gd_scene load_steps=36 format=3 uid="uid://dphex2iywxwcu"]
 
 [ext_resource type="Script" uid="uid://b5srxnj3i464y" path="res://scripts/player/player.gd" id="1_fcs02"]
 [ext_resource type="Texture2D" uid="uid://c64a2h1xdvfgg" path="res://assets/sprites/player_shadow.png" id="2_myrg7"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://cj12amksp6ktp" path="res://scripts/player/movement.gd" id="21_yj68g"]
 [ext_resource type="Script" uid="uid://b0ffyh6sdieb0" path="res://scripts/player/throw_item.gd" id="22_ioxgp"]
 [ext_resource type="Texture2D" uid="uid://bls8gvv0ibffm" path="res://assets/sprites/items/tofu.png" id="23_cnsyf"]
+[ext_resource type="PackedScene" uid="uid://bijtwv1v6oxya" path="res://scenes/choice_selection/choice_selection.tscn" id="24_007i1"]
 [ext_resource type="Script" uid="uid://dvqr48dv72lme" path="res://scripts/camera.gd" id="24_cnsyf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_og1vs"]
@@ -345,3 +346,9 @@ shape = SubResource("CircleShape2D_ioxgp")
 position_smoothing_speed = 11.765
 script = ExtResource("24_cnsyf")
 metadata/_custom_type_script = "uid://dvqr48dv72lme"
+
+[node name="ChoiceSelection" parent="." instance=ExtResource("24_007i1")]
+offset_left = -41.0
+offset_top = -113.0
+offset_right = -41.0
+offset_bottom = -113.0
