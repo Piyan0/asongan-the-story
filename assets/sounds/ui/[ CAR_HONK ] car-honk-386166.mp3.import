@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brti8lpbtsoc7"
+path="res://.godot/imported/[ CAR_HONK ] car-honk-386166.mp3-7da2a79feadb2f8ef1c5a05afacc1cfc.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ui/[ CAR_HONK ] car-honk-386166.mp3"
+dest_files=["res://.godot/imported/[ CAR_HONK ] car-honk-386166.mp3-7da2a79feadb2f8ef1c5a05afacc1cfc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
