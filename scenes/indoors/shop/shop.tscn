@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr4s5odagt13n"]
+[gd_scene load_steps=15 format=3 uid="uid://dr4s5odagt13n"]
 
 [ext_resource type="Script" uid="uid://b5ih2k30dglja" path="res://scripts/shop.gd" id="1_2rpvr"]
 [ext_resource type="Texture2D" uid="uid://byg8tjh67e240" path="res://assets/sprites/indoors/shop/scene.png" id="1_4mx8o"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dpwsd6rpd1wev" path="res://scripts/events/shop/002.gd" id="9_t7xej"]
 [ext_resource type="Script" uid="uid://cp7qpwnb3tkvb" path="res://scripts/events/common_door.gd" id="9_vthxs"]
 [ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="10_jrqu0"]
+[ext_resource type="Script" uid="uid://56u5ewuyrr6q" path="res://scripts/events/shop/auto.gd" id="11_vthxs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_td876"]
 animations = [{
@@ -335,12 +336,16 @@ position = Vector2(-205, -163)
 polygon = PackedVector2Array(377, 166, 377, 170, 378, 170, 378, 166)
 
 [node name="event0" parent="." instance=ExtResource("6_t7xej")]
+event_id = 50
+events = ExtResource("11_vthxs")
+
+[node name="event1" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 269)
 event_unique_data = SubResource("Resource_2rpvr")
 event_id = 51
 events = ExtResource("9_vthxs")
 
-[node name="event1" parent="." instance=ExtResource("6_t7xej")]
+[node name="event2" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 204)
 event_id = 52
 events = ExtResource("9_t7xej")
