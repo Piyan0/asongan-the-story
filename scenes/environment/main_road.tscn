@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=22 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c0xxhnjsr2n88" path="res://scripts/events/main_road/006.gd" id="15_gsf1v"]
 [ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
 [ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
+[ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="18_a4cjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3fmx"]
 size = Vector2(135.776, 598)
@@ -160,3 +161,9 @@ car_id = 10
 [node name="NormalCar12" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-833, 354)
 car_id = 11
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(171, 182)
+stream = ExtResource("18_a4cjr")
+autoplay = true
+max_distance = 415.0

@@ -48,4 +48,3 @@ stream = ExtResource("11_5gjg6")
 
 [node name="bgm_ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_qnxr6")
-autoplay = true

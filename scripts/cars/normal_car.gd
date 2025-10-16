@@ -11,7 +11,10 @@ var is_buying= {
   1: false,
 }
 var reset_position: bool= true
+static var sound= null
 func _ready() -> void:
+  if not sound:
+    sound= $sfx
   sell_areas= [
     $event, $event2
   ]
@@ -67,10 +70,11 @@ func show_hint(id: int):
 func hide_hint(id: int):
   hints[id].hide()
   
-@onready var sfx: AudioStreamPlayer2D = $sfx
-
-func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
   
+func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  if not sound.playing:
+    sound.play()
+    
   if reset_position:
     position.x= CarScene.spawn_x_pos
     reset_position= false
