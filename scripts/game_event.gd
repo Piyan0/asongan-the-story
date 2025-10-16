@@ -6,11 +6,7 @@ func add_coin(value: int):
   GameState.current_coin+= value
   OverlayManager.get_hud().set_money(GameState.current_coin)
 
-func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
-  if not GameState.can_enter_other_area:
-    Mediator.air(Mediator.PLAYER_CANT_ENTER_OTHER_AREA)
-    return
-    
+func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):    
   Mediator.air(Mediator.TRAIN_TIMER_TOGGLE, [false])
   var player_last_idle_animation= PlayerMovement.instance.current_idle_animation
   var player_last_x_axis= PlayerMovement.instance.last_x_axis

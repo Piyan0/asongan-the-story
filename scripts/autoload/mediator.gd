@@ -117,6 +117,7 @@ func on_inventory_full():
   
 func on_player_cant_enter_other_area():
   OverlayManager.show_alert('CANT_ENTER')
+  pass
   
 func on_scene_changed():
   print('scene is changed.')
