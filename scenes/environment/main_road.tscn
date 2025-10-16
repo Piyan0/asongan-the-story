@@ -31,7 +31,7 @@ texture = ExtResource("1_3vthi")
 centered = false
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(44.3333, 179.182)
+position = Vector2(850, 165)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1438, 234)

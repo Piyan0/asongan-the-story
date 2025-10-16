@@ -35,6 +35,8 @@ enum {
   
   ITEM_USED_CORRECT,
   ITEM_USED_WRONG,
+  
+  CAR_BATCH,
 
 }
 
@@ -69,11 +71,29 @@ var event_mapped: Dictionary[int, Callable]= {
   INVENTORY_FULL: on_inventory_full,
   ITEM_USED_CORRECT: on_item_used_correct,
   ITEM_USED_WRONG: on_item_used_wrong,
+  
+  CAR_BATCH: on_car_batch,
 }
   
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
+
+func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20):
+  print(1)
+  for i in  cars_callback:
+    CarScene.add_car_moving(i)
+  CarScene.move_based_on_callable()
+  await GameState.car_lined
+  
+  TrainStopping.instance.toggle_lever(true)
+  Train.instance.move_train(trains_duration)
+  await Train.instance.train_leaved
+  TrainStopping.instance.toggle_lever(false)
+  CarScene.move_to_vanish_point()
+  await GameState.car_lined
+  print('finished.')
+  
 func on_item_used_correct():
   OverlayManager.stop_current_overlay()
   #OverlayManager.overlay_hidden.emit()
