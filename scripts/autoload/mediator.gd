@@ -96,7 +96,7 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
     CarScene.add_car_moving(i)
   CarScene.move_based_on_callable()
   await GameState.car_lined
-  
+  Sound.play(Sound.SFX.CAR_HONK)
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d6iggkbjmbdu"
+path="res://.godot/imported/[ INVENTORY OPEN ] open-bag-sound-39216.mp3-bc02dc0a2ba033b2396703365ad5ef81.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ui/[ INVENTORY OPEN ] open-bag-sound-39216.mp3"
+dest_files=["res://.godot/imported/[ INVENTORY OPEN ] open-bag-sound-39216.mp3-bc02dc0a2ba033b2396703365ad5ef81.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

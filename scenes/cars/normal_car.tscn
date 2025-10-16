@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dc47iab81xsau"]
+[gd_scene load_steps=20 format=3 uid="uid://dc47iab81xsau"]
 
 [ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
 [ext_resource type="Texture2D" uid="uid://vptf5foi6gpm" path="res://assets/sprites/cars/normal_car/1.png" id="2_6shbv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bll0y00ufegmy" path="res://modules/event_system/scenes/event.tscn" id="7_bpyxf"]
 [ext_resource type="Script" uid="uid://bg82lf7whq1q7" path="res://scripts/events_unique_data/common_sell_item.gd" id="8_lt7va"]
 [ext_resource type="Script" uid="uid://d0b2swwkolsmg" path="res://scripts/events/selling_area.gd" id="8_xy7xi"]
+[ext_resource type="AudioStream" uid="uid://btwy0ykvxypg4" path="res://assets/sounds/ui/[ CAR ENGINE ] bus-engine-47297.mp3" id="10_5rfnj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eu8vt"]
 animations = [{
@@ -76,14 +77,14 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
-[sub_resource type="Resource" id="Resource_lt7va"]
+[sub_resource type="Resource" id="Resource_ma5oh"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 50
 id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
-[sub_resource type="Resource" id="Resource_5rfnj"]
+[sub_resource type="Resource" id="Resource_4egjp"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 52
@@ -261,13 +262,13 @@ autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(19, 1)
-event_unique_data = SubResource("Resource_lt7va")
+event_unique_data = SubResource("Resource_ma5oh")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(-23, 1)
-event_unique_data = SubResource("Resource_5rfnj")
+event_unique_data = SubResource("Resource_4egjp")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
@@ -278,3 +279,7 @@ position = Vector2(-42.1755, -51.398)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(46.1755, 24.199)
 shape = SubResource("RectangleShape2D_lt7va")
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_5rfnj")
+max_distance = 328.0

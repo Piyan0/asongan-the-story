@@ -31,7 +31,7 @@ func initiate_shop():
   
   
 func display_items() -> void:
-  
+  Sound.play(Sound.SFX.UI_INVENTORY)
   initiate_shop()
   
   var items: Array[Shop.ShopItem]= shop.get_items()
@@ -75,7 +75,7 @@ func initiate_selection():
   list= VerticalListItem.new(self)
   list.items= get_items_ui()
   list.index_max= get_items_ui().size()-1
-  
+  list._sound_accept= Sound.SFX.UI_TRANSACTION
   list._can_select= func():
     return is_idle()
     
@@ -105,7 +105,7 @@ func on_try_to_buy(item: Shop.ShopItem):
   shop.buy_item(item)
 
 func event_item_buyed(item: Shop.ShopItem):
-  
+  #Sound.play(Sound.SFX.UI_TRANSACTION)
   DB.set_item_shop(item.item.id, {
     'stock': item.stock,
     'owned': item.owned

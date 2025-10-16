@@ -9,6 +9,7 @@ func _1(data, g: GameEvent):
     OverlayManager.Overlay.INVENTORY
   )
   if GameState.get_item_status():
+    Sound.play(Sound.SFX.UI_TRANSACTION)
     var car= Car.current_car
     car.hide_hint(data.call().id)
     car.set_is_buying(data.call().id, false)

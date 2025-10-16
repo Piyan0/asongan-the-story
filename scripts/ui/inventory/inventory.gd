@@ -18,6 +18,7 @@ func _ready() -> void:
   #initiate_selection()
   
 func display_inventory():
+  Sound.play(Sound.SFX.UI_INVENTORY)
   inventory= Inventory.new()
   fill(inventory)
   

@@ -8,10 +8,14 @@ enum SFX{
   UI_ALERT,
   UI_ACCEPT,
   UI_POP_UP,
+  UI_TRANSACTION,
+  UI_INVENTORY,
+  CAR_HONK,
+  
 }
 
 enum BGM{
-  BGM_SAD=50
+  BGM_AMBIENCE=50
 }
 
 var sounds= {}
@@ -22,7 +26,11 @@ var sounds= {}
 @onready var ui_alert: AudioStreamPlayer = $ui_alert
 @onready var ui_accept: AudioStreamPlayer = $ui_accept
 @onready var ui_pop_up: AudioStreamPlayer = $ui_pop_up
-
+@onready var ui_transaction: AudioStreamPlayer = $ui_transaction
+@onready var ui_inventory: AudioStreamPlayer = $ui_inventory
+@onready var car_honk: AudioStreamPlayer = $car_honk
+@onready var bgm_ambience: AudioStreamPlayer = $bgm_ambience
+ 
 func _ready() -> void:
   sounds= {
     SFX.UI_SELECT: ui_select,
@@ -32,6 +40,10 @@ func _ready() -> void:
     SFX.UI_ALERT: ui_alert,
     SFX.UI_ACCEPT: ui_accept,
     SFX.UI_POP_UP: ui_pop_up,
+    SFX.UI_TRANSACTION: ui_transaction,
+    SFX.UI_INVENTORY: ui_inventory,
+    SFX.CAR_HONK: car_honk,
+    BGM.BGM_AMBIENCE: bgm_ambience,
     }
     
 

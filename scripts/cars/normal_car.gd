@@ -67,8 +67,10 @@ func show_hint(id: int):
 func hide_hint(id: int):
   hints[id].hide()
   
-  
+@onready var sfx: AudioStreamPlayer2D = $sfx
+
 func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  
   if reset_position:
     position.x= CarScene.spawn_x_pos
     reset_position= false
