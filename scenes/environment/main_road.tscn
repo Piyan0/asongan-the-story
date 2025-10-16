@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bll0y00ufegmy" path="res://modules/event_system/scenes/event.tscn" id="5_cfafu"]
 [ext_resource type="Script" uid="uid://t1o4qf4sa8ml" path="res://scripts/events_unique_data/common_door.gd" id="6_i6ch8"]
 [ext_resource type="PackedScene" uid="uid://lukntc1w20oe" path="res://scenes/train/train_stopping.tscn" id="6_px678"]
-[ext_resource type="Script" uid="uid://cp7qpwnb3tkvb" path="res://scripts/events/common_door.gd" id="6_tdjtn"]
 [ext_resource type="PackedScene" uid="uid://cll0ryt0j8voh" path="res://scenes/train/train.tscn" id="7_px678"]
 [ext_resource type="Script" uid="uid://2abs2qd1nkwo" path="res://scripts/main_road_manager.gd" id="8_cf2ie"]
+[ext_resource type="Script" uid="uid://mx46f4qvpluk" path="res://scripts/events/main_road/001.gd" id="10_gsf1v"]
 [ext_resource type="Script" uid="uid://b5sc3v6hcfim6" path="res://scripts/events/main_road/002.gd" id="10_jhre1"]
 [ext_resource type="Script" uid="uid://b1auhnen8wg21" path="res://scripts/events/main_road/003.gd" id="11_i6ch8"]
 [ext_resource type="Script" uid="uid://dy8f8wyh2fji5" path="res://scripts/events/main_road/004.gd" id="12_lv3wr"]
@@ -70,7 +70,7 @@ events = ExtResource("13_oifoc")
 position = Vector2(194, 149)
 event_unique_data = SubResource("Resource_lv3wr")
 event_id = 1
-events = ExtResource("6_tdjtn")
+events = ExtResource("10_gsf1v")
 
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(433, 136)

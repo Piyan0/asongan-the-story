@@ -62,6 +62,10 @@ var current_coin: int= 200
 const INVENTORY_MAX := 16
 
 
+func set_event(id: EventsID.ID, event: int):
+  events_id[id]= '_'+str(event)
+  
+  
 func get_item_status() -> bool:
   var _temp= is_last_item_correct
   #print_debug(_temp)

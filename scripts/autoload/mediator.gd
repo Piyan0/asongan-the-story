@@ -28,6 +28,7 @@ enum {
   
   CURRENT_COIN,
   
+  CHANGE_SCENE,
   SCENE_CHANGED,
   PLAYER_CANT_ENTER_OTHER_AREA,
   
@@ -66,6 +67,7 @@ var event_mapped: Dictionary[int, Callable]= {
   TRAIN_TIMER_START: set_train_arrival,
   TRAIN_TIMER_TOGGLE: on_train_timer_toggle,
   
+  CHANGE_SCENE: on_change_scene,
   SCENE_CHANGED: on_scene_changed,
   PLAYER_CANT_ENTER_OTHER_AREA: on_player_cant_enter_other_area,
   INVENTORY_FULL: on_inventory_full,
@@ -78,8 +80,17 @@ var event_mapped: Dictionary[int, Callable]= {
 func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
-
+func on_change_scene():
+  print('opening door.')
+  GameState.car_lined.emit()
+  
+  
 func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
+  GameState.set_event(
+    EventsID.ID.MAIN_ROAD_001,
+    2
+  )
+
   GameState.can_enter_other_area= false
   for i in cars_callback:
     CarScene.add_car_moving(i)
@@ -92,6 +103,10 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   await GameState.lever_pulled
   GameState.can_enter_other_area= true
   TrainStopping.instance.toggle_lever(false)
+  GameState.set_event(
+    EventsID.ID.MAIN_ROAD_001,
+    1
+  )
   if not move_after_trains_leaved:
     return
   PlayerLimit.instance.toggle(true)
