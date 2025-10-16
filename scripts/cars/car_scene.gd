@@ -72,11 +72,23 @@ static func add_car_moving(callable: Callable):
   
   
 static func move_based_on_callable():
+  current_car_arrived= 0
+  var on_car_arrived= func(max):
+    current_car_arrived+= 1
+    if current_car_arrived>= max:
+      moving_cars= {}
+      car_moving_callback= []
+      print('all cars moved.')
+      
   for i in car_moving_callback:
     i.call()
     await Mediator.get_tree().process_frame
+  
+  var total_cars: int= moving_cars.size()
+  for i in moving_cars:
+    moving_cars[i]._arrived= on_car_arrived.bind(total_cars)
     
-    
+  
 static func reset_moving_cars() -> void:
   moving_cars= {}
  
