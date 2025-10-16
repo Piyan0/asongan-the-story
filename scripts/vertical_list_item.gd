@@ -27,7 +27,8 @@ func release() -> void:
   freed.bind(items).call()
   
 func set_index_active(add_by: int) -> void:
-  Sound.play(_sound_select)
+  if is_started_selecting:
+    Sound.play(_sound_select)
   var is_overflowed_max: bool= false
   var is_overflowed_min: bool= false
   index_active+= add_by

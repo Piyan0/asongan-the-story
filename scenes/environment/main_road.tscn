@@ -48,7 +48,7 @@ position = Vector2(1438, 234)
 position = Vector2(970, 380)
 
 [node name="Train" parent="." instance=ExtResource("7_px678")]
-position = Vector2(1105, 176)
+position = Vector2(1105, -30)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

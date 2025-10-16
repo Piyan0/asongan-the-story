@@ -65,8 +65,8 @@ func initiate_selection():
     event_item_selected(s)
     
   list.is_active= true
-  list.is_started_selecting= true
   list.set_index_active(1)
+  list.is_started_selecting= true
 
 func event_item_used(item: Inventory.Item):
   #print(item.id==GameState.item_correct_id)

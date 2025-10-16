@@ -92,8 +92,8 @@ func initiate_selection():
     on_try_to_buy(n.get_meta(META_ITEM))
   
   list.is_active= true
-  list.is_started_selecting= true
   list.set_index_active(1)
+  list.is_started_selecting= true
 
 func is_coin_enough(cost: int):
   return current_coin>= cost
