@@ -24,6 +24,8 @@ func toggle_selection(is_on: bool):
         i.modulate= Color('4e5463')
       s.modulate= Color('ddcf99')
     list.is_active= true
+    list.is_started_selecting= true
+    list.set_index_active(1)
     control.show()
     list.selected= func(s):
       match s.get_meta('type'):

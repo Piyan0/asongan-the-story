@@ -48,6 +48,8 @@ func get_items():
  
   
 func initiate_selection():
+  if get_items().is_empty():
+    return
   list= GridListItem.new(self)
   list.items= get_items()
   list.column= 6
@@ -63,6 +65,8 @@ func initiate_selection():
     event_item_selected(s)
     
   list.is_active= true
+  list.is_started_selecting= true
+  list.set_index_active(1)
 
 func event_item_used(item: Inventory.Item):
   #print(item.id==GameState.item_correct_id)
@@ -136,11 +140,15 @@ func erase_current_item():
     list.index_active= 0
   else:
     list.index_active-= 1
-  list.items= get_items()
-  list.last_selected_child= null
-  list.is_started_selecting= false
   current_slot-= 1
   set_slot(current_slot)
+  if get_items().is_empty():
+    list.queue_free()
+    return
+  list.items= get_items()
+  #list.last_selected_child= null
+  #list.is_started_selecting= false
+  list.set_index_active(0)
   #print(list.items)
   
 @onready var slot: Label = %slot

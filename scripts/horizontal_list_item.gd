@@ -1,7 +1,8 @@
 extends Node
 class_name HorizontalListItem
 
-
+var _sound_select= Sound.SFX.UI_SELECT
+var _sound_accept= Sound.SFX.UI_ACCEPT
 var overflowed_max: Callable= func(_items): pass
 var overflowed_min: Callable= func(_items): pass
 
@@ -25,6 +26,7 @@ func release() -> void:
   freed.bind(items).call()
   
 func set_index_active(add_by: int) -> void:
+  Sound.play(_sound_select)
   index_active+= add_by
   if index_active > index_max:
     index_active= index_max
@@ -63,4 +65,5 @@ func _input(event: InputEvent) -> void:
   elif event.is_action_pressed('z') or event.is_action_pressed('ui_accept'):
     if not is_started_selecting: return
     selected.call(last_selected_child)
+    Sound.play(_sound_accept)
     #print(name)

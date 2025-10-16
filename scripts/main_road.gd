@@ -3,6 +3,7 @@ extends Node2D
 var arr
 
 func _ready() -> void:
+  
   var y= test.bind(1)
   y= y.bind(2)
   y.call()

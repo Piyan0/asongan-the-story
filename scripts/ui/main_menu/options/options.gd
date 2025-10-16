@@ -269,6 +269,7 @@ func set_vsync_options():
   self.add_child.call_deferred(vsync_options)
 
 func set_initial_options():
+  list.set_index_active(1)
   multiple_options.resume_focus()
   vsync_options.initial_index(int(saved_setting_index[OptionsID.VSYNC]))
   language_options.initial_index(int(saved_setting_index[OptionsID.LANGUAGE]))

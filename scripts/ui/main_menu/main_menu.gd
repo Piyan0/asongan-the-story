@@ -68,6 +68,8 @@ func _ready() -> void:
   list_manager.add_list(Menu.CREDITS, list_credits)
   list_manager.add_list(Menu.OPTIONS, $options.get_selection())
   list_manager.initial_active(Menu.MAIN_MENU)
+  list_main_menu.set_index_active(1)
+  list_main_menu.is_started_selecting= true
   
 
 func initiate_list_credits():
@@ -107,7 +109,8 @@ func set_menu_list_callback() -> void:
     #print(2)
     await stack.change_overlay(Menu.CREDITS)
     list_manager.change_focus(Menu.CREDITS)
-    
+    list_credits.set_index_active(0)
+    list_credits.is_started_selecting= true
     )
   
   %button_options.set_meta(BUTTON_CALLBACK, func():

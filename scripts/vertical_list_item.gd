@@ -1,11 +1,13 @@
 extends Node
 class_name VerticalListItem
 
+var _sound_select= Sound.SFX.UI_SELECT
+var _sound_accept= Sound.SFX.UI_ACCEPT
 var overflowed_max: Callable= func(items): pass
 var overflowed_min: Callable= func(items): pass
 
 var selected_changed: Callable = func(new, all): pass
-var selected: Callable= func(selected): pass
+var selected: Callable= func(s): pass
 
 var freed: Callable= func(): pass
 var _can_select: Callable= func():
@@ -25,7 +27,7 @@ func release() -> void:
   freed.bind(items).call()
   
 func set_index_active(add_by: int) -> void:
-  Sound.play(Sound.SFX.UI_SELECT)
+  Sound.play(_sound_select)
   var is_overflowed_max: bool= false
   var is_overflowed_min: bool= false
   index_active+= add_by
@@ -80,6 +82,6 @@ func _input(event: InputEvent) -> void:
   
   elif event.is_action_pressed('z') or event.is_action_pressed('ui_accept'):
     if not is_started_selecting: return
-    Sound.play(Sound.SFX.UI_CANCEL)
+    Sound.play(_sound_accept)
     selected.call(last_selected_child)
     #print(name)
