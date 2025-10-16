@@ -79,7 +79,7 @@ func air(id: int, args: Array= []):
   event_mapped[id].callv(args)
 
 
-func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20):
+func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
   print(1)
   for i in  cars_callback:
     CarScene.add_car_moving(i)
@@ -90,6 +90,8 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20):
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
   TrainStopping.instance.toggle_lever(false)
+  if not move_after_trains_leaved:
+    return
   CarScene.move_to_vanish_point()
   await GameState.car_lined
   print('finished.')

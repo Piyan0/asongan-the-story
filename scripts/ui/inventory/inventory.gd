@@ -68,7 +68,7 @@ func event_item_used(item: Inventory.Item):
   #print(item.id==GameState.item_correct_id)
   var is_item_used_correct= func() -> bool:
     return item.id== GameState.item_correct_id
-  
+  print('used item id ', item.id)
   if is_item_used_correct.call():
     event_item_used_correct(item)
   else:
@@ -76,6 +76,7 @@ func event_item_used(item: Inventory.Item):
 
 func event_item_used_correct(item: Inventory.Item):
   GameState.is_last_item_correct= true
+
   event_item_dropped(item)
   Mediator.air(Mediator.ITEM_USED_CORRECT)
 

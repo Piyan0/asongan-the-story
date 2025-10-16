@@ -11,7 +11,7 @@ func _ready() -> void:
   Mediator.air(
     Mediator.CAR_BATCH,
     [
-      arr
+      arr, 20, false
     ]
   )
   
