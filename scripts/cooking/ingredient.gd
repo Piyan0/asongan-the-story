@@ -24,6 +24,7 @@ func _ready() -> void:
   
   button.mouse_entered.connect(func():
     pointer.show()
+    Sound.play(Sound.SFX.UI_HOVER)
     )
   button.mouse_exited.connect(func():
     pointer.hide()

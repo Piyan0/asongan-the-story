@@ -9,6 +9,7 @@ var is_showing_alert: bool= false
 func alert(t: String, is_auto_hide= true):
   if is_showing_alert:
     return
+  Sound.play(Sound.SFX.UI_ALERT)
   is_showing_alert= true
   label.show()
   label.text= t

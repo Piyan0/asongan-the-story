@@ -25,6 +25,7 @@ func release() -> void:
   freed.bind(items).call()
   
 func set_index_active(add_by: int) -> void:
+  Sound.play(Sound.SFX.UI_SELECT)
   var is_overflowed_max: bool= false
   var is_overflowed_min: bool= false
   index_active+= add_by
@@ -79,5 +80,6 @@ func _input(event: InputEvent) -> void:
   
   elif event.is_action_pressed('z') or event.is_action_pressed('ui_accept'):
     if not is_started_selecting: return
+    Sound.play(Sound.SFX.UI_CANCEL)
     selected.call(last_selected_child)
     #print(name)

@@ -82,6 +82,7 @@ func can_show(_overlay: Overlay):
 
 func show_overlay(id: Overlay) -> void:
   if not is_can_open: return
+  play_open_sound(id)
   var overlay= overlays[id]
   overlay_showned.emit()
   overlay.target.show()
@@ -89,7 +90,14 @@ func show_overlay(id: Overlay) -> void:
   current_overlay= id
   Mediator.air(Mediator.OVERLAY_SHOWNED, [id])
   await overlay_hidden
-  
+
+func play_open_sound(id: Overlay):
+  match id:
+    Overlay.COFFE_STAND:
+      Sound.play(Sound.SFX.UI_POP_UP)
+    Overlay.TOFU_STAND:
+      Sound.play(Sound.SFX.UI_POP_UP)
+      pass 
 func stop_overlay(id: Overlay):
   var overlay= overlays[id]
   if not overlay.can_close.call():

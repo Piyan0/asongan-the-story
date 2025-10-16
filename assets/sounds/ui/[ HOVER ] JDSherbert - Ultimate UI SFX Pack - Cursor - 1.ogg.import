@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpa4kfyvmreo8"
+path="res://.godot/imported/[ HOVER ] JDSherbert - Ultimate UI SFX Pack - Cursor - 1.ogg-d58a747189a71f4d524b2235ce3ce9ac.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/ui/[ HOVER ] JDSherbert - Ultimate UI SFX Pack - Cursor - 1.ogg"
+dest_files=["res://.godot/imported/[ HOVER ] JDSherbert - Ultimate UI SFX Pack - Cursor - 1.ogg-d58a747189a71f4d524b2235ce3ce9ac.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
