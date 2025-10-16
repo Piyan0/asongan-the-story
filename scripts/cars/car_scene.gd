@@ -14,6 +14,9 @@ enum SellTemplate{
   COFFE_ONLY,
 }
 
+static var row_1: float= 263
+static var row_2: float= 354
+
 static var car_delay_cache: ={
   
 }
