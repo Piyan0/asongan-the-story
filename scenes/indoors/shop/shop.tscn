@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr4s5odagt13n"]
+[gd_scene load_steps=14 format=3 uid="uid://dr4s5odagt13n"]
 
+[ext_resource type="Script" uid="uid://b5ih2k30dglja" path="res://scripts/shop.gd" id="1_2rpvr"]
 [ext_resource type="Texture2D" uid="uid://byg8tjh67e240" path="res://assets/sprites/indoors/shop/scene.png" id="1_4mx8o"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_kow80"]
 [ext_resource type="Texture2D" uid="uid://cr6uikevj7rei" path="res://assets/sprites/indoors/shop/shop_keeper_1.png" id="3_v3w3p"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" uid="uid://t1o4qf4sa8ml" path="res://scripts/events_unique_data/common_door.gd" id="8_2rpvr"]
 [ext_resource type="Script" uid="uid://dpwsd6rpd1wev" path="res://scripts/events/shop/002.gd" id="9_t7xej"]
 [ext_resource type="Script" uid="uid://cp7qpwnb3tkvb" path="res://scripts/events/common_door.gd" id="9_vthxs"]
+[ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="10_jrqu0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_td876"]
 animations = [{
@@ -27,7 +29,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="Resource" id="Resource_t7xej"]
+[sub_resource type="Resource" id="Resource_2rpvr"]
 resource_local_to_scene = true
 script = ExtResource("8_2rpvr")
 scene = "uid://no5h2wbb2cwa"
@@ -36,6 +38,7 @@ metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
 
 [node name="Shop" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_2rpvr")
 
 [node name="Scene" type="Sprite2D" parent="."]
 texture = ExtResource("1_4mx8o")
@@ -333,7 +336,7 @@ polygon = PackedVector2Array(377, 166, 377, 170, 378, 170, 378, 166)
 
 [node name="event0" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 269)
-event_unique_data = SubResource("Resource_t7xej")
+event_unique_data = SubResource("Resource_2rpvr")
 event_id = 51
 events = ExtResource("9_vthxs")
 
@@ -341,3 +344,10 @@ events = ExtResource("9_vthxs")
 position = Vector2(320, 204)
 event_id = 52
 events = ExtResource("9_t7xej")
+
+[node name="TextBubble" parent="." instance=ExtResource("10_jrqu0")]
+offset_left = 284.0
+offset_top = 90.0
+offset_right = 284.0
+offset_bottom = 90.0
+id = 51
