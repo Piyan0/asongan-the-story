@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=19 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -15,12 +15,16 @@
 [ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/auto.gd" id="13_oifoc"]
 [ext_resource type="Script" uid="uid://b2eaqy6fswx15" path="res://scripts/events/main_road/005.gd" id="14_8upmm"]
 [ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
+[ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
 scene = "uid://dr4s5odagt13n"
 spawn_position = Vector2(320, 265)
 metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
+size = Vector2(84.1826, 176.929)
 
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
@@ -96,3 +100,14 @@ position = Vector2(464, 210)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
 position = Vector2(330, 209)
+
+[node name="player_limit" type="Area2D" parent="."]
+position = Vector2(1253, 189)
+script = ExtResource("16_f3fmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_limit"]
+position = Vector2(32.0913, 78.4646)
+shape = SubResource("RectangleShape2D_lhu43")
+
+[node name="player_reset_position" type="Marker2D" parent="."]
+position = Vector2(963, 143)

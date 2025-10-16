@@ -80,8 +80,8 @@ func air(id: int, args: Array= []):
 
 
 func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
-  print(1)
-  for i in  cars_callback:
+  #print(1)
+  for i in cars_callback:
     CarScene.add_car_moving(i)
   CarScene.move_based_on_callable()
   await GameState.car_lined
@@ -92,8 +92,10 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   TrainStopping.instance.toggle_lever(false)
   if not move_after_trains_leaved:
     return
+  PlayerLimit.instance.toggle(true)
   CarScene.move_to_vanish_point()
   await GameState.car_lined
+  PlayerLimit.instance.toggle(false)
   print('finished.')
   
 func on_item_used_correct():
