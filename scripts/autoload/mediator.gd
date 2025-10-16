@@ -89,6 +89,7 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
+  await GameState.lever_pulled
   TrainStopping.instance.toggle_lever(false)
   if not move_after_trains_leaved:
     return

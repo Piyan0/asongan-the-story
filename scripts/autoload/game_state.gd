@@ -1,7 +1,7 @@
 extends Node
 
 signal car_lined()
-
+signal lever_pulled()
 enum Visible{
   MAIN_ROAD_001,
   MAIN_ROAD_002,
@@ -31,6 +31,7 @@ var events_id : Dictionary = {
   EventsID.ID.MAIN_ROAD_003: '_1',
   EventsID.ID.MAIN_ROAD_004: '_1',
   EventsID.ID.MAIN_ROAD_005: '_1',
+  EventsID.ID.MAIN_ROAD_006: '_1',
   
   EventsID.ID.SHOP_001: '_1',
   EventsID.ID.SHOP_002: '_1',

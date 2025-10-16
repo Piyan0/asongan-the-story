@@ -13,7 +13,7 @@ font_size = 8
 outline_size = 4
 outline_color = Color(0.0242265, 0.424032, 0.999998, 1)
 
-[node name="event" type="Node2D" node_paths=PackedStringArray("label")]
+[node name="event1" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_paxfm")
 events = ExtResource("2_t8jde")
 label = NodePath("Label")
