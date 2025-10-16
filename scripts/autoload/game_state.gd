@@ -1,5 +1,7 @@
 extends Node
 
+signal car_lined()
+
 enum Visible{
   MAIN_ROAD_001,
   MAIN_ROAD_002,

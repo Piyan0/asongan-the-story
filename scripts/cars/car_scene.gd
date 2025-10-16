@@ -1,5 +1,6 @@
 extends Node2D
 class_name CarScene
+signal car_lined()
 
 class SellData:
   var id: DB.Food
@@ -76,9 +77,8 @@ static func move_based_on_callable():
   var on_car_arrived= func(max):
     current_car_arrived+= 1
     if current_car_arrived>= max:
-      moving_cars= {}
-      car_moving_callback= []
       print('all cars moved.')
+      GameState.car_lined.emit()
       
   for i in car_moving_callback:
     i.call()
@@ -93,6 +93,8 @@ static func reset_moving_cars() -> void:
   moving_cars= {}
  
 static var current_car_arrived: int
+
+
 static func move_to_vanish_point():
   current_car_arrived= 0
   var on_car_arrived= func(max):
@@ -101,6 +103,7 @@ static func move_to_vanish_point():
       moving_cars= {}
       car_moving_callback= []
       print('all cars moved.')
+      GameState.car_lined.emit()
     
   var total_cars: int= moving_cars.size()
   for i in moving_cars:

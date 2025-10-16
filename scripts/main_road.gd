@@ -28,8 +28,9 @@ func _ready() -> void:
   CarScene.add_car_moving($NormalCar3.move_and_buy.bind(2*2, Car.get_back_point.bind(Car.CarID.CAR_002), CarScene.get_template(CarScene.SellTemplate.COFFE_ONLY)),)
   
   CarScene.move_based_on_callable()
- 
-
-  await get_tree().create_timer(8).timeout
+  
+  await GameState.car_lined
+  print('call the fucking train.')
+  await get_tree().create_timer(2).timeout
   CarScene.move_to_vanish_point()
   
