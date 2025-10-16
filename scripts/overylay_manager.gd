@@ -140,10 +140,12 @@ func _input(event: InputEvent) -> void:
  
   if event.is_action_pressed('x'):
     stop_current_overlay()
+    if GameState.is_game_paused:
+      Mediator.air(Mediator.GAME_RESUMED)
     
   if event.is_action_pressed("left_click"):
     lmb_clicked.emit()
   
   if event.is_action_pressed("c") and current_overlay== Overlay.IDLE:
-    print_debug(1)
+    #print_debug(1)
     Mediator.air(Mediator.GAME_PAUSED)

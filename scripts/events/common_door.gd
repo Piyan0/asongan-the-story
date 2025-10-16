@@ -2,7 +2,7 @@ extends Node
 
 func _1(d: Callable, g: GameEvent):
   if not GameState.can_enter_other_area:
-    print(1)
+    #print(1)
     Mediator.air(Mediator.PLAYER_CANT_ENTER_OTHER_AREA)
     return
     
