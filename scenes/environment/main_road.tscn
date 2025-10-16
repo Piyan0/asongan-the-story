@@ -97,19 +97,8 @@ position = Vector2(715, 162)
 event_id = 6
 events = ExtResource("15_gsf1v")
 
-[node name="NormalCar" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(48, 241.141)
-
-[node name="NormalCar2" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(34, 240)
-car_id = 1
-
-[node name="NormalCar3" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(34, 240)
-car_id = 2
-
-[node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(464, 210)
+[node name="train_stop" type="Marker2D" parent="."]
+position = Vector2(841, 190)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
 position = Vector2(330, 209)
@@ -124,3 +113,50 @@ shape = SubResource("RectangleShape2D_lhu43")
 
 [node name="player_reset_position" type="Marker2D" parent="."]
 position = Vector2(963, 143)
+
+[node name="NormalCar" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-86, 263)
+
+[node name="NormalCar2" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-240, 263)
+car_id = 1
+
+[node name="NormalCar3" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-388, 263)
+car_id = 2
+
+[node name="NormalCar4" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-538, 263)
+car_id = 3
+
+[node name="NormalCar5" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-687, 263)
+car_id = 4
+
+[node name="NormalCar6" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-840, 263)
+car_id = 5
+
+[node name="NormalCar7" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-79, 354)
+car_id = 6
+
+[node name="NormalCar8" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-233, 354)
+car_id = 7
+
+[node name="NormalCar9" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-381, 354)
+car_id = 8
+
+[node name="NormalCar10" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-531, 354)
+car_id = 9
+
+[node name="NormalCar11" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-680, 354)
+car_id = 10
+
+[node name="NormalCar12" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-833, 354)
+car_id = 11

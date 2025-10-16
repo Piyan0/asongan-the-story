@@ -76,14 +76,14 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
-[sub_resource type="Resource" id="Resource_5rfnj"]
+[sub_resource type="Resource" id="Resource_lt7va"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 50
 id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
-[sub_resource type="Resource" id="Resource_lt7va"]
+[sub_resource type="Resource" id="Resource_5rfnj"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 52
@@ -261,13 +261,13 @@ autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(19, 1)
-event_unique_data = SubResource("Resource_5rfnj")
+event_unique_data = SubResource("Resource_lt7va")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(-23, 1)
-event_unique_data = SubResource("Resource_lt7va")
+event_unique_data = SubResource("Resource_5rfnj")
 event_id = -1
 events = ExtResource("8_xy7xi")
 

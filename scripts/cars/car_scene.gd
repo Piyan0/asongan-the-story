@@ -16,7 +16,7 @@ enum SellTemplate{
 
 static var row_1: float= 263
 static var row_2: float= 354
-
+static var spawn_x_pos: float= -86.0
 static var car_delay_cache: ={
   
 }
@@ -103,6 +103,8 @@ static func move_to_vanish_point():
   var on_car_arrived= func(max):
     current_car_arrived+= 1
     if current_car_arrived>= max:
+      for i in moving_cars:
+        moving_cars[i].reset_position= true
       moving_cars= {}
       car_moving_callback= []
       print('all cars moved.')

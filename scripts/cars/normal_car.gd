@@ -10,6 +10,7 @@ var is_buying= {
   0: false,
   1: false,
 }
+var reset_position: bool= true
 func _ready() -> void:
   sell_areas= [
     $event, $event2
@@ -68,6 +69,10 @@ func hide_hint(id: int):
   
   
 func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  if reset_position:
+    position.x= CarScene.spawn_x_pos
+    reset_position= false
+    
   CarScene.set_moving_car(car_id, self)
   CarScene.car_delay_cache[car_id]= delay
   is_buying[0]= false
