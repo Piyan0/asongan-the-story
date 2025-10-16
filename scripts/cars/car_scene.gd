@@ -16,7 +16,7 @@ enum SellTemplate{
 static var car_delay_cache: ={
   
 }
-
+static var car_moving_callback: Array[Callable]
 static var moving_cars: Dictionary[int, CarScene]
 static var vanish_point: float= 1400
 
@@ -66,7 +66,17 @@ static func get_template(id: SellTemplate) -> Array[SellData]:
 static func set_moving_car(id: int, car: CarScene):
   moving_cars[id]= car
    
+
+static func add_car_moving(callable: Callable):
+  car_moving_callback.push_back(callable)
   
+  
+static func move_based_on_callable():
+  for i in car_moving_callback:
+    i.call()
+    await Mediator.get_tree().process_frame
+    
+    
 static func reset_moving_cars() -> void:
   moving_cars= {}
  
@@ -77,6 +87,7 @@ static func move_to_vanish_point():
     current_car_arrived+= 1
     if current_car_arrived>= max:
       moving_cars= {}
+      car_moving_callback= []
       print('all cars moved.')
     
   var total_cars: int= moving_cars.size()

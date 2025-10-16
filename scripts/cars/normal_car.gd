@@ -22,7 +22,7 @@ func _ready() -> void:
   car.moved.connect(func(_position: Vector2):
     
     Car.car_back_point[car_id]= _position- Vector2(_width(), 0)
-    print(self.position+ _position)
+    #print(self.position+ _position)
     sprite.stop()
     sprite.play("move")
     )

@@ -22,14 +22,13 @@ func _ready() -> void:
   ]
   var test_2: Array[CarScene.SellData]= [sell_data_test, sell_data_test_3]
 
-  arr= [
-      $NormalCar.move_and_buy.bind(2*0, func(): return Vector2($Marker2D2.position.x,263), CarScene.get_template(CarScene.SellTemplate.TOFU_AND_COFFE) ),
-      $NormalCar2.move_and_buy.bind(2*1, Car.get_back_point.bind(Car.CarID.CAR_001), CarScene.get_template(CarScene.SellTemplate.TOFU_ONLY)),
-      $NormalCar3.move_and_buy.bind(2*2, Car.get_back_point.bind(Car.CarID.CAR_002), CarScene.get_template(CarScene.SellTemplate.COFFE_ONLY)),
-      ]
-    
-  for i in arr:
-    i.call()
+ 
+  CarScene.add_car_moving($NormalCar.move_and_buy.bind(2*0, func(): return Vector2($Marker2D2.position.x,263), CarScene.get_template(CarScene.SellTemplate.TOFU_AND_COFFE)))
+  CarScene.add_car_moving($NormalCar2.move_and_buy.bind(2*1, Car.get_back_point.bind(Car.CarID.CAR_001), CarScene.get_template(CarScene.SellTemplate.TOFU_ONLY)),)  
+  CarScene.add_car_moving($NormalCar3.move_and_buy.bind(2*2, Car.get_back_point.bind(Car.CarID.CAR_002), CarScene.get_template(CarScene.SellTemplate.COFFE_ONLY)),)
+  
+  CarScene.move_based_on_callable()
+ 
 
   await get_tree().create_timer(8).timeout
   CarScene.move_to_vanish_point()
