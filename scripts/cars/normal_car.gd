@@ -1,11 +1,9 @@
 extends CarScene
 
-
-
 var car: Car
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var area_2d: Area2D = $Area2D
-
+var _arrived= func(): pass
 var hints:= []
 var sell_areas= []
 var is_buying= {
@@ -75,6 +73,7 @@ func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[Sel
   is_buying[0]= false
   is_buying[1]= false
   await _car_instance().move_car(delay, _position_return)
+  _arrived.call()
   if sell_data.is_empty():
     return
   is_buying[sell_data[0].sell_id]= true
