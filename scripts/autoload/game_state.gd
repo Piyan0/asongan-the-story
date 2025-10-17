@@ -107,4 +107,4 @@ func is_money_enough():
       coin >= Cooking.food_cost(DB.food_from_id(i))
     )
   
-  return request.all(func(i): return i)
+  return request.any(func(i): return i== true)

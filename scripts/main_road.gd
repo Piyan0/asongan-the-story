@@ -18,7 +18,7 @@ func _ready() -> void:
   var tofu= FoodTofuWithRiceRoll.new()
   var utils= CookingUtils.new([])
   print(
-    utils.is_ingredients_enough(x, coffe)
+    utils.is_ingredients_enough(x, coffe),
   )
   limit_player()
 
@@ -89,8 +89,7 @@ func is_ingredient_available():
   
   
 func _process(delta: float) -> void:
-  pass
-  #printt(
-    ##GameState.is_money_enough()
-    #)
+  printt(
+    GameState.is_money_enough()
+    )
     
