@@ -95,16 +95,15 @@ func minus_coin(by: int):
 func set_visible(id: Visible, is_on: bool):
   visible_state[id]= is_on
 
-
-func is_money_enough():
-  if food_request.is_empty():
-    return true
-    
-  var coin= current_coin
-  var request= []
-  for i in food_request:
-    request.push_back(
-      coin >= Cooking.food_cost(DB.food_from_id(i))
+func is_coin_enough_to_buy_one_of_foods(coin: int, foods: Array[CookingFood]) -> bool:
+  var can_buy: Array[bool]= []
+  for i in foods:
+    can_buy.push_back(
+      coin >= Cooking.food_cost(i)
     )
   
-  return request.any(func(i): return i== true)
+  return can_buy.any(func(i): return i== true)
+  
+  
+  
+  

@@ -5,6 +5,7 @@ var row_2_stop= Vector2(841, CarScene.row_2)
 
 const car= Car.CarID
 const templ= CarScene.SellTemplate
+
 func _ready() -> void:
   #var x= DB.ingredients_from_shop()
   #for i in x:
@@ -16,6 +17,8 @@ func _ready() -> void:
   ]
   var coffe= FoodCoffe.new()
   var tofu= FoodTofuWithRiceRoll.new()
+  var foods: Array[CookingFood]= [coffe, tofu]
+  print('>>',GameState.is_coin_enough_to_buy_one_of_foods(6, foods))
   var utils= CookingUtils.new([])
   print(
     utils.is_ingredients_enough(x, coffe),
@@ -89,7 +92,6 @@ func is_ingredient_available():
   
   
 func _process(delta: float) -> void:
-  printt(
-    GameState.is_money_enough()
-    )
+  pass
+
     
