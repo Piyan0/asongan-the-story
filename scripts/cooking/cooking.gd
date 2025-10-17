@@ -16,6 +16,7 @@ var is_food_finished: bool= false
 var ingredients_used_count: Dictionary[int, int]
 var ingredients_available: Array[CookingIngredient]
 
+
 func set_up():
   if not ingredients_used_count:
     for i in possible_ingredients:
@@ -50,19 +51,24 @@ func place_ingredient(ingredient: CookingIngredient, take_from_available: bool= 
         ingredients_used_count[j]= 0
   return true
 
+
 func start_over() -> void:
   is_food_finished= false
   current_in_plate= []
-  
+ 
+ 
 func get_ingredient(id: int) -> CookingIngredient:
   for i in ingredients_available:
     if i._id()== id:
       return i
       
   return null
+
+
 func event_food_finished(food_id: DB.Food) -> void:
   is_food_finished= true
   await _food_finished.call(food_id)
+
 
 func erase_ingredient(id: int):
   var to_delete
@@ -73,6 +79,7 @@ func erase_ingredient(id: int):
       break
   ingredients_available.erase(to_delete)
     
+    
 func is_ingredient_placed(id: int) -> bool:
   if current_in_plate.is_empty(): return false
   for i in current_in_plate:
@@ -81,6 +88,7 @@ func is_ingredient_placed(id: int) -> bool:
   
   return false
 
+
 func has_ingredient(id: int) -> bool:
   if ingredients_available.is_empty(): return false
   for i in ingredients_available:
@@ -88,8 +96,11 @@ func has_ingredient(id: int) -> bool:
       return true
   
   return false
+  
+  
 func get_available_ingredients() -> Array[CookingIngredient]:
   return ingredients_available
+
 
 func reset(force= false):
   if not force and current_in_plate.is_empty() or is_food_finished:
@@ -104,3 +115,17 @@ func reset(force= false):
 
 func in_plate_count() -> int:
   return current_in_plate.size()
+
+
+static func food_cost(food: CookingFood) -> float:
+  var ingredients: Array[CookingIngredient]= food._recipe()
+  var cost: int= 0
+  for i in ingredients:
+    var item= DB.get_item(i._id())
+    cost+= item.cost
+  
+  return cost
+  
+  
+  
+  
