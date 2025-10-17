@@ -67,6 +67,10 @@ func show_hint(id: int):
   hints[id].show()
  
 
+func is_buying_done() -> bool:
+  return is_buying[0]== false and is_buying[1]== false
+
+
 func hide_hint(id: int):
   hints[id].hide()
   

@@ -13,6 +13,9 @@ func _1(data, g: GameEvent):
     var car= Car.current_car
     car.hide_hint(data.call().id)
     car.set_is_buying(data.call().id, false)
+    if CarScene.is_phase_selling_done():
+      GameState.is_buyer_fulfilled= true
+      
     var item= DB.get_item(data.call().expected_item)
     g.add_coin(item.worth)
   else:

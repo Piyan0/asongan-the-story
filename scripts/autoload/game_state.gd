@@ -41,6 +41,7 @@ var events_id : Dictionary = {
   
 }
 
+var is_buyer_fulfilled: bool= false
 var is_last_item_correct= false
 #SAVE
 var has_spoon= false

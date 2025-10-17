@@ -74,6 +74,13 @@ static func set_moving_car(id: int, car: CarScene):
 static func add_car_moving(callable: Callable):
   car_moving_callback.push_back(callable)
   
+
+static func is_phase_selling_done():
+  for i in moving_cars:
+    if not moving_cars[i].is_buying_done():
+      return false
+  
+  return true
   
 static func move_based_on_callable():
   current_car_arrived= 0
