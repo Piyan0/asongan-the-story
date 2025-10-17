@@ -9,11 +9,16 @@ func _ready() -> void:
   #var x= DB.ingredients_from_shop()
   #for i in x:
     #print(DB.Ingredient.find_key(i._id()))
-    
+  
+  var x: Array[CookingIngredient]= [
+    IngredientWater.new(),
+    IngredientCoffePowder.new(),
+  ]
   var coffe= FoodCoffe.new()
+  var tofu= FoodTofuWithRiceRoll.new()
   var utils= CookingUtils.new([])
   print(
-    Cooking.food_cost(coffe)
+    utils.is_ingredients_enough(x, coffe)
   )
   limit_player()
 

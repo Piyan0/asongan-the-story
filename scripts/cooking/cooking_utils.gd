@@ -86,6 +86,10 @@ func is_ingredients_enough(ingredients: Array[CookingIngredient], food: CookingF
     if not ingredients_available>= ingredients_required:
       return false
   
+  if not food._requirement().is_empty():
+    var is_requirement_fulfilled= food._requirement().all(func(i): return i in DB.upgrade_acquired)
+    if not is_requirement_fulfilled:
+      return false
   return true
   
   
