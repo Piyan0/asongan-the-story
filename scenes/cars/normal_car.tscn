@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dc47iab81xsau"]
+[gd_scene load_steps=19 format=3 uid="uid://dc47iab81xsau"]
 
 [ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
 [ext_resource type="SpriteFrames" uid="uid://dsajuuuqrs0e1" path="res://assets/resources/cars/car_1_1.tres" id="2_lt7va"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bg82lf7whq1q7" path="res://scripts/events_unique_data/common_sell_item.gd" id="8_lt7va"]
 [ext_resource type="Script" uid="uid://d0b2swwkolsmg" path="res://scripts/events/selling_area.gd" id="8_xy7xi"]
 [ext_resource type="AudioStream" uid="uid://btwy0ykvxypg4" path="res://assets/sounds/ui/[ CAR ENGINE ] bus-engine-47297.mp3" id="10_5rfnj"]
+[ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="10_ma5oh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6shbv"]
 
@@ -54,14 +55,14 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
-[sub_resource type="Resource" id="Resource_lt7va"]
+[sub_resource type="Resource" id="Resource_5rfnj"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 50
 id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
-[sub_resource type="Resource" id="Resource_5rfnj"]
+[sub_resource type="Resource" id="Resource_ma5oh"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 52
@@ -239,13 +240,13 @@ autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(19, 1)
-event_unique_data = SubResource("Resource_lt7va")
+event_unique_data = SubResource("Resource_5rfnj")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(-23, 1)
-event_unique_data = SubResource("Resource_5rfnj")
+event_unique_data = SubResource("Resource_ma5oh")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
@@ -260,3 +261,9 @@ shape = SubResource("RectangleShape2D_lt7va")
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_5rfnj")
 max_distance = 694.0
+
+[node name="TextBubble" parent="." instance=ExtResource("10_ma5oh")]
+offset_left = -6.0
+offset_top = -90.0
+offset_right = -6.0
+offset_bottom = -90.0
