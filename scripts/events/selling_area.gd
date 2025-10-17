@@ -11,6 +11,7 @@ func _1(data, g: GameEvent):
   if GameState.get_item_status():
     Sound.play(Sound.SFX.UI_TRANSACTION)
     var car= Car.current_car
+    car.show_thanks()
     car.hide_hint(data.call().id)
     car.set_is_buying(data.call().id, false)
     if CarScene.is_phase_selling_done():

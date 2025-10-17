@@ -67,3 +67,7 @@ func move_car(id: Car.CarID, position_id: int, sell_template: CarScene.SellTempl
   var sell_data: Array[CarScene.SellData]= CarScene.get_template(sell_template)
   
   return car.move_and_buy.bind(delay, position_callable, sell_data)
+
+
+func _process(delta: float) -> void:
+  print(1)

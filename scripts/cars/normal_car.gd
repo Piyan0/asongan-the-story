@@ -113,3 +113,25 @@ func _width() -> float:
   
 func _car_back_point() -> Vector2:
   return $back_point.position+ self.position
+  
+@onready var text_bubble: TextBubble = $TextBubble
+
+
+var messages= [
+  'THANKS_001',
+  'THANKS_002',
+  'THANKS_003',
+  'THANKS_004',
+  'THANKS_005',
+  'THANKS_006',
+]
+
+var is_message_shown= false
+func show_thanks() -> void:
+  if is_message_shown: return
+  is_message_shown= true
+  text_bubble.set_text(messages.pick_random())
+  text_bubble.show()
+  await get_tree().create_timer(1).timeout
+  text_bubble.hide()
+  is_message_shown= false
