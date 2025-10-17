@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bauavm3luitdu"]
+
+[ext_resource type="Texture2D" uid="uid://dppgbbj6cbehc" path="res://assets/sprites/cars/open_cup_car/2_1.png" id="1_qku1y"]
+[ext_resource type="Texture2D" uid="uid://cbaok0qyxvsju" path="res://assets/sprites/cars/open_cup_car/2_2.png" id="2_m3nya"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qku1y")
+}],
+"loop": false,
+"name": &"move",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qku1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m3nya")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 4.0
+}]

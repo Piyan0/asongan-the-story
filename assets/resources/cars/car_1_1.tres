@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dsajuuuqrs0e1"]
+
+[ext_resource type="Texture2D" uid="uid://vptf5foi6gpm" path="res://assets/sprites/cars/normal_car/1_1.png" id="1_1rivu"]
+[ext_resource type="Texture2D" uid="uid://cv7yiwkbejj8h" path="res://assets/sprites/cars/normal_car/1_2.png" id="2_83aoj"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1rivu")
+}],
+"loop": false,
+"name": &"move",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1rivu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_83aoj")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 4.0
+}]

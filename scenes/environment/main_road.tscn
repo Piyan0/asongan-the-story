@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=21 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/auto.gd" id="13_oifoc"]
 [ext_resource type="Script" uid="uid://b2eaqy6fswx15" path="res://scripts/events/main_road/005.gd" id="14_8upmm"]
 [ext_resource type="Script" uid="uid://c0xxhnjsr2n88" path="res://scripts/events/main_road/006.gd" id="15_gsf1v"]
-[ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
 [ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
 [ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="18_a4cjr"]
 
@@ -34,6 +33,7 @@ size = Vector2(84.1826, 176.929)
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cmskb")
+metadata/_edit_horizontal_guides_ = [263.0]
 
 [node name="Ampp" type="Sprite2D" parent="."]
 texture = ExtResource("1_3vthi")
@@ -114,53 +114,6 @@ shape = SubResource("RectangleShape2D_lhu43")
 
 [node name="player_reset_position" type="Marker2D" parent="."]
 position = Vector2(963, 143)
-
-[node name="NormalCar" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-86, 263)
-
-[node name="NormalCar2" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-240, 263)
-car_id = 1
-
-[node name="NormalCar3" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-388, 263)
-car_id = 2
-
-[node name="NormalCar4" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-538, 263)
-car_id = 3
-
-[node name="NormalCar5" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-687, 263)
-car_id = 4
-
-[node name="NormalCar6" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-840, 263)
-car_id = 5
-
-[node name="NormalCar7" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-79, 354)
-car_id = 6
-
-[node name="NormalCar8" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-233, 354)
-car_id = 7
-
-[node name="NormalCar9" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-381, 354)
-car_id = 8
-
-[node name="NormalCar10" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-531, 354)
-car_id = 9
-
-[node name="NormalCar11" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-680, 354)
-car_id = 10
-
-[node name="NormalCar12" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-833, 354)
-car_id = 11
 
 [node name="bgm" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(171, 182)
