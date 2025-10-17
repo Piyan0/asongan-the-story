@@ -70,13 +70,23 @@ func is_plate_contains_more_than(id: DB.Ingredient, at_least: int, plate: Array[
     return false
 
 
-func ingredients_count(id: DB.Ingredient):
+func ingredients_count(id: DB.Ingredient, ingredients: Array[CookingIngredient]= in_plate):
   var ingredient_count: int= 0
-  for i in in_plate:
+  for i in ingredients:
     if i._id()== id:
       ingredient_count+= 1
   
   return ingredient_count
+  
+
+func is_ingredients_enough(ingredients: Array[CookingIngredient], food: CookingFood) -> bool:
+  for i in food._recipe():
+    var ingredients_required: int= ingredients_count(i._id(), food._recipe()) 
+    var ingredients_available: int= ingredients_count(i._id(), ingredients)
+    if not ingredients_available>= ingredients_required:
+      return false
+  
+  return true
   
   
 func is_only_contain_one_type(id: DB.Ingredient, plate: Array[CookingIngredient]= in_plate) -> bool:

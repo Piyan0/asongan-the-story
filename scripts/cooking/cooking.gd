@@ -113,6 +113,7 @@ func reset(force= false):
   for i in ingredients_used_count:
     ingredients_used_count[i]= 0
 
+
 func in_plate_count() -> int:
   return current_in_plate.size()
 
@@ -125,6 +126,25 @@ static func food_cost(food: CookingFood) -> float:
     cost+= item.cost
   
   return cost
+  
+
+static func is_ingredients_can_make_food(ingredients: Array[CookingIngredient], foods: Array[CookingFood]) -> bool:
+  if foods.is_empty():
+    return true
+    
+  var utils= CookingUtils.new([])
+  var foods_can_be_cooked: Array[CookingFood]
+  for i in foods:
+    var is_enough= utils.is_ingredients_enough(ingredients, i)
+    if is_enough:
+      foods_can_be_cooked.push_back(i)
+    else:
+      pass
+  
+  for i in foods_can_be_cooked:
+    print(i._id())
+  return foods_can_be_cooked.size()> 0
+      
   
   
   
