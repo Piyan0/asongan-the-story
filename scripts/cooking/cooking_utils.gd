@@ -25,11 +25,22 @@ func is_ingredients_same(ingredients_1: Array[CookingIngredient], ingredients_2:
     else:
       ingredient_2_map[i._id()]= 1
   
-  #printt(ingredient_1_map, ingredient_2_map)
+  printt(ingredient_1_map, ingredient_2_map)
+  #check if keys is same.
+  var keys_1= ingredient_1_map.keys()
+  var keys_2= ingredient_2_map.keys()
+  
+  var is_keys_same= [
+    keys_1.all(func(i): return i in keys_2),
+    keys_2.all(func(i): return i in keys_1)
+  ].all(func(i): return i)
+  
+  if not is_keys_same:
+    return false
+  
+  #check if value is same.
   for i in ingredient_1_map:
-    if i not in ingredient_2_map:
-      return false
-    elif ingredient_2_map[i] != ingredient_1_map[i]:
+    if ingredient_2_map[i] != ingredient_1_map[i]:
       return false
 
   return true

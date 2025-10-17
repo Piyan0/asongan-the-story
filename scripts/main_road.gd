@@ -4,8 +4,19 @@ func _ready() -> void:
   
   limit_player()
   var tofu= FoodPackOfTofu.new()
-  print(
-    Cooking.food_cost(tofu)
+  var available_ingredients: Array[CookingIngredient]= [
+    IngredientTofu.new(),
+    IngredientTofu.new(),
+    IngredientTofu.new(),
+    IngredientTofu.new(),
+    IngredientTofu.new(),
+    #IngredientTofu.new(),
+    IngredientChilly.new(),
+  ]
+  var utils= CookingUtils.new([])
+  printt(
+    Cooking.food_cost(tofu),
+    utils.is_ingredients_same(available_ingredients, tofu._recipe())
   )
   #var arr : Array[Callable]= [
     #$NormalCar.move_and_buy.bind(2*0, func(): return Vector2($train_stop.position.x,263), CarScene.get_template(CarScene.SellTemplate.TOFU_AND_COFFE)),
