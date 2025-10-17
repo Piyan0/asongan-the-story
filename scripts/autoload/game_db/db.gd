@@ -14,6 +14,7 @@ enum Food{
   COFFE,
 }
 
+# DEPENDENT Ingredient
 enum Ingredient{
   TOFU= 100,
   RICE_ROLL,
@@ -21,6 +22,16 @@ enum Ingredient{
   WATER,
   CHILLY,
   SPOON,
+}
+
+# DEPENDENT_CHILD Ingredient
+var ingredients_class= {
+  Ingredient.TOFU: IngredientTofu, 
+  Ingredient.RICE_ROLL: IngredientRiceRoll, 
+  Ingredient.COFFE_POWDER: IngredientCoffePowder, 
+  Ingredient.WATER: IngredientWater, 
+  Ingredient.CHILLY: IngredientChilly, 
+  Ingredient.SPOON: IngredientSpoon, 
 }
 
 enum Upgrade{
@@ -151,6 +162,11 @@ var inventory_items= [
   get_item(Food.COFFE),
 ]
 
+#SAVE 
+var upgrade_acquired: Array[Upgrade]= [
+  #DB.Upgrade.COFFE_STAND_SPOON
+]
+
 func get_item(id: int, params= {}):
   #print(id)
   var item= items[id].duplicate()
@@ -211,6 +227,30 @@ func add_item_to_inventory(id: int):
 func upgrade_callback(id: Upgrade):
   match id:
     Upgrade.COFFE_STAND_SPOON:
-      GameState.has_spoon= true
+      upgrade_acquired.push_back(DB.Upgrade.COFFE_STAND_SPOON)
       print('you bougth spoon.')
   
+  
+func food_from_id(id: Food) -> CookingFood:
+  match id:
+    Food.PACK_OF_TOFU:
+      return FoodPackOfTofu.new()
+    Food.TOFU_WITH_RICE_ROLL:
+      return FoodTofuWithRiceRoll.new()
+    Food.COFFE:
+      return FoodCoffe.new()
+    
+  return
+  
+  
+func get_ingredients(id: int) -> CookingIngredient:
+  return ingredients_class[id].new()
+    
+    
+func ingredients_from_shop() -> Array[CookingIngredient]:
+  var arr: Array[CookingIngredient]
+  for i in shop_items:
+    if get_item(i.id).item_type== ItemType.INGREDIENT:
+      arr.push_back(get_ingredients(i.id))
+    
+  return arr

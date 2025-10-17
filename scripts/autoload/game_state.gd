@@ -16,6 +16,7 @@ enum GameVar{
   IS_DONE_SOMETHING,
 }
 
+var food_request: Array[DB.Food]= []
 var saved_setting_index= {}
 var is_game_paused= false
 #SAVE
@@ -44,8 +45,6 @@ var events_id : Dictionary = {
 var is_buyer_fulfilled: bool= false
 var is_last_item_correct= false
 #SAVE
-var has_spoon= false
-#SAVE
 var can_enter_other_area:bool= true
 #SAVE
 var game_vars ={
@@ -58,7 +57,7 @@ var item_correct_id: int= -1
 var item_state: ItemState= ItemState.CAN_DROP
 
 #SAVE
-var current_coin: int= 200
+var current_coin: int= 4
 
 const INVENTORY_MAX := 16
 
@@ -95,3 +94,17 @@ func minus_coin(by: int):
 
 func set_visible(id: Visible, is_on: bool):
   visible_state[id]= is_on
+
+
+func is_money_enough():
+  if food_request.is_empty():
+    return true
+    
+  var coin= current_coin
+  var request= []
+  for i in food_request:
+    request.push_back(
+      coin >= Cooking.food_cost(DB.food_from_id(i))
+    )
+  
+  return request.all(func(i): return i)

@@ -32,8 +32,8 @@ func place_ingredient(ingredient: CookingIngredient, take_from_available: bool= 
   if is_food_finished: return false
   if not has_ingredient(ingredient._id()) and take_from_available: 
     _no_ingredient.call()
-    #print('nooo')
     return false
+     
   if not ingredient._is_can_place(current_in_plate):
     return false
   
@@ -44,6 +44,9 @@ func place_ingredient(ingredient: CookingIngredient, take_from_available: bool= 
   #print_debug(ingredients_used_count)
   erase_ingredient(ingredient._id())
   for i in possible_food:
+    if not i._is_common():
+      return false
+      
     if i.is_done(current_in_plate):
       await event_food_finished(i._id())
       start_over()
@@ -51,6 +54,13 @@ func place_ingredient(ingredient: CookingIngredient, take_from_available: bool= 
         ingredients_used_count[j]= 0
   return true
 
+
+func force_finish(food: CookingFood) -> void:
+      await event_food_finished(food._id())
+      start_over()
+      for j in ingredients_used_count:
+        ingredients_used_count[j]= 0
+  
 
 func start_over() -> void:
   is_food_finished= false
@@ -125,6 +135,18 @@ static func food_cost(food: CookingFood) -> float:
     var item= DB.get_item(i._id())
     cost+= item.cost
   
+  if not food._requirement().is_empty():
+    var is_has_requirement= food._requirement().all(func(i): return i in DB.upgrade_acquired) 
+    #print(1)
+    if not is_has_requirement:
+      var requiremend_needed: Array[DB.Upgrade]= []
+      for i in food._requirement():
+        if not i in DB.upgrade_acquired:
+          requiremend_needed.push_back(i)
+      for i in requiremend_needed:
+        var _cost= DB.get_item(i).cost
+        cost+= _cost
+  #print(cost)
   return cost
   
 
@@ -141,8 +163,8 @@ static func is_ingredients_can_make_food(ingredients: Array[CookingIngredient], 
     else:
       pass
   
-  for i in foods_can_be_cooked:
-    print(i._id())
+  #for i in foods_can_be_cooked:
+    #print(i._id())
   return foods_can_be_cooked.size()> 0
       
   

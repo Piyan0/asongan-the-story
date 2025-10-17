@@ -1,5 +1,12 @@
 class_name CookingFood
 
+# this bool indicate wether the food only care about ingredients, without any further interaction. 
+func _is_common() -> bool:
+  return true
+
+func _requirement() -> Array[DB.Upgrade]:
+  return []
+  
 func _id() -> int:
   return -1
 

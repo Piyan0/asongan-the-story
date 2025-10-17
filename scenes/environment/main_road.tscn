@@ -133,7 +133,7 @@ event_id = 6
 events = ExtResource("15_gsf1v")
 
 [node name="train_stop" type="Marker2D" parent="."]
-position = Vector2(841, 190)
+position = Vector2(156, 215)
 
 [node name="player_limit" type="Area2D" parent="."]
 position = Vector2(1253, 189)

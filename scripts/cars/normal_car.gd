@@ -74,7 +74,8 @@ func is_buying_done() -> bool:
 func hide_hint(id: int):
   hints[id].hide()
   
-  
+
+var food_request: Array[DB.Food]= []
 func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
   if not sound.playing:
     sound.play()
@@ -82,7 +83,13 @@ func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[Sel
   if reset_position:
     position.x= CarScene.spawn_x_pos
     reset_position= false
-    
+  
+  for i in sell_data:
+    GameState.food_request.push_back(i.id)
+    food_request.push_back(i.id)
+  
+  #print(GameState.food_request)
+  
   CarScene.set_moving_car(car_id, self)
   CarScene.car_delay_cache[car_id]= delay
   is_buying[0]= false

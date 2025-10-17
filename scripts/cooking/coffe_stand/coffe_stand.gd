@@ -106,7 +106,7 @@ func has_spoon() -> bool:
   if is_main():
     return true
   
-  return GameState.has_spoon
+  return DB.Upgrade.COFFE_STAND_SPOON in DB.upgrade_acquired
   
   
 @onready var coffe_stand_slider: Control = %coffe_stand_slider
@@ -197,9 +197,10 @@ func ingredient_clicked(id: DB.Ingredient):
       can_close= false
       if not coffe_stand_slider.is_succed:
         return
+      
+      cooking.force_finish(FoodCoffe.new())
       change_cup_state(CupState.STIRRED)
       
-      cooking.place_ingredient(IngredientSpoon.new(), false)
       #print_debug(1)
       prevent_input.hide()
       
