@@ -1,15 +1,26 @@
 extends Node2D
 
+var row_1_stop= Vector2(841, CarScene.row_1)
+var row_2_stop= Vector2(841, CarScene.row_2)
+
+const car= Car.CarID
+const templ= CarScene.SellTemplate
 func _ready() -> void:
-  
   limit_player()
-  
-  
+
   var arr : Array[Callable]= [
-    $car001.move_and_buy.bind(2*0, func(): return Vector2($train_stop.position.x,263), CarScene.get_template(CarScene.SellTemplate.TOFU_AND_COFFE)),
-    $car005.move_and_buy.bind(2*1, Car.get_back_point.bind(Car.CarID.CAR_001), CarScene.get_template(CarScene.SellTemplate.TOFU_ONLY)),
-    #$NormalCar9.move_and_buy.bind(0, func(): return Vector2($train_stop.position.x, CarScene.row_2), CarScene.get_template(CarScene.SellTemplate.COFFE_ONLY))
+    move_car(car.CAR_001, car.CAR_FIRST_ROW, templ.TOFU_ONLY, 0),
+    move_car(car.CAR_002, car.CAR_001, templ.TOFU_AND_COFFE, 2),
+    move_car(car.CAR_003, car.CAR_002, templ.TOFU_AND_COFFE, 2*2),
+    move_car(car.CAR_005, car.CAR_003, templ.TOFU_AND_COFFE, 2*3),
+    move_car(car.CAR_008, car.CAR_005, templ.TOFU_AND_COFFE, 2*4),
+    move_car(car.CAR_006, car.CAR_008, templ.TOFU_AND_COFFE, 2*5),
+    
+    move_car(car.CAR_014, car.CAR_SECOND_ROW, templ.EMPTY, 2* 1),
+    move_car(car.CAR_013, car.CAR_014, templ.COFFE_ONLY, 2* 2),
+    move_car(car.CAR_016, car.CAR_013, templ.TOFU_AND_COFFE, 2* 4),
   ]
+  
   Mediator.air(
     Mediator.CAR_BATCH,
     [
@@ -23,3 +34,36 @@ func limit_player():
     Player.player.position= Vector2(960, 150)
     OverlayManager.show_alert('PLAYER_LIMIT')
     )
+
+
+func get_cars():
+  return [
+$car001, $car002, $car003, $car004, $car005, $car006, $car007, $car008, $car009, $car010, $car011, $car012, $car013, $car014, $car015, $car016
+  ]
+
+
+func get_cars_by_id(id: Car.CarID) -> Node2D:
+
+  for i in get_cars():
+    if i.car_id== id:
+      return i
+      
+  return
+  
+    
+func move_car(id: Car.CarID, position_id: int, sell_template: CarScene.SellTemplate, delay: float, ) -> Callable:
+  var car= get_cars_by_id(id)
+  var position_callable: Callable
+  if position_id== -1:
+    position_callable= func():
+      return row_1_stop
+  elif position_id== -2:
+    position_callable= func():
+      return row_2_stop
+  else:
+    position_callable= Car.get_back_point.bind(position_id)
+  
+  #print(position_callable.call())
+  var sell_data: Array[CarScene.SellData]= CarScene.get_template(sell_template)
+  
+  return car.move_and_buy.bind(delay, position_callable, sell_data)

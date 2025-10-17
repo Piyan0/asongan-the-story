@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=35 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -15,8 +15,16 @@
 [ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/auto.gd" id="13_oifoc"]
 [ext_resource type="Script" uid="uid://b2eaqy6fswx15" path="res://scripts/events/main_road/005.gd" id="14_8upmm"]
 [ext_resource type="Script" uid="uid://c0xxhnjsr2n88" path="res://scripts/events/main_road/006.gd" id="15_gsf1v"]
+[ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
 [ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
 [ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="18_a4cjr"]
+[ext_resource type="Script" uid="uid://bg82lf7whq1q7" path="res://scripts/events_unique_data/common_sell_item.gd" id="19_ydayg"]
+[ext_resource type="SpriteFrames" uid="uid://dpiisdclwjcqv" path="res://assets/resources/cars/car_1_3.tres" id="20_t1v4v"]
+[ext_resource type="SpriteFrames" uid="uid://c4fi1me8bke0l" path="res://assets/resources/cars/car_1_2.tres" id="21_m2w3x"]
+[ext_resource type="SpriteFrames" uid="uid://bauavm3luitdu" path="res://assets/resources/cars/car_2_1.tres" id="22_ydayg"]
+[ext_resource type="SpriteFrames" uid="uid://dgex0najemhae" path="res://assets/resources/cars/car_2_2.tres" id="23_t1v4v"]
+[ext_resource type="SpriteFrames" uid="uid://bi3nu5n185e7f" path="res://assets/resources/cars/car_3_1.tres" id="24_yq3xx"]
+[ext_resource type="SpriteFrames" uid="uid://bt28n6mabysou" path="res://assets/resources/cars/car_3_2.tres" id="25_1alon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3fmx"]
 size = Vector2(135.776, 598)
@@ -29,6 +37,32 @@ metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
 size = Vector2(84.1826, 176.929)
+
+[sub_resource type="Resource" id="Resource_hiiyi"]
+resource_local_to_scene = true
+script = ExtResource("19_ydayg")
+expected_item = 50
+id = 0
+metadata/_custom_type_script = "uid://bg82lf7whq1q7"
+
+[sub_resource type="Resource" id="Resource_3u1fh"]
+resource_local_to_scene = true
+script = ExtResource("19_ydayg")
+expected_item = 52
+id = 1
+metadata/_custom_type_script = "uid://bg82lf7whq1q7"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2w3x"]
+size = Vector2(146, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydayg"]
+size = Vector2(146, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1v4v"]
+size = Vector2(160, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq3xx"]
+size = Vector2(160, 51)
 
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
@@ -101,9 +135,6 @@ events = ExtResource("15_gsf1v")
 [node name="train_stop" type="Marker2D" parent="."]
 position = Vector2(841, 190)
 
-[node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(330, 209)
-
 [node name="player_limit" type="Area2D" parent="."]
 position = Vector2(1253, 189)
 script = ExtResource("16_f3fmx")
@@ -120,3 +151,660 @@ position = Vector2(171, 182)
 stream = ExtResource("18_a4cjr")
 autoplay = true
 max_distance = 415.0
+
+[node name="car001" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-79, 263)
+car_id = 1
+
+[node name="car002" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-237, 263)
+car_id = 2
+
+[node name="car003" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-393, 263)
+car_id = 3
+
+[node name="sprite" parent="car003" index="0"]
+sprite_frames = ExtResource("20_t1v4v")
+
+[node name="but_hint" parent="car003" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car003/but_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car003/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car003/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car003" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car003/but_hint2" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car003/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car003/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car003" index="7"]
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car003" index="8"]
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car004" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-551, 263)
+car_id = 3
+
+[node name="sprite" parent="car004" index="0"]
+sprite_frames = ExtResource("21_m2w3x")
+
+[node name="StaticBody2D" parent="car004" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car004/StaticBody2D" index="0"]
+position = Vector2(5.5, -34.5)
+
+[node name="but_hint" parent="car004" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car004/but_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car004/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car004/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car004" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car004/but_hint2" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car004/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car004/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car004" index="7"]
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car004" index="8"]
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car005" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-721, 263)
+car_id = 5
+
+[node name="sprite" parent="car005" index="0"]
+position = Vector2(6, -48)
+sprite_frames = ExtResource("22_ydayg")
+
+[node name="StaticBody2D" parent="car005" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car005/StaticBody2D" index="0"]
+position = Vector2(7, -34)
+shape = SubResource("RectangleShape2D_m2w3x")
+
+[node name="but_hint" parent="car005" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car005/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.225
+anchor_right = 0.225
+offset_left = -4.0
+offset_right = 26.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car005/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car005/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car005" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car005/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.725
+anchor_right = 0.725
+offset_left = -24.0
+offset_right = 6.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car005/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car005/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car005" index="7"]
+position = Vector2(26, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car005" index="8"]
+position = Vector2(-34, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car006" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-887, 263)
+car_id = 6
+
+[node name="sprite" parent="car006" index="0"]
+position = Vector2(6, -48)
+sprite_frames = ExtResource("23_t1v4v")
+
+[node name="StaticBody2D" parent="car006" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car006/StaticBody2D" index="0"]
+position = Vector2(5, -32)
+shape = SubResource("RectangleShape2D_ydayg")
+
+[node name="but_hint" parent="car006" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car006/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.225
+anchor_right = 0.225
+offset_left = -4.0
+offset_right = 26.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car006/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car006/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car006" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car006/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 0.75
+offset_left = -25.0
+offset_right = 5.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car006/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car006/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car006" index="7"]
+position = Vector2(26, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car006" index="8"]
+position = Vector2(-34, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car007" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-1068, 263)
+car_id = 7
+
+[node name="sprite" parent="car007" index="0"]
+position = Vector2(6, -55)
+sprite_frames = ExtResource("24_yq3xx")
+
+[node name="Control" parent="car007" index="1"]
+offset_left = -101.0
+offset_right = 87.0
+
+[node name="StaticBody2D" parent="car007" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car007/StaticBody2D" index="0"]
+position = Vector2(6, -34.5)
+shape = SubResource("RectangleShape2D_t1v4v")
+
+[node name="but_hint" parent="car007" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car007/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.2
+offset_left = -3.0
+offset_right = 27.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car007/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car007/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car007" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car007/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.825
+anchor_right = 0.825
+offset_left = -28.0
+offset_right = 2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car007/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car007/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car007" index="7"]
+position = Vector2(29, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car007" index="8"]
+position = Vector2(-35, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car008" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-1272, 263)
+car_id = 8
+
+[node name="sprite" parent="car008" index="0"]
+position = Vector2(6, -55)
+sprite_frames = ExtResource("25_1alon")
+
+[node name="Control" parent="car008" index="1"]
+offset_left = -101.0
+offset_right = 87.0
+
+[node name="StaticBody2D" parent="car008" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car008/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_yq3xx")
+
+[node name="but_hint" parent="car008" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car008/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.275
+anchor_right = 0.275
+offset_left = -6.0
+offset_right = 24.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car008/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car008/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car008" index="6"]
+offset_left = 8.0
+offset_right = 48.0
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car008/but_hint2" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car008/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car008/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car008" index="7"]
+position = Vector2(29, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car008" index="8"]
+position = Vector2(-32, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car009" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-79, 354)
+car_id = 9
+
+[node name="car010" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-237, 354)
+car_id = 10
+
+[node name="car011" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-393, 354)
+car_id = 11
+
+[node name="sprite" parent="car011" index="0"]
+sprite_frames = ExtResource("20_t1v4v")
+
+[node name="but_hint" parent="car011" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car011/but_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car011/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car011/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car011" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car011/but_hint2" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car011/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car011/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car011" index="7"]
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car011" index="8"]
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car012" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-551, 354)
+car_id = 12
+
+[node name="sprite" parent="car012" index="0"]
+sprite_frames = ExtResource("21_m2w3x")
+
+[node name="StaticBody2D" parent="car012" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car012/StaticBody2D" index="0"]
+position = Vector2(5.5, -34.5)
+
+[node name="but_hint" parent="car012" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car012/but_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car012/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car012/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car012" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car012/but_hint2" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car012/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car012/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car012" index="7"]
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car012" index="8"]
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car013" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-721, 354)
+car_id = 13
+
+[node name="sprite" parent="car013" index="0"]
+position = Vector2(6, -48)
+sprite_frames = ExtResource("22_ydayg")
+
+[node name="StaticBody2D" parent="car013" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car013/StaticBody2D" index="0"]
+position = Vector2(7, -34)
+shape = SubResource("RectangleShape2D_m2w3x")
+
+[node name="but_hint" parent="car013" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car013/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.25
+offset_left = -5.0
+offset_right = 25.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car013/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car013/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car013" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car013/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 0.8
+offset_left = -27.0
+offset_right = 3.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car013/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car013/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car013" index="7"]
+position = Vector2(26, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car013" index="8"]
+position = Vector2(-33, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car014" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-887, 354)
+car_id = 14
+
+[node name="sprite" parent="car014" index="0"]
+position = Vector2(6, -48)
+sprite_frames = ExtResource("23_t1v4v")
+
+[node name="StaticBody2D" parent="car014" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car014/StaticBody2D" index="0"]
+position = Vector2(5, -32)
+shape = SubResource("RectangleShape2D_ydayg")
+
+[node name="but_hint" parent="car014" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car014/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.275
+anchor_right = 0.275
+offset_left = -6.0
+offset_right = 24.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car014/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car014/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car014" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car014/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.775
+anchor_right = 0.775
+offset_left = -26.0
+offset_right = 4.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car014/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car014/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car014" index="7"]
+position = Vector2(26, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car014" index="8"]
+position = Vector2(-32, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car015" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-1068, 354)
+car_id = 15
+
+[node name="sprite" parent="car015" index="0"]
+position = Vector2(6, -55)
+sprite_frames = ExtResource("24_yq3xx")
+
+[node name="Control" parent="car015" index="1"]
+offset_left = -101.0
+offset_right = 87.0
+
+[node name="StaticBody2D" parent="car015" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car015/StaticBody2D" index="0"]
+position = Vector2(6, -34.5)
+shape = SubResource("RectangleShape2D_t1v4v")
+
+[node name="but_hint" parent="car015" index="5"]
+offset_left = -56.0
+offset_right = -16.0
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car015/but_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car015/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car015/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car015" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car015/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.825
+anchor_right = 0.825
+offset_left = -28.0
+offset_right = 2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car015/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car015/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car015" index="7"]
+position = Vector2(29, 1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car015" index="8"]
+position = Vector2(-33, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[node name="car016" parent="." instance=ExtResource("15_lhu43")]
+position = Vector2(-1272, 354)
+car_id = 16
+
+[node name="sprite" parent="car016" index="0"]
+position = Vector2(6, -55)
+sprite_frames = ExtResource("25_1alon")
+
+[node name="Control" parent="car016" index="1"]
+offset_left = -101.0
+offset_right = 87.0
+
+[node name="StaticBody2D" parent="car016" index="4"]
+visible = true
+
+[node name="CollisionShape2D" parent="car016/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_yq3xx")
+
+[node name="but_hint" parent="car016" index="5"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car016/but_hint" index="0"]
+anchors_preset = -1
+anchor_left = 0.225
+anchor_right = 0.225
+offset_left = -4.0
+offset_right = 26.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car016/but_hint/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car016/but_hint/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="but_hint2" parent="car016" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="buy_hint" parent="car016/but_hint2" index="0"]
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.45
+anchor_right = 0.75
+anchor_bottom = 0.45
+offset_left = -25.0
+offset_top = -13.0
+offset_right = 5.0
+offset_bottom = 17.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="car016/but_hint2/buy_hint" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" parent="car016/but_hint2/buy_hint" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="event" parent="car016" index="7"]
+position = Vector2(29, -1)
+event_unique_data = SubResource("Resource_hiiyi")
+
+[node name="event2" parent="car016" index="8"]
+position = Vector2(-34, 1)
+event_unique_data = SubResource("Resource_3u1fh")
+
+[editable path="car003"]
+[editable path="car004"]
+[editable path="car005"]
+[editable path="car006"]
+[editable path="car007"]
+[editable path="car008"]
+[editable path="car011"]
+[editable path="car012"]
+[editable path="car013"]
+[editable path="car014"]
+[editable path="car015"]
+[editable path="car016"]

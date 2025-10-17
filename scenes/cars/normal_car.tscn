@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6shbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6shbv"]
-size = Vector2(132, 47)
+size = Vector2(129, 47)
 
 [sub_resource type="Animation" id="Animation_5rfnj"]
 length = 0.001
@@ -54,14 +54,14 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
-[sub_resource type="Resource" id="Resource_5rfnj"]
+[sub_resource type="Resource" id="Resource_lt7va"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 50
 id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
-[sub_resource type="Resource" id="Resource_ma5oh"]
+[sub_resource type="Resource" id="Resource_5rfnj"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
 expected_item = 52
@@ -239,13 +239,13 @@ autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(19, 1)
-event_unique_data = SubResource("Resource_5rfnj")
+event_unique_data = SubResource("Resource_lt7va")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(-23, 1)
-event_unique_data = SubResource("Resource_ma5oh")
+event_unique_data = SubResource("Resource_5rfnj")
 event_id = -1
 events = ExtResource("8_xy7xi")
 
@@ -259,4 +259,4 @@ shape = SubResource("RectangleShape2D_lt7va")
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_5rfnj")
-max_distance = 328.0
+max_distance = 694.0

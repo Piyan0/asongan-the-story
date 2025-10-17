@@ -9,7 +9,10 @@ var tween: Tween
 const base_speed: float= 90
 
 enum CarID{
-  CAR_001,
+  CAR_FIRST_ROW= -1,
+  CAR_SECOND_ROW= -2,
+  CAR_STOP= 0,
+  CAR_001= 1,
   CAR_002,
   CAR_003,
   CAR_004,

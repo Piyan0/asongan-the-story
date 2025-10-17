@@ -7,6 +7,7 @@ class SellData:
   var sell_id: int
 
 enum SellTemplate{
+  EMPTY,
   TOFU_ONLY,
   TOFU_AND_EXTRA,
   TOFU_AND_COFFE,
@@ -28,6 +29,8 @@ static var vanish_point: float= 1400
 
 static func get_template(id: SellTemplate) -> Array[SellData]:
   match id:
+    SellTemplate.EMPTY:
+      return []
     SellTemplate.TOFU_ONLY:
       var sell_001 := SellData.new()
       sell_001.sell_id= 0
