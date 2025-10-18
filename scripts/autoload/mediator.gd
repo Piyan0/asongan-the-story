@@ -86,6 +86,7 @@ func on_change_scene():
   
   
 func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
+  GameState.is_selling_phase= true
   GameState.set_event(
     EventsID.ID.MAIN_ROAD_001,
     2
@@ -101,6 +102,7 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
   await GameState.lever_pulled
+  GameState.is_selling_phase= false
   GameState.can_enter_other_area= true
   TrainStopping.instance.toggle_lever(false)
   GameState.set_event(

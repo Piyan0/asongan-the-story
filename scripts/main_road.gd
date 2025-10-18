@@ -6,22 +6,46 @@ var row_2_stop= Vector2(841, CarScene.row_2)
 const car= Car.CarID
 const templ= CarScene.SellTemplate
 
-func _ready() -> void:
-  #var x= DB.ingredients_from_shop()
-  #for i in x:
-    #print(DB.Ingredient.find_key(i._id()))
+var _inventory: Array[CookingIngredient]= [
+  #IngredientChilly.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientRiceRoll.new(),
+  #IngredientCoffePowder.new(),
+  #IngredientWater.new(),
+]
+
+var shop: Array[CookingIngredient]= [
+  IngredientChilly.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientTofu.new(),
+  #IngredientRiceRoll.new()
   
-  var x: Array[CookingIngredient]= [
-    IngredientWater.new(),
-    IngredientCoffePowder.new(),
-  ]
-  var coffe= FoodCoffe.new()
-  var tofu= FoodTofuWithRiceRoll.new()
-  var foods: Array[CookingFood]= [coffe, tofu]
-  print('>>',GameState.is_coin_enough_to_buy_one_of_foods(6, foods))
-  var utils= CookingUtils.new([])
-  print(
-    utils.is_ingredients_enough(x, coffe),
+]
+
+var inventory_foods: Array[CookingFood]= [
+  #FoodPackOfTofu.new(),
+  #FoodTofuWithRiceRoll.new(),
+]
+var food_request: Array[CookingFood]= [
+  FoodPackOfTofu.new(),
+  FoodTofuWithRiceRoll.new(),
+  FoodCoffe.new(),
+]
+
+var coin= 3
+func _ready() -> void:
+  var g= GameoverEvaluate.new()
+  g.test(
+    load("res://scripts/game_over/game_over_001.gd").new()
   )
   limit_player()
 
@@ -38,6 +62,7 @@ func _ready() -> void:
     #move_car(car.CAR_016, car.CAR_013, templ.TOFU_AND_COFFE, 2* 4),
   ]
   
+  await get_tree().create_timer(1).timeout
   Mediator.air(
     Mediator.CAR_BATCH,
     [
@@ -85,13 +110,3 @@ func move_car(id: Car.CarID, position_id: int, sell_template: CarScene.SellTempl
   var sell_data: Array[CarScene.SellData]= CarScene.get_template(sell_template)
   
   return car.move_and_buy.bind(delay, position_callable, sell_data)
-
-
-func is_ingredient_available():
-  return true
-  
-  
-func _process(delta: float) -> void:
-  pass
-
-    

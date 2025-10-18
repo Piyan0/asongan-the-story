@@ -34,6 +34,12 @@ var ingredients_class= {
   Ingredient.SPOON: IngredientSpoon, 
 }
 
+var foods_class= {
+  Food.PACK_OF_TOFU: FoodPackOfTofu,
+  Food.TOFU_WITH_RICE_ROLL: FoodTofuWithRiceRoll,
+  Food.COFFE: FoodCoffe,
+}
+
 enum Upgrade{
   COFFE_STAND= 200,
   ITEM_SLOT_3,
@@ -157,9 +163,9 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
-  get_item(Food.PACK_OF_TOFU),
-  get_item(Food.PACK_OF_TOFU),
-  get_item(Food.COFFE),
+  #get_item(Food.PACK_OF_TOFU),
+  #get_item(Food.PACK_OF_TOFU),
+  #get_item(Food.COFFE),
 ]
 
 #SAVE 
@@ -245,12 +251,39 @@ func food_from_id(id: Food) -> CookingFood:
   
 func get_ingredients(id: int) -> CookingIngredient:
   return ingredients_class[id].new()
+  
+func get_food_class(id: int) -> CookingFood:
+  return foods_class[id].new()
     
     
 func ingredients_from_shop() -> Array[CookingIngredient]:
   var arr: Array[CookingIngredient]
   for i in shop_items:
     if get_item(i.id).item_type== ItemType.INGREDIENT:
-      arr.push_back(get_ingredients(i.id))
+      for j in i.stock:
+        arr.push_back(get_ingredients(i.id))
     
   return arr
+    
+    
+func ingredients_from_inventory() -> Array[CookingIngredient]:
+  var arr: Array[CookingIngredient]= []
+  for i in inventory_items:
+    if get_item(i.id).item_type== ItemType.INGREDIENT:
+      arr.push_back(get_ingredients(i.id))
+
+  return arr
+
+
+func foods_from_inventory() -> Array[CookingFood]:
+  var arr: Array[CookingFood]= []
+  for i in inventory_items:
+    if get_item(i.id).item_type== ItemType.FOOD:
+      arr.push_back(get_food_class(i.id))
+
+  return arr
+  
+  
+  
+  
+  

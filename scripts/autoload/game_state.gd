@@ -42,6 +42,7 @@ var events_id : Dictionary = {
   
 }
 
+var is_selling_phase: bool= false
 var is_buyer_fulfilled: bool= false
 var is_last_item_correct= false
 #SAVE

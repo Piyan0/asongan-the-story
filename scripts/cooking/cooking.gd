@@ -150,7 +150,7 @@ static func food_cost(food: CookingFood) -> float:
   return cost
   
 
-static func is_ingredients_can_make_food(ingredients: Array[CookingIngredient], foods: Array[CookingFood]) -> bool:
+static func is_ingredients_can_make_foods(ingredients: Array[CookingIngredient], foods: Array[CookingFood]) -> bool:
   if foods.is_empty():
     return true
     
@@ -162,12 +162,18 @@ static func is_ingredients_can_make_food(ingredients: Array[CookingIngredient], 
       foods_can_be_cooked.push_back(i)
     else:
       pass
-  
-  #for i in foods_can_be_cooked:
-    #print(i._id())
+
   return foods_can_be_cooked.size()> 0
       
   
+static func has_one_of_foods(owned_foods: Array[CookingFood], foods: Array[CookingFood]) -> bool:
+  if foods.is_empty():
+    return true
+  if owned_foods.is_empty():
+    return false
+  for i: CookingFood in owned_foods:
+    for j: CookingFood in foods:
+      if i._id()== j._id():
+        return true
   
-  
-  
+  return false
