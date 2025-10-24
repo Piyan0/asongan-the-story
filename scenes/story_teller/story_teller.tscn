@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://c52hk68bclue0"]
+
+[ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="1_qaw7a"]
+[ext_resource type="Script" uid="uid://befv5rajwwlcf" path="res://scripts/story_teller.gd" id="1_uekn7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uekn7"]
+font = ExtResource("1_qaw7a")
+font_color = Color(0.791521, 0.78196, 0.772394, 1)
+
+[node name="StoryTeller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uekn7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[node name="image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -146.0
+offset_right = 148.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="image"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.137255)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = 86.0
+offset_right = 139.5
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The story goes here."
+label_settings = SubResource("LabelSettings_uekn7")
+autowrap_mode = 2
+visible_characters_behavior = 1

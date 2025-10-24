@@ -14,7 +14,8 @@
 
 [sub_resource type="Resource" id="Resource_jyhfs"]
 script = ExtResource("3_jyhfs")
-expected_item = "tofu"
+expected_item = 0
+id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
@@ -64,18 +65,14 @@ script = ExtResource("1_tbgi4")
 [node name="event" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(281, 240)
 event_unique_data = SubResource("Resource_jyhfs")
-event_id = "area idd"
 events = ExtResource("3_sugp2")
 trigger_by_enter = true
 
 [node name="event2" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(359, 196)
-event_id = "area 1"
 
 [node name="event3" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(135, 174)
-event_id = "area 2"
-current_event_key = "_2"
 trigger_by_enter = true
 
 [node name="Label" type="Label" parent="."]

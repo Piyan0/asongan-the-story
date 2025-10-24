@@ -9,5 +9,4 @@ static var x: Dictionary= {
 }
 
 func _ready() -> void:
-  await get_tree().create_timer(1).timeout
-  Saveable.save_to_json()
+  pass
