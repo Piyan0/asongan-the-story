@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvv5tnh6rkcti"]
+[gd_scene load_steps=7 format=3 uid="uid://dvv5tnh6rkcti"]
 
 [ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="1_bnefi"]
 [ext_resource type="Script" uid="uid://clgefhgjehbbh" path="res://scripts/alert/alert.gd" id="1_gkgll"]
 [ext_resource type="Texture2D" uid="uid://c70cqvwtjt1gt" path="res://assets/color_pallate/fading-16-1x.png" id="2_gkgll"]
+[ext_resource type="Shader" uid="uid://vmmqku7kef0b" path="res://assets/shaders/outline.gdshader" id="2_wwbmm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go8am"]
+shader = ExtResource("2_wwbmm")
+shader_parameter/outline_color = Color(0.160784, 0.137255, 0.14902, 1)
+shader_parameter/blink_color = Color(0, 0, 0, 1)
+shader_parameter/blink_time_scale = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_wwbmm"]
 font = ExtResource("1_bnefi")
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Alert" type="Control"]
 layout_mode = 3
@@ -20,6 +28,7 @@ script = ExtResource("1_gkgll")
 [node name="Label" type="Label" parent="."]
 visible = false
 modulate = Color(0.866667, 0.811765, 0.6, 1)
+material = SubResource("ShaderMaterial_go8am")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
