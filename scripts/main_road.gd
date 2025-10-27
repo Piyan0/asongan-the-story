@@ -1,6 +1,6 @@
 extends Node2D
 
-var row_1_stop= Vector2(74, CarScene.row_1)
+var row_1_stop= Vector2(841, CarScene.row_1)
 var row_2_stop= Vector2(841, CarScene.row_2)
 
 const car= Car.CarID
@@ -51,12 +51,12 @@ func _ready() -> void:
 
   var arr : Array[Callable]= [
     move_car(car.CAR_001, car.CAR_FIRST_ROW, templ.TOFU_AND_EXTRA, 0),
-    #move_car(car.CAR_002, car.CAR_001, templ.TOFU_AND_COFFE, 2),
-    #move_car(car.CAR_003, car.CAR_002, templ.TOFU_AND_COFFE, 2*2),
-    #move_car(car.CAR_005, car.CAR_003, templ.TOFU_AND_COFFE, 2*3),
-    #move_car(car.CAR_008, car.CAR_005, templ.TOFU_AND_COFFE, 2*4),
-    #move_car(car.CAR_006, car.CAR_008, templ.TOFU_AND_COFFE, 2*5),
-    #
+    move_car(car.CAR_002, car.CAR_001, templ.TOFU_AND_COFFE, 2),
+    move_car(car.CAR_003, car.CAR_002, templ.TOFU_AND_COFFE, 2*2),
+    move_car(car.CAR_005, car.CAR_003, templ.TOFU_AND_COFFE, 2*3),
+    move_car(car.CAR_008, car.CAR_005, templ.TOFU_AND_COFFE, 2*4),
+    move_car(car.CAR_006, car.CAR_008, templ.TOFU_AND_COFFE, 2*5),
+    
     #move_car(car.CAR_014, car.CAR_SECOND_ROW, templ.EMPTY, 2* 1),
     #move_car(car.CAR_013, car.CAR_014, templ.COFFE_ONLY, 2* 2),
     #move_car(car.CAR_016, car.CAR_013, templ.TOFU_AND_COFFE, 2* 4),

@@ -184,6 +184,7 @@ func change_cup_state(state: CupState):
 
   
 func ingredient_clicked(id: DB.Ingredient):
+  Sound.play(Sound.SFX.UI_SELECT)
   match id:
     DB.Ingredient.WATER:
       cooking.place_ingredient(IngredientWater.new())

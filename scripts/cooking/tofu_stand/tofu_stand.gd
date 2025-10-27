@@ -192,6 +192,7 @@ func hide_all():
   
   
 func ingredient_clicked(id: DB.Ingredient):
+  Sound.play(Sound.SFX.UI_SELECT)
   match id:
     DB.Ingredient.TOFU:
       cooking.place_ingredient(IngredientTofu.new())
