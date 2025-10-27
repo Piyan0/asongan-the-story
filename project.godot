@@ -31,7 +31,6 @@ Sound="*res://scenes/autoload/AudioManager.tscn"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="viewport"
 
 [input]
@@ -115,6 +114,10 @@ left_click={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/translations/ui_text/UI_text.en_US.translation", "res://assets/translations/ui_text/UI_text.id_ID.translation")
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

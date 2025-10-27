@@ -9,14 +9,14 @@ var body: CharacterBody2D
 var move_speed: int= 2000
 var is_stopped: bool= false
 
-func _process(delta):
+func physics_process(delta: float) -> void:
   if is_stopped:
     return 
     
   direction.x= Input.get_axis('ui_left', 'ui_right')
   direction.y= Input.get_axis('ui_up', 'ui_down')
   
-  body.velocity= direction* move_speed* delta
+  body.velocity= direction* (move_speed)
   body.move_and_slide()
     
   if is_direction_changed():

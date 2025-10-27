@@ -15,7 +15,7 @@ func _ready() -> void:
         
   topdown_movement = TopdownMovement.new()
   topdown_movement.body= player
-  topdown_movement.move_speed= 4500
+  topdown_movement.move_speed= 72
   topdown_movement.direction_changed.connect(on_direction_changed)
 
 func stop(is_stop: bool):
@@ -84,8 +84,9 @@ func set_last_axis(axis: float):
   if axis!= 0:
     last_x_axis= axis
     
-func _process(delta: float) -> void:
-  topdown_movement._process(delta)
+func _physics_process(delta: float) -> void:
+  #print(delta)
+  topdown_movement.physics_process(delta)
   #print(topdown_movement.is_stopped)
 
   
