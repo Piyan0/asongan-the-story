@@ -1,6 +1,7 @@
 extends Node
 
 enum SFX{
+  NONE,
   UI_SELECT,
   UI_NOTIF,
   UI_HOVER,
@@ -48,10 +49,14 @@ func _ready() -> void:
     
 
 func play(id: int):
+  if id== SFX.NONE:
+    return
   sounds[id].play()
 
 
 func stop(id: int, is_fade= false):
+  if id== SFX.NONE:
+    return
   if is_fade:
     for i in 20:
       sounds[id].volume_db-= 2
