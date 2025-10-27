@@ -22,6 +22,7 @@ var cooking: Cooking
 var ingredient_ui: Dictionary
 var is_idle= true
 var can_close= true
+var is_food_animation_playing= false
 func _ready() -> void:
   #TranslationServer.set_locale('id-ID')
   ingredient_ui= {
@@ -77,7 +78,7 @@ func on_food_taken():
 
 
 func get_can_close() -> bool:
-  return can_close
+  return can_close== true and is_food_animation_playing== false
   
 
 func on_food_finished(id: DB.Food) -> void:
@@ -116,13 +117,14 @@ func on_ingredient_placed(id: DB.Ingredient) -> void:
   #cooking.ingredients_used_count[id]+= 1
   match id:
     DB.Ingredient.COFFE_POWDER:
+      await play_animation('add_powder')
       ingredient_ui[id].decrement_count()
       change_cup_state(CupState.POWDERED)
     DB.Ingredient.WATER:
+      await play_animation('add_water')
       ingredient_ui[id].decrement_count()
       change_cup_state(CupState.WATERED)
-    DB.Ingredient.SPOON:
-      pass
+ 
 
 func on_resetted():
   if coffe_stand_slider.visible:
@@ -175,6 +177,7 @@ func fill(_cooking: Cooking):
   for i in coffe_powder_count:
     _cooking.ingredients_available.push_back(IngredientCoffePowder.new())
 
+
 func change_cup_state(state: CupState):
   cup.texture= load(cup_images_path[state])
 
@@ -197,7 +200,7 @@ func ingredient_clicked(id: DB.Ingredient):
       can_close= false
       if not coffe_stand_slider.is_succed:
         return
-      
+      await play_animation('stir')
       cooking.force_finish(FoodCoffe.new())
       change_cup_state(CupState.STIRRED)
       
@@ -213,6 +216,7 @@ func close():
   set_process_input(false)
   cooking.reset()
   change_cup_state(CupState.IDLE)
+  animation.hide()
 
 func on_unable_to_place() -> void:
   OverlayManager.show_alert('INVENTORY_MAXED')
@@ -241,3 +245,12 @@ func on_slider_looped(count: int):
     2:
       coffe_state.modulate= Color('ffffff')
       
+@onready var animation: AnimatedSprite2D = $animation
+func play_animation(anim: String) -> void:
+  is_food_animation_playing= true
+  animation.show()
+  animation.play(anim)
+  await animation.animation_finished
+  animation.hide()
+  is_food_animation_playing= false
+  
