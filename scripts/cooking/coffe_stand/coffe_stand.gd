@@ -85,6 +85,7 @@ func on_food_finished(id: DB.Food) -> void:
   is_idle= false
   coffe_state.hide()
   await get_tree().create_timer(0.2).timeout
+  Sound.play(Sound.SFX.FOOD_FINISHED)
   DB.add_item_to_inventory(id)
   #cooking.ingredients_used_count
   match id:

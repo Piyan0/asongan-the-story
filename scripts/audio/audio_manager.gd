@@ -12,6 +12,7 @@ enum SFX{
   UI_TRANSACTION,
   UI_INVENTORY,
   CAR_HONK,
+  FOOD_FINISHED,
   
 }
 
@@ -31,7 +32,8 @@ var sounds= {}
 @onready var ui_inventory: AudioStreamPlayer = $ui_inventory
 @onready var car_honk: AudioStreamPlayer = $car_honk
 @onready var bgm_ambience: AudioStreamPlayer = $bgm_ambience
- 
+@onready var food_finished: AudioStreamPlayer = $food_finished
+
 func _ready() -> void:
   sounds= {
     SFX.UI_SELECT: ui_select,
@@ -45,6 +47,7 @@ func _ready() -> void:
     SFX.UI_INVENTORY: ui_inventory,
     SFX.CAR_HONK: car_honk,
     BGM.BGM_AMBIENCE: bgm_ambience,
+    SFX.FOOD_FINISHED: food_finished,
     }
     
 

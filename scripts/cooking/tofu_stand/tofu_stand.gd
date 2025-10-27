@@ -70,6 +70,7 @@ func get_can_close() -> bool:
 func on_food_finished(id: DB.Food) -> void:
   can_close= false
   await get_tree().create_timer(0.2).timeout
+  Sound.play(Sound.SFX.FOOD_FINISHED)
   DB.add_item_to_inventory(id)
   #cooking.ingredients_used_count
   match id:

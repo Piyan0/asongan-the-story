@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bk4i0bkmeym5x"
+path="res://.godot/imported/[ FOOD_FINISHED ] success-fanfare-trumpets-6185.mp3-702beca73dcc1e331610b6acfd066fc8.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ui/[ FOOD_FINISHED ] success-fanfare-trumpets-6185.mp3"
+dest_files=["res://.godot/imported/[ FOOD_FINISHED ] success-fanfare-trumpets-6185.mp3-702beca73dcc1e331610b6acfd066fc8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
