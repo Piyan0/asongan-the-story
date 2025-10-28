@@ -162,7 +162,7 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
-  get_item(Food.TOFU_WITH_RICE_ROLL),
+  get_item(Food.PACK_OF_TOFU),
   #get_item(Food.PACK_OF_TOFU),
   #get_item(Food.COFFE),
 ]

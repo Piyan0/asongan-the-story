@@ -1,7 +1,7 @@
 extends Node
 
 enum {
-  PLAYER_BUBBLE_PLAYED= 0,
+  PLAYER_BUBBLE_PLAYED = 0,
   PLAYER_BUBBLE_FINISHED,
   EVENT_STARTED,
   EVENT_FINISHED,
@@ -41,7 +41,7 @@ enum {
 
 }
 
-var event_mapped: Dictionary[int, Callable]= {
+var event_mapped: Dictionary[int, Callable] = {
   PLAYER_BUBBLE_PLAYED: on_player_bubble_played,
   PLAYER_BUBBLE_FINISHED: on_player_bubble_finished,
   EVENT_STARTED: on_EventManager_event_started,
@@ -77,7 +77,7 @@ var event_mapped: Dictionary[int, Callable]= {
   CAR_BATCH: on_car_batch,
 }
   
-func air(id: int, args: Array= []):
+func air(id: int, args: Array = []):
   await event_mapped[id].callv(args)
 
 func on_change_scene():
@@ -85,15 +85,14 @@ func on_change_scene():
   GameState.car_lined.emit()
   
   
-func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
-  
-  GameState.is_selling_phase= true
+func on_car_batch(cars_callback: Array[Callable], trains_duration: float = 20, move_after_trains_leaved: bool = true):
+  GameState.is_selling_phase = true
   GameState.set_event(
     EventsID.ID.MAIN_ROAD_001,
     2
   )
 
-  GameState.can_enter_other_area= false
+  GameState.can_enter_other_area = false
   for i in cars_callback:
     CarScene.add_car_moving(i)
   CarScene.move_based_on_callable()
@@ -102,10 +101,10 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
-  GameState.can_pull_lever= true
+  GameState.can_pull_lever = true
   await GameState.lever_pulled
-  GameState.is_selling_phase= false
-  GameState.can_enter_other_area= true
+  GameState.is_selling_phase = false
+  GameState.can_enter_other_area = true
   TrainStopping.instance.toggle_lever(false)
   GameState.set_event(
     EventsID.ID.MAIN_ROAD_001,
@@ -118,7 +117,8 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   await GameState.car_lined
   PlayerLimit.instance.toggle(false)
   print('finished.')
-  GameState.can_pull_lever= false
+  GameEventQueue.pop()
+  GameState.can_pull_lever = false
   
 func on_item_used_correct():
   OverlayManager.stop_current_overlay()
@@ -147,7 +147,7 @@ func add_autostart(id: int, key_id: String):
    Managers.get_event_manager().add_autostart(id, key_id)
   
 func on_train_timer_finished():
-  if get_tree().current_scene.name!= 'MainRoad':
+  if get_tree().current_scene.name != 'MainRoad':
     add_autostart(EventsID.ID.MAIN_ROAD_AUTO, '_1')
     print('finished outside road.')
   else:
@@ -156,23 +156,24 @@ func on_train_timer_finished():
 
 func on_train_timer_toggle(is_on: bool):
   if train_timer:
-    train_timer.paused= not is_on
+    train_timer.paused = not is_on
     
 var train_timer: Timer
 
-func set_train_arrival(seconds: int):
-  train_timer= Timer.new()
+func set_train_arrival(seconds: int, callback: Callable):
+  train_timer = Timer.new()
   add_child(train_timer)
-  var time_left= seconds
+  var time_left = seconds
   for i in seconds:
-    var minute:int= time_left/ 60
-    var second= time_left % 60
+    var minute: int = time_left / 60
+    var second = time_left % 60
     OverlayManager.get_hud().set_train_arrival(minute, second)
     train_timer.start(1)
     await train_timer.timeout
-    time_left-= 1
+    time_left -= 1
   OverlayManager.get_hud().set_train_arrival(0, 0)
   train_timer.queue_free()
+  callback.call()
   on_train_timer_finished()
   
 func on_main_menu_loaded() -> void:
@@ -184,11 +185,11 @@ func on_main_menu_loaded() -> void:
     )
   
   if Saveable.has_key('settings_index'):
-    var settings_index: Dictionary= Saveable.string_keys_to_int(
+    var settings_index: Dictionary = Saveable.string_keys_to_int(
         Saveable.get_data('settings_index')
       )
-    GameState.saved_setting_index= settings_index
-    OptionsSelectionMenu.saved_setting_index=  settings_index
+    GameState.saved_setting_index = settings_index
+    OptionsSelectionMenu.saved_setting_index = settings_index
     #print(settings_index)
  
 func on_settings_changed(settings: Dictionary):
@@ -272,7 +273,7 @@ func on_EventManager_player_exited_area():
 func on_game_started():
   #air(EVENT_STARTED)
   OverlayManager.set_process_input(true)
-  OverlayManager.is_can_open= true
+  OverlayManager.is_can_open = true
   CarManager.instance.ready()
   await Transition.instance.play_transition(false)
   get_tree().change_scene_to_file("res://scenes/environment/main_road.tscn")
@@ -285,13 +286,13 @@ func on_game_paused():
   OverlayManager.show_overlay(
     OverlayManager.Overlay.PAUSE
   )
-  GameState.is_game_paused= true
+  GameState.is_game_paused = true
   print('game paused')
 
 func on_game_resumed():
   air(EVENT_FINISHED)
   OverlayManager.stop_current_overlay()
-  GameState.is_game_paused= false
+  GameState.is_game_paused = false
   print('game resumed')
   PlayerMovement.instance.stop(false)
 

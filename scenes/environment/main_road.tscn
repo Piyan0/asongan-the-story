@@ -199,7 +199,7 @@ event_unique_data = SubResource("Resource_3u1fh")
 
 [node name="car004" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-551, 263)
-car_id = 3
+car_id = 4
 
 [node name="sprite" parent="car004" index="0"]
 sprite_frames = ExtResource("21_m2w3x")
@@ -298,7 +298,7 @@ position = Vector2(-34, 1)
 event_unique_data = SubResource("Resource_3u1fh")
 
 [node name="car006" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-887, 263)
+position = Vector2(-887, 259)
 car_id = 6
 
 [node name="sprite" parent="car006" index="0"]
