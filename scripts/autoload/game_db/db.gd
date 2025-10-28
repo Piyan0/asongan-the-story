@@ -59,47 +59,47 @@ var items= {
     'icon': "res://assets/sprites/items/tofu.png",
     'item_name': 'PACK_OF_TOFU',
     'id': Food.PACK_OF_TOFU,
-    'worth': 99,
-    'cost': 1,
+    'worth': 15,
+    'cost': 13,
   },
   Food.TOFU_WITH_RICE_ROLL: {
     'item_type': ItemType.FOOD,
     'icon': "res://assets/sprites/items/tofu_extra.png",
     'item_name': 'TOFU_WITH_RICE_ROLL',
     'id': Food.TOFU_WITH_RICE_ROLL,
-    'worth': 99,
-    'cost': 99999,
+    'worth': 20,
+    'cost': 15,
   },
   Food.COFFE: {
     'item_type': ItemType.FOOD,
     'icon': "res://assets/sprites/items/coffe.png",
     'item_name': 'COFFE',
     'id': Food.COFFE,
-    'worth': 99,
-    'cost': 1,
+    'worth': 37,
+    'cost': 19,
   },
   Ingredient.TOFU: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/single_tofu.png",
     'item_name': 'TOFU',
     'id': Ingredient.TOFU,
-    'worth': 99,
-    'cost': 1,
+    'worth': 0,
+    'cost': 2,
   },
   Ingredient.RICE_ROLL: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/rice_roll.png",
     'item_name': 'RICE_ROLL',
     'id': Ingredient.RICE_ROLL,
-    'worth': 99,
-    'cost': 1,
+    'worth': 0,
+    'cost': 8,
   },
   Ingredient.CHILLY: {
     'item_type': ItemType.INGREDIENT,
     'icon': "res://assets/sprites/items/chilly.png",
     'item_name': 'CHILLY',
     'id': Ingredient.CHILLY,
-    'worth': 99,
+    'worth': 0,
     'cost': 1,
   },
   
@@ -108,8 +108,8 @@ var items= {
     'icon': "res://assets/sprites/items/coffe_powder.png",
     'item_name': 'COFFE_POWDER',
     'id': Ingredient.COFFE_POWDER,
-    'worth': 99,
-    'cost': 1,
+    'worth': 0,
+    'cost': 10,
   },
   
   Ingredient.WATER: {
@@ -117,8 +117,8 @@ var items= {
     'icon': "res://assets/sprites/items/water.png",
     'item_name': 'WATER',
     'id': Ingredient.WATER,
-    'worth': 99,
-    'cost': 1,
+    'worth': 0,
+    'cost': 9,
   },
   
   Upgrade.COFFE_STAND_SPOON: {
@@ -126,10 +126,9 @@ var items= {
     'icon': "res://assets/sprites/items/upgrade.png",
     'item_name': 'SPOON',
     'id': Upgrade.COFFE_STAND_SPOON,
-    'worth': 99,
-    'cost': 1,
+    'worth': 0,
+    'cost': 65,
   },
-  
 }
 
 #SAVE
@@ -163,7 +162,7 @@ var shop_items= [
 
 #SAVE
 var inventory_items= [
-  #get_item(Food.PACK_OF_TOFU),
+  get_item(Food.TOFU_WITH_RICE_ROLL),
   #get_item(Food.PACK_OF_TOFU),
   #get_item(Food.COFFE),
 ]

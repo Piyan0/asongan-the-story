@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/yipee-45360.mp3-9c11b6e62407ab1967352390298fb
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

@@ -42,6 +42,7 @@ var events_id : Dictionary = {
   
 }
 
+var can_pull_lever: bool= false
 var is_selling_phase: bool= false
 var is_buyer_fulfilled: bool= false
 var is_last_item_correct= false
@@ -58,7 +59,7 @@ var item_correct_id: int= -1
 var item_state: ItemState= ItemState.CAN_DROP
 
 #SAVE
-var current_coin: int= 4
+var current_coin: int= 30
 
 const INVENTORY_MAX := 16
 

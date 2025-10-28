@@ -1,74 +1,21 @@
 extends Node2D
 
+class CarBatchData:
+  var car: Car.CarID
+  var buy: Array[DB.Food]
+  var delay: float
+  var destination: Car.CarID
+  
+  
 var row_1_stop= Vector2(841, CarScene.row_1)
 var row_2_stop= Vector2(841, CarScene.row_2)
 
 const car= Car.CarID
 const templ= CarScene.SellTemplate
 
-var _inventory: Array[CookingIngredient]= [
-  #IngredientChilly.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientRiceRoll.new(),
-  #IngredientCoffePowder.new(),
-  #IngredientWater.new(),
-]
-
-var shop: Array[CookingIngredient]= [
-  IngredientChilly.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientTofu.new(),
-  #IngredientRiceRoll.new()
-  
-]
-
-var inventory_foods: Array[CookingFood]= [
-  #FoodPackOfTofu.new(),
-  #FoodTofuWithRiceRoll.new(),
-]
-var food_request: Array[CookingFood]= [
-  FoodPackOfTofu.new(),
-  FoodTofuWithRiceRoll.new(),
-  FoodCoffe.new(),
-]
-
-var coin= 3
 func _ready() -> void:
-  var g= GameoverEvaluate.new()
-  g.test(
-    load("res://scripts/game_over/game_over_001.gd").new()
-  )
   limit_player()
-
-  var arr : Array[Callable]= [
-    move_car(car.CAR_001, car.CAR_FIRST_ROW, templ.TOFU_AND_EXTRA, 0),
-    move_car(car.CAR_002, car.CAR_001, templ.TOFU_AND_COFFE, 2),
-    move_car(car.CAR_003, car.CAR_002, templ.TOFU_AND_COFFE, 2*2),
-    move_car(car.CAR_005, car.CAR_003, templ.TOFU_AND_COFFE, 2*3),
-    move_car(car.CAR_008, car.CAR_005, templ.TOFU_AND_COFFE, 2*4),
-    move_car(car.CAR_006, car.CAR_008, templ.TOFU_AND_COFFE, 2*5),
-    
-    #move_car(car.CAR_014, car.CAR_SECOND_ROW, templ.EMPTY, 2* 1),
-    #move_car(car.CAR_013, car.CAR_014, templ.COFFE_ONLY, 2* 2),
-    #move_car(car.CAR_016, car.CAR_013, templ.TOFU_AND_COFFE, 2* 4),
-  ]
   
-  await get_tree().create_timer(1).timeout
-  Mediator.air(
-    Mediator.CAR_BATCH,
-    [
-      arr, 5
-    ]
-  )
   
 func limit_player():
   $player_limit.area_entered.connect(func(area):
@@ -79,13 +26,13 @@ func limit_player():
 
 
 # DEPENDENT cars_node
-func get_cars():
+func get_cars() -> Array[CarScene]:
   return [
     $car001, $car002, $car003, $car004, $car005, $car006, $car007, $car008, $car009, $car010, $car011, $car012, $car013, $car014, $car015, $car016
   ]
 
 
-func get_cars_by_id(id: Car.CarID) -> Node2D:
+func get_cars_by_id(id: Car.CarID) -> CarScene:
 
   for i in get_cars():
     if i.car_id== id:
@@ -93,9 +40,29 @@ func get_cars_by_id(id: Car.CarID) -> Node2D:
       
   return
   
-    
-func move_car(id: Car.CarID, position_id: int, sell_template: CarScene.SellTemplate, delay: float, ) -> Callable:
-  var car= get_cars_by_id(id)
+
+func move_cars_from_dict(data: Array) -> Array[Callable]:
+  var batches: Array[CarBatchData]
+  for i in data:
+    var batch := CarBatchData.new()
+    batch.car= i.car_type
+    batch.delay= i.delay
+    batch.destination= i.destination
+    var buy: Array[DB.Food]
+    buy.assign(i.buy)
+    batch.buy= buy
+    batches.push_back(batch)
+  
+  var r: Array[Callable]
+  for i in batches:
+    var cb= move_car(i.car, i.destination, i.buy, i.delay)
+    r.push_back(cb)    
+  return r
+
+
+  
+func move_car(id: Car.CarID, position_id: int, buy: Array[DB.Food], delay: float, ) -> Callable:
+  var car: CarScene= get_cars_by_id(id)
   var position_callable: Callable
   if position_id== -1:
     position_callable= func():
@@ -107,6 +74,12 @@ func move_car(id: Car.CarID, position_id: int, sell_template: CarScene.SellTempl
     position_callable= Car.get_back_point.bind(position_id)
   
   #print(position_callable.call())
-  var sell_data: Array[CarScene.SellData]= CarScene.get_template(sell_template)
-  
+  var sell_data: Array[CarScene.SellData]
+  var current_id= 0
+  for i in buy:
+    var sell := CarScene.SellData.new()
+    sell.id= i
+    sell.sell_id= current_id
+    sell_data.push_back(sell)
+    
   return car.move_and_buy.bind(delay, position_callable, sell_data)

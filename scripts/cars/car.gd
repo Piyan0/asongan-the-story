@@ -6,7 +6,7 @@ signal arrived()
 var parent_node: Node2D
 var is_moving: bool= false
 var tween: Tween
-const base_speed: float= 90
+const base_speed: float= 200#90
 
 enum CarID{
   CAR_FIRST_ROW= -1,

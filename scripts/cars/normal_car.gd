@@ -1,4 +1,5 @@
 extends CarScene
+class_name NormalCar
 
 var car: Car
 @onready var sprite: AnimatedSprite2D = $sprite
@@ -13,8 +14,7 @@ var is_buying= {
 var reset_position: bool= true
 static var sound= null
 func _ready() -> void:
-  if not sound:
-    sound= $sfx
+  
   sell_areas= [
     $event, $event2
   ]
@@ -24,7 +24,8 @@ func _ready() -> void:
   car= Car.new()
   car.parent_node= self
   car.moved.connect(func(_position: Vector2):
-    
+
+    position.y= _position.y
     Car.car_back_point[car_id]= _position- Vector2(_width(), 0)
     #print(self.position+ _position)
     sprite.stop()
@@ -77,12 +78,15 @@ func hide_hint(id: int):
 
 var food_request: Array[DB.Food]= []
 func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[SellData]):
+  if not sound:
+    sound= $sfx
   if not sound.playing:
     sound.play()
     
   if reset_position:
     position.x= CarScene.spawn_x_pos
     reset_position= false
+  #position.y= _position_return.call().y
   
   for i in sell_data:
     GameState.food_request.push_back(i.id)
@@ -100,11 +104,11 @@ func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[Sel
     return
   is_buying[sell_data[0].sell_id]= true
   sell_areas[0].event_unique_data.expected_item= sell_data[0].id
-  print(sell_areas[0].event_unique_data.expected_item)
+  #print(sell_areas[0].event_unique_data.expected_item)
   show_hint(0)
   if sell_data.size()-1 >0:
     sell_areas[1].event_unique_data.expected_item= sell_data[1].id
-    print(sell_areas[1].event_unique_data.expected_item)
+    #print(sell_areas[1].event_unique_data.expected_item)
     is_buying[sell_data[1].sell_id]= true
     show_hint(1)
     

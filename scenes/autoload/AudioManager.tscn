@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://d6iggkbjmbdu" path="res://assets/sounds/ui/[ INVENTORY OPEN ] open-bag-sound-39216.mp3" id="10_qycvh"]
 [ext_resource type="AudioStream" uid="uid://brti8lpbtsoc7" path="res://assets/sounds/ui/[ CAR_HONK ] car-honk-386166.mp3" id="11_fdj0b"]
 [ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="12_fdj0b"]
-[ext_resource type="AudioStream" uid="uid://ba7frviu7lka" path="res://assets/sounds/ui/[ YIPEE ] yipee-45360.mp3" id="13_qycvh"]
+[ext_resource type="AudioStream" uid="uid://bpg4nd8uxyfml" path="res://assets/sounds/ui/yipee-45360.mp3" id="13_qycvh"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_g438q")

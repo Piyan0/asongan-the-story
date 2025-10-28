@@ -2,6 +2,8 @@ extends Node
 
 #events start with _+number, the d, g is injected in EventArea.
 func _1(d: Callable, g: GameEvent):
+  if not GameState.can_pull_lever:
+    return
   if GameState.is_buyer_fulfilled:
     GameState.lever_pulled.emit()
     GameState.is_buyer_fulfilled= false

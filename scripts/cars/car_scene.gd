@@ -113,12 +113,14 @@ static func move_to_vanish_point():
   var on_car_arrived= func(max):
     current_car_arrived+= 1
     if current_car_arrived>= max:
-      for i in moving_cars:
-        moving_cars[i].reset_position= true
+      #for i in moving_cars:
+        #moving_cars[i].position.x= CarScene.spawn_x_pos
+      
       moving_cars= {}
       car_moving_callback= []
       print('all cars moved.')
       GameState.car_lined.emit()
+      NormalCar.sound= null
     
   var total_cars: int= moving_cars.size()
   for i in moving_cars:
@@ -129,8 +131,11 @@ static func move_to_vanish_point():
     car.is_buying[0]= false
     car.is_buying[1]= false
     var empty_buy: Array[SellData]= []
-    car.move_and_buy(get_cached_delay(car.car_id), func(): return Vector2(vanish_point, car.position.y), empty_buy)
-  
+    var move_car= func():
+      await car.move_and_buy(get_cached_delay(car.car_id), func(): return Vector2(vanish_point, car.position.y), empty_buy)
+      await car.get_tree().process_frame
+      car.position.x= CarScene.spawn_x_pos
+    move_car.call()
 
 static func get_cached_delay(id: Car.CarID):
   return car_delay_cache[id]

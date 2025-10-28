@@ -78,7 +78,7 @@ var event_mapped: Dictionary[int, Callable]= {
 }
   
 func air(id: int, args: Array= []):
-  event_mapped[id].callv(args)
+  await event_mapped[id].callv(args)
 
 func on_change_scene():
   print('opening door.')
@@ -86,6 +86,7 @@ func on_change_scene():
   
   
 func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, move_after_trains_leaved: bool= true):
+  
   GameState.is_selling_phase= true
   GameState.set_event(
     EventsID.ID.MAIN_ROAD_001,
@@ -101,6 +102,7 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
+  GameState.can_pull_lever= true
   await GameState.lever_pulled
   GameState.is_selling_phase= false
   GameState.can_enter_other_area= true
@@ -116,6 +118,7 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float= 20, mo
   await GameState.car_lined
   PlayerLimit.instance.toggle(false)
   print('finished.')
+  GameState.can_pull_lever= false
   
 func on_item_used_correct():
   OverlayManager.stop_current_overlay()

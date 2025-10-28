@@ -26,6 +26,7 @@ Managers="*res://scenes/autoload/managers.tscn"
 DB="*res://scripts/autoload/game_db/db.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 Sound="*res://scenes/autoload/AudioManager.tscn"
+GameEventQueue="*res://scripts/autoload/game_event_queue.gd"
 
 [display]
 
@@ -114,10 +115,6 @@ left_click={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/translations/ui_text/UI_text.en_US.translation", "res://assets/translations/ui_text/UI_text.id_ID.translation")
-
-[physics]
-
-common/physics_interpolation=true
 
 [rendering]
 
