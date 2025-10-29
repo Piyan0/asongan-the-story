@@ -17,11 +17,14 @@ const car = Car.CarID
 const templ = CarScene.SellTemplate
 static var i: MainRoad
 func _ready() -> void:
+  GameState.on_initial_scene_loaded(func():
+    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
+    )
   if not i:
     i = self
     
   limit_player()
-  GameEventQueue.pop()
+  
   
 func limit_player():
   $player_limit.area_entered.connect(func(area):
@@ -63,6 +66,7 @@ func move_cars_from_dict(data: Array) -> Array[Callable]:
     var cb = move_car(i.car, i.destination, i.buy, i.delay)
     r.push_back(cb)
   return r
+  
 
 
 func move_car(id: Car.CarID, position_id: int, buy: Array[DB.Food], delay: float, ) -> Callable:

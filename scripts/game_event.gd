@@ -12,6 +12,10 @@ func change_scene(scene: PackedScene, tree: SceneTree, pos: Vector2):
   var player_last_idle_animation= PlayerMovement.instance.current_idle_animation
   var player_last_x_axis= PlayerMovement.instance.last_x_axis
   await Transition.instance.play_transition(false)
+  GameState.navigation_aborted.emit()
+  if GameState.is_abort_navigation:
+    await Transition.instance.play_transition(true)
+    return
   tree.change_scene_to_packed(scene)
   await tree.process_frame
   Player.player.play_anim(player_last_idle_animation)

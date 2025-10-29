@@ -2,6 +2,7 @@ extends Node
 
 signal car_lined()
 signal lever_pulled()
+signal navigation_aborted()
 enum Visible {
   MAIN_ROAD_001,
   MAIN_ROAD_002,
@@ -42,6 +43,8 @@ var events_id: Dictionary = {
   
 }
 
+var is_abort_navigation: bool= false
+var is_initial_scene_loaded = true
 var can_pull_lever: bool = false
 var is_selling_phase: bool = false
 var is_buyer_fulfilled: bool = false
@@ -69,9 +72,18 @@ var current_car_batch: Array
 func _ready() -> void:
   car_batches = CarsBatch.new()
 
+
+func on_initial_scene_loaded(call: Callable) -> void:
+  if not is_initial_scene_loaded:
+    return
+  
+  call.call_deferred()
+  is_initial_scene_loaded = false
+
+  
 func change_car_batch(batch_id: CarsBatch.Batch) -> void:
   current_car_batch = car_batches.batches[batch_id]
-  print(current_car_batch)
+  # print(current_car_batch)
 
 func set_event(id: EventsID.ID, event: int):
   events_id[id] = '_' + str(event)

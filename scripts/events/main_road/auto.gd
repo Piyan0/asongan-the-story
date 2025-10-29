@@ -9,7 +9,12 @@ func _1(d: Callable, g: GameEvent):
     GameState.current_car_batch
   ), 10
   ])
-  
+
+func _2(d: Callable, g: GameEvent):
+  GameState.set_event(
+    EventsID.ID.MAIN_ROAD_AUTO, 1
+  )
+  GameEventQueue.pop()
   
   
 # This will be called when player leave the area, if 'trigger_by_enter is set to true.

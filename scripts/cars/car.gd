@@ -6,7 +6,7 @@ signal arrived()
 var parent_node: Node2D
 var is_moving: bool= false
 var tween: Tween
-const base_speed: float= 200#90
+const base_speed: float= 90
 
 enum CarID{
   CAR_FIRST_ROW= -1,
@@ -82,6 +82,8 @@ static func get_back_point(id: CarID) -> Vector2:
   
 func move_car(delay: float, _position_return: Callable, is_broadcast: bool= false):
   await parent_node.get_tree().create_timer(delay).timeout
+  if not is_instance_valid(parent_node):
+    return
   tween= parent_node.create_tween()
   moved.emit(_position_return.call())
   var _position= _position_return.call()

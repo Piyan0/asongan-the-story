@@ -6,7 +6,7 @@ class SellData:
   var id: DB.Food
   var sell_id: int
 
-enum SellTemplate{
+enum SellTemplate {
   EMPTY,
   TOFU_ONLY,
   TOFU_AND_EXTRA,
@@ -15,15 +15,15 @@ enum SellTemplate{
   COFFE_ONLY,
 }
 
-static var row_1: float= 263
-static var row_2: float= 354
-static var spawn_x_pos: float= -86.0
-static var car_delay_cache: ={
+static var row_1: float = 263
+static var row_2: float = 354
+static var spawn_x_pos: float = -86.0
+static var car_delay_cache := {
   
 }
 static var car_moving_callback: Array[Callable]
-static var moving_cars: Dictionary[int, CarScene]
-static var vanish_point: float= 1400
+static var moving_cars: Dictionary[int, NormalCar]
+static var vanish_point: float = 1400
 
 @export var car_id: Car.CarID
 
@@ -33,45 +33,45 @@ static func get_template(id: SellTemplate) -> Array[SellData]:
       return []
     SellTemplate.TOFU_ONLY:
       var sell_001 := SellData.new()
-      sell_001.sell_id= 0
-      sell_001.id= DB.Food.PACK_OF_TOFU
+      sell_001.sell_id = 0
+      sell_001.id = DB.Food.PACK_OF_TOFU
       return [sell_001]
       
     SellTemplate.TOFU_AND_EXTRA:
       var sell_001 := SellData.new()
-      sell_001.sell_id= 0
-      sell_001.id= DB.Food.PACK_OF_TOFU
+      sell_001.sell_id = 0
+      sell_001.id = DB.Food.PACK_OF_TOFU
       var sell_002 := SellData.new()
-      sell_002.sell_id= 1
-      sell_002.id= DB.Food.TOFU_WITH_RICE_ROLL
+      sell_002.sell_id = 1
+      sell_002.id = DB.Food.TOFU_WITH_RICE_ROLL
       return [sell_001, sell_002]
       
     SellTemplate.TOFU_AND_COFFE:
       var sell_001 := SellData.new()
-      sell_001.sell_id= 0
-      sell_001.id= DB.Food.PACK_OF_TOFU
+      sell_001.sell_id = 0
+      sell_001.id = DB.Food.PACK_OF_TOFU
       var sell_002 := SellData.new()
-      sell_002.sell_id= 1
-      sell_002.id= DB.Food.COFFE
+      sell_002.sell_id = 1
+      sell_002.id = DB.Food.COFFE
       return [sell_001, sell_002]
       
     SellTemplate.TOFU_WITH_RICE_ROLL_ONLY:
       var sell_002 := SellData.new()
-      sell_002.sell_id= 0
-      sell_002.id= DB.Food.TOFU_WITH_RICE_ROLL
+      sell_002.sell_id = 0
+      sell_002.id = DB.Food.TOFU_WITH_RICE_ROLL
       return [sell_002]
       
     SellTemplate.COFFE_ONLY:
       var sell_002 := SellData.new()
-      sell_002.sell_id= 0
-      sell_002.id= DB.Food.COFFE
+      sell_002.sell_id = 0
+      sell_002.id = DB.Food.COFFE
       return [sell_002]
     
   return []
   
 
 static func set_moving_car(id: int, car: CarScene):
-  moving_cars[id]= car
+  moving_cars[id] = car
    
 
 static func add_car_moving(callable: Callable):
@@ -84,12 +84,22 @@ static func is_phase_selling_done():
       return false
   
   return true
+
+
+static func verify_data() -> void:
+  car_moving_callback = car_moving_callback.filter(
+    func(i: Callable):
+      return i.is_valid()
+      )
+
   
 static func move_based_on_callable():
-  current_car_arrived= 0
-  var on_car_arrived= func(max):
-    current_car_arrived+= 1
-    if current_car_arrived>= max:
+  verify_data()
+  moving_cars.clear()
+  current_car_arrived = 0
+  var on_car_arrived = func(_max):
+    current_car_arrived += 1
+    if current_car_arrived >= _max:
       print('all cars moved.')
       GameState.car_lined.emit()
       
@@ -97,44 +107,43 @@ static func move_based_on_callable():
     i.call()
     await Mediator.get_tree().process_frame
   
-  var total_cars: int= moving_cars.size()
+  var total_cars: int = moving_cars.size()
   for i in moving_cars:
-    moving_cars[i]._arrived= on_car_arrived.bind(total_cars)
+    moving_cars[i]._arrived = on_car_arrived.bind(total_cars)
     
   
 static func reset_moving_cars() -> void:
-  moving_cars= {}
+  moving_cars = {}
  
 static var current_car_arrived: int
 
 
 static func move_to_vanish_point():
-  current_car_arrived= 0
-  var on_car_arrived= func(max):
-    current_car_arrived+= 1
-    if current_car_arrived>= max:
+  current_car_arrived = 0
+  var on_car_arrived = func(max):
+    current_car_arrived += 1
+    if current_car_arrived >= max:
       #for i in moving_cars:
         #moving_cars[i].position.x= CarScene.spawn_x_pos
-      
-      moving_cars= {}
-      car_moving_callback= []
+      moving_cars = {}
+      car_moving_callback = []
       print('all cars moved.')
       GameState.car_lined.emit()
-      NormalCar.sound= null
+      NormalCar.sound = null
     
-  var total_cars: int= moving_cars.size()
+  var total_cars: int = moving_cars.size()
   for i in moving_cars:
-    var car: CarScene= moving_cars[i]
-    car._arrived= on_car_arrived.bind(total_cars)
+    var car: CarScene = moving_cars[i]
+    car._arrived = on_car_arrived.bind(total_cars)
     car.hide_hint(0)
     car.hide_hint(1)
-    car.is_buying[0]= false
-    car.is_buying[1]= false
-    var empty_buy: Array[SellData]= []
-    var move_car= func():
+    car.is_buying[0] = false
+    car.is_buying[1] = false
+    var empty_buy: Array[SellData] = []
+    var move_car = func():
       await car.move_and_buy(get_cached_delay(car.car_id), func(): return Vector2(vanish_point, car.position.y), empty_buy)
       await car.get_tree().process_frame
-      car.position.x= CarScene.spawn_x_pos
+      car.position.x = CarScene.spawn_x_pos
     move_car.call()
 
 static func get_cached_delay(id: Car.CarID):
