@@ -1,7 +1,8 @@
 [gd_scene load_steps=20 format=3 uid="uid://dc47iab81xsau"]
 
 [ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
-[ext_resource type="SpriteFrames" uid="uid://dsajuuuqrs0e1" path="res://assets/resources/cars/car_1_1.tres" id="2_lt7va"]
+[ext_resource type="Resource" uid="uid://q4u06c4esa70" path="res://assets/resources/normal_car_variation/2_1.tres" id="2_5rfnj"]
+[ext_resource type="SpriteFrames" uid="uid://bauavm3luitdu" path="res://assets/resources/cars/car_2_1.tres" id="3_ma5oh"]
 [ext_resource type="Texture2D" uid="uid://b35iobngdxlkg" path="res://assets/sprites/bubble.png" id="4_ayrrm"]
 [ext_resource type="Texture2D" uid="uid://bd33qi7tvpog" path="res://assets/sprites/bubble_tail.png" id="5_bpyxf"]
 [ext_resource type="Texture2D" uid="uid://bls8gvv0ibffm" path="res://assets/sprites/items/tofu.png" id="6_xy7xi"]
@@ -10,10 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://btwy0ykvxypg4" path="res://assets/sounds/ui/[ CAR ENGINE ] bus-engine-47297.mp3" id="10_5rfnj"]
 [ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="10_ma5oh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6shbv"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6shbv"]
-size = Vector2(129, 47)
+size = Vector2(147, 53)
 
 [sub_resource type="Animation" id="Animation_5rfnj"]
 length = 0.001
@@ -27,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(5, 5)]
+"values": [Vector2(-15, -15)]
 }
 
 [sub_resource type="Animation" id="Animation_lt7va"]
@@ -44,8 +43,8 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(5, 5), Vector2(5, 4), Vector2(5, 3), Vector2(5, 4), Vector2(5, 5), Vector2(5, 6)]
+"update": 1,
+"values": [Vector2(-15, -15), Vector2(-15, -16), Vector2(-15, -17), Vector2(-15, -16), Vector2(-15, -15), Vector2(-15, -14)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ma5oh"]
@@ -154,18 +153,20 @@ size = Vector2(140, 68.398)
 
 [node name="NormalCar" type="Node2D"]
 script = ExtResource("1_aiglg")
+variation = ExtResource("2_5rfnj")
+metadata/_edit_vertical_guides_ = [72.0]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -50)
-sprite_frames = ExtResource("2_lt7va")
+position = Vector2(-3, -48)
+sprite_frames = ExtResource("3_ma5oh")
 animation = &"stop"
 autoplay = "move"
 
 [node name="Control" type="ColorRect" parent="."]
 visible = false
-offset_left = -91.0
+offset_left = -105.0
 offset_top = -107.0
-offset_right = 80.0
+offset_right = 96.0
 offset_bottom = 1.0
 color = Color(1, 1, 1, 0.203922)
 
@@ -178,27 +179,20 @@ offset_bottom = -98.0
 text = "fdf"
 metadata/_edit_use_anchors_ = true
 
-[node name="car" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="car"]
-position = Vector2(60, -37)
-shape = SubResource("CircleShape2D_6shbv")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(5, -34.5)
+position = Vector2(-1.5, -31.5)
 shape = SubResource("RectangleShape2D_6shbv")
 
 [node name="but_hint" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -46.0
-offset_top = -88.0
-offset_right = -6.0
-offset_bottom = -48.0
+offset_left = -30.0
+offset_top = -73.0
+offset_right = -30.0
+offset_bottom = -73.0
 
 [node name="buy_hint" type="NinePatchRect" parent="but_hint"]
 layout_mode = 1
@@ -258,10 +252,10 @@ autoplay = "idle"
 [node name="but_hint2" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -5.0
-offset_top = -88.0
-offset_right = 35.0
-offset_bottom = -48.0
+offset_left = 33.0
+offset_top = -73.0
+offset_right = 33.0
+offset_bottom = -73.0
 
 [node name="buy_hint" type="NinePatchRect" parent="but_hint2"]
 layout_mode = 1
@@ -319,13 +313,13 @@ libraries = {
 autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
-position = Vector2(19, 1)
+position = Vector2(29, 1)
 event_unique_data = SubResource("Resource_lt7va")
 event_id = -1
 events = SubResource("GDScript_5rfnj")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
-position = Vector2(-23, 1)
+position = Vector2(-29, 1)
 event_unique_data = SubResource("Resource_5rfnj")
 event_id = -1
 events = SubResource("GDScript_4egjp")
@@ -349,6 +343,7 @@ offset_right = -6.0
 offset_bottom = -90.0
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 offset_left = -24.1736
 offset_top = -125.033
 offset_right = 15.8264

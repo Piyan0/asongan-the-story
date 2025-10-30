@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="NormalCarVariation" load_steps=4 format=3 uid="uid://1ridfk6m4e6d"]
+
+[ext_resource type="Script" uid="uid://ehd7n63s5cvb" path="res://scripts/cars/car_variation.gd" id="1_bum76"]
+[ext_resource type="SpriteFrames" uid="uid://bi3nu5n185e7f" path="res://assets/resources/cars/car_3_1.tres" id="2_70cq3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma5oh"]
+size = Vector2(162, 53)
+
+[resource]
+script = ExtResource("1_bum76")
+sprite_frames = ExtResource("2_70cq3")
+sprite_pos = Vector2(-9, -55)
+shape = SubResource("RectangleShape2D_ma5oh")
+coll_pos = Vector2(-9, -31.5)
+sell_area_1 = Vector2(29, 1)
+sell_area_2 = Vector2(-29, 1)
+width = Vector2(201, 108)
+metadata/_custom_type_script = "uid://ehd7n63s5cvb"

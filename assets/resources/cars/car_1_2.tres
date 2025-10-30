@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3aqvgtokqpu5" path="res://assets/sprites/cars/normal_car/2_2.png" id="2_1v5m6"]
 
 [resource]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,

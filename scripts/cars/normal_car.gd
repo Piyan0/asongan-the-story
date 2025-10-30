@@ -13,9 +13,12 @@ var is_buying= {
 }
 var reset_position: bool= true
 static var sound= null
-var value= []
+
+@export var variation: NormalCarVariation
+
+
 func _ready() -> void:
-  value= ['x', 'y']
+
   $Label2.text= name
   sell_areas= [
     $event, $event2
@@ -23,6 +26,7 @@ func _ready() -> void:
   hints= [
     $but_hint2, $but_hint
   ]
+  apply_variation(variation)
   car= Car.new()
   car.parent_node= self
   car.moved.connect(func(_position: Vector2):
@@ -51,6 +55,18 @@ func _ready() -> void:
     hide_hint(0)
     hide_hint(1)
 
+@onready var collision_shape_2d: CollisionShape2D = $StaticBody2D/CollisionShape2D
+
+func apply_variation(variation: NormalCarVariation):
+  sell_areas[0].position= variation.sell_area_1
+  sell_areas[1].position= variation.sell_area_2
+  collision_shape_2d.position= variation.coll_pos
+  collision_shape_2d.shape= variation.shape
+  sprite.sprite_frames= variation.sprite_frames
+  sprite.position= variation.sprite_pos
+  hints[0].position.x= variation.sell_area_1.x
+  hints[1].position.x= variation.sell_area_2.x
+  $Control.size= variation.width
 
 func is_main():
   return get_tree().current_scene== self
