@@ -144,7 +144,7 @@ static func move_to_vanish_point():
     car.is_buying[1] = false
     var empty_buy: Array[SellData] = []
     var move_car = func():
-      await car.move_and_buy(get_cached_delay(car.car_id), func(): return Vector2(vanish_point, car.position.y), empty_buy)
+      await car.move_and_buy(get_cached_delay(car.car_id)* 0.1, func(): return Vector2(vanish_point, car.position.y), empty_buy)
       await car.get_tree().process_frame
       car.position.x = CarScene.spawn_x_pos
     move_car.call()
