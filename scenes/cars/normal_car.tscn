@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://dc47iab81xsau"]
+[gd_scene load_steps=19 format=3 uid="uid://dc47iab81xsau"]
 
 [ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
-[ext_resource type="Resource" uid="uid://q4u06c4esa70" path="res://assets/resources/normal_car_variation/2_1.tres" id="2_5rfnj"]
 [ext_resource type="SpriteFrames" uid="uid://bauavm3luitdu" path="res://assets/resources/cars/car_2_1.tres" id="3_ma5oh"]
 [ext_resource type="Texture2D" uid="uid://b35iobngdxlkg" path="res://assets/sprites/bubble.png" id="4_ayrrm"]
 [ext_resource type="Texture2D" uid="uid://bd33qi7tvpog" path="res://assets/sprites/bubble_tail.png" id="5_bpyxf"]
@@ -153,7 +152,6 @@ size = Vector2(140, 68.398)
 
 [node name="NormalCar" type="Node2D"]
 script = ExtResource("1_aiglg")
-variation = ExtResource("2_5rfnj")
 metadata/_edit_vertical_guides_ = [72.0]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]

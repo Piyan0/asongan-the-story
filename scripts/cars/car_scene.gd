@@ -124,6 +124,8 @@ static func move_to_vanish_point():
   var on_car_arrived = func(max):
     current_car_arrived += 1
     if current_car_arrived >= max:
+      NormalCar.sound.stop()
+      NormalCar.sound= null
       #for i in moving_cars:
         #moving_cars[i].position.x= CarScene.spawn_x_pos
       moving_cars = {}

@@ -498,7 +498,7 @@ var stage_2_007 := [
 #10, 16, 11, 7, 8, 1, 3, 2
 var stage_3_001 := [
     {
-        'buy': [Foods.COFFE],
+        'buy': [Foods.TOFU_WITH_RICE_ROLL],
         'car_type': Cars.CAR_010,
         'destination': Cars.CAR_FIRST_ROW,
         'delay': 2 * 0,

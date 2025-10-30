@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=29 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
@@ -18,12 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
 [ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
 [ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="18_a4cjr"]
+[ext_resource type="Resource" uid="uid://b2o4wt8ockukx" path="res://assets/resources/normal_car_variation/1_1.tres" id="19_fed3l"]
 [ext_resource type="Resource" uid="uid://cjkd72pr50rl8" path="res://assets/resources/normal_car_variation/1_2.tres" id="19_hiiyi"]
 [ext_resource type="Resource" uid="uid://cgnwpu1b0mr11" path="res://assets/resources/normal_car_variation/1_3.tres" id="20_3u1fh"]
-[ext_resource type="Script" uid="uid://ehd7n63s5cvb" path="res://scripts/cars/car_variation.gd" id="21_fed3l"]
+[ext_resource type="Resource" uid="uid://q4u06c4esa70" path="res://assets/resources/normal_car_variation/2_1.tres" id="21_fed3l"]
 [ext_resource type="Resource" uid="uid://p5qaav5dnshs" path="res://assets/resources/normal_car_variation/2_2.tres" id="22_m2w3x"]
-[ext_resource type="SpriteFrames" uid="uid://dgex0najemhae" path="res://assets/resources/cars/car_2_2.tres" id="22_ydayg"]
 [ext_resource type="Resource" uid="uid://1ridfk6m4e6d" path="res://assets/resources/normal_car_variation/3_1.tres" id="23_ydayg"]
+[ext_resource type="Resource" uid="uid://j5412x6cf4ey" path="res://assets/resources/normal_car_variation/3_2.tres" id="24_t1v4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3fmx"]
 size = Vector2(135.776, 598)
@@ -36,20 +37,6 @@ metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
 size = Vector2(84.1826, 176.929)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rfnj"]
-size = Vector2(147, 53)
-
-[sub_resource type="Resource" id="Resource_cspu0"]
-script = ExtResource("21_fed3l")
-sprite_frames = ExtResource("22_ydayg")
-sprite_pos = Vector2(-3, -48)
-shape = SubResource("RectangleShape2D_5rfnj")
-coll_pos = Vector2(-1.5, -31.5)
-sell_area_1 = Vector2(23, 1)
-sell_area_2 = Vector2(-29, 1)
-width = Vector2(189, 108)
-metadata/_custom_type_script = "uid://ehd7n63s5cvb"
 
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
@@ -142,6 +129,7 @@ max_distance = 415.0
 
 [node name="car001" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-88, 254)
+variation = ExtResource("19_fed3l")
 car_id = 1
 
 [node name="car002" parent="." instance=ExtResource("15_lhu43")]
@@ -156,59 +144,65 @@ car_id = 3
 
 [node name="car004" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-545, 258)
-variation = SubResource("Resource_cspu0")
+variation = ExtResource("20_3u1fh")
 car_id = 4
 
 [node name="car005" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-702, 258)
+position = Vector2(-702, 260)
+variation = ExtResource("19_hiiyi")
 car_id = 5
 
 [node name="car006" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-860, 258)
-variation = SubResource("Resource_cspu0")
+variation = ExtResource("19_fed3l")
 car_id = 6
 
 [node name="car007" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-1015, 258)
-variation = ExtResource("22_m2w3x")
+position = Vector2(-1015, 265)
+variation = ExtResource("21_fed3l")
 car_id = 7
 
 [node name="car008" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-1171, 258)
-variation = ExtResource("23_ydayg")
+variation = ExtResource("22_m2w3x")
 car_id = 8
 
 [node name="car009" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-88, 343)
+variation = ExtResource("22_m2w3x")
 car_id = 9
 
 [node name="car010" parent="." instance=ExtResource("15_lhu43")]
-position = Vector2(-237, 343)
+position = Vector2(-237, 346)
 variation = ExtResource("23_ydayg")
 car_id = 10
 
 [node name="car011" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-387, 343)
+variation = ExtResource("23_ydayg")
 car_id = 11
 
 [node name="car012" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-545, 343)
+variation = ExtResource("21_fed3l")
 car_id = 12
 
 [node name="car013" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-702, 343)
-variation = ExtResource("22_m2w3x")
+variation = ExtResource("24_t1v4v")
 car_id = 13
 
 [node name="car014" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-860, 343)
+variation = ExtResource("24_t1v4v")
 car_id = 14
 
 [node name="car015" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-1015, 343)
-variation = ExtResource("20_3u1fh")
+variation = ExtResource("22_m2w3x")
 car_id = 15
 
 [node name="car016" parent="." instance=ExtResource("15_lhu43")]
 position = Vector2(-1171, 343)
+variation = ExtResource("24_t1v4v")
 car_id = 16
