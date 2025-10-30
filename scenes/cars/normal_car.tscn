@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dc47iab81xsau"]
+[gd_scene load_steps=20 format=3 uid="uid://dc47iab81xsau"]
 
 [ext_resource type="Script" uid="uid://3leb058h7p0g" path="res://scripts/cars/normal_car.gd" id="1_aiglg"]
 [ext_resource type="SpriteFrames" uid="uid://dsajuuuqrs0e1" path="res://assets/resources/cars/car_1_1.tres" id="2_lt7va"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bls8gvv0ibffm" path="res://assets/sprites/items/tofu.png" id="6_xy7xi"]
 [ext_resource type="PackedScene" uid="uid://bll0y00ufegmy" path="res://modules/event_system/scenes/event.tscn" id="7_bpyxf"]
 [ext_resource type="Script" uid="uid://bg82lf7whq1q7" path="res://scripts/events_unique_data/common_sell_item.gd" id="8_lt7va"]
-[ext_resource type="Script" uid="uid://d0b2swwkolsmg" path="res://scripts/events/selling_area.gd" id="8_xy7xi"]
 [ext_resource type="AudioStream" uid="uid://btwy0ykvxypg4" path="res://assets/sounds/ui/[ CAR ENGINE ] bus-engine-47297.mp3" id="10_5rfnj"]
 [ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="10_ma5oh"]
 
@@ -55,19 +54,100 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
-[sub_resource type="Resource" id="Resource_5rfnj"]
+[sub_resource type="Resource" id="Resource_lt7va"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
-expected_item = 50
+expected_item = 0
 id = 0
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
 
-[sub_resource type="Resource" id="Resource_ma5oh"]
+[sub_resource type="GDScript" id="GDScript_5rfnj"]
+script/source = "extends Node
+func _1(data, g: GameEvent):
+
+  if not Car.current_car.is_buying[data.call().id]:
+    return
+  GameState.item_correct_id= data.call().expected_item
+  print('item correct set to ', data.call().expected_item)
+  GameState.item_state= GameState.ItemState.CAN_USE
+  
+  await OverlayManager.show_overlay(
+    OverlayManager.Overlay.INVENTORY
+  )
+  if GameState.get_item_status():
+    Sound.play(Sound.SFX.UI_TRANSACTION)
+    var car= Car.current_car
+    
+    GameState.food_request.erase(data.call().expected_item)
+    # BOOK
+    printt(JSON.stringify(
+      GameState.food_request, '  '
+    ), data.call().expected_item)
+    car.food_request.erase(data.call().expected_item)
+    
+    printt('Food remaining to sell: ', GameState.food_request)
+    car.show_thanks()
+    car.hide_hint(data.call().id)
+    car.set_is_buying(data.call().id, false)
+    if CarScene.is_phase_selling_done():
+      GameState.is_buyer_fulfilled= true
+      
+    var item= DB.get_item(data.call().expected_item)
+    g.add_coin(item.worth)
+  else:
+    print('wrong.')
+  GameState.item_state= GameState.ItemState.CAN_DROP
+  GameState.item_correct_id= -1
+"
+
+[sub_resource type="Resource" id="Resource_5rfnj"]
 resource_local_to_scene = true
 script = ExtResource("8_lt7va")
-expected_item = 52
+expected_item = 0
 id = 1
 metadata/_custom_type_script = "uid://bg82lf7whq1q7"
+
+[sub_resource type="GDScript" id="GDScript_4egjp"]
+script/source = "extends Node
+func _1(data, g: GameEvent):
+  printt(
+    data.call().expected_item
+  )
+  return
+  if not Car.current_car.is_buying[data.call().id]:
+    return
+  GameState.item_correct_id= data.call().expected_item
+  print('item correct set to ', data.call().expected_item)
+  GameState.item_state= GameState.ItemState.CAN_USE
+  
+  await OverlayManager.show_overlay(
+    OverlayManager.Overlay.INVENTORY
+  )
+  if GameState.get_item_status():
+    Sound.play(Sound.SFX.UI_TRANSACTION)
+    var car= Car.current_car
+    
+    GameState.food_request.erase(data.call().expected_item)
+    # BOOK
+    printt(JSON.stringify(
+      GameState.food_request, '  '
+    ), data.call().expected_item)
+    car.food_request.erase(data.call().expected_item)
+    
+    printt('Food remaining to sell: ', GameState.food_request)
+    car.show_thanks()
+    car.hide_hint(data.call().id)
+    car.set_is_buying(data.call().id, false)
+    if CarScene.is_phase_selling_done():
+      GameState.is_buyer_fulfilled= true
+      
+    var item= DB.get_item(data.call().expected_item)
+    g.add_coin(item.worth)
+  else:
+    print('wrong.')
+  GameState.item_state= GameState.ItemState.CAN_DROP
+  GameState.item_correct_id= -1
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lt7va"]
 size = Vector2(140, 68.398)
@@ -240,15 +320,15 @@ autoplay = "idle"
 
 [node name="event" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(19, 1)
-event_unique_data = SubResource("Resource_5rfnj")
+event_unique_data = SubResource("Resource_lt7va")
 event_id = -1
-events = ExtResource("8_xy7xi")
+events = SubResource("GDScript_5rfnj")
 
 [node name="event2" parent="." instance=ExtResource("7_bpyxf")]
 position = Vector2(-23, 1)
-event_unique_data = SubResource("Resource_ma5oh")
+event_unique_data = SubResource("Resource_5rfnj")
 event_id = -1
-events = ExtResource("8_xy7xi")
+events = SubResource("GDScript_4egjp")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -267,3 +347,9 @@ offset_left = -6.0
 offset_top = -90.0
 offset_right = -6.0
 offset_bottom = -90.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -24.1736
+offset_top = -125.033
+offset_right = 15.8264
+offset_bottom = -102.033

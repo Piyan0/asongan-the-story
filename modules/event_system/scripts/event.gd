@@ -30,6 +30,7 @@ func _ready() -> void:
     var event : Event.EventPart = Event.EventPart.new()
     event.id= i.name
     event.callback= events_instance[i.name].bindv([func(): return event_unique_data, GameEvent.new()])
+    
     core.add_event(event)
   
   setup_area()

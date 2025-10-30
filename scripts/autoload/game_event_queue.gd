@@ -4,7 +4,7 @@ var queue: Array[Callable] = [
   
   #func():
     #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
+      #Mediator.TRAIN_TIMER_START, [6, func():
         #GameState.change_car_batch(CarsBatch.Batch.STAGE_1_001)
         #]
     #),
@@ -32,66 +32,66 @@ var queue: Array[Callable] = [
         #GameState.change_car_batch(CarsBatch.Batch.STAGE_1_005)
         #]
     #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_1_006)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_001)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_002)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_003)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_004)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_005)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_006)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_2_007)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_3_001)
-        #]
-    #),
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [30, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_3_002)
-        #]
-    #),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_1_006)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_001)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_002)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_003)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_004)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_005)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_006)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_2_007)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_3_001)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_3_002)
+        ]
+    ),
   func():
     Mediator.air(
       Mediator.TRAIN_TIMER_START, [30, func():

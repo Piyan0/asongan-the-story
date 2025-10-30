@@ -69,6 +69,8 @@ const INVENTORY_MAX := 16
 
 var car_batches: CarsBatch
 var current_car_batch: Array
+
+
 func _ready() -> void:
   car_batches = CarsBatch.new()
 

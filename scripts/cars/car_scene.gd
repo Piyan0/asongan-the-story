@@ -101,6 +101,7 @@ static func move_based_on_callable():
     current_car_arrived += 1
     if current_car_arrived >= _max:
       print('all cars moved.')
+      printt(GameState.food_request)
       GameState.car_lined.emit()
       
   for i in car_moving_callback:

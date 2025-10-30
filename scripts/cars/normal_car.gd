@@ -13,8 +13,10 @@ var is_buying= {
 }
 var reset_position: bool= true
 static var sound= null
+var value= []
 func _ready() -> void:
-  
+  value= ['x', 'y']
+  $Label2.text= name
   sell_areas= [
     $event, $event2
   ]
@@ -104,14 +106,15 @@ func move_and_buy(delay: float, _position_return: Callable, sell_data: Array[Sel
     return
   is_buying[sell_data[0].sell_id]= true
   sell_areas[0].event_unique_data.expected_item= sell_data[0].id
-  #print(sell_areas[0].event_unique_data.expected_item)
   show_hint(0)
   if sell_data.size()-1 >0:
     sell_areas[1].event_unique_data.expected_item= sell_data[1].id
     #print(sell_areas[1].event_unique_data.expected_item)
     is_buying[sell_data[1].sell_id]= true
     show_hint(1)
-    
+
+func get_x():
+  return $event.event_unique_data.expected_item
   
 func set_label(t):
   $Label.text= t

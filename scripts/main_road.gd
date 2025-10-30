@@ -24,7 +24,7 @@ func _ready() -> void:
     i = self
     
   limit_player()
-  
+
   
 func limit_player():
   $player_limit.area_entered.connect(func(area):

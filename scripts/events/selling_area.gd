@@ -1,10 +1,15 @@
 extends Node
 func _1(data, g: GameEvent):
+  printt(
+    data.call().expected_item
+  )
+  return
   if not Car.current_car.is_buying[data.call().id]:
     return
   GameState.item_correct_id= data.call().expected_item
   print('item correct set to ', data.call().expected_item)
   GameState.item_state= GameState.ItemState.CAN_USE
+  
   await OverlayManager.show_overlay(
     OverlayManager.Overlay.INVENTORY
   )
@@ -13,6 +18,10 @@ func _1(data, g: GameEvent):
     var car= Car.current_car
     
     GameState.food_request.erase(data.call().expected_item)
+    # BOOK
+    printt(JSON.stringify(
+      GameState.food_request, '  '
+    ), data.call().expected_item)
     car.food_request.erase(data.call().expected_item)
     
     printt('Food remaining to sell: ', GameState.food_request)
