@@ -18,6 +18,7 @@ script = ExtResource("1_40fm2")
 [node name="CanvasLayer" parent="." instance=ExtResource("3_y7rud")]
 
 [node name="transition" parent="." instance=ExtResource("4_xs6jo")]
+layer = 128
 
 [node name="hud" parent="." instance=ExtResource("4_y7rud")]
 layer = 100
