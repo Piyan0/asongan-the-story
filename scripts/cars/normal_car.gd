@@ -58,7 +58,6 @@ func _ready() -> void:
 @onready var collision_shape_2d: CollisionShape2D = $StaticBody2D/CollisionShape2D
 
 func apply_variation(variation: NormalCarVariation):
-  print(name)
   sell_areas[0].position= variation.sell_area_1
   sell_areas[1].position= variation.sell_area_2
   collision_shape_2d.position= variation.coll_pos
