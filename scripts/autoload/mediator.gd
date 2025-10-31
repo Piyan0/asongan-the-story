@@ -277,7 +277,7 @@ func on_game_started():
   #air(EVENT_STARTED)
   OverlayManager.set_process_input(true)
   OverlayManager.is_can_open = true
-  CarManager.instance.ready()
+  # CarManager.instance.ready()
   await Transition.instance.play_transition(false)
   get_tree().change_scene_to_file("res://scenes/environment/main_road.tscn")
   OverlayManager.toggle_hud(true)
