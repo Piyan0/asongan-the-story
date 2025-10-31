@@ -136,3 +136,15 @@ flip_v = true
 [node name="Window" type="Sprite2D" parent="."]
 position = Vector2(83, 223)
 texture = ExtResource("11_eb6dy")
+
+[node name="Node" type="Node2D" parent="."]
+
+[node name="Node2" type="Node" parent="Node"]
+
+[node name="Node3" type="Node" parent="Node"]
+
+[node name="Node4" type="Node" parent="Node"]
+
+[node name="Node5" type="Node" parent="Node"]
+
+[node name="Node6" type="Node" parent="Node"]

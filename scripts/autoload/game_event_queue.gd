@@ -1,16 +1,16 @@
 extends Node
 
 var queue: Array[Callable] = [
-  
-  #func():
-    #Mediator.air(
-      #Mediator.TRAIN_TIMER_START, [6, func():
-        #GameState.change_car_batch(CarsBatch.Batch.STAGE_1_001)
-        #]
-    #),
+ 
   func():
     Mediator.air(
-      Mediator.TRAIN_TIMER_START, [3, func():
+      Mediator.TRAIN_TIMER_START, [6, func():
+        GameState.change_car_batch(CarsBatch.Batch.STAGE_1_001)
+        ]
+    ),
+  func():
+    Mediator.air(
+      Mediator.TRAIN_TIMER_START, [30, func():
         GameState.change_car_batch(CarsBatch.Batch.STAGE_1_002)
         ]
     ),

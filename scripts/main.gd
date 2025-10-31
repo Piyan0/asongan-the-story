@@ -9,4 +9,7 @@ static var x: Dictionary= {
 }
 
 func _ready() -> void:
-  pass
+  var y = ReparentChild.new()
+  y.migrate(
+    self, $Node
+  )
