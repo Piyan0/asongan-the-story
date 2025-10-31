@@ -59,10 +59,19 @@ func _ready():
   }
   
   hide_overlays()
+  toggle_hud(false)
 
 func hide_overlays():
   for i in overlays:
     overlays[i].target.hide()
+
+
+func toggle_hud(cond: bool):
+  var hud:= [
+    $hud, $CanvasLayer
+  ]
+  for i in hud:
+    i.visible= cond
     
 func toggle_visibility(is_on: bool):
   if is_on:

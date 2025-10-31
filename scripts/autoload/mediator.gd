@@ -115,10 +115,10 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float = 20, m
     return
   PlayerLimit.instance.toggle(true)
   CarScene.move_to_vanish_point()
-  var move_limit= func():
+  var move_limit = func():
     await GameState.car_lined
     PlayerLimit.instance.toggle(false)
-  move_limit.call() 
+  move_limit.call()
   print('finished.')
   GameEventQueue.pop()
   GameState.can_pull_lever = false
@@ -280,6 +280,7 @@ func on_game_started():
   CarManager.instance.ready()
   await Transition.instance.play_transition(false)
   get_tree().change_scene_to_file("res://scenes/environment/main_road.tscn")
+  OverlayManager.toggle_hud(true)
   OverlayManager.toggle_control_hint(true)
   await Transition.instance.play_transition(true)
   # on_scene_changed()

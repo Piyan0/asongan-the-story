@@ -43,8 +43,9 @@ var events_id: Dictionary = {
   
 }
 
+
 var is_abort_navigation: bool= false
-var is_initial_scene_loaded = true
+var is_initial_scene_loaded = false
 var can_pull_lever: bool = false
 var is_selling_phase: bool = false
 var is_buyer_fulfilled: bool = false
@@ -76,11 +77,10 @@ func _ready() -> void:
 
 
 func on_initial_scene_loaded(call: Callable) -> void:
-  if not is_initial_scene_loaded:
+  if is_initial_scene_loaded:
     return
-  
   call.call_deferred()
-  is_initial_scene_loaded = false
+  is_initial_scene_loaded = true
 
   
 func change_car_batch(batch_id: CarsBatch.Batch) -> void:
