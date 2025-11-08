@@ -286,6 +286,7 @@ func on_game_started():
   
 func on_game_paused():
   air(EVENT_STARTED)
+  get_tree().paused= true
   OverlayManager.show_overlay(
     OverlayManager.Overlay.PAUSE
   )
@@ -294,6 +295,7 @@ func on_game_paused():
 
 func on_game_resumed():
   air(EVENT_FINISHED)
+  get_tree().paused= false
   OverlayManager.stop_current_overlay()
   GameState.is_game_paused = false
   print('game resumed')

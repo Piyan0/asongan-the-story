@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bmnynxptrxgw0" path="res://scenes/cooking/coffe_stand/coffe_stand.tscn" id="10_vnq6d"]
 
 [node name="OverlayManager" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_40fm2")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_y7rud")]
