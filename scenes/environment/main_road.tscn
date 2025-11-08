@@ -1,13 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://no5h2wbb2cwa"]
 
-[ext_resource type="Texture2D" uid="uid://di6xtwk1l37me" path="res://assets/sprites/environment/map/ampp.png" id="1_3vthi"]
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
+[ext_resource type="PackedScene" uid="uid://dfw2wapamoole" path="res://scenes/environment/main_road_art.tscn" id="3_m2w3x"]
 [ext_resource type="PackedScene" uid="uid://bll0y00ufegmy" path="res://modules/event_system/scenes/event.tscn" id="5_cfafu"]
 [ext_resource type="Script" uid="uid://t1o4qf4sa8ml" path="res://scripts/events_unique_data/common_door.gd" id="6_i6ch8"]
 [ext_resource type="PackedScene" uid="uid://lukntc1w20oe" path="res://scenes/train/train_stopping.tscn" id="6_px678"]
 [ext_resource type="PackedScene" uid="uid://cll0ryt0j8voh" path="res://scenes/train/train.tscn" id="7_px678"]
-[ext_resource type="Script" uid="uid://2abs2qd1nkwo" path="res://scripts/main_road_manager.gd" id="8_cf2ie"]
 [ext_resource type="Script" uid="uid://mx46f4qvpluk" path="res://scripts/events/main_road/001.gd" id="10_gsf1v"]
 [ext_resource type="Script" uid="uid://b5sc3v6hcfim6" path="res://scripts/events/main_road/002.gd" id="10_jhre1"]
 [ext_resource type="Script" uid="uid://b1auhnen8wg21" path="res://scripts/events/main_road/003.gd" id="11_i6ch8"]
@@ -25,9 +24,7 @@
 [ext_resource type="Resource" uid="uid://p5qaav5dnshs" path="res://assets/resources/normal_car_variation/2_2.tres" id="22_m2w3x"]
 [ext_resource type="Resource" uid="uid://1ridfk6m4e6d" path="res://assets/resources/normal_car_variation/3_1.tres" id="23_ydayg"]
 [ext_resource type="Resource" uid="uid://j5412x6cf4ey" path="res://assets/resources/normal_car_variation/3_2.tres" id="24_t1v4v"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3fmx"]
-size = Vector2(135.776, 598)
+[ext_resource type="Texture2D" uid="uid://b83bu1t4rdcj4" path="res://assets/sprites/environment/map/main_road/cols.png" id="25_m2w3x"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
@@ -38,36 +35,23 @@ metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
 size = Vector2(84.1826, 176.929)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2w3x"]
+
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cmskb")
 metadata/_edit_horizontal_guides_ = [263.0]
 
-[node name="Ampp" type="Sprite2D" parent="."]
-texture = ExtResource("1_3vthi")
-centered = false
+[node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(273, 170)
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1438, 234)
+position = Vector2(525, 197)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
-position = Vector2(970, 380)
+position = Vector2(1019, 376)
 
 [node name="Train" parent="." instance=ExtResource("7_px678")]
 position = Vector2(1105, -30)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1345, 257)
-shape = SubResource("RectangleShape2D_f3fmx")
-
-[node name="MainRoadManager" type="Node" parent="."]
-script = ExtResource("8_cf2ie")
-metadata/_custom_type_script = "uid://2abs2qd1nkwo"
 
 [node name="events" type="Node" parent="."]
 
@@ -77,13 +61,13 @@ event_id = 1
 events = ExtResource("13_oifoc")
 
 [node name="event1" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(194, 149)
+position = Vector2(193, 161)
 event_unique_data = SubResource("Resource_lv3wr")
 event_id = 2
 events = ExtResource("10_gsf1v")
 
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(433, 136)
+position = Vector2(428, 153)
 event_id = 3
 events = ExtResource("10_jhre1")
 
@@ -93,22 +77,19 @@ event_id = 4
 events = ExtResource("11_i6ch8")
 
 [node name="event4" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(295, 111)
+position = Vector2(291, 121)
 event_id = 5
 events = ExtResource("12_lv3wr")
 
 [node name="event5" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(369, 111)
+position = Vector2(368, 124)
 event_id = 6
 events = ExtResource("14_8upmm")
 
 [node name="event6" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(715, 162)
+position = Vector2(986, 183)
 event_id = 7
 events = ExtResource("15_gsf1v")
-
-[node name="train_stop" type="Marker2D" parent="."]
-position = Vector2(156, 215)
 
 [node name="player_limit" type="Area2D" parent="."]
 position = Vector2(1253, 189)
@@ -127,82 +108,131 @@ stream = ExtResource("18_a4cjr")
 autoplay = true
 max_distance = 415.0
 
-[node name="car001" parent="." instance=ExtResource("15_lhu43")]
+[node name="cars" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="car001" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-88, 254)
 variation = ExtResource("19_fed3l")
 car_id = 1
 
-[node name="car002" parent="." instance=ExtResource("15_lhu43")]
+[node name="car002" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-237, 258)
 variation = ExtResource("19_hiiyi")
 car_id = 2
 
-[node name="car003" parent="." instance=ExtResource("15_lhu43")]
+[node name="car003" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-387, 258)
 variation = ExtResource("20_3u1fh")
 car_id = 3
 
-[node name="car004" parent="." instance=ExtResource("15_lhu43")]
+[node name="car004" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-545, 258)
 variation = ExtResource("20_3u1fh")
 car_id = 4
 
-[node name="car005" parent="." instance=ExtResource("15_lhu43")]
+[node name="car005" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-702, 260)
 variation = ExtResource("19_hiiyi")
 car_id = 5
 
-[node name="car006" parent="." instance=ExtResource("15_lhu43")]
+[node name="car006" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-860, 258)
 variation = ExtResource("19_fed3l")
 car_id = 6
 
-[node name="car007" parent="." instance=ExtResource("15_lhu43")]
+[node name="car007" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-1015, 265)
 variation = ExtResource("21_fed3l")
 car_id = 7
 
-[node name="car008" parent="." instance=ExtResource("15_lhu43")]
+[node name="car008" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-1171, 258)
 variation = ExtResource("22_m2w3x")
 car_id = 8
 
-[node name="car009" parent="." instance=ExtResource("15_lhu43")]
+[node name="car009" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-88, 343)
 variation = ExtResource("22_m2w3x")
 car_id = 9
 
-[node name="car010" parent="." instance=ExtResource("15_lhu43")]
+[node name="car010" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-237, 346)
 variation = ExtResource("23_ydayg")
 car_id = 10
 
-[node name="car011" parent="." instance=ExtResource("15_lhu43")]
+[node name="car011" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-387, 343)
 variation = ExtResource("23_ydayg")
 car_id = 11
 
-[node name="car012" parent="." instance=ExtResource("15_lhu43")]
+[node name="car012" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-545, 343)
 variation = ExtResource("21_fed3l")
 car_id = 12
 
-[node name="car013" parent="." instance=ExtResource("15_lhu43")]
+[node name="car013" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-702, 343)
 variation = ExtResource("24_t1v4v")
 car_id = 13
 
-[node name="car014" parent="." instance=ExtResource("15_lhu43")]
+[node name="car014" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-860, 343)
 variation = ExtResource("24_t1v4v")
 car_id = 14
 
-[node name="car015" parent="." instance=ExtResource("15_lhu43")]
+[node name="car015" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-1015, 343)
 variation = ExtResource("22_m2w3x")
 car_id = 15
 
-[node name="car016" parent="." instance=ExtResource("15_lhu43")]
+[node name="car016" parent="cars" instance=ExtResource("15_lhu43")]
 position = Vector2(-1171, 343)
 variation = ExtResource("24_t1v4v")
 car_id = 16
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("25_m2w3x")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(58, 0, 58, 46, 0, 46, 0, 385, 822, 385, 822, 704, 637, 704, 637, 705, 633, 705, 633, 929, 634, 929, 634, 932, 946, 932, 946, 928, 950, 928, 950, 376, 1041, 376, 1041, 722, 1051, 722, 1051, 726, 1171, 726, 1171, 712, 1168, 712, 1168, 373, 1275, 373, 1275, 360, 1156, 360, 1156, 712, 1053, 712, 1053, 371, 1050, 371, 1050, 365, 1033, 365, 1033, 327, 1005, 327, 1005, 365, 950, 365, 950, 364, 940, 364, 940, 923, 638, 923, 638, 712, 838, 712, 838, 704, 836, 704, 836, 367, 835, 367, 835, 361, 1, 361, 1, 92, 58, 92, 58, 146, 246, 146, 246, 50, 438, 49, 439, 84, 406, 103, 404, 139, 457, 140, 464, 126, 926, 124, 1050, 110, 1050, 96, 1052, 96, 1052, 22, 1158, 22, 1158, 113, 1162, 113, 1162, 122, 1249, 122, 1249, 120, 1277, 120, 1277, 373, 1325, 373, 1325, 377, 1340, 377, 1340, 419, 1374, 419, 1374, 112, 1364, 112, 1364, 91, 1280, 91, 1280, 103, 1174, 103, 1174, 10, 1169, 10, 1169, 0, 1040, 0, 1040, 92, 466, 92, 466, 91, 450, 83, 453, 44, 246, 43, 246, 0)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(265, 70, 265, 107, 316, 107, 316, 70)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(333, 70, 333, 109, 398, 109, 398, 70)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(492.779, -0.00012207)
+scale = Vector2(0.466549, 1)
+polygon = PackedVector2Array(922, 165, 922, 173, 993, 173, 993, 168.594, 993, 165)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(880, 1)
+scale = Vector2(0.112492, 1)
+polygon = PackedVector2Array(922, 165, 922, 173, 993, 173, 993, 168.594, 993, 165)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 589.975)
+scale = Vector2(1, 0.223212)
+polygon = PackedVector2Array(730, 748, 730, 762, 815, 762, 815, 748, 771.693, 748)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0.000488281, 539.065)
+scale = Vector2(0.999999, 0.288465)
+polygon = PackedVector2Array(664, 749, 664, 762, 700, 762, 700, 749)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(684, 726)
+shape = SubResource("RectangleShape2D_m2w3x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(769, 726)
+shape = SubResource("RectangleShape2D_m2w3x")

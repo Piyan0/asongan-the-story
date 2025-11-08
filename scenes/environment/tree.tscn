@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://blwkm1g5ecl5j"]
+
+[ext_resource type="Texture2D" uid="uid://2ftajlhr2otr" path="res://assets/sprites/environment/tree/tree_trunk.png" id="1_ijtvn"]
+[ext_resource type="Shader" uid="uid://bvleqmo5qfxoy" path="res://assets/shaders/sway.gdshader" id="2_2847m"]
+[ext_resource type="Texture2D" uid="uid://clktlu135ft63" path="res://assets/sprites/environment/tree/tree_top.png" id="3_hr712"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+resource_local_to_scene = true
+shader = ExtResource("2_2847m")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 200.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 6.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[node name="tree" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-12, -56)
+texture = ExtResource("1_ijtvn")
+centered = false
+
+[node name="Icon2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_choun")
+position = Vector2(-41, -116)
+texture = ExtResource("3_hr712")
+centered = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
+position = Vector2(0.5, -60)
+scale = Vector2(4.45, 6.1)

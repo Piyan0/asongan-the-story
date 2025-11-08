@@ -4,7 +4,7 @@ signal train_arrived()
 signal train_leaved()
 
 static var instance: Train
-const y_end_pos: float= 1300.0
+const y_end_pos: float= 1440
 const y_start_pos: float= -6.0
 
 func _ready() -> void:

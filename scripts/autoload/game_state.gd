@@ -93,7 +93,7 @@ func set_event(id: EventsID.ID, event: int):
   
   
 func get_item_status() -> bool:
-  return true # DEV, disable this on build
+  #return true # DEV, disable this on build
   var _temp = is_last_item_correct
   #print_debug(_temp)
   is_last_item_correct = false

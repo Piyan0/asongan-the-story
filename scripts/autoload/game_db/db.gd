@@ -153,10 +153,10 @@ var shop_items = [
     'id': Ingredient.WATER,
     'stock': 10,
   }),
-  get_item_shop({
-    'id': Upgrade.COFFE_STAND_SPOON,
-    'stock': 10,
-  }),
+  #get_item_shop({
+    #'id': Upgrade.COFFE_STAND_SPOON,
+    #'stock': 10,
+  #}),
 ]
 
 

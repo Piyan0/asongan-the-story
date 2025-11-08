@@ -20,9 +20,7 @@ func _ready() -> void:
   GameState.on_initial_scene_loaded(func():
     Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
     )
-  #DB.set_stock_based_on_foods([
-    #FoodCoffe.new(), FoodPackOfTofu.new(), FoodTofuWithRiceRoll.new()
-  #])
+
   if not i:
     i = self
     
@@ -39,9 +37,9 @@ func limit_player():
 
 # DEPENDENT cars_node
 func get_cars() -> Array[CarScene]:
-  return [
-    $car001, $car002, $car003, $car004, $car005, $car006, $car007, $car008, $car009, $car010, $car011, $car012, $car013, $car014, $car015, $car016
-  ]
+  var cars: Array[CarScene]
+  cars.assign($cars.get_children())
+  return cars
 
 
 func get_cars_by_id(id: Car.CarID) -> CarScene:
