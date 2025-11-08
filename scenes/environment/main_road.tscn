@@ -249,6 +249,7 @@ shape = SubResource("RectangleShape2D_ydayg")
 [node name="train_blockade" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1030.5, 242)
 shape = SubResource("RectangleShape2D_t1v4v")
+disabled = true
 
 [node name="beyond_area" type="ColorRect" parent="."]
 visible = false
