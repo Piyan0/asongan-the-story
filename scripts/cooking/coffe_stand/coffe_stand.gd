@@ -37,7 +37,24 @@ func _ready() -> void:
     set_process(false)
     set_process_input(false)
 
+
+func _process(delta: float) -> void:
+  #$Label.text= str(get_can_close())
+  #$Label.text= str(can_close)
+  mouse.position= get_global_mouse_position()
+
+
+func _input(event: InputEvent) -> void:
+  if event.is_action_pressed("c") and self.visible:
+    if coffe_stand_slider.is_idle:
+      cooking.reset(coffe_stand_slider.visible)
+    else:
+      pass
+      #print_debug('busy.')
+      
+
 func prepare():
+  can_close= true
   set_process_input(true)
   set_process(true)
   if has_spoon():
@@ -71,10 +88,10 @@ func on_no_ingredient():
   
   
 func on_food_taken():
+  can_close= true
   OverlayManager.get_alert().close()
   await food_finished.close()
   change_cup_state(CupState.IDLE)
-  can_close= true
 
 
 func get_can_close() -> bool:
@@ -200,7 +217,10 @@ func ingredient_clicked(id: DB.Ingredient):
       coffe_stand_slider.start()
       await coffe_stand_slider.slide_finished
       can_close= false
-      if not coffe_stand_slider.is_succed:
+      var is_succed= func() -> bool:
+        #return true
+        return coffe_stand_slider.is_succed
+      if not is_succed.call():
         return
       await play_animation('stir')
       cooking.force_finish(FoodCoffe.new())
@@ -223,17 +243,8 @@ func close():
 func on_unable_to_place() -> void:
   OverlayManager.show_alert('INVENTORY_MAXED')
   
-func _process(delta: float) -> void:
-  #print(can_close)
-  mouse.position= get_global_mouse_position()
 
-func _input(event: InputEvent) -> void:
-  if event.is_action_pressed("c") and self.visible:
-    if coffe_stand_slider.is_idle:
-      cooking.reset(coffe_stand_slider.visible)
-    else:
-      pass
-      #print_debug('busy.')
+
 
 @onready var coffe_state: TextureRect = %coffe_state
 

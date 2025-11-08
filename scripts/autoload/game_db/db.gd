@@ -164,12 +164,13 @@ var shop_items = [
 var inventory_items = [
   # get_item(Food.PACK_OF_TOFU),
   #get_item(Food.PACK_OF_TOFU),
-  #get_item(Food.COFFE),
+  get_item(Ingredient.COFFE_POWDER),
+  get_item(Ingredient.WATER),
 ]
 
 #SAVE 
 var upgrade_acquired: Array[Upgrade] = [
-  #DB.Upgrade.COFFE_STAND_SPOON
+  DB.Upgrade.COFFE_STAND_SPOON
 ]
 
 func get_item(id: int, params={}):

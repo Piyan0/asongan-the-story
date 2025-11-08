@@ -29,6 +29,7 @@ func _ready() -> void:
     set_process_input(false)
 
 func prepare():
+  can_close= true
   set_process(true)
   set_process_input(true)
   cooking= Cooking.new()

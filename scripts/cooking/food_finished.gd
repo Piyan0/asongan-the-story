@@ -5,6 +5,7 @@ extends Control
 @onready var button: Button = $Button
 var _food_taken= func(): pass
 var is_idle: bool= false
+
 func _ready() -> void:
   button.button_down.connect(on_button_down)
   
@@ -14,6 +15,7 @@ func on_button_down() -> void:
 
 @onready var food_name: Label = $Coffe/food_name
 func play(_icon: Texture2D, _food_name: String) -> void:
+  set_process_input(true)
   food_name.text= _food_name
   is_idle= false
   icon.texture= _icon
@@ -25,7 +27,7 @@ func play(_icon: Texture2D, _food_name: String) -> void:
 @onready var ending_anim: AnimationPlayer = $enidng_rect/ending_anim
 
 func close():
-  
+  set_process_input(false)
   animation_player.play_backwards("new_animation")
   await animation_player.animation_finished
   return
