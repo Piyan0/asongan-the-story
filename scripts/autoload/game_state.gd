@@ -8,6 +8,7 @@ enum Visible {
   MAIN_ROAD_002,
 }
 enum ItemState {
+  IDLE,
   CAN_USE,
   CAN_DROP,
   CAN_GIVE
@@ -44,7 +45,7 @@ var events_id: Dictionary = {
 }
 
 
-var is_abort_navigation: bool= false
+var is_abort_navigation: bool = false
 var is_initial_scene_loaded = false
 var can_pull_lever: bool = false
 var is_selling_phase: bool = false
@@ -60,7 +61,7 @@ var game_vars = {
 var item_correct_id: int = -1
 
 #SAVE
-var item_state: ItemState = ItemState.CAN_DROP
+var item_state: ItemState = ItemState.IDLE
 
 #SAVE
 var current_coin: int = 999

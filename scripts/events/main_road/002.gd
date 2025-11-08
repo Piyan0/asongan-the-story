@@ -3,6 +3,7 @@ extends Node
 #events start with _+number, the d, g is injected in EventArea.
 func _1(d: Callable, g: GameEvent):
   print('open inventory.')
+  GameState.item_state= GameState.ItemState.IDLE
   await OverlayManager.show_overlay(OverlayManager.Overlay.INVENTORY)
 
 # This will be called when player leave the area, if 'trigger_by_enter is set to true.

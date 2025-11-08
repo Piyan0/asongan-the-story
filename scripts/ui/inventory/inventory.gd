@@ -73,6 +73,7 @@ func event_item_used(item: Inventory.Item):
   #print(item.id==GameState.item_correct_id)
   var is_item_used_correct = func() -> bool:
     return item.id == GameState.item_correct_id
+
   print('used item id ', item.id)
   if is_item_used_correct.call():
     event_item_used_correct(item)
@@ -108,6 +109,9 @@ func event_item_gave(item: Inventory.Item):
   
   
 func event_item_selected(s):
+  if GameState.item_state == GameState.ItemState.IDLE:
+    return
+    
   s.toggle_selection(true)
   list.toggle_input(false)
   s._on_nothing = func():
@@ -121,18 +125,21 @@ func event_item_selected(s):
         list.toggle_input(true)
         s.toggle_selection(false)
         event_item_used(s.get_meta(META_ITEM))
+
     GameState.ItemState.CAN_DROP:
       s.set_action_text('DROP')
       s._on_action = func():
         list.toggle_input(true)
         s.toggle_selection(false)
         event_item_dropped(s.get_meta(META_ITEM))
+
     GameState.ItemState.CAN_GIVE:
       s._on_action = func():
         list.toggle_input(true)
         s.toggle_selection(false)
         event_item_gave(s.get_meta(META_ITEM))
       s.set_action_text('GIVE')
+
 
 func erase_current_item():
   selected.free()
