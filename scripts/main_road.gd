@@ -69,7 +69,6 @@ func move_cars_from_dict(data: Array) -> Array[Callable]:
   return r
   
 
-
 func move_car(id: Car.CarID, position_id: int, buy: Array[DB.Food], delay: float, ) -> Callable:
   var car: CarScene = get_cars_by_id(id)
   var position_callable: Callable
@@ -92,3 +91,22 @@ func move_car(id: Car.CarID, position_id: int, buy: Array[DB.Food], delay: float
     sell_data.push_back(sell)
     
   return car.move_and_buy.bind(delay, position_callable, sell_data)
+
+
+func toggle_train_blockade(is_on: bool) -> void:
+  $StaticBody2D/train_blockade.set_deferred('disabled', not is_on)
+
+
+func toggle_bazzard_blockade(is_on: bool) -> void:
+  $StaticBody2D/blockade.set_deferred('disabled', not is_on)
+
+
+func move_from_beyond_area() -> void:
+  var beyond_rect: Rect2= Rect2(
+    $beyond_area.position,
+    $beyond_area.size
+  )
+  var in_beyond_area: bool= Player.player.get_rect().intersects(beyond_rect)
+  if in_beyond_area:
+    Player.player.position=Vector2(960, 150)
+    

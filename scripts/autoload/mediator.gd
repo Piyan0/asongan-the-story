@@ -97,13 +97,16 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float = 20, m
     CarScene.add_car_moving(i)
     
   CarScene.move_based_on_callable()
+  MainRoad.i.move_from_beyond_area()
   await GameState.car_lined
+  MainRoad.i.toggle_train_blockade(true)
   Sound.play(Sound.SFX.CAR_HONK)
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
   await Train.instance.train_leaved
   GameState.can_pull_lever = true
   await GameState.lever_pulled
+  MainRoad.i.toggle_train_blockade(false)
   GameState.is_selling_phase = false
   GameState.can_enter_other_area = true
   TrainStopping.instance.toggle_lever(false)

@@ -357,3 +357,11 @@ offset_left = -41.0
 offset_top = -113.0
 offset_right = -41.0
 offset_bottom = -113.0
+
+[node name="rect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.278431)
+offset_left = -17.0
+offset_top = -75.0
+offset_right = 18.0
+offset_bottom = 7.0

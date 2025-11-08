@@ -37,3 +37,10 @@ func display_coin(value: int):
   coin_animation.play('pop')
   await get_tree().create_timer(duration).timeout
   coin_label.hide()
+
+
+func get_rect() -> Rect2:
+  var pos= $rect.global_position
+  var size= $rect.size
+  return Rect2(pos, size)
+  

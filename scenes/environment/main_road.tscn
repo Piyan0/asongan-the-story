@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=31 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
@@ -37,6 +37,12 @@ size = Vector2(84.1826, 176.929)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2w3x"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydayg"]
+size = Vector2(79, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1v4v"]
+size = Vector2(25, 280)
+
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cmskb")
@@ -45,7 +51,7 @@ metadata/_edit_horizontal_guides_ = [263.0]
 [node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(525, 197)
+position = Vector2(882, 153)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
 position = Vector2(1019, 376)
@@ -192,7 +198,6 @@ variation = ExtResource("24_t1v4v")
 car_id = 16
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 z_index = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
@@ -236,3 +241,20 @@ shape = SubResource("RectangleShape2D_m2w3x")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(769, 726)
 shape = SubResource("RectangleShape2D_m2w3x")
+
+[node name="blockade" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(885, 396)
+shape = SubResource("RectangleShape2D_ydayg")
+
+[node name="train_blockade" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1030.5, 242)
+shape = SubResource("RectangleShape2D_t1v4v")
+
+[node name="beyond_area" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0.854902, 0.854902, 0.854902, 0.227451)
+z_index = 1
+offset_left = 1027.0
+offset_top = -24.0
+offset_right = 1369.0
+offset_bottom = 795.0
