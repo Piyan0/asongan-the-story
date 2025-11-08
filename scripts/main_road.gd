@@ -16,6 +16,9 @@ var row_2_stop = Vector2(841, CarScene.row_2)
 const car = Car.CarID
 const templ = CarScene.SellTemplate
 static var i: MainRoad
+
+var sign_hint: ProcessWatch
+
 func _ready() -> void:
   GameState.on_initial_scene_loaded(func():
     Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
@@ -25,7 +28,15 @@ func _ready() -> void:
     i = self
     
   limit_player()
+  sign_hint= ProcessWatch.new()
+  sign_hint.callb= func():
+    print('hinted.')
+    toggle_sign_hint(true)
+    #GameState.is_buyer_fulfilled= false
 
+
+func _process(delta: float) -> void:
+  sign_hint.tick([GameState.is_buyer_fulfilled, Train.leaved])
   
 func limit_player():
   $player_limit.area_entered.connect(func(area):
@@ -109,4 +120,24 @@ func move_from_beyond_area() -> void:
   var in_beyond_area: bool= Player.player.get_rect().intersects(beyond_rect)
   if in_beyond_area:
     Player.player.position=Vector2(960, 150)
+  
+  
+func toggle_sign_hint(is_on: bool) -> void:
+  var _sign_hint= $sign_hint
+  if is_on:
+    _sign_hint.show()
+    _sign_hint.find_child('AnimationPlayer').play('idle')
+  else:
+    _sign_hint.hide()
+    print('hiding.')
+    _sign_hint.find_child('AnimationPlayer').stop()
+
+func set_train_sign_status(is_green: bool) -> void:
+  var sign: Sprite2D= $MainRoadArt.get_sign()
+  var green= preload('res://assets/sprites/environment/map/main_road/train_sign_green.png')
+  var red= preload('res://assets/sprites/environment/map/main_road/train_sign_red.png')
+  if is_green:
+    sign.texture= green
+  else:
+    sign.texture= red
     

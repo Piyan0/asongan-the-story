@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfw2wapamoole"]
+[gd_scene load_steps=21 format=3 uid="uid://dfw2wapamoole"]
 
 [ext_resource type="Texture2D" uid="uid://56wmhv413l1q" path="res://assets/sprites/environment/map/main_road/objectless.png" id="1_5xoug"]
+[ext_resource type="Script" uid="uid://d0ej08s3m0vob" path="res://scripts/main_road_art.gd" id="1_16d3b"]
 [ext_resource type="PackedScene" uid="uid://blwkm1g5ecl5j" path="res://scenes/environment/tree.tscn" id="1_tokk3"]
 [ext_resource type="PackedScene" uid="uid://wuu5no1dum2v" path="res://scenes/environment/tree_dark.tscn" id="4_gtlic"]
 [ext_resource type="Shader" uid="uid://bvleqmo5qfxoy" path="res://assets/shaders/sway.gdshader" id="5_kb5gx"]
@@ -10,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c6t7i4oxbhmxj" path="res://assets/sprites/environment/map/main_road/crates.png" id="9_nlw3r"]
 [ext_resource type="Texture2D" uid="uid://b026r6ameskop" path="res://assets/sprites/environment/map/main_road/tofu_stand.png" id="9_w0i0k"]
 [ext_resource type="Texture2D" uid="uid://bjhj250f2680s" path="res://assets/sprites/environment/map/main_road/coffe_stand.png" id="10_f762q"]
-[ext_resource type="Texture2D" uid="uid://cd5hfv5fwep5h" path="res://assets/sprites/environment/map/main_road/train_sign_red.png" id="11_nqdqk"]
 [ext_resource type="Texture2D" uid="uid://bovoqb6ou64xm" path="res://assets/sprites/environment/map/main_road/seller.png" id="12_16d3b"]
+[ext_resource type="Texture2D" uid="uid://der12jr1aquqg" path="res://assets/sprites/environment/map/main_road/train_sign_green.png" id="12_fw4ne"]
 [ext_resource type="Texture2D" uid="uid://dix704haxmrpa" path="res://assets/sprites/environment/map/main_road/blockade.png" id="13_fw4ne"]
 [ext_resource type="Texture2D" uid="uid://ox77agukl5kt" path="res://assets/sprites/environment/map/main_road/electric_wire/1.png" id="14_nqdqk"]
 [ext_resource type="Texture2D" uid="uid://bgbib3icio73d" path="res://assets/sprites/environment/map/main_road/electric_wire/2.png" id="15_16d3b"]
@@ -61,8 +62,10 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="MainRoadArt" type="Node2D"]
+[node name="MainRoadArt" type="Node2D" node_paths=PackedStringArray("sign")]
 y_sort_enabled = true
+script = ExtResource("1_16d3b")
+sign = NodePath("Sprite2D5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5xoug")
@@ -231,7 +234,7 @@ offset = Vector2(-24, -95)
 
 [node name="Sprite2D5" type="Sprite2D" parent="."]
 position = Vector2(946, 173)
-texture = ExtResource("11_nqdqk")
+texture = ExtResource("12_fw4ne")
 centered = false
 offset = Vector2(-24, -131)
 

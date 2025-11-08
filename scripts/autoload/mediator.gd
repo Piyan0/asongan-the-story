@@ -86,6 +86,8 @@ func on_change_scene():
   
   
 func on_car_batch(cars_callback: Array[Callable], trains_duration: float = 20, move_after_trains_leaved: bool = true):
+  MainRoad.i.move_from_beyond_area()
+  MainRoad.i.set_train_sign_status(false)
   GameState.is_selling_phase = true
   GameState.set_event(
     EventsID.ID.MAIN_ROAD_001,
@@ -97,12 +99,12 @@ func on_car_batch(cars_callback: Array[Callable], trains_duration: float = 20, m
     CarScene.add_car_moving(i)
     
   CarScene.move_based_on_callable()
-  MainRoad.i.move_from_beyond_area()
   await GameState.car_lined
   MainRoad.i.toggle_train_blockade(true)
   Sound.play(Sound.SFX.CAR_HONK)
   TrainStopping.instance.toggle_lever(true)
   Train.instance.move_train(trains_duration)
+  MainRoad.i.move_from_beyond_area()
   await Train.instance.train_leaved
   GameState.can_pull_lever = true
   await GameState.lever_pulled

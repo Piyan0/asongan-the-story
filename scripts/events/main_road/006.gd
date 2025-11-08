@@ -7,12 +7,16 @@ func _1(d: Callable, g: GameEvent):
   
   if GameState.food_request.is_empty():
     GameState.lever_pulled.emit()
+    MainRoad.i.toggle_sign_hint(false)
+    MainRoad.i.set_train_sign_status(true)
     GameState.is_buyer_fulfilled= false
     return
     
   if GameState.is_buyer_fulfilled:
     GameState.lever_pulled.emit()
     GameState.is_buyer_fulfilled= false
+    MainRoad.i.toggle_sign_hint(false)
+    MainRoad.i.set_train_sign_status(true)
   else:
     print('buyer is not satisfied.')
   

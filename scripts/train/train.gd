@@ -4,6 +4,7 @@ signal train_arrived()
 signal train_leaved()
 
 static var instance: Train
+static var leaved= false
 const y_end_pos: float= 1440
 const y_start_pos: float= -6.0
 
@@ -20,4 +21,5 @@ func move_train(duration: float):
   var t= create_tween()
   t.tween_property(self, 'position:y', y_end_pos, duration)
   await t.finished
+  leaved= true
   train_leaved.emit()

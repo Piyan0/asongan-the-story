@@ -164,8 +164,8 @@ var shop_items = [
 var inventory_items = [
   # get_item(Food.PACK_OF_TOFU),
   #get_item(Food.PACK_OF_TOFU),
-  get_item(Ingredient.COFFE_POWDER),
-  get_item(Ingredient.WATER),
+  #get_item(Ingredient.COFFE_POWDER),
+  get_item(Food.PACK_OF_TOFU),
 ]
 
 #SAVE 
