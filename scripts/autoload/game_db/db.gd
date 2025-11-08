@@ -1,6 +1,6 @@
 extends Node
 
-enum ItemType{
+enum ItemType {
   FOOD,
   INGREDIENT,
   STORY,
@@ -8,15 +8,15 @@ enum ItemType{
 }
 
 
-enum Food{
-  PACK_OF_TOFU= 50,
+enum Food {
+  PACK_OF_TOFU = 50,
   TOFU_WITH_RICE_ROLL,
   COFFE,
 }
 
 # DEPENDENT Ingredient
-enum Ingredient{
-  TOFU= 100,
+enum Ingredient {
+  TOFU = 100,
   RICE_ROLL,
   COFFE_POWDER,
   WATER,
@@ -25,35 +25,35 @@ enum Ingredient{
 }
 
 # DEPENDENT_CHILD Ingredient
-var ingredients_class= {
-  Ingredient.TOFU: IngredientTofu, 
-  Ingredient.RICE_ROLL: IngredientRiceRoll, 
-  Ingredient.COFFE_POWDER: IngredientCoffePowder, 
-  Ingredient.WATER: IngredientWater, 
-  Ingredient.CHILLY: IngredientChilly, 
-  Ingredient.SPOON: IngredientSpoon, 
+var ingredients_class = {
+  Ingredient.TOFU: IngredientTofu,
+  Ingredient.RICE_ROLL: IngredientRiceRoll,
+  Ingredient.COFFE_POWDER: IngredientCoffePowder,
+  Ingredient.WATER: IngredientWater,
+  Ingredient.CHILLY: IngredientChilly,
+  Ingredient.SPOON: IngredientSpoon,
 }
 
-var foods_class= {
+var foods_class = {
   Food.PACK_OF_TOFU: FoodPackOfTofu,
   Food.TOFU_WITH_RICE_ROLL: FoodTofuWithRiceRoll,
   Food.COFFE: FoodCoffe,
 }
 
-enum Upgrade{
-  COFFE_STAND= 200,
+enum Upgrade {
+  COFFE_STAND = 200,
   ITEM_SLOT_3,
   ITEM_SLOT_5,
   COFFE_STAND_SPOON,
 }
 
-var shop_item_template: Dictionary= {
+var shop_item_template: Dictionary = {
   'id': Food.COFFE,
   'is_available': true,
   'owned': 0,
   'stock': 99,
 }
-var items= {
+var items = {
   Food.PACK_OF_TOFU: {
     'item_type': ItemType.FOOD,
     'icon': "res://assets/sprites/items/tofu.png",
@@ -132,7 +132,7 @@ var items= {
 }
 
 #SAVE
-var shop_items= [
+var shop_items = [
   get_item_shop({
     'id': Ingredient.RICE_ROLL,
     'stock': 10,
@@ -161,48 +161,48 @@ var shop_items= [
 
 
 #SAVE
-var inventory_items= [
+var inventory_items = [
   get_item(Food.PACK_OF_TOFU),
   #get_item(Food.PACK_OF_TOFU),
   #get_item(Food.COFFE),
 ]
 
 #SAVE 
-var upgrade_acquired: Array[Upgrade]= [
+var upgrade_acquired: Array[Upgrade] = [
   #DB.Upgrade.COFFE_STAND_SPOON
 ]
 
-func get_item(id: int, params= {}):
+func get_item(id: int, params={}):
   #print(id)
-  var item= items[id].duplicate()
+  var item = items[id].duplicate()
   for i in params:
-    item[i]= params[i]
+    item[i] = params[i]
   return item.duplicate()
 
 
-func get_item_shop(params= {}):
-  var item= shop_item_template.duplicate()
+func get_item_shop(params={}):
+  var item = shop_item_template.duplicate()
   for i in params:
-    item[i]= params[i]
+    item[i] = params[i]
   return item.duplicate()
 
 func erase_inventory_item(id: int):
   var target
   for i in inventory_items:
-    if i.id== id:
-      target= i
+    if i.id == id:
+      target = i
   if target:
     inventory_items.erase(target)
   
   #print(inventory_items)
 
-func set_item_shop(id: int, params= {}):
+func set_item_shop(id: int, params={}):
   var item: Dictionary
   for i in shop_items:
-    if i.id== id:
-      item= i
+    if i.id == id:
+      item = i
   for i in params:
-    item[i]= params[i]
+    item[i] = params[i]
 
 func get_inventory_item(id: int) -> Dictionary:
   for i in inventory_items:
@@ -212,17 +212,17 @@ func get_inventory_item(id: int) -> Dictionary:
   return {}
 
 func get_item_count(id: int) -> int:
-  var count: int= 0
+  var count: int = 0
   #print(id)
   for i in inventory_items:
-    if i.id== id:
-      count+= 1
+    if i.id == id:
+      count += 1
   
   return count
 
 func add_item_to_inventory(id: int):
-  var item= get_item(id)
-  if item.item_type== ItemType.UPGRADE:
+  var item = get_item(id)
+  if item.item_type == ItemType.UPGRADE:
     return
   inventory_items.push_back(
     item
@@ -258,7 +258,7 @@ func get_food_class(id: int) -> CookingFood:
 func ingredients_from_shop() -> Array[CookingIngredient]:
   var arr: Array[CookingIngredient]
   for i in shop_items:
-    if get_item(i.id).item_type== ItemType.INGREDIENT:
+    if get_item(i.id).item_type == ItemType.INGREDIENT:
       for j in i.stock:
         arr.push_back(get_ingredients(i.id))
     
@@ -266,23 +266,44 @@ func ingredients_from_shop() -> Array[CookingIngredient]:
     
     
 func ingredients_from_inventory() -> Array[CookingIngredient]:
-  var arr: Array[CookingIngredient]= []
+  var arr: Array[CookingIngredient] = []
   for i in inventory_items:
-    if get_item(i.id).item_type== ItemType.INGREDIENT:
+    if get_item(i.id).item_type == ItemType.INGREDIENT:
       arr.push_back(get_ingredients(i.id))
 
   return arr
 
 
 func foods_from_inventory() -> Array[CookingFood]:
-  var arr: Array[CookingFood]= []
+  var arr: Array[CookingFood] = []
   for i in inventory_items:
-    if get_item(i.id).item_type== ItemType.FOOD:
+    if get_item(i.id).item_type == ItemType.FOOD:
       arr.push_back(get_food_class(i.id))
 
   return arr
   
+
+func reset_stock() -> void:
+  for i in shop_items:
+    i.stock = 0
+
+
+func set_stock_based_on_foods(foods: Array[CookingFood]) -> void:
+  reset_stock()
+  var new_stock: Dictionary[int, int]
   
-  
-  
-  
+  for i in foods:
+    for j in i._recipe():
+      if not j._id() in new_stock:
+        new_stock[j._id()] = 0
+      new_stock[j._id()] += 1
+
+  var get_shop_items = func(id: int) -> Dictionary:
+    for i in shop_items:
+      if i.id == id:
+        return i
+    return Dictionary()
+
+  for i in new_stock:
+    #print(new_stock[i])
+    get_shop_items.call(i).stock = new_stock[i]
