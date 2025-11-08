@@ -17,7 +17,6 @@ func is_main():
   return get_tree().current_scene== self
   
 func initiate():
-  
   list= VerticalListItem.new(self)
   list.items= [
     button_resume, button_options, button_exit
@@ -33,7 +32,8 @@ func initiate():
     BUTTON_CALLBACK, func():
       print('opening options.')
       options.show()
-      print(options.visible)
+      dim_main_option(true)
+      #print(options.visible)
       options.set_initial_options()
       await get_tree().process_frame
       options.get_selection().is_active= true
@@ -58,9 +58,22 @@ func initiate():
   
   options.back_callback= func():
     options.hide()
+    dim_main_option(false)
     options.get_selection().is_active= false
     list.is_active= true
-  
+
+
+func dim_main_option(is_dim: bool) -> void:
+  var main_options: Array[Control]= [
+    $VBoxContainer,$Label
+  ]
+  if is_dim:
+    for i in main_options:
+      i.modulate= Color('ffffff00')
+  else:
+    for i in main_options:
+      i.modulate= Color('ffffff')
+    
 func close():
   
   if list:

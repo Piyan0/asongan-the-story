@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vrp5gboirfgm"]
+[gd_scene load_steps=9 format=3 uid="uid://vrp5gboirfgm"]
 
 [ext_resource type="Script" uid="uid://dgddsy0uevwvh" path="res://scripts/ui/game_pause/game_pause.gd" id="1_gy32d"]
 [ext_resource type="FontFile" uid="uid://d2pwmhru8ykyk" path="res://assets/fonts/monogram.ttf" id="1_rxemq"]
+[ext_resource type="Texture2D" uid="uid://56wmhv413l1q" path="res://assets/sprites/environment/map/main_road/objectless.png" id="2_eonmi"]
 [ext_resource type="Texture2D" uid="uid://b7xii3clkvyxe" path="res://assets/sprites/ui/rect_3.png" id="2_m4e8b"]
 [ext_resource type="Texture2D" uid="uid://q46h1rj32p7e" path="res://assets/sprites/ui/rect_6.png" id="3_0up8m"]
 [ext_resource type="PackedScene" uid="uid://b2hbeuy6ofwwb" path="res://scenes/ui/main_menu/menu_item.tscn" id="4_8wu3y"]
@@ -20,17 +21,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gy32d")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(605, 526)
+texture = ExtResource("2_eonmi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.670588)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -105.0
-offset_top = -82.0
-offset_right = 105.0
-offset_bottom = 82.0
+offset_left = -56.0
+offset_top = -68.0
+offset_right = 56.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_0up8m")
@@ -49,10 +65,10 @@ anchor_bottom = 0.5
 offset_left = -56.0
 offset_top = -26.0
 offset_right = 56.0
-offset_bottom = 62.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 4
 
 [node name="button_resume" parent="VBoxContainer" instance=ExtResource("4_8wu3y")]
 unique_name_in_owner = true
@@ -76,10 +92,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -66.0
-offset_right = 35.0
-offset_bottom = -53.0
+offset_left = -20.0
+offset_top = -51.0
+offset_right = 20.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "PAUSE"
@@ -106,3 +122,4 @@ patch_margin_bottom = 2
 [node name="Options" parent="." instance=ExtResource("6_eonmi")]
 visible = false
 layout_mode = 1
+show_bg = false
