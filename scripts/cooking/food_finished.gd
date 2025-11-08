@@ -32,3 +32,7 @@ func close():
   ending_anim.play("new_animation")
   await ending_anim.animation_finished
   
+
+func _input(event: InputEvent) -> void:
+  if event.is_action_pressed('z') or event.is_action_pressed('ui_accept'):
+    on_button_down()
