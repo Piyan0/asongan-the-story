@@ -115,7 +115,7 @@ left_click={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://assets/translations/ui_text/UI_text.en_US.translation", "res://assets/translations/ui_text/UI_text.id_ID.translation")
+locale/translations=PackedStringArray("res://assets/translations/ui_text/UI_text.en_US.translation", "res://assets/translations/ui_text/UI_text.id_ID.translation", "res://assets/translations/dialogue.en_US.translation", "res://assets/translations/dialogue.id_ID.translation")
 
 [rendering]
 

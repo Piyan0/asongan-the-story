@@ -10,6 +10,16 @@ func set_targ(_targ: Node2D) -> void:
 func set_speed(_speed: float) -> void:
   speed= _speed
 
+func pos(_pos: String) -> void:
+  var vect_pos= Vector2.ZERO
+  vect_pos.x= float(
+    _pos.split(':')[0]
+  )
+  vect_pos.y= float(
+    _pos.split(':')[1]
+  )
+  targ.position= vect_pos
+  
 func jump(height= 5.0) -> void:
   var t= targ.create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
   var y= targ.position.y- height

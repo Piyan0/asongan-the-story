@@ -41,6 +41,11 @@ var events_id: Dictionary = {
   EventsID.ID.MAIN_ROAD_004: '_1',
   EventsID.ID.MAIN_ROAD_005: '_1',
   EventsID.ID.MAIN_ROAD_006: '_1',
+  EventsID.ID.MAIN_ROAD_007: '_1',
+  EventsID.ID.MAIN_ROAD_008: '_1',
+  EventsID.ID.MAIN_ROAD_009: '_1',
+  EventsID.ID.MAIN_ROAD_010: '_1',
+  EventsID.ID.MAIN_ROAD_011: '_1',
   
   EventsID.ID.SHOP_001: '_1',
   EventsID.ID.SHOP_002: '_1',

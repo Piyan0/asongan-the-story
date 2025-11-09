@@ -20,8 +20,6 @@ static var i: MainRoad
 var sign_hint: ProcessWatch
 
 func _ready() -> void:
-  var x= C_001.new()
-  x.fn()
   #GameState.on_initial_scene_loaded(func():
     #Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
     #)
@@ -35,6 +33,11 @@ func _ready() -> void:
     toggle_sign_hint(true)
     GameState.is_buyer_fulfilled= false
   
+  var x= C_001.new()
+  #await x.fn_000()
+  #await x.fn_001()
+  #await x.fn_002()
+  #x.fn_003()
   #Train.instance.move_train(100)
   #await Train.instance.train_leaved
   #print('111')
@@ -139,6 +142,10 @@ func toggle_sign_hint(is_on: bool) -> void:
     print('hiding.')
     _sign_hint.find_child('AnimationPlayer').stop()
 
+func toggle_punker_colls(state: bool) -> void:
+  $misc/Sprite2D/StaticBody2D/CollisionShape2D.set_deferred('disabled', not state)
+  $misc/Node2D2/StaticBody2D/CollisionShape2D.set_deferred('disabled', not state)
+
 func set_train_sign_status(is_green: bool) -> void:
   var sign: Sprite2D= $MainRoadArt.get_sign()
   var green= preload('res://assets/sprites/environment/map/main_road/train_sign_green.png')
@@ -160,3 +167,11 @@ func tween_camera(to_pos: Vector2, dur= 1.0) -> void:
     $Camera2D, 'position', to_pos, dur
   )
   await t.finished
+
+func get_punk_car_with_people() -> Node2D:
+  return $misc/Node2D
+  
+func toggle_ustadz_cols(state: bool) -> void:
+  $StaticBody2D/CollisionShape2D3.set_deferred(
+    'disabled', not state
+  )

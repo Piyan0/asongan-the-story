@@ -10,6 +10,7 @@ font = ExtResource("2_ljnbq")
 font_color = Color(0.160784, 0.137255, 0.14902, 1)
 
 [node name="TextBubble" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_xdp0f")

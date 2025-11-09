@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=57 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
@@ -13,9 +13,11 @@
 [ext_resource type="Script" uid="uid://dy8f8wyh2fji5" path="res://scripts/events/main_road/004.gd" id="12_lv3wr"]
 [ext_resource type="Script" uid="uid://dvd8voqu8od0k" path="res://scripts/events/main_road/auto.gd" id="13_oifoc"]
 [ext_resource type="Script" uid="uid://b2eaqy6fswx15" path="res://scripts/events/main_road/005.gd" id="14_8upmm"]
+[ext_resource type="Script" uid="uid://d0ryk5ni7j0wx" path="res://scripts/events_unique_data/common_dialogue_data.gd" id="15_g3y1a"]
 [ext_resource type="Script" uid="uid://c0xxhnjsr2n88" path="res://scripts/events/main_road/006.gd" id="15_gsf1v"]
 [ext_resource type="PackedScene" uid="uid://dc47iab81xsau" path="res://scenes/cars/normal_car.tscn" id="15_lhu43"]
 [ext_resource type="Script" uid="uid://cwubcgd66ko46" path="res://scripts/player_limit.gd" id="16_f3fmx"]
+[ext_resource type="Script" uid="uid://hhlyraae6siw" path="res://scripts/events/common_dilalogue.gd" id="16_n4nqk"]
 [ext_resource type="AudioStream" uid="uid://bljq81w3hi36d" path="res://assets/sounds/bgm/[ AMBIENCE ] Park ambience sound  (Royalty Free).mp3" id="18_a4cjr"]
 [ext_resource type="Resource" uid="uid://b2o4wt8ockukx" path="res://assets/resources/normal_car_variation/1_1.tres" id="19_fed3l"]
 [ext_resource type="Resource" uid="uid://cjkd72pr50rl8" path="res://assets/resources/normal_car_variation/1_2.tres" id="19_hiiyi"]
@@ -39,12 +41,19 @@
 [ext_resource type="Texture2D" uid="uid://byjqfpxw5b847" path="res://assets/sprites/npcs/punker.png" id="37_35ma3"]
 [ext_resource type="Texture2D" uid="uid://ds0je0fdtjt4p" path="res://assets/sprites/npcs/pak_ustadz/pak_ustadz.png" id="38_1jv3a"]
 [ext_resource type="Texture2D" uid="uid://dym8dqqv1hp4g" path="res://assets/sprites/npcs/pak_ustadz/pak_ustadz_full.png" id="39_lrejq"]
+[ext_resource type="PackedScene" uid="uid://bbyv1qva3oclf" path="res://scenes/text_bubble/text_bubble.tscn" id="42_n4nqk"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
 scene = "uid://dr4s5odagt13n"
 spawn_position = Vector2(320, 265)
 metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
+
+[sub_resource type="Resource" id="Resource_n4nqk"]
+script = ExtResource("15_g3y1a")
+dialogue_string = Array[String](["USTADZ_002", "USTADZ_001"])
+dialogue_id = 2
+metadata/_custom_type_script = "uid://d0ryk5ni7j0wx"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
 size = Vector2(84.1826, 176.929)
@@ -56,6 +65,8 @@ size = Vector2(79, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1v4v"]
 size = Vector2(25, 280)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb6d6"]
 
 [sub_resource type="Animation" id="Animation_5rfnj"]
 length = 0.001
@@ -184,7 +195,7 @@ metadata/_edit_horizontal_guides_ = [263.0]
 [node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(683, 172)
+position = Vector2(379, 170)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
 position = Vector2(1019, 376)
@@ -229,6 +240,12 @@ events = ExtResource("14_8upmm")
 position = Vector2(987, 187)
 event_id = 7
 events = ExtResource("15_gsf1v")
+
+[node name="event7" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(297, 168)
+event_unique_data = SubResource("Resource_n4nqk")
+event_id = 8
+events = ExtResource("16_n4nqk")
 
 [node name="player_limit" type="Area2D" parent="."]
 position = Vector2(1253, 189)
@@ -385,6 +402,11 @@ position = Vector2(1030.5, 242)
 shape = SubResource("RectangleShape2D_t1v4v")
 disabled = true
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(330, 160)
+shape = SubResource("CircleShape2D_vb6d6")
+disabled = true
+
 [node name="beyond_area" type="ColorRect" parent="."]
 visible = false
 modulate = Color(0.854902, 0.854902, 0.854902, 0.227451)
@@ -479,7 +501,7 @@ id = 4
 metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
 
 [node name="Node2D" type="Node2D" parent="misc"]
-position = Vector2(-94, 159)
+position = Vector2(1366, 261)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="misc/Node2D"]
 position = Vector2(-75, -161)
@@ -497,7 +519,7 @@ disabled = true
 
 [node name="Node2D2" type="Node2D" parent="misc"]
 visible = false
-position = Vector2(200, 257)
+position = Vector2(467, 257)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="misc/Node2D2"]
 position = Vector2(-75, -161)
@@ -528,20 +550,27 @@ shape = SubResource("RectangleShape2D_ote25")
 disabled = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="misc"]
-visible = false
-position = Vector2(301, 157)
+position = Vector2(313, 164)
 texture = ExtResource("38_1jv3a")
 centered = false
 offset = Vector2(0, -67.05)
 
 [node name="Sprite2D3" type="Sprite2D" parent="misc"]
+visible = false
 position = Vector2(724, 157)
 texture = ExtResource("39_lrejq")
 centered = false
 offset = Vector2(0, -67.05)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(881, 374)
+position = Vector2(326, 188)
 enabled = false
+
+[node name="TextBubble" parent="." instance=ExtResource("42_n4nqk")]
+offset_left = 297.0
+offset_top = 92.0
+offset_right = 297.0
+offset_bottom = 92.0
+id = 2
 
 [editable path="MainRoadArt"]
