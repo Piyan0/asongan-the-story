@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=63 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
@@ -66,6 +66,15 @@ script = ExtResource("15_g3y1a")
 dialogue_string = Array[String](["USTADZ_002", "USTADZ_001"])
 dialogue_id = 2
 metadata/_custom_type_script = "uid://d0ryk5ni7j0wx"
+
+[sub_resource type="Resource" id="Resource_hstkm"]
+script = ExtResource("15_g3y1a")
+dialogue_string = Array[String](["BAZARD_BLOCKADE"])
+dialogue_id = 3
+metadata/_custom_type_script = "uid://d0ryk5ni7j0wx"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8v43"]
+size = Vector2(66, 20.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhu43"]
 size = Vector2(84.1826, 176.929)
@@ -207,7 +216,7 @@ metadata/_edit_horizontal_guides_ = [263.0]
 [node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(379, 170)
+position = Vector2(880.92, 342.555)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
 position = Vector2(1019, 376)
@@ -277,6 +286,16 @@ position = Vector2(297, 168)
 event_unique_data = SubResource("Resource_n4nqk")
 event_id = 8
 events = ExtResource("16_n4nqk")
+
+[node name="event8" parent="events" instance=ExtResource("5_cfafu")]
+position = Vector2(862, 405)
+event_unique_data = SubResource("Resource_hstkm")
+event_id = 9
+events = ExtResource("16_n4nqk")
+
+[node name="CollisionShape2D" parent="events/event8/Area2D" index="0"]
+position = Vector2(22, -7.75)
+shape = SubResource("RectangleShape2D_o8v43")
 
 [node name="player_limit" type="Area2D" parent="."]
 position = Vector2(1253, 189)
@@ -605,9 +624,17 @@ offset_right = 297.0
 offset_bottom = 92.0
 id = 2
 
+[node name="TextBubble2" parent="." instance=ExtResource("42_n4nqk")]
+offset_left = 864.0
+offset_top = 349.0
+offset_right = 864.0
+offset_bottom = 349.0
+id = 3
+
 [editable path="MainRoadArt"]
 [editable path="events/event1"]
 [editable path="events/event2"]
 [editable path="events/event4"]
 [editable path="events/event5"]
 [editable path="events/event6"]
+[editable path="events/event8"]
