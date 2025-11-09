@@ -131,8 +131,8 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_007i1"]
-length = 21.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnsyf"]
+radius = 13.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ydkj"]
 font = ExtResource("21_3j4b4")
@@ -287,24 +287,9 @@ autoplay = "default"
 
 [node name="player" type="Area2D" parent="."]
 
-[node name="right" type="CollisionShape2D" parent="player"]
-position = Vector2(0, -2)
-rotation = -1.5708
-shape = SubResource("SeparationRayShape2D_007i1")
-
-[node name="left" type="CollisionShape2D" parent="player"]
-position = Vector2(0, -2)
-rotation = 1.5708
-shape = SubResource("SeparationRayShape2D_007i1")
-
-[node name="down" type="CollisionShape2D" parent="player"]
-position = Vector2(0, -1)
-shape = SubResource("SeparationRayShape2D_007i1")
-
-[node name="up" type="CollisionShape2D" parent="player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2(0, -3)
-rotation = -3.14159
-shape = SubResource("SeparationRayShape2D_007i1")
+shape = SubResource("CircleShape2D_cnsyf")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

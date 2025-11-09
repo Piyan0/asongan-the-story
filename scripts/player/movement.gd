@@ -44,9 +44,6 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
               #sprite.play('idle_left')      
     
     Vector2.LEFT, Vector2(-1, -1) ,Vector2(-1, 1):
-      set_active_raycast(
-        $"../player/left"
-      )
       if last_x_axis == 1.0:
         topdown_movement.is_stopped= true
         sprite.play("idle_down")
@@ -56,9 +53,6 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
       current_idle_animation= 'idle_left'
   
     Vector2.RIGHT, Vector2(1, -1) , Vector2(1, 1):
-      set_active_raycast(
-        $"../player/right"
-      )
       if last_x_axis == -1.0:
         topdown_movement.is_stopped= true
         sprite.play("idle_down")
@@ -68,16 +62,12 @@ func on_direction_changed(new_direction: Vector2, previous_direction: Vector2):
       current_idle_animation= 'idle_right'
 
     Vector2.DOWN:
-      set_active_raycast(
-        $"../player/down"
-      )
+
       sprite.play("walk_down")
       current_idle_animation= 'idle_down'
       
     Vector2.UP:
-      set_active_raycast(
-        $"../player/up"
-      )
+
       match last_x_axis:
         1.0:
           sprite.play('walk_right')
@@ -96,14 +86,6 @@ func set_last_axis(axis: float):
   if axis!= 0:
     last_x_axis= axis
 
-func set_active_raycast(ray: CollisionShape2D) -> void:
-  for i in [
-    $"../player/right", $"../player/left", $"../player/down", $"../player/up"
-  ] :
-    i.disabled= true
-  
-  ray.disabled= false
-  
 func _physics_process(delta: float) -> void:
   #print(delta)
   topdown_movement.physics_process(delta)
