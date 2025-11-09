@@ -20,11 +20,11 @@ static var i: MainRoad
 var sign_hint: ProcessWatch
 
 func _ready() -> void:
-  var x= C_001.new()
-  x.fn()
-  #GameState.on_initial_scene_loaded(func():
-    #Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
-    #)
+  #var x= C_001.new()
+  #x.fn()
+  GameState.on_initial_scene_loaded(func():
+    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
+    )
   if not i:
     i = self
     
@@ -33,11 +33,15 @@ func _ready() -> void:
   sign_hint.callb= func():
     print('hinted.')
     toggle_sign_hint(true)
-    #GameState.is_buyer_fulfilled= false
+    GameState.is_buyer_fulfilled= false
+  
+  #Train.instance.move_train(100)
+  #await Train.instance.train_leaved
+  #print('111')
 
 
 func _process(delta: float) -> void:
-  sign_hint.tick([GameState.is_buyer_fulfilled, Train.leaved])
+  sign_hint.tick([GameState.is_buyer_fulfilled, Train.is_leaved])
   
 func limit_player():
   $player_limit.area_entered.connect(func(area):

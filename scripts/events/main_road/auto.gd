@@ -7,7 +7,7 @@ func _1(d: Callable, g: GameEvent):
   Mediator.air(Mediator.CAR_BATCH, [
     MainRoad.i.move_cars_from_dict(
     GameState.current_car_batch
-  ), 20
+  ), 100
   ])
 
 func _2(d: Callable, g: GameEvent):

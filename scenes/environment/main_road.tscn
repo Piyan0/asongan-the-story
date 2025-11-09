@@ -184,7 +184,7 @@ metadata/_edit_horizontal_guides_ = [263.0]
 [node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(459, 258)
+position = Vector2(948, 265)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
 position = Vector2(1019, 376)
