@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dphex2iywxwcu"]
+[gd_scene load_steps=37 format=3 uid="uid://dphex2iywxwcu"]
 
 [ext_resource type="Script" uid="uid://b5srxnj3i464y" path="res://scripts/player/player.gd" id="1_fcs02"]
 [ext_resource type="Texture2D" uid="uid://c64a2h1xdvfgg" path="res://assets/sprites/player_shadow.png" id="2_myrg7"]
@@ -131,9 +131,11 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fcs02"]
-radius = 5.0
-height = 10.0
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_cnsyf"]
+length = 25.9928
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_007i1"]
+length = 25.9928
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ydkj"]
 font = ExtResource("21_3j4b4")
@@ -288,9 +290,24 @@ autoplay = "default"
 
 [node name="player" type="Area2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="player"]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_fcs02")
+[node name="right" type="CollisionShape2D" parent="player"]
+position = Vector2(9, -2)
+rotation = -1.5708
+shape = SubResource("SeparationRayShape2D_cnsyf")
+
+[node name="left" type="CollisionShape2D" parent="player"]
+position = Vector2(-8, -2)
+rotation = 1.5708
+shape = SubResource("SeparationRayShape2D_007i1")
+
+[node name="down" type="CollisionShape2D" parent="player"]
+position = Vector2(0, 5)
+shape = SubResource("SeparationRayShape2D_007i1")
+
+[node name="up" type="CollisionShape2D" parent="player"]
+position = Vector2(0, -10)
+rotation = -3.14159
+shape = SubResource("SeparationRayShape2D_007i1")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -365,19 +382,3 @@ offset_left = -17.0
 offset_top = -75.0
 offset_right = 18.0
 offset_bottom = 7.0
-
-[node name="right" type="RayCast2D" parent="."]
-position = Vector2(9, -2)
-target_position = Vector2(19, 0)
-
-[node name="left" type="RayCast2D" parent="."]
-position = Vector2(-8, -2)
-target_position = Vector2(-19, 0)
-
-[node name="down" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(0, 19)
-
-[node name="up" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
-target_position = Vector2(0, -18)

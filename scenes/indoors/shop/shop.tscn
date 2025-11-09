@@ -30,7 +30,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="Resource" id="Resource_2rpvr"]
+[sub_resource type="Resource" id="Resource_vthxs"]
 resource_local_to_scene = true
 script = ExtResource("8_2rpvr")
 scene = "uid://no5h2wbb2cwa"
@@ -341,12 +341,12 @@ events = ExtResource("11_vthxs")
 
 [node name="event1" parent="." instance=ExtResource("6_t7xej")]
 position = Vector2(320, 269)
-event_unique_data = SubResource("Resource_2rpvr")
+event_unique_data = SubResource("Resource_vthxs")
 event_id = 51
 events = ExtResource("9_vthxs")
 
 [node name="event2" parent="." instance=ExtResource("6_t7xej")]
-position = Vector2(320, 204)
+position = Vector2(320, 188)
 event_id = 52
 events = ExtResource("9_t7xej")
 

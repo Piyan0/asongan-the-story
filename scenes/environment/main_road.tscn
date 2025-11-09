@@ -211,13 +211,13 @@ event_id = 1
 events = ExtResource("13_oifoc")
 
 [node name="event1" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(193, 161)
+position = Vector2(193, 138)
 event_unique_data = SubResource("Resource_lv3wr")
 event_id = 2
 events = ExtResource("10_gsf1v")
 
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(428, 153)
+position = Vector2(433, 129)
 event_id = 3
 events = ExtResource("10_jhre1")
 
@@ -227,17 +227,17 @@ event_id = 4
 events = ExtResource("11_i6ch8")
 
 [node name="event4" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(291, 121)
+position = Vector2(292, 94)
 event_id = 5
 events = ExtResource("12_lv3wr")
 
 [node name="event5" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(368, 124)
+position = Vector2(365, 104)
 event_id = 6
 events = ExtResource("14_8upmm")
 
 [node name="event6" parent="events" instance=ExtResource("5_cfafu")]
-position = Vector2(987, 187)
+position = Vector2(987, 172)
 event_id = 7
 events = ExtResource("15_gsf1v")
 

@@ -54,6 +54,7 @@ func setup_area() -> void:
     return
   
   area_2d.area_entered.connect(func(area):
+    #print(111)
     if area.name!= 'player': return
     core.player_entered_area.emit()
     can_interact= true
