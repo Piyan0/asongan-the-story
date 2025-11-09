@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dhambl7168n37" path="res://modules/event_system/assets/fonts/Kenney Mini.ttf" id="3_ylg2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gbsx"]
-size = Vector2(17, 14.5)
+size = Vector2(22, 20.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4njoc"]
 font = ExtResource("3_ylg2b")
@@ -23,7 +23,6 @@ label = NodePath("Label")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -7.75)
 shape = SubResource("RectangleShape2D_1gbsx")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 visible = false

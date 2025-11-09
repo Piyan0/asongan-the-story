@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=61 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
@@ -48,6 +48,18 @@ script = ExtResource("6_i6ch8")
 scene = "uid://dr4s5odagt13n"
 spawn_position = Vector2(320, 265)
 metadata/_custom_type_script = "uid://t1o4qf4sa8ml"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4nqk"]
+size = Vector2(36, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hstkm"]
+size = Vector2(49, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5jpw"]
+size = Vector2(55, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmhi0"]
+size = Vector2(57, 37)
 
 [sub_resource type="Resource" id="Resource_n4nqk"]
 script = ExtResource("15_g3y1a")
@@ -216,10 +228,18 @@ event_unique_data = SubResource("Resource_lv3wr")
 event_id = 2
 events = ExtResource("10_gsf1v")
 
+[node name="CollisionShape2D" parent="events/event1/Area2D" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_n4nqk")
+
 [node name="event2" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(433, 129)
 event_id = 3
 events = ExtResource("10_jhre1")
+
+[node name="CollisionShape2D" parent="events/event2/Area2D" index="0"]
+position = Vector2(-0.5, -16)
+shape = SubResource("RectangleShape2D_hstkm")
 
 [node name="event3" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(32, 86)
@@ -231,15 +251,26 @@ position = Vector2(292, 94)
 event_id = 5
 events = ExtResource("12_lv3wr")
 
+[node name="CollisionShape2D" parent="events/event4/Area2D" index="0"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_h5jpw")
+
 [node name="event5" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(365, 104)
 event_id = 6
 events = ExtResource("14_8upmm")
 
+[node name="CollisionShape2D" parent="events/event5/Area2D" index="0"]
+position = Vector2(1.5, -16.5)
+shape = SubResource("RectangleShape2D_jmhi0")
+
 [node name="event6" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(987, 172)
 event_id = 7
 events = ExtResource("15_gsf1v")
+
+[node name="CollisionShape2D" parent="events/event6/Area2D" index="0"]
+position = Vector2(0, -10.75)
 
 [node name="event7" parent="events" instance=ExtResource("5_cfafu")]
 position = Vector2(297, 168)
@@ -567,6 +598,7 @@ position = Vector2(326, 188)
 enabled = false
 
 [node name="TextBubble" parent="." instance=ExtResource("42_n4nqk")]
+visible = false
 offset_left = 297.0
 offset_top = 92.0
 offset_right = 297.0
@@ -574,3 +606,8 @@ offset_bottom = 92.0
 id = 2
 
 [editable path="MainRoadArt"]
+[editable path="events/event1"]
+[editable path="events/event2"]
+[editable path="events/event4"]
+[editable path="events/event5"]
+[editable path="events/event6"]

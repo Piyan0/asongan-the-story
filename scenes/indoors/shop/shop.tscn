@@ -340,7 +340,7 @@ event_id = 50
 events = ExtResource("11_vthxs")
 
 [node name="event1" parent="." instance=ExtResource("6_t7xej")]
-position = Vector2(320, 269)
+position = Vector2(320, 292)
 event_unique_data = SubResource("Resource_vthxs")
 event_id = 51
 events = ExtResource("9_vthxs")
