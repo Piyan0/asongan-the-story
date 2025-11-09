@@ -20,11 +20,11 @@ static var i: MainRoad
 var sign_hint: ProcessWatch
 
 func _ready() -> void:
-  #var x= C_001.new()
-  #x.fn()
-  GameState.on_initial_scene_loaded(func():
-    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
-    )
+  var x= C_001.new()
+  x.fn()
+  #GameState.on_initial_scene_loaded(func():
+    #Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
+    #)
   if not i:
     i = self
     

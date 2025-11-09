@@ -11,7 +11,7 @@ func set_speed(_speed: float) -> void:
   speed= _speed
 
 func jump(height= 5.0) -> void:
-  var t= targ.create_tween().set_trans(Tween.TRANS_CIRC)
+  var t= targ.create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
   var y= targ.position.y- height
   t.tween_property(
     targ, 'position:y', y, 0.2
