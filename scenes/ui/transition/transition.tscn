@@ -79,3 +79,12 @@ pivot_offset = Vector2(320, 180)
 libraries = {
 &"": SubResource("AnimationLibrary_ya4ey")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -4,8 +4,11 @@ signal car_lined()
 signal lever_pulled()
 signal navigation_aborted()
 enum Visible {
-  MAIN_ROAD_001,
-  MAIN_ROAD_002,
+  MAIN_ROAD__PUNKER,
+  MAIN_ROAD__CAR_PUNK,
+  MAIN_ROAD__USTADZ,
+  MAIN_ROAD__USTADZ_FULL,
+  MAIN_ROAD__BAZARD_BLOCKADE
 }
 enum ItemState {
   IDLE,
@@ -23,8 +26,11 @@ var saved_setting_index = {}
 var is_game_paused = false
 #SAVE
 var visible_state = {
-  Visible.MAIN_ROAD_001: true,
-  Visible.MAIN_ROAD_002: false,
+  Visible.MAIN_ROAD__PUNKER: false,
+  Visible.MAIN_ROAD__CAR_PUNK: false,
+  Visible.MAIN_ROAD__USTADZ: false,
+  Visible.MAIN_ROAD__USTADZ_FULL: false,
+  Visible.MAIN_ROAD__BAZARD_BLOCKADE: true,
 }
 #SAVE
 var events_id: Dictionary = {

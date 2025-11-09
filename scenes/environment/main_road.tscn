@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://no5h2wbb2cwa"]
+[gd_scene load_steps=52 format=3 uid="uid://no5h2wbb2cwa"]
 
 [ext_resource type="Script" uid="uid://d0v2d2r4l4r4s" path="res://scripts/main_road.gd" id="1_cmskb"]
 [ext_resource type="PackedScene" uid="uid://dphex2iywxwcu" path="res://scenes/player/player.tscn" id="2_35fd7"]
@@ -27,6 +27,18 @@
 [ext_resource type="Texture2D" uid="uid://b83bu1t4rdcj4" path="res://assets/sprites/environment/map/main_road/cols.png" id="25_m2w3x"]
 [ext_resource type="Texture2D" uid="uid://b35iobngdxlkg" path="res://assets/sprites/bubble.png" id="26_t1v4v"]
 [ext_resource type="Texture2D" uid="uid://bt7np6ltm8eoq" path="res://assets/sprites/environment/map/main_road/excl.png" id="27_yq3xx"]
+[ext_resource type="Script" uid="uid://cgqn0uvlbalo6" path="res://scripts/visible_control.gd" id="28_vb6d6"]
+[ext_resource type="Texture2D" uid="uid://c3yu15c2n823y" path="res://assets/misc/punk_car/1.png" id="29_pgmyc"]
+[ext_resource type="Texture2D" uid="uid://016ajf37hogg" path="res://assets/misc/punk_car/2.png" id="30_g3y1a"]
+[ext_resource type="Texture2D" uid="uid://be711kc67h0ro" path="res://assets/misc/punk_car/3.png" id="31_n4nqk"]
+[ext_resource type="Texture2D" uid="uid://sdr24wpvtsom" path="res://assets/misc/punk_car/4.png" id="32_hstkm"]
+[ext_resource type="Texture2D" uid="uid://1kwriw183gnb" path="res://assets/misc/punk_car/1_people.png" id="33_h5jpw"]
+[ext_resource type="Texture2D" uid="uid://48s7ygien4jc" path="res://assets/misc/punk_car/2_people.png" id="34_jmhi0"]
+[ext_resource type="Texture2D" uid="uid://bw26y18fqcwmr" path="res://assets/misc/punk_car/3_people.png" id="35_o8v43"]
+[ext_resource type="Texture2D" uid="uid://bhxjwurc72gc5" path="res://assets/misc/punk_car/4_people.png" id="36_v5xrl"]
+[ext_resource type="Texture2D" uid="uid://byjqfpxw5b847" path="res://assets/sprites/npcs/punker.png" id="37_35ma3"]
+[ext_resource type="Texture2D" uid="uid://ds0je0fdtjt4p" path="res://assets/sprites/npcs/pak_ustadz/pak_ustadz.png" id="38_1jv3a"]
+[ext_resource type="Texture2D" uid="uid://dym8dqqv1hp4g" path="res://assets/sprites/npcs/pak_ustadz/pak_ustadz_full.png" id="39_lrejq"]
 
 [sub_resource type="Resource" id="Resource_lv3wr"]
 script = ExtResource("6_i6ch8")
@@ -84,6 +96,86 @@ _data = {
 &"idle": SubResource("Animation_lt7va")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_vb6d6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_pgmyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_g3y1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_n4nqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hstkm")
+}],
+"loop": true,
+"name": &"car",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_h5jpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_jmhi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_o8v43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_v5xrl")
+}],
+"loop": true,
+"name": &"car_people",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vb6d6"]
+size = Vector2(138, 79)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1v4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_pgmyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_g3y1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_n4nqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hstkm")
+}],
+"loop": true,
+"name": &"car",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_h5jpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_jmhi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_o8v43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_v5xrl")
+}],
+"loop": true,
+"name": &"car_people",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ote25"]
+size = Vector2(88, 31)
+
 [node name="MainRoad" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cmskb")
@@ -92,7 +184,7 @@ metadata/_edit_horizontal_guides_ = [263.0]
 [node name="MainRoadArt" parent="." instance=ExtResource("3_m2w3x")]
 
 [node name="player" parent="." instance=ExtResource("2_35fd7")]
-position = Vector2(967.886, 203.878)
+position = Vector2(459, 258)
 
 [node name="train_stopping" parent="." instance=ExtResource("6_px678")]
 position = Vector2(1019, 376)
@@ -239,6 +331,7 @@ variation = ExtResource("24_t1v4v")
 car_id = 16
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 z_index = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
@@ -350,3 +443,105 @@ libraries = {
 &"": SubResource("AnimationLibrary_ma5oh")
 }
 autoplay = "idle"
+
+[node name="misc" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="VisibleControl" type="Node" parent="misc"]
+
+[node name="VisibleControl2" type="Node" parent="misc/VisibleControl" node_paths=PackedStringArray("nodes")]
+script = ExtResource("28_vb6d6")
+nodes = [NodePath("../../Sprite2D")]
+metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
+
+[node name="VisibleControl" type="Node" parent="misc/VisibleControl" node_paths=PackedStringArray("nodes")]
+script = ExtResource("28_vb6d6")
+nodes = [NodePath("../../Node2D2")]
+id = 1
+metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
+
+[node name="VisibleControl3" type="Node" parent="misc/VisibleControl" node_paths=PackedStringArray("nodes")]
+script = ExtResource("28_vb6d6")
+nodes = [NodePath("../../Sprite2D2")]
+id = 2
+metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
+
+[node name="VisibleControl4" type="Node" parent="misc/VisibleControl" node_paths=PackedStringArray("nodes")]
+script = ExtResource("28_vb6d6")
+nodes = [NodePath("../../Sprite2D3")]
+id = 3
+metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
+
+[node name="VisibleControl5" type="Node" parent="misc/VisibleControl" node_paths=PackedStringArray("nodes")]
+script = ExtResource("28_vb6d6")
+nodes = [NodePath("../../../MainRoadArt/Sprite2D7")]
+id = 4
+metadata/_custom_type_script = "uid://cgqn0uvlbalo6"
+
+[node name="Node2D" type="Node2D" parent="misc"]
+position = Vector2(-94, 159)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="misc/Node2D"]
+position = Vector2(-75, -161)
+sprite_frames = SubResource("SpriteFrames_vb6d6")
+animation = &"car_people"
+autoplay = "car_people"
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="misc/Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="misc/Node2D/StaticBody2D"]
+position = Vector2(3, -39.5)
+shape = SubResource("RectangleShape2D_vb6d6")
+disabled = true
+
+[node name="Node2D2" type="Node2D" parent="misc"]
+visible = false
+position = Vector2(200, 257)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="misc/Node2D2"]
+position = Vector2(-75, -161)
+sprite_frames = SubResource("SpriteFrames_t1v4v")
+animation = &"car"
+autoplay = "car"
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="misc/Node2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="misc/Node2D2/StaticBody2D"]
+position = Vector2(3, -39.5)
+shape = SubResource("RectangleShape2D_vb6d6")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="misc"]
+visible = false
+position = Vector2(277, 173)
+texture = ExtResource("37_35ma3")
+centered = false
+offset = Vector2(0, -100)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="misc/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="misc/Sprite2D/StaticBody2D"]
+position = Vector2(57, -17.5)
+shape = SubResource("RectangleShape2D_ote25")
+disabled = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="misc"]
+visible = false
+position = Vector2(301, 157)
+texture = ExtResource("38_1jv3a")
+centered = false
+offset = Vector2(0, -67.05)
+
+[node name="Sprite2D3" type="Sprite2D" parent="misc"]
+position = Vector2(724, 157)
+texture = ExtResource("39_lrejq")
+centered = false
+offset = Vector2(0, -67.05)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(881, 374)
+enabled = false
+
+[editable path="MainRoadArt"]

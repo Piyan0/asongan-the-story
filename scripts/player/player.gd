@@ -43,4 +43,7 @@ func get_rect() -> Rect2:
   var pos= $rect.global_position
   var size= $rect.size
   return Rect2(pos, size)
-  
+
+
+func toggle_camera(state: bool) -> void:
+  $Camera.enabled= state

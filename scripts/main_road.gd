@@ -20,10 +20,11 @@ static var i: MainRoad
 var sign_hint: ProcessWatch
 
 func _ready() -> void:
-  GameState.on_initial_scene_loaded(func():
-    Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
-    )
-
+  var x= C_001.new()
+  x.fn()
+  #GameState.on_initial_scene_loaded(func():
+    #Managers.get_event_manager().call_event_from_instance(EventsID.ID.MAIN_ROAD_AUTO, '_2')
+    #)
   if not i:
     i = self
     
@@ -110,7 +111,9 @@ func toggle_train_blockade(is_on: bool) -> void:
 
 func toggle_bazzard_blockade(is_on: bool) -> void:
   $StaticBody2D/blockade.set_deferred('disabled', not is_on)
-
+  VisibleControl.set_state_by_id(
+    GameState.Visible.MAIN_ROAD__BAZARD_BLOCKADE, false
+  )
 
 func move_from_beyond_area() -> void:
   var beyond_rect: Rect2= Rect2(
@@ -140,4 +143,16 @@ func set_train_sign_status(is_green: bool) -> void:
     sign.texture= green
   else:
     sign.texture= red
-    
+
+func set_camera_pos(pos: Vector2) -> void:
+  $Camera2D.position= pos
+
+func toggle_camera(state: bool) -> void:
+  $Camera2D.enabled= state
+
+func tween_camera(to_pos: Vector2, dur= 1.0) -> void:
+  var t= create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+  t.tween_property(
+    $Camera2D, 'position', to_pos, dur
+  )
+  await t.finished

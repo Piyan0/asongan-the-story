@@ -24,3 +24,21 @@ func play_transition(is_close: bool):
   await animation_player.animation_finished
   if is_close:
     sprite_2d.hide()
+
+const FADE_DUR= 0.4
+const FADE_DELAY= 0.4
+func fade_in():
+  var t= create_tween()
+  t.tween_property(
+    $ColorRect, 'self_modulate', Color('ffffff'), FADE_DUR
+  )
+  await t.finished
+  
+func fade_out():
+  await get_tree().create_timer(FADE_DELAY).timeout
+  var t= create_tween()
+  t.tween_property(
+    $ColorRect, 'self_modulate', Color('ffffff00'), FADE_DUR
+  )
+  await t.finished
+  
