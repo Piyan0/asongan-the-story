@@ -308,3 +308,23 @@ func set_stock_based_on_foods(foods: Array[CookingFood]) -> void:
   for i in new_stock:
     #print(new_stock[i])
     get_shop_items.call(i).stock = new_stock[i]
+
+func ingredients_from_food(food: CookingFood) -> Array:
+  var ingredients: Array
+  for i in food._recipe():
+    ingredients.push_back(
+      get_item(
+        i._id()
+      )
+    )
+  
+  return ingredients
+
+#class Test:
+  #func setr():
+    #pass
+#
+#func x():
+  #var y= Test.new().setr({
+    #data:
+  #})
