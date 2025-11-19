@@ -1,6 +1,6 @@
 class_name _G36Dp
 
-# @desc: outro. ;
+# @desc: outro cutscene. ;
 
 
 static func fn() -> void:
